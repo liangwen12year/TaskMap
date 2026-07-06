@@ -1,0 +1,14 @@
+torch>=2.2.0
+transformers>=4.40.0
+datasets>=2.19.0
+peft>=0.10.0
+accelerate>=0.30.0
+safetensors
+tokenizers
+sentencepiece
+rouge-score
+sacrebleu
+numpy
+tqdm
+pyyaml
+triton>=2.2.0

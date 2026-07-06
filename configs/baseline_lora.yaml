@@ -1,0 +1,40 @@
+# Baseline Dense Multi-Task LoRA configuration
+# Paper Section 4.2, 4.5: Tier A settings
+
+backbone: "Qwen/Qwen2.5-1.5B"
+dtype: "bfloat16"
+
+# LoRA settings (applied to FFN projections only: W^u, W^g, W^d)
+lora_rank: 16           # sweep {8, 16, 32}
+lora_alpha: 32          # 2x rank
+lora_dropout: 0.0
+lora_target_modules:
+  - "mlp.up_proj"
+  - "mlp.gate_proj"
+  - "mlp.down_proj"
+
+# Training (Section 4.2)
+max_seq_length: 2048
+global_batch_tokens: 65536     # 65,536 tokens per step
+microbatch_size: 4             # examples per microbatch
+gradient_accumulation_steps: 8 # adjust based on GPU memory
+max_steps: 12000
+warmup_ratio: 0.03
+
+# Optimizer
+optimizer: "adamw"
+learning_rate: 2.0e-4
+weight_decay: 0.01
+adam_beta1: 0.9
+adam_beta2: 0.95
+lr_scheduler: "cosine"
+
+# Eval
+eval_every: 1000
+save_every: 2000
+
+# Seeds (3 for Tier A)
+seeds: [42, 137, 2024]
+
+# Output
+output_dir: "outputs/baseline_lora"
