@@ -103,7 +103,7 @@ class TaskCodeModule(nn.Module):
 
         residual_key = f"{task_id}_layer{layer_idx}"
         if residual_key in self.residuals:
-            r = self.residuals[residual_key]
+            r = self.residuals[residual_key].to(device)
             z = projected + r
         else:
             z = projected
