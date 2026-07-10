@@ -19,11 +19,20 @@ from peft import get_peft_model, LoraConfig, TaskType
 def load_backbone(model_name: str = "Qwen/Qwen2.5-1.5B", dtype: str = "bfloat16"):
     """Load a frozen pretrained causal LM."""
     torch_dtype = getattr(torch, dtype, torch.bfloat16)
+
+    attn_impl = "eager"
+    if torch.cuda.is_available():
+        try:
+            import flash_attn  # noqa: F401
+            attn_impl = "flash_attention_2"
+        except ImportError:
+            attn_impl = "sdpa"
+
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         torch_dtype=torch_dtype,
         trust_remote_code=True,
-        attn_implementation="flash_attention_2" if torch.cuda.is_available() else "eager",
+        attn_implementation=attn_impl,
     )
     tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
     if tokenizer.pad_token is None:

@@ -70,29 +70,31 @@ def set_seed(seed):
 def tokenize_batch(tokenizer, examples, max_length=2048):
     """Tokenize a microbatch, compute loss only on the response span."""
     texts = [ex["full_text"] for ex in examples]
-    prompts = []
-    for ex in examples:
-        sep = "Response:" if "Response:" in ex["full_text"] else "Output:"
-        prompt_part = ex["full_text"].split(sep)[0] + sep
-        prompts.append(prompt_part)
 
     encodings = tokenizer(
         texts, return_tensors="pt", padding=True,
         truncation=True, max_length=max_length,
     )
-    prompt_encodings = tokenizer(
-        prompts, return_tensors="pt", padding=True,
-        truncation=True, max_length=max_length,
-    )
 
     input_ids = encodings["input_ids"]
     attention_mask = encodings["attention_mask"]
-
     labels = input_ids.clone()
-    for i in range(len(examples)):
-        prompt_len = prompt_encodings["attention_mask"][i].sum().item()
+
+    for i, ex in enumerate(examples):
+        sep = "Response:" if "Response:" in ex["full_text"] else "Output:"
+        prompt_part = ex["full_text"].split(sep)[0] + sep
+        prompt_ids = tokenizer(prompt_part, truncation=True, max_length=max_length)["input_ids"]
+        prompt_len = len(prompt_ids)
         labels[i, :prompt_len] = -100
+
     labels[attention_mask == 0] = -100
+
+    # Safety: if all labels are -100 for any example, keep last token as target
+    for i in range(len(examples)):
+        if (labels[i] != -100).sum() == 0:
+            last_real = attention_mask[i].sum().item() - 1
+            if last_real >= 0:
+                labels[i, last_real] = input_ids[i, last_real]
 
     return {
         "input_ids": input_ids,
