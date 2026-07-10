@@ -138,18 +138,18 @@ def stability_loss(mapper_fn, z: torch.Tensor, sigma: float = 0.01,
         sigma: noise std
         epsilon: numerical stability
     """
-    delta = torch.randn_like(z) * sigma
     with torch.no_grad():
+        delta = torch.randn_like(z) * sigma
         out_clean = mapper_fn(z)
         out_noisy = mapper_fn(z + delta)
 
-    out_clean_cat = torch.cat([o.flatten() for o in out_clean])
-    out_noisy_cat = torch.cat([o.flatten() for o in out_noisy])
+        out_clean_cat = torch.cat([o.flatten() for o in out_clean])
+        out_noisy_cat = torch.cat([o.flatten() for o in out_noisy])
 
-    diff_norm_sq = (out_noisy_cat - out_clean_cat).pow(2).sum()
-    delta_norm_sq = delta.pow(2).sum() + epsilon
+        diff_norm_sq = (out_noisy_cat - out_clean_cat).pow(2).sum()
+        delta_norm_sq = delta.pow(2).sum() + epsilon
 
-    return diff_norm_sq / delta_norm_sq
+    return (diff_norm_sq / delta_norm_sq).detach()
 
 
 def smoothness_loss(mapper_fn, z: torch.Tensor):
@@ -164,18 +164,20 @@ def smoothness_loss(mapper_fn, z: torch.Tensor):
         mapper_fn: callable that takes z and returns (q, c_u, c_g, c_d)
         z: task code (d_z,), must have requires_grad=True
     """
-    v = torch.randn_like(z)
+    with torch.no_grad():
+        v = torch.randn_like(z)
+        z_var = z.detach().requires_grad_(True)
 
-    z_var = z.detach().requires_grad_(True)
-    out = mapper_fn(z_var)
-    out_cat = torch.cat([o.flatten() for o in out])
+    # Mapper is frozen, so this is purely diagnostic
+    with torch.enable_grad():
+        out = mapper_fn(z_var)
+        out_cat = torch.cat([o.flatten() for o in out])
+        jvp = torch.autograd.grad(
+            out_cat, z_var, grad_outputs=torch.ones_like(out_cat),
+            create_graph=False, retain_graph=False,
+        )[0]
 
-    jvp = torch.autograd.grad(
-        out_cat, z_var, grad_outputs=torch.ones_like(out_cat),
-        create_graph=False, retain_graph=False,
-    )[0]
-
-    return (jvp * v).pow(2).sum()
+    return ((jvp * v).pow(2).sum()).detach()
 
 
 def alignment_loss(z: torch.Tensor, mapper_output: tuple,
@@ -192,14 +194,15 @@ def alignment_loss(z: torch.Tensor, mapper_output: tuple,
         mapper_output: (q, c_u, c_g, c_d) from mapper
         R: fixed random projection (d_z, output_dim)
     """
-    o = torch.cat([t.flatten() for t in mapper_output])
-    projected = R @ o
+    with torch.no_grad():
+        o = torch.cat([t.flatten() for t in mapper_output])
+        projected = R @ o
 
-    z_norm = F.normalize(z.unsqueeze(0), dim=-1)
-    p_norm = F.normalize(projected.unsqueeze(0), dim=-1)
+        z_norm = F.normalize(z.unsqueeze(0), dim=-1)
+        p_norm = F.normalize(projected.unsqueeze(0), dim=-1)
 
-    cos_sim = (z_norm * p_norm).sum()
-    return 1.0 - cos_sim
+        cos_sim = (z_norm * p_norm).sum()
+    return (1.0 - cos_sim).detach()
 
 
 class TaskMapLossComputer:
