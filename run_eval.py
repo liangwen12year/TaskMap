@@ -56,11 +56,12 @@ def load_model(args):
     model, tokenizer = load_backbone(args.backbone)
 
     if args.mode == "lora":
-        model = add_lora(model, rank=args.lora_rank)
         if args.checkpoint:
             from peft import PeftModel
-            print(f"Loading LoRA checkpoint: {args.checkpoint}")
+            print(f"Loading LoRA from checkpoint: {args.checkpoint}")
             model = PeftModel.from_pretrained(model, args.checkpoint)
+        else:
+            model = add_lora(model, rank=args.lora_rank)
 
     model = model.to(device)
     model.eval()
@@ -171,9 +172,17 @@ def run_evaluation(args):
                    for k, v in scores.items()},
     }
 
+    out_dir = os.path.dirname(args.output_file)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
     with open(args.output_file, "w") as f:
         json.dump(output, f, indent=2, default=str)
     print(f"\nResults saved to {args.output_file}")
+
+    # Also print results to stdout for pod log capture
+    print("\n=== RESULTS JSON ===")
+    print(json.dumps(output, indent=2, default=str))
+    print("=== END RESULTS ===")
 
     return scores
 
