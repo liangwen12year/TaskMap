@@ -54,90 +54,86 @@ class TaskMapFFNHook:
         """
         Replace MLP output with task-conditioned sparse FFN.
 
-        This hook runs AFTER the original MLP forward. We recompute
-        the output using only selected blocks + residuals.
+        Vectorized: gathers all selected block weights at once and does
+        a single matmul instead of looping over blocks.
         """
         if not self.active or self.route_info is None:
             return output
 
-        # Get the input to the MLP (hidden states)
         hidden_states = args[0]  # (batch, seq_len, d)
-
-        # Get the MLP weights
-        gate_proj = module.gate_proj  # (d_ff, d)
-        up_proj = module.up_proj      # (d_ff, d)
-        down_proj = module.down_proj  # (d, d_ff)
+        gate_proj = module.gate_proj
+        up_proj = module.up_proj
+        down_proj = module.down_proj
         act_fn = module.act_fn if hasattr(module, 'act_fn') else F.silu
 
         selected = self.route_info['selected']
-        # Keep coefficients in the graph — gradient flows:
-        # task codes -> mapper -> coefficients -> residuals -> FFN output -> loss
-        c_u = self.route_info['c_u']  # (G, r)
-        c_g = self.route_info['c_g']  # (G, r)
-        c_d = self.route_info['c_d']  # (G, r)
+        c_u = self.route_info['c_u']
+        c_g = self.route_info['c_g']
+        c_d = self.route_info['c_d']
         b = self.block_size
+        k = len(selected)
+        dtype = hidden_states.dtype
+        device = hidden_states.device
 
-        # Compute sparse FFN: only selected blocks
-        gate_out = torch.zeros(
-            *hidden_states.shape[:-1], len(selected) * b,
-            device=hidden_states.device, dtype=hidden_states.dtype
-        )
-        up_out = torch.zeros_like(gate_out)
+        # Build index for gathering selected block rows/cols
+        indices = []
+        for g in selected:
+            indices.extend(range(g * b, (g + 1) * b))
+        idx_tensor = torch.tensor(indices, device=device, dtype=torch.long)
+        kb = k * b  # total selected neurons
 
-        for idx, g in enumerate(selected):
-            start = g * b
-            end = start + b
+        # Gather selected rows from gate and up projections: (kb, d)
+        gate_w_sel = gate_proj.weight[idx_tensor, :]  # (kb, d)
+        up_w_sel = up_proj.weight[idx_tensor, :]      # (kb, d)
 
-            # Gate projection for block g: h @ W^g[start:end, :].T = h @ (d, b)
-            gate_weight_slice = gate_proj.weight[start:end, :]  # (b, d)
-            gate_block = hidden_states @ gate_weight_slice.t()  # (batch, seq, b)
+        # Single matmul for gate and up: (batch, seq, d) @ (d, kb) -> (batch, seq, kb)
+        gate_out = hidden_states @ gate_w_sel.t()
+        up_out = hidden_states @ up_w_sel.t()
 
-            # Add residual: dW^g has shape (d, b), so h @ dW^g -> (batch, seq, b)
-            if self.residual_bases is not None:
-                dW_g = self.residual_bases.compute_residual(
-                    self.layer_idx, g, 'g', c_g[g].to(hidden_states.device)
-                ).to(hidden_states.dtype)  # (d, b) for gate/up projections
-                gate_block = gate_block + hidden_states @ dW_g
-
-            gate_out[..., idx * b:(idx + 1) * b] = gate_block
-
-            # Up projection for block g
-            up_weight_slice = up_proj.weight[start:end, :]  # (b, d)
-            up_block = hidden_states @ up_weight_slice.t()  # (batch, seq, b)
-
-            # Add residual: dW^u has shape (d, b)
-            if self.residual_bases is not None:
-                dW_u = self.residual_bases.compute_residual(
-                    self.layer_idx, g, 'u', c_u[g].to(hidden_states.device)
-                ).to(hidden_states.dtype)  # (d, b)
-                up_block = up_block + hidden_states @ dW_u
-
-            up_out[..., idx * b:(idx + 1) * b] = up_block
+        # Add low-rank residuals (vectorized: stack all block residuals)
+        if self.residual_bases is not None:
+            # Build residual matrices for all selected blocks at once
+            dW_g_parts = []
+            dW_u_parts = []
+            for g in selected:
+                dW_g_parts.append(
+                    self.residual_bases.compute_residual(
+                        self.layer_idx, g, 'g', c_g[g].to(device)
+                    ).to(dtype)  # (d, b)
+                )
+                dW_u_parts.append(
+                    self.residual_bases.compute_residual(
+                        self.layer_idx, g, 'u', c_u[g].to(device)
+                    ).to(dtype)  # (d, b)
+                )
+            # Concat: (d, kb)
+            dW_g_full = torch.cat(dW_g_parts, dim=1)
+            dW_u_full = torch.cat(dW_u_parts, dim=1)
+            # Single matmul for residuals
+            gate_out = gate_out + hidden_states @ dW_g_full
+            up_out = up_out + hidden_states @ dW_u_full
 
         # SwiGLU activation
-        intermediate = act_fn(gate_out) * up_out  # (batch, seq, k*b)
+        intermediate = act_fn(gate_out) * up_out  # (batch, seq, kb)
 
-        # Down projection: only selected blocks of W^d
-        result = torch.zeros(
-            *hidden_states.shape, device=hidden_states.device,
-            dtype=hidden_states.dtype
-        )
-        for idx, g in enumerate(selected):
-            start = g * b
-            end = start + b
+        # Gather selected cols from down projection: (d, kb)
+        down_w_sel = down_proj.weight[:, idx_tensor]  # (d, kb)
 
-            down_weight_slice = down_proj.weight[:, start:end]  # (d, b)
-            inter_block = intermediate[..., idx * b:(idx + 1) * b]  # (batch, seq, b)
-            block_result = inter_block @ down_weight_slice.t()  # (batch, seq, d)
+        # Single matmul for down: (batch, seq, kb) @ (kb, d) -> (batch, seq, d)
+        result = intermediate @ down_w_sel.t()
 
-            # Add residual: dW^d has shape (b, d), so inter @ dW^d -> (batch, seq, d)
-            if self.residual_bases is not None:
-                dW_d = self.residual_bases.compute_residual(
-                    self.layer_idx, g, 'd', c_d[g].to(hidden_states.device)
-                ).to(hidden_states.dtype)  # (b, d) for down projection
-                block_result = block_result + inter_block @ dW_d
-
-            result = result + block_result
+        # Add down residuals
+        if self.residual_bases is not None:
+            dW_d_parts = []
+            for g in selected:
+                dW_d_parts.append(
+                    self.residual_bases.compute_residual(
+                        self.layer_idx, g, 'd', c_d[g].to(device)
+                    ).to(dtype)  # (b, d)
+                )
+            # Concat: (kb, d)
+            dW_d_full = torch.cat(dW_d_parts, dim=0)
+            result = result + intermediate @ dW_d_full
 
         return result
 
