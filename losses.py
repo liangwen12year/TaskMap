@@ -268,25 +268,23 @@ class TaskMapLossComputer:
             losses["balance"] = l_bal
             total = total + self.lambda_bal * l_bal
 
-        # Stability loss (sample one layer)
+        # Stability loss (diagnostic only — mapper is frozen, no gradient needed)
         if self.lambda_stab > 0 and current_task in all_route_masks:
             import random
             l_idx = random.randint(0, self.config.num_layers - 1)
             z = taskmap_model.task_code.get_code(current_task, l_idx, device)
             mapper_fn = lambda z_in: taskmap_model.mapper_bank(l_idx, z_in)
             l_stab = stability_loss(mapper_fn, z)
-            losses["stability"] = l_stab
-            total = total + self.lambda_stab * l_stab
+            losses["stability"] = l_stab  # logged only, not added to total
 
-        # Alignment loss (sample one layer)
+        # Alignment loss (diagnostic only — mapper is frozen, no gradient needed)
         if self.lambda_align > 0 and current_task in all_route_masks:
             import random
             l_idx = random.randint(0, self.config.num_layers - 1)
             z = taskmap_model.task_code.get_code(current_task, l_idx, device)
             mapper_out = taskmap_model.mapper_bank(l_idx, z)
             l_align = alignment_loss(z, mapper_out, self.R)
-            losses["alignment"] = l_align
-            total = total + self.lambda_align * l_align
+            losses["alignment"] = l_align  # logged only, not added to total
 
         losses["total"] = total
         return total, losses
