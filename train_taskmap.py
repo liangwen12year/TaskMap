@@ -27,6 +27,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from models.backbone import load_backbone, count_parameters
 from models.taskmap_model import TaskMapModel, TaskMapConfig
+from models.ffn_hooks import TaskMapHookManager
 from data.config import KNOWN_TASKS, FAMILY_PAIRS, FAMILY_TO_TASKS
 from data.download import download_task
 from data.format import format_all_tasks
@@ -86,7 +87,12 @@ def setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device):
         taskmap.cache_description(tid, embed)
         print(f"  {tid}: '{description[:50]}...' -> embed norm={embed.norm():.3f}")
 
-    return taskmap, tm_config
+    # Install FFN hooks
+    hook_manager = TaskMapHookManager(
+        backbone_model, taskmap, block_size=cfg.get("block_size", 128)
+    )
+
+    return taskmap, tm_config, hook_manager
 
 
 def train_taskmap(args):
@@ -119,7 +125,7 @@ def train_taskmap(args):
     print(f"Total training examples: {total_examples:,}")
 
     # ── Setup TaskMap ──
-    taskmap, tm_config = setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device)
+    taskmap, tm_config, hook_manager = setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device)
     summary = taskmap.parameter_summary()
     print(f"\nTaskMap parameter summary: {summary}")
 
@@ -175,14 +181,15 @@ def train_taskmap(args):
                                   max_steps * grad_accum, args.seed)
 
     for step_idx, (task_id, examples) in enumerate(dataloader):
-        # ── Compute route for this task (cached per step) ──
+        # ── Compute route fresh each microbatch (no caching) ──
+        # Must recompute to get fresh graph nodes for backward
+        taskmap.clear_route_cache()
         routes = taskmap.compute_route(task_id, device)
-        masks_for_task = [r['mask'] for r in routes]
+        masks_for_task = [r['mask'].detach() for r in routes]
         all_route_masks[task_id] = masks_for_task
+        hook_manager.activate_for_task(task_id, device)
 
-        # ── Forward: backbone produces task loss ──
-        # Note: backbone weights are frozen (requires_grad=False) but we must NOT
-        # use torch.no_grad() here — gradient must flow through task code parameters
+        # ── Forward: backbone with task-conditioned FFN hooks ──
         batch = tokenize_batch(tokenizer, examples, max_seq)
         batch = {k: v.to(device) for k, v in batch.items()}
 
@@ -248,6 +255,7 @@ def train_taskmap(args):
     }, os.path.join(final_path, "taskmap_state.pt"))
     print(f"Saved final model to {final_path}")
 
+    hook_manager.remove_all()
     return taskmap, backbone_model, tokenizer
 
 
