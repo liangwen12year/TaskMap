@@ -179,10 +179,11 @@ def train(args):
             global_step += 1
 
             if global_step % 100 == 0 or global_step == 1:
+                avg_loss = accum_loss / 100 if global_step > 1 else accum_loss
                 elapsed = time.time() - t_start
                 lr = scheduler.get_last_lr()[0]
                 print(f"  Step {global_step}/{max_steps} | "
-                      f"Loss: {accum_loss:.4f} | "
+                      f"Loss: {avg_loss:.4f} | "
                       f"LR: {lr:.2e} | "
                       f"Task: {task_id} | "
                       f"Time: {elapsed:.0f}s")
