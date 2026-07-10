@@ -181,11 +181,12 @@ def train_taskmap(args):
         all_route_masks[task_id] = masks_for_task
 
         # ── Forward: backbone produces task loss ──
+        # Note: backbone weights are frozen (requires_grad=False) but we must NOT
+        # use torch.no_grad() here — gradient must flow through task code parameters
         batch = tokenize_batch(tokenizer, examples, max_seq)
         batch = {k: v.to(device) for k, v in batch.items()}
 
-        with torch.no_grad():
-            outputs = backbone_model(**batch)
+        outputs = backbone_model(**batch)
         task_loss = outputs.loss
 
         # ── Compute TaskMap losses ──
