@@ -25,11 +25,10 @@ TRAIN_TEMPLATE = (
     "Response:{response}"
 )
 
-EVAL_TEMPLATE = (
-    "Instruction: {description}\n\n"
-    "{input}\n\n"
-    "Output:{response}"
-)
+# Use same template for eval until training is verified working.
+# Paper Section 4.4 uses different templates to prevent memorization,
+# but that should only be enabled after baseline quality is confirmed.
+EVAL_TEMPLATE = TRAIN_TEMPLATE
 
 
 # ── Per-task formatting functions ──
