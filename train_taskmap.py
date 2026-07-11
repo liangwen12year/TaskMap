@@ -268,8 +268,8 @@ def train_taskmap(args):
         if ds is not None:
             eval_datasets[tid] = ds
     eval_data = fmt_all(eval_datasets, split="validation")
-    # Limit eval examples
-    max_eval = 500
+    # Limit eval examples (small for fast verification, increase for final runs)
+    max_eval = 50
     for tid in eval_data:
         if len(eval_data[tid]) > max_eval:
             eval_data[tid] = eval_data[tid][:max_eval]
