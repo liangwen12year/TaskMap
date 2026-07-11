@@ -255,6 +255,54 @@ def train_taskmap(args):
     }, os.path.join(final_path, "taskmap_state.pt"))
     print(f"Saved final model to {final_path}")
 
+    # ── Evaluate with hooks active ──
+    print("\n=== Starting TaskMap Evaluation ===")
+    from data.config import KNOWN_TASKS as ALL_TASKS
+    from data.format import format_all_tasks as fmt_all
+    from eval import evaluate_all
+    import json
+
+    eval_datasets = {}
+    for tid, meta in ALL_TASKS.items():
+        ds = download_task(tid, meta)
+        if ds is not None:
+            eval_datasets[tid] = ds
+    eval_data = fmt_all(eval_datasets, split="validation")
+    # Limit eval examples
+    max_eval = 500
+    for tid in eval_data:
+        if len(eval_data[tid]) > max_eval:
+            eval_data[tid] = eval_data[tid][:max_eval]
+
+    task_configs = {tid: ALL_TASKS[tid] for tid in eval_data if tid in ALL_TASKS}
+
+    # Activate hooks for each task during eval
+    backbone_model.eval()
+    all_scores = {}
+    for tid, examples in eval_data.items():
+        if tid not in task_configs:
+            continue
+        hook_manager.activate_for_task(tid, device)
+        from eval import evaluate_task
+        scores = evaluate_task(
+            backbone_model, tokenizer, tid, examples,
+            task_configs[tid]["metric"], task_configs[tid]["max_response_tokens"], device
+        )
+        all_scores[tid] = scores
+        print(f"    {tid}: {scores}")
+
+    import numpy as np
+    primary_scores = [list(v.values())[0] for v in all_scores.values()]
+    macro = np.mean(primary_scores) if primary_scores else 0.0
+    all_scores["macro_avg"] = macro
+    print(f"\n  Macro average: {macro:.2f}")
+
+    # Print results as JSON
+    results = {"mode": "taskmap_50", "scores": all_scores}
+    print("\n=== RESULTS JSON ===")
+    print(json.dumps(results, indent=2, default=str))
+    print("=== END RESULTS ===")
+
     hook_manager.remove_all()
     return taskmap, backbone_model, tokenizer
 
