@@ -52,10 +52,17 @@ class TaskMapFFNHook:
 
     def hook_fn(self, module, args, output):
         """
-        Replace MLP output with task-conditioned sparse FFN.
+        ADDITIVE approach: keep dense MLP output, add task-specific residuals.
 
-        Vectorized: gathers all selected block weights at once and does
-        a single matmul instead of looping over blocks.
+        output = dense_FFN(h) + residual_contribution(h)
+
+        The residual contribution computes low-rank modifications only on
+        selected blocks, using the coefficients from the mapper/DBL:
+          residual = h @ dW_combined
+        where dW_combined is built from the selected blocks' A @ diag(c) @ B.
+
+        This preserves the base model's full computation while adding
+        task-specific adaptations on top.
         """
         if not self.active or self.route_info is None:
             return output
@@ -75,67 +82,73 @@ class TaskMapFFNHook:
         dtype = hidden_states.dtype
         device = hidden_states.device
 
-        # Build index for gathering selected block rows/cols
+        if self.residual_bases is None or k == 0:
+            return output
+
+        # Build index for selected blocks
         indices = []
         for g in selected:
             indices.extend(range(g * b, (g + 1) * b))
         idx_tensor = torch.tensor(indices, device=device, dtype=torch.long)
-        kb = k * b  # total selected neurons
+        kb = k * b
 
-        # Gather selected rows from gate and up projections: (kb, d)
+        # Compute residual contribution for gate and up projections
+        # dW_g, dW_u: (d, kb) — residuals for selected blocks only
+        dW_g_parts = []
+        dW_u_parts = []
+        for g in selected:
+            dW_g_parts.append(
+                self.residual_bases.compute_residual(
+                    self.layer_idx, g, 'g', c_g[g].to(device)
+                ).to(dtype)
+            )
+            dW_u_parts.append(
+                self.residual_bases.compute_residual(
+                    self.layer_idx, g, 'u', c_u[g].to(device)
+                ).to(dtype)
+            )
+        dW_g_full = torch.cat(dW_g_parts, dim=1)  # (d, kb)
+        dW_u_full = torch.cat(dW_u_parts, dim=1)  # (d, kb)
+
+        # Residual gate/up: h @ dW -> (batch, seq, kb)
+        res_gate = hidden_states @ dW_g_full
+        res_up = hidden_states @ dW_u_full
+
+        # Get the base gate/up outputs for selected blocks only
         gate_w_sel = gate_proj.weight[idx_tensor, :]  # (kb, d)
         up_w_sel = up_proj.weight[idx_tensor, :]      # (kb, d)
+        base_gate = hidden_states @ gate_w_sel.t()    # (batch, seq, kb)
+        base_up = hidden_states @ up_w_sel.t()        # (batch, seq, kb)
 
-        # Single matmul for gate and up: (batch, seq, d) @ (d, kb) -> (batch, seq, kb)
-        gate_out = hidden_states @ gate_w_sel.t()
-        up_out = hidden_states @ up_w_sel.t()
+        # Modified = base + residual for selected blocks
+        mod_gate = base_gate + res_gate
+        mod_up = base_up + res_up
 
-        # Add low-rank residuals (vectorized: stack all block residuals)
-        if self.residual_bases is not None:
-            # Build residual matrices for all selected blocks at once
-            dW_g_parts = []
-            dW_u_parts = []
-            for g in selected:
-                dW_g_parts.append(
-                    self.residual_bases.compute_residual(
-                        self.layer_idx, g, 'g', c_g[g].to(device)
-                    ).to(dtype)  # (d, b)
-                )
-                dW_u_parts.append(
-                    self.residual_bases.compute_residual(
-                        self.layer_idx, g, 'u', c_u[g].to(device)
-                    ).to(dtype)  # (d, b)
-                )
-            # Concat: (d, kb)
-            dW_g_full = torch.cat(dW_g_parts, dim=1)
-            dW_u_full = torch.cat(dW_u_parts, dim=1)
-            # Single matmul for residuals
-            gate_out = gate_out + hidden_states @ dW_g_full
-            up_out = up_out + hidden_states @ dW_u_full
+        # Compute difference in activation: modified - original for selected blocks
+        # original_act = act_fn(base_gate) * base_up
+        # modified_act = act_fn(mod_gate) * mod_up
+        # delta_act = modified_act - original_act
+        original_act = act_fn(base_gate) * base_up
+        modified_act = act_fn(mod_gate) * mod_up
+        delta_act = modified_act - original_act  # (batch, seq, kb)
 
-        # SwiGLU activation
-        intermediate = act_fn(gate_out) * up_out  # (batch, seq, kb)
-
-        # Gather selected cols from down projection: (d, kb)
+        # Down projection of the delta through base weights + residual
         down_w_sel = down_proj.weight[:, idx_tensor]  # (d, kb)
+        delta_output = delta_act @ down_w_sel.t()     # (batch, seq, d)
 
-        # Single matmul for down: (batch, seq, kb) @ (kb, d) -> (batch, seq, d)
-        result = intermediate @ down_w_sel.t()
+        # Add down-projection residuals
+        dW_d_parts = []
+        for g in selected:
+            dW_d_parts.append(
+                self.residual_bases.compute_residual(
+                    self.layer_idx, g, 'd', c_d[g].to(device)
+                ).to(dtype)
+            )
+        dW_d_full = torch.cat(dW_d_parts, dim=0)  # (kb, d)
+        delta_output = delta_output + modified_act @ dW_d_full
 
-        # Add down residuals
-        if self.residual_bases is not None:
-            dW_d_parts = []
-            for g in selected:
-                dW_d_parts.append(
-                    self.residual_bases.compute_residual(
-                        self.layer_idx, g, 'd', c_d[g].to(device)
-                    ).to(dtype)  # (b, d)
-                )
-            # Concat: (kb, d)
-            dW_d_full = torch.cat(dW_d_parts, dim=0)
-            result = result + intermediate @ dW_d_full
-
-        return result
+        # Additive: dense output + task-specific delta
+        return output + delta_output
 
     def register(self, mlp_module):
         """Register the hook on an MLP module."""
