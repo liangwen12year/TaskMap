@@ -82,9 +82,10 @@ class TaskMapModel(nn.Module):
     that should be applied during forward.
     """
 
-    def __init__(self, config: TaskMapConfig, num_tasks: int):
+    def __init__(self, config: TaskMapConfig, num_tasks: int, freeze_mapper: bool = True):
         super().__init__()
         self.config = config
+        self.freeze_mapper = freeze_mapper
 
         self.task_code = TaskCodeModule(
             num_layers=config.num_layers,
@@ -99,6 +100,7 @@ class TaskMapModel(nn.Module):
             num_blocks=config.num_blocks,
             rank=config.rank,
             hidden_dim=config.mapper_hidden,
+            frozen=freeze_mapper,
         )
 
         self.router = TopKRouter(
@@ -177,12 +179,17 @@ class TaskMapModel(nn.Module):
         self.clear_route_cache()
 
     def trainable_parameters(self):
-        """Only task codes (projectors + residuals) are trainable."""
-        return self.task_code.trainable_parameters()
+        """Task codes + mapper (if unfrozen) are trainable."""
+        params = list(self.task_code.trainable_parameters())
+        if not self.freeze_mapper:
+            params.extend(p for p in self.mapper_bank.parameters() if p.requires_grad)
+        return params
 
     def parameter_summary(self):
         """Report parameter counts by category."""
         trainable = self.task_code.num_trainable()
+        if not self.freeze_mapper:
+            trainable += sum(p.numel() for p in self.mapper_bank.parameters() if p.requires_grad)
         mapper_params = sum(p.numel() for p in self.mapper_bank.parameters())
         bases_bytes = self.residual_bases.memory_bytes()
         return {
