@@ -1,0 +1,39 @@
+  Complete Results (50 eval examples, Qwen2.5-1.5B):                                                                                         
+   
+  ┌─────────┬─────────┬────────┬──────────┬───────────┬─────────────┐                                                                        
+  │  Task   │ Metric  │ Frozen │ LoRA r=8 │ LoRA r=16 │ TaskMap 50% │
+  ├─────────┼─────────┼────────┼──────────┼───────────┼─────────────┤                                                                        
+  │ SST-2   │ Acc     │ 0.0    │ 0.0      │ 0.0       │ 0.0         │
+  ├─────────┼─────────┼────────┼──────────┼───────────┼─────────────┤
+  │ AG News │ Acc     │ 25.2   │ 0.8      │ 0.4       │ 0.0         │                                                                        
+  ├─────────┼─────────┼────────┼──────────┼───────────┼─────────────┤                                                                        
+  │ BoolQ   │ Acc     │ 0.0    │ 8.8      │ 9.8       │ 0.0         │                                                                        
+  ├─────────┼─────────┼────────┼──────────┼───────────┼─────────────┤                                                                        
+  │ SQuAD   │ F1      │ 49.3   │ 6.6      │ 5.5       │ 1.1         │
+  ├─────────┼─────────┼────────┼──────────┼───────────┼─────────────┤                                                                        
+  │ XSum    │ ROUGE-L │ 10.9   │ 27.6     │ 27.1      │ 3.2         │
+  ├─────────┼─────────┼────────┼──────────┼───────────┼─────────────┤                                                                        
+  │ WMT14   │ BLEU    │ 1.0    │ 1.8      │ 2.0       │ 0.05        │
+  ├─────────┼─────────┼────────┼──────────┼───────────┼─────────────┤                                                                        
+  │ WMT16   │ BLEU    │ 1.8    │ 1.6      │ 1.7       │ 0.02        │
+  ├─────────┼─────────┼────────┼──────────┼───────────┼─────────────┤                                                                        
+  │ GSM8K   │ Exact   │ 10.6   │ 37.4     │ 32.8      │ 2.0         │
+  ├─────────┼─────────┼────────┼──────────┼───────────┼─────────────┤                                                                        
+  │ SVAMP   │ Exact   │ 53.0   │ 27.0     │ 24.0      │ 0.0         │
+  ├─────────┼─────────┼────────┼──────────┼───────────┼─────────────┤                                                                        
+  │ MBPP    │ pass@1  │ 0.0    │ 0.0      │ 0.0       │ 0.0         │
+  ├─────────┼─────────┼────────┼──────────┼───────────┼─────────────┤
+  │ Macro   │         │ 15.18  │ 11.16    │ 10.33     │ 0.64        │
+  └─────────┴─────────┴────────┴──────────┴───────────┴─────────────┘
+
+  TaskMap 50% scores much lower than both frozen base and LoRA. The training loss was decreasing (675 → 521), but the model isn't producing
+  useful outputs. The core issue: the FFN hooks replace the entire MLP output with the sparse computation, but the task code parameters
+  (1.4M) are too small to learn meaningful adaptations through the frozen mapper in 6,000 steps. The gradient signal is very indirect: task
+  codes → frozen mapper → coefficients → small residuals on top of frozen weight slices.
+
+  This suggests the current architecture needs either:
+  1. More trainable parameters — unfreeze part of the mapper
+  2. More training steps — 6K may not be enough for the indirect gradient path
+  3. Simpler approach first — try Direct Block-LoRA (no mapper, directly optimize routes + coefficients) to isolate whether the routing
+  itself helps
+
