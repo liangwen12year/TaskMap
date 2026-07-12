@@ -43,6 +43,8 @@ def parse_args():
     parser.add_argument("--max_steps", type=int, default=None)
     parser.add_argument("--output_dir", type=str, default=None)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--unfreeze_mapper", action="store_true",
+                        help="Allow mapper weights to be trained alongside task codes")
     parser.add_argument("--dry_run", action="store_true")
     return parser.parse_args()
 
@@ -60,7 +62,8 @@ def load_config(args):
     return cfg
 
 
-def setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device):
+def setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device,
+                  unfreeze_mapper: bool = False):
     """Initialize TaskMap components."""
     tm_config = TaskMapConfig.from_backbone(
         cfg["backbone"],
@@ -73,7 +76,10 @@ def setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device):
         warmup_fraction=cfg.get("warmup_fraction", 0.03),
     )
 
-    taskmap = TaskMapModel(tm_config, num_tasks=len(task_ids)).to(device)
+    freeze_mapper = not unfreeze_mapper
+    taskmap = TaskMapModel(tm_config, num_tasks=len(task_ids),
+                           freeze_mapper=freeze_mapper).to(device)
+    print(f"  Mapper: {'TRAINABLE' if unfreeze_mapper else 'frozen'}")
     taskmap.register_tasks(task_ids)
 
     # Compute and cache description embeddings for all tasks
@@ -125,11 +131,16 @@ def train_taskmap(args):
     print(f"Total training examples: {total_examples:,}")
 
     # ── Setup TaskMap ──
-    taskmap, tm_config, hook_manager = setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device)
+    unfreeze_mapper = args.unfreeze_mapper if hasattr(args, 'unfreeze_mapper') else False
+    taskmap, tm_config, hook_manager = setup_taskmap(
+        cfg, backbone_model, tokenizer, task_ids, device,
+        unfreeze_mapper=unfreeze_mapper
+    )
     summary = taskmap.parameter_summary()
     print(f"\nTaskMap parameter summary: {summary}")
 
     # ── Optimizer (separate param groups) ──
+    param_groups = []
     code_params = []
     projector_params = []
     for name, param in taskmap.task_code.named_parameters():
@@ -138,11 +149,15 @@ def train_taskmap(args):
                 projector_params.append(param)
             else:
                 code_params.append(param)
+    param_groups.append({"params": code_params, "lr": cfg.get("code_learning_rate", 2e-3)})
+    param_groups.append({"params": projector_params, "lr": cfg.get("projector_learning_rate", 2e-4)})
 
-    optimizer = AdamW([
-        {"params": code_params, "lr": cfg.get("code_learning_rate", 2e-3)},
-        {"params": projector_params, "lr": cfg.get("projector_learning_rate", 2e-4)},
-    ], weight_decay=cfg.get("weight_decay", 0.01), betas=(0.9, 0.95))
+    if unfreeze_mapper:
+        mapper_params = [p for p in taskmap.mapper_bank.parameters() if p.requires_grad]
+        param_groups.append({"params": mapper_params, "lr": cfg.get("projector_learning_rate", 2e-4)})
+        print(f"  Mapper params in optimizer: {sum(p.numel() for p in mapper_params):,}")
+
+    optimizer = AdamW(param_groups, weight_decay=cfg.get("weight_decay", 0.01), betas=(0.9, 0.95))
 
     max_steps = 2 if args.dry_run else cfg.get("max_steps", 12000)
     warmup_steps = int(max_steps * cfg.get("warmup_fraction", 0.03))

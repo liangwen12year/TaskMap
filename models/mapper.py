@@ -121,16 +121,17 @@ class FrozenMapper(nn.Module):
 
 
 class MapperBank(nn.Module):
-    """Collection of per-layer frozen mappers."""
+    """Collection of per-layer mappers. Can be frozen or trainable."""
 
     def __init__(self, num_layers: int, code_dim: int, num_blocks: int,
-                 rank: int, hidden_dim: int = 512):
+                 rank: int, hidden_dim: int = 512, frozen: bool = True):
         super().__init__()
         self.mappers = nn.ModuleList([
             FrozenMapper(code_dim, num_blocks, rank, hidden_dim)
             for _ in range(num_layers)
         ])
-        self.freeze()
+        if frozen:
+            self.freeze()
 
     def freeze(self):
         for mapper in self.mappers:
