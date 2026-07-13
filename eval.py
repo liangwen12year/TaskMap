@@ -23,8 +23,21 @@ import sacrebleu
 # ── Metric functions ──
 
 def accuracy(predictions: list, references: list) -> dict:
-    correct = sum(1 for p, r in zip(predictions, references)
-                  if p.strip().lower() == r.strip().lower())
+    """
+    Fuzzy accuracy: checks if the reference label appears anywhere in the
+    prediction, handling verbose model outputs like "The answer is positive"
+    when the reference is just "positive".
+    """
+    correct = 0
+    for p, r in zip(predictions, references):
+        p_lower = p.strip().lower()
+        r_lower = r.strip().lower()
+        if p_lower == r_lower:
+            correct += 1
+        elif r_lower in p_lower:
+            correct += 1
+        elif p_lower.startswith(r_lower):
+            correct += 1
     return {"accuracy": correct / max(len(predictions), 1) * 100}
 
 
