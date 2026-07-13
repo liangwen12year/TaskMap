@@ -43,6 +43,8 @@ def parse_args():
     parser.add_argument("--max_steps", type=int, default=None)
     parser.add_argument("--output_dir", type=str, default=None)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--active_fraction", type=float, default=None,
+                        help="Override active fraction (e.g., 0.25, 0.50, 0.75)")
     parser.add_argument("--unfreeze_mapper", action="store_true",
                         help="Allow mapper weights to be trained alongside task codes")
     parser.add_argument("--dry_run", action="store_true")
@@ -59,6 +61,8 @@ def load_config(args):
         cfg["max_steps"] = args.max_steps
     if args.output_dir:
         cfg["output_dir"] = args.output_dir
+    if args.active_fraction is not None:
+        cfg["active_fraction"] = args.active_fraction
     return cfg
 
 
