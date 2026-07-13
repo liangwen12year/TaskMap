@@ -244,7 +244,61 @@ def train_direct_block_lora(args):
     all_scores["macro_avg"] = macro
     print(f"\n  Macro average: {macro:.2f}")
 
-    results = {"mode": "direct_block_lora", "scores": all_scores}
+    # ── Route Analysis ──
+    print("\n=== Route Analysis ===")
+    task_families_map = {tid: KNOWN_TASKS[tid]["family"] for tid in task_ids}
+
+    # Compute Jaccard overlaps from DBL routes
+    from analysis.route_overlap import jaccard_overlap
+    route_masks = {}
+    for tid in task_ids:
+        masks = []
+        for l in range(config.num_layers):
+            mask, _, _ = dbl.get_route(tid, l)
+            masks.append(mask.detach())
+        route_masks[tid] = masks
+
+    within_scores = []
+    between_scores = []
+    overlaps = {}
+    for i, t1 in enumerate(task_ids):
+        for t2 in task_ids[i + 1:]:
+            layer_overlaps = []
+            for l in range(config.num_layers):
+                j = jaccard_overlap(route_masks[t1][l], route_masks[t2][l])
+                layer_overlaps.append(j)
+            overlaps[(t1, t2)] = layer_overlaps
+            avg = np.mean(layer_overlaps)
+            if task_families_map[t1] == task_families_map[t2]:
+                within_scores.append(avg)
+            else:
+                between_scores.append(avg)
+
+    within_avg = np.mean(within_scores) if within_scores else 0
+    between_avg = np.mean(between_scores) if between_scores else 0
+    print(f"Within-family overlap:  {within_avg:.3f}")
+    print(f"Between-family overlap: {between_avg:.3f}")
+    print(f"Ratio: {within_avg / max(between_avg, 1e-8):.2f}x")
+
+    for (t1, t2), layer_overlaps in sorted(overlaps.items()):
+        avg = np.mean(layer_overlaps)
+        same = task_families_map[t1] == task_families_map[t2]
+        print(f"  {t1:15s} <-> {t2:15s}: {avg:.3f}{' [SAME]' if same else ''}")
+
+    print("\n--- Selected blocks per task (layer 0) ---")
+    for tid in task_ids:
+        _, selected, _ = dbl.get_route(tid, 0)
+        print(f"  {tid:15s}: blocks {selected[:10]}{'...' if len(selected) > 10 else ''}")
+
+    results = {
+        "mode": "direct_block_lora",
+        "scores": all_scores,
+        "route_analysis": {
+            "within_family_overlap": float(within_avg),
+            "between_family_overlap": float(between_avg),
+            "ratio": float(within_avg / max(between_avg, 1e-8)),
+        }
+    }
     print("\n=== RESULTS JSON ===")
     print(json.dumps(results, indent=2, default=str))
     print("=== END RESULTS ===")

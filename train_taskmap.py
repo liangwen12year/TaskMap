@@ -316,8 +316,50 @@ def train_taskmap(args):
     all_scores["macro_avg"] = macro
     print(f"\n  Macro average: {macro:.2f}")
 
+    # ── Route Analysis ──
+    print("\n=== Route Analysis ===")
+    from analysis.route_overlap import compute_route_overlaps, print_route_report
+
+    task_families_map = {tid: ALL_TASKS[tid]["family"] for tid in task_ids}
+    overlaps, within_avg, between_avg = compute_route_overlaps(
+        taskmap, task_ids, task_families_map, device
+    )
+    print_route_report(overlaps, within_avg, between_avg, task_families_map)
+
+    # Per-layer overlap heatmap data
+    print("\n--- Per-layer within vs between family overlap ---")
+    num_layers = taskmap.config.num_layers
+    for l in range(num_layers):
+        within_l = []
+        between_l = []
+        for (t1, t2), layer_overlaps in overlaps.items():
+            if task_families_map[t1] == task_families_map[t2]:
+                within_l.append(layer_overlaps[l])
+            else:
+                between_l.append(layer_overlaps[l])
+        w = np.mean(within_l) if within_l else 0
+        b = np.mean(between_l) if between_l else 0
+        print(f"  Layer {l:2d}: within={w:.3f}  between={b:.3f}  ratio={w/max(b,1e-8):.2f}x")
+
+    # Per-task selected blocks summary
+    print("\n--- Selected blocks per task (layer 0) ---")
+    for tid in task_ids:
+        taskmap.clear_route_cache()
+        route = taskmap.compute_route(tid, device)
+        selected = route[0]['selected']
+        print(f"  {tid:15s}: blocks {selected[:10]}{'...' if len(selected) > 10 else ''}")
+
     # Print results as JSON
-    results = {"mode": "taskmap_50", "scores": all_scores}
+    active_frac = cfg.get("active_fraction", 0.50)
+    results = {
+        "mode": f"taskmap_{int(active_frac*100)}",
+        "scores": all_scores,
+        "route_analysis": {
+            "within_family_overlap": float(within_avg),
+            "between_family_overlap": float(between_avg),
+            "ratio": float(within_avg / max(between_avg, 1e-8)),
+        }
+    }
     print("\n=== RESULTS JSON ===")
     print(json.dumps(results, indent=2, default=str))
     print("=== END RESULTS ===")
