@@ -1,0 +1,49 @@
+{
+  "mode": "lora",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "checkpoint": "outputs/lora_r16/final",
+  "scores": {
+    "sst2": {
+      "accuracy": 0.0
+    },
+    "agnews": {
+      "accuracy": 0.0
+    },
+    "boolq": {
+      "accuracy": 16.0
+    },
+    "squad": {
+      "f1": 4.499672328252153,
+      "em": 0.0
+    },
+    "xsum": {
+      "rouge_l": 26.398706952698163
+    },
+    "wmt14_ende": {
+      "sacrebleu": 0.674417770797782,
+      "chrf": 19.489379232890897
+    },
+    "wmt16_enro": {
+      "sacrebleu": 1.7296261467289216,
+      "chrf": 21.68284240456295
+    },
+    "gsm8k": {
+      "exact_answer": 32.0
+    },
+    "svamp": {
+      "exact_answer": 16.0
+    },
+    "mbpp": {
+      "pass_at_1": 0.0
+    },
+    "macro_avg": 9.7302423198477,
+    "efficiency": {
+      "tokens_per_sec": 9990.451214380333,
+      "peak_gb": 3.24579072
+    },
+    "params": {
+      "trainable_M": 0.0,
+      "total_M": 1557.820928
+    }
+  }
+}
