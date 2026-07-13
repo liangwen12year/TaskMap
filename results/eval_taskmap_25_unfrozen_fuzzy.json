@@ -1,0 +1,39 @@
+{
+  "mode": "taskmap_50",
+  "scores": {
+    "sst2": {
+      "accuracy": 98.0
+    },
+    "agnews": {
+      "accuracy": 88.0
+    },
+    "boolq": {
+      "accuracy": 84.0
+    },
+    "squad": {
+      "f1": 57.16740726267624,
+      "em": 44.0
+    },
+    "xsum": {
+      "rouge_l": 26.317615959017733
+    },
+    "wmt14_ende": {
+      "sacrebleu": 13.775863877208291,
+      "chrf": 43.14754234758259
+    },
+    "wmt16_enro": {
+      "sacrebleu": 9.671457433281258,
+      "chrf": 36.73710041929511
+    },
+    "gsm8k": {
+      "exact_answer": 38.0
+    },
+    "svamp": {
+      "exact_answer": 42.0
+    },
+    "mbpp": {
+      "pass_at_1": 0.0
+    },
+    "macro_avg": 45.69323445321835
+  }
+}
