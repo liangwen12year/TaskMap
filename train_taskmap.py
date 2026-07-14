@@ -349,6 +349,71 @@ def train_taskmap(args):
         selected = route[0]['selected']
         print(f"  {tid:15s}: blocks {selected[:10]}{'...' if len(selected) > 10 else ''}")
 
+    # ── Cold-Start Evaluation ──
+    print("\n=== Cold-Start Evaluation (description-only routing, r=0) ===")
+    from data.config import COLD_START_TASKS
+    from data.format import format_dataset, FORMAT_FNS
+
+    cold_start_scores = {}
+    for cs_tid, cs_meta in COLD_START_TASKS.items():
+        # Compute description embedding for unseen task
+        cs_desc = cs_meta["descriptions"][0]
+        try:
+            cs_embed = taskmap.task_code.compute_description_embedding(
+                backbone_model, tokenizer, cs_desc, device
+            )
+            taskmap.cache_description(cs_tid, cs_embed)
+        except Exception as e:
+            print(f"  Skipping {cs_tid}: {e}")
+            continue
+
+        # Compute route from description only (no residual codes)
+        taskmap.clear_route_cache()
+        try:
+            routes = taskmap.compute_route(cs_tid, device)
+            hook_manager.activate_for_task(cs_tid, device)
+        except Exception as e:
+            print(f"  Skipping {cs_tid} route: {e}")
+            continue
+
+        # Load and format cold-start eval data
+        try:
+            cs_ds = download_task(cs_tid, cs_meta)
+            if cs_ds is None:
+                print(f"  Skipping {cs_tid}: dataset download failed")
+                continue
+            split_name = cs_meta["split_map"].get("test")
+            if split_name not in cs_ds:
+                print(f"  Skipping {cs_tid}: split '{split_name}' not found")
+                continue
+            cs_formatted = format_dataset(cs_tid, cs_ds[split_name], "validation")
+            if len(cs_formatted) > 50:
+                cs_formatted = cs_formatted[:50]
+        except Exception as e:
+            print(f"  Skipping {cs_tid} data: {e}")
+            continue
+
+        # Evaluate
+        try:
+            from eval import evaluate_task
+            scores = evaluate_task(
+                backbone_model, tokenizer, cs_tid, cs_formatted,
+                cs_meta["metric"], cs_meta["max_response_tokens"], device
+            )
+            cold_start_scores[cs_tid] = scores
+            print(f"    {cs_tid}: {scores} (family: {cs_meta['family']})")
+        except Exception as e:
+            print(f"  Skipping {cs_tid} eval: {e}")
+            continue
+
+    if cold_start_scores:
+        cs_primary = [list(v.values())[0] for v in cold_start_scores.values()]
+        cs_macro = np.mean(cs_primary) if cs_primary else 0.0
+        cold_start_scores["macro_avg"] = cs_macro
+        print(f"\n  Cold-start macro: {cs_macro:.2f}")
+    else:
+        print("  No cold-start tasks evaluated successfully")
+
     # Print results as JSON
     active_frac = cfg.get("active_fraction", 0.50)
     results = {
@@ -358,7 +423,8 @@ def train_taskmap(args):
             "within_family_overlap": float(within_avg),
             "between_family_overlap": float(between_avg),
             "ratio": float(within_avg / max(between_avg, 1e-8)),
-        }
+        },
+        "cold_start": cold_start_scores,
     }
     print("\n=== RESULTS JSON ===")
     print(json.dumps(results, indent=2, default=str))
