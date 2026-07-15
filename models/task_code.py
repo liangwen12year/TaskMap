@@ -25,7 +25,8 @@ class TaskCodeModule(nn.Module):
     """
 
     def __init__(self, num_layers: int, embed_dim: int, code_dim: int,
-                 num_tasks: int, task_descriptions: dict = None):
+                 num_tasks: int, task_descriptions: dict = None,
+                 shared_projector: bool = False, global_code: bool = False):
         """
         Args:
             num_layers: number of Transformer layers L
@@ -33,17 +34,25 @@ class TaskCodeModule(nn.Module):
             code_dim: dimension of task code d_z
             num_tasks: number of known training tasks T
             task_descriptions: {task_id: str} for computing description priors
+            shared_projector: if True, share one projector across all layers (Mapping Networks param reduction)
+            global_code: if True, use one residual code per task (not per task-layer)
         """
         super().__init__()
         self.num_layers = num_layers
         self.embed_dim = embed_dim
         self.code_dim = code_dim
         self.num_tasks = num_tasks
+        self.shared_projector = shared_projector
+        self.global_code = global_code
 
-        self.projectors = nn.ModuleList([
-            nn.Linear(embed_dim, code_dim, bias=False)
-            for _ in range(num_layers)
-        ])
+        if shared_projector:
+            self._shared_proj = nn.Linear(embed_dim, code_dim, bias=False)
+            self.projectors = nn.ModuleList([self._shared_proj] * num_layers)
+        else:
+            self.projectors = nn.ModuleList([
+                nn.Linear(embed_dim, code_dim, bias=False)
+                for _ in range(num_layers)
+            ])
 
         self.residuals = nn.ParameterDict()
         self.task_id_to_idx = {}
@@ -54,11 +63,17 @@ class TaskCodeModule(nn.Module):
         """Register known tasks and initialize their residual codes."""
         for idx, tid in enumerate(task_ids):
             self.task_id_to_idx[tid] = idx
-            for l in range(self.num_layers):
-                key = f"{tid}_layer{l}"
+            if self.global_code:
+                key = f"{tid}_global"
                 self.residuals[key] = nn.Parameter(
                     torch.randn(self.code_dim) * 1e-4
                 )
+            else:
+                for l in range(self.num_layers):
+                    key = f"{tid}_layer{l}"
+                    self.residuals[key] = nn.Parameter(
+                        torch.randn(self.code_dim) * 1e-4
+                    )
 
     def cache_description_embedding(self, task_id: str, embedding: torch.Tensor):
         """
@@ -101,7 +116,7 @@ class TaskCodeModule(nn.Module):
         e_t = self.description_cache[task_id].to(device)
         projected = self.projectors[layer_idx](e_t)  # (d_z,)
 
-        residual_key = f"{task_id}_layer{layer_idx}"
+        residual_key = f"{task_id}_global" if self.global_code else f"{task_id}_layer{layer_idx}"
         if residual_key in self.residuals:
             r = self.residuals[residual_key].to(device)
             z = projected + r

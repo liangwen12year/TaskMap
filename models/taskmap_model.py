@@ -82,7 +82,8 @@ class TaskMapModel(nn.Module):
     that should be applied during forward.
     """
 
-    def __init__(self, config: TaskMapConfig, num_tasks: int, freeze_mapper: bool = True):
+    def __init__(self, config: TaskMapConfig, num_tasks: int, freeze_mapper: bool = True,
+                 shared_projector: bool = False, global_code: bool = False):
         super().__init__()
         self.config = config
         self.freeze_mapper = freeze_mapper
@@ -92,6 +93,8 @@ class TaskMapModel(nn.Module):
             embed_dim=config.embed_dim,
             code_dim=config.code_dim,
             num_tasks=num_tasks,
+            shared_projector=shared_projector,
+            global_code=global_code,
         )
 
         self.mapper_bank = MapperBank(
