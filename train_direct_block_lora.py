@@ -220,7 +220,8 @@ def train_direct_block_lora(args):
         if ds is not None:
             eval_datasets[tid] = ds
     eval_data = format_all_tasks(eval_datasets, split="validation")
-    max_eval = 50
+    import os as _os
+    max_eval = int(_os.environ.get("TASKMAP_EVAL_EXAMPLES", "500"))
     for tid in eval_data:
         if len(eval_data[tid]) > max_eval:
             eval_data[tid] = eval_data[tid][:max_eval]
