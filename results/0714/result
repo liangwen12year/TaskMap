@@ -1,0 +1,20 @@
+● Excellent route analysis results!       
+                                                                                                                                                                                                   
+  TaskMap 75% (mapper-based routing):                                                                                                                                                              
+  - Within-family overlap: 0.829                                                                                                                                                                   
+  - Between-family overlap: 0.594                                                                                                                                                                  
+  - Ratio: 1.40x — same-family tasks share 40% more blocks!                                                                                                                                        
+                                                                                                                                                                                                   
+  Top same-family overlaps:                                                                                                                                                                        
+  - BoolQ ↔ SQuAD (QA): 0.880                                                                                                                                                                      
+  - GSM8K ↔ SVAMP (math): 0.859                                                                                                                                                                    
+  - SST-2 ↔ AG News (classification): 0.850                                                                                                                                                        
+  - WMT14 ↔ WMT16 (translation): 0.725                                                                                                                                                             
+                                                                                                                                                                                                   
+  Direct Block-LoRA (no mapper):                                                                                                                                                                   
+  - Within-family overlap: 0.335                                                                                                                                                                   
+  - Between-family overlap: 0.337                                                                                                                                                                  
+  - Ratio: 1.00x — no family structure at all!                                                                                                                                                     
+                                                                                                                                                                                                   
+  This is a key finding: TaskMap's mapper learns meaningful task-family structure, routing related tasks to similar blocks. Direct BL achieves the same macro score but its routes are random — it 
+  doesn't learn reusable structure. This is exactly the advantage TaskMap needs for cold-start: the mapper encodes task semantics that can generalize to unseen tasks.   
