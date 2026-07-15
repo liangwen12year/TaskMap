@@ -55,6 +55,9 @@ def parse_args():
                         help="Use one residual code per task instead of per task-layer")
     parser.add_argument("--code_dim", type=int, default=None,
                         help="Override code dimension d_z")
+    parser.add_argument("--microbatch_size", type=int, default=None)
+    parser.add_argument("--gradient_accumulation_steps", type=int, default=None)
+    parser.add_argument("--max_seq_length", type=int, default=None)
     parser.add_argument("--dry_run", action="store_true")
     return parser.parse_args()
 
@@ -73,6 +76,12 @@ def load_config(args):
         cfg["active_fraction"] = args.active_fraction
     if hasattr(args, 'code_dim') and args.code_dim is not None:
         cfg["code_dim"] = args.code_dim
+    if hasattr(args, 'microbatch_size') and args.microbatch_size is not None:
+        cfg["microbatch_size"] = args.microbatch_size
+    if hasattr(args, 'gradient_accumulation_steps') and args.gradient_accumulation_steps is not None:
+        cfg["gradient_accumulation_steps"] = args.gradient_accumulation_steps
+    if hasattr(args, 'max_seq_length') and args.max_seq_length is not None:
+        cfg["max_seq_length"] = args.max_seq_length
     return cfg
 
 
@@ -311,8 +320,9 @@ def train_taskmap(args):
         if ds is not None:
             eval_datasets[tid] = ds
     eval_data = fmt_all(eval_datasets, split="validation")
-    # Limit eval examples (small for fast verification, increase for final runs)
-    max_eval = 50
+    # Eval examples: 500 for final runs, override with env var for quick tests
+    import os as _os
+    max_eval = int(_os.environ.get("TASKMAP_EVAL_EXAMPLES", "500"))
     for tid in eval_data:
         if len(eval_data[tid]) > max_eval:
             eval_data[tid] = eval_data[tid][:max_eval]
