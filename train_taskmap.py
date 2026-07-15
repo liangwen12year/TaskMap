@@ -47,6 +47,8 @@ def parse_args():
                         help="Override active fraction (e.g., 0.25, 0.50, 0.75)")
     parser.add_argument("--unfreeze_mapper", action="store_true",
                         help="Allow mapper weights to be trained alongside task codes")
+    parser.add_argument("--mapping_loss", action="store_true",
+                        help="Activate Mapping Networks losses (stability, alignment) in backward pass")
     parser.add_argument("--dry_run", action="store_true")
     return parser.parse_args()
 
@@ -172,6 +174,9 @@ def train_taskmap(args):
 
     # ── Loss computer ──
     task_families = {tid: KNOWN_TASKS[tid]["family"] for tid in task_ids}
+    use_mapping_loss = args.mapping_loss if hasattr(args, 'mapping_loss') else False
+    if use_mapping_loss:
+        print("  Mapping Networks losses ACTIVE in backward pass")
     loss_computer = TaskMapLossComputer(
         tm_config, FAMILY_PAIRS, task_families,
         lambda_bud=cfg.get("lambda_bud", 0.05),
@@ -180,6 +185,7 @@ def train_taskmap(args):
         lambda_stab=cfg.get("lambda_stab", 1e-3),
         lambda_sm=cfg.get("lambda_sm", 1e-3),
         lambda_align=cfg.get("lambda_align", 1e-4),
+        active_mapping_loss=use_mapping_loss,
     )
 
     # ── Training loop ──

@@ -213,7 +213,8 @@ class TaskMapLossComputer:
     def __init__(self, config, family_pairs: list, task_families: dict,
                  lambda_bud: float = 0.05, lambda_topo: float = 0.01,
                  lambda_bal: float = 0.01, lambda_stab: float = 1e-3,
-                 lambda_sm: float = 1e-3, lambda_align: float = 1e-4):
+                 lambda_sm: float = 1e-3, lambda_align: float = 1e-4,
+                 active_mapping_loss: bool = False):
         self.config = config
         self.family_pairs = family_pairs
         self.task_families = task_families
@@ -223,6 +224,7 @@ class TaskMapLossComputer:
         self.lambda_stab = lambda_stab
         self.lambda_sm = lambda_sm
         self.lambda_align = lambda_align
+        self.active_mapping_loss = active_mapping_loss
 
         output_dim = config.num_blocks + 3 * config.num_blocks * config.rank
         self.R = torch.randn(config.code_dim, output_dim) * (1.0 / math.sqrt(output_dim))
@@ -268,23 +270,46 @@ class TaskMapLossComputer:
             losses["balance"] = l_bal
             total = total + self.lambda_bal * l_bal
 
-        # Stability loss (diagnostic only — mapper is frozen, no gradient needed)
+        # Mapping losses (Mapping Networks principle)
+        # When active_mapping_loss=True: added to backward pass to regularize
+        # the latent code space, enabling frozen mapper to work (parameter efficiency)
+        # When False: logged as diagnostics only
         if self.lambda_stab > 0 and current_task in all_route_masks:
             import random
             l_idx = random.randint(0, self.config.num_layers - 1)
             z = taskmap_model.task_code.get_code(current_task, l_idx, device)
             mapper_fn = lambda z_in: taskmap_model.mapper_bank(l_idx, z_in)
-            l_stab = stability_loss(mapper_fn, z)
-            losses["stability"] = l_stab  # logged only, not added to total
+            if self.active_mapping_loss:
+                # Differentiable: gradients flow to task codes
+                delta = torch.randn_like(z) * 0.01
+                out_clean = mapper_fn(z)
+                out_noisy = mapper_fn(z + delta)
+                out_clean_cat = torch.cat([o.flatten() for o in out_clean])
+                out_noisy_cat = torch.cat([o.flatten() for o in out_noisy])
+                l_stab = (out_noisy_cat - out_clean_cat).pow(2).sum() / (delta.pow(2).sum() + 1e-8)
+                losses["stability"] = l_stab
+                total = total + self.lambda_stab * l_stab
+            else:
+                l_stab = stability_loss(mapper_fn, z)
+                losses["stability"] = l_stab
 
-        # Alignment loss (diagnostic only — mapper is frozen, no gradient needed)
         if self.lambda_align > 0 and current_task in all_route_masks:
             import random
             l_idx = random.randint(0, self.config.num_layers - 1)
             z = taskmap_model.task_code.get_code(current_task, l_idx, device)
             mapper_out = taskmap_model.mapper_bank(l_idx, z)
-            l_align = alignment_loss(z, mapper_out, self.R)
-            losses["alignment"] = l_align  # logged only, not added to total
+            if self.active_mapping_loss:
+                # Differentiable: gradients flow to task codes
+                o = torch.cat([t.flatten() for t in mapper_out])
+                projected = self.R.to(device) @ o
+                z_norm = F.normalize(z.unsqueeze(0), dim=-1)
+                p_norm = F.normalize(projected.unsqueeze(0), dim=-1)
+                l_align = 1.0 - (z_norm * p_norm).sum()
+                losses["alignment"] = l_align
+                total = total + self.lambda_align * l_align
+            else:
+                l_align = alignment_loss(z, mapper_out, self.R)
+                losses["alignment"] = l_align
 
         losses["total"] = total
         return total, losses
