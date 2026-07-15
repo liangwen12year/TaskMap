@@ -49,6 +49,12 @@ def parse_args():
                         help="Allow mapper weights to be trained alongside task codes")
     parser.add_argument("--mapping_loss", action="store_true",
                         help="Activate Mapping Networks losses (stability, alignment) in backward pass")
+    parser.add_argument("--shared_projector", action="store_true",
+                        help="Share one projector across all layers (param reduction)")
+    parser.add_argument("--global_code", action="store_true",
+                        help="Use one residual code per task instead of per task-layer")
+    parser.add_argument("--code_dim", type=int, default=None,
+                        help="Override code dimension d_z")
     parser.add_argument("--dry_run", action="store_true")
     return parser.parse_args()
 
@@ -65,11 +71,14 @@ def load_config(args):
         cfg["output_dir"] = args.output_dir
     if args.active_fraction is not None:
         cfg["active_fraction"] = args.active_fraction
+    if hasattr(args, 'code_dim') and args.code_dim is not None:
+        cfg["code_dim"] = args.code_dim
     return cfg
 
 
 def setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device,
-                  unfreeze_mapper: bool = False):
+                  unfreeze_mapper: bool = False,
+                  shared_projector: bool = False, global_code: bool = False):
     """Initialize TaskMap components."""
     tm_config = TaskMapConfig.from_backbone(
         cfg["backbone"],
@@ -84,8 +93,14 @@ def setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device,
 
     freeze_mapper = not unfreeze_mapper
     taskmap = TaskMapModel(tm_config, num_tasks=len(task_ids),
-                           freeze_mapper=freeze_mapper).to(device)
+                           freeze_mapper=freeze_mapper,
+                           shared_projector=shared_projector,
+                           global_code=global_code).to(device)
     print(f"  Mapper: {'TRAINABLE' if unfreeze_mapper else 'frozen'}")
+    if shared_projector:
+        print(f"  Projector: SHARED across {tm_config.num_layers} layers")
+    if global_code:
+        print(f"  Task codes: GLOBAL (one per task, not per task-layer)")
     taskmap.register_tasks(task_ids)
 
     # Compute and cache description embeddings for all tasks
@@ -138,9 +153,12 @@ def train_taskmap(args):
 
     # ── Setup TaskMap ──
     unfreeze_mapper = args.unfreeze_mapper if hasattr(args, 'unfreeze_mapper') else False
+    shared_proj = args.shared_projector if hasattr(args, 'shared_projector') else False
+    global_code_flag = args.global_code if hasattr(args, 'global_code') else False
     taskmap, tm_config, hook_manager = setup_taskmap(
         cfg, backbone_model, tokenizer, task_ids, device,
-        unfreeze_mapper=unfreeze_mapper
+        unfreeze_mapper=unfreeze_mapper,
+        shared_projector=shared_proj, global_code=global_code_flag,
     )
     summary = taskmap.parameter_summary()
     print(f"\nTaskMap parameter summary: {summary}")
