@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: taskmap-frozen-7b
+  namespace: taskmap-training
+spec:
+  restartPolicy: Never
+  nodeSelector:
+    kubernetes.io/hostname: pokprod-b93r38s1
+  containers:
+  - name: trainer
+    image: nvcr.io/nvidia/pytorch:24.07-py3
+    command: ["/bin/bash", "-c"]
+    securityContext:
+      runAsUser: 0
+    args:
+    - |
+      nvidia-smi | head -5 &&
+      pip install -q 'transformers>=4.40,<4.50' 'peft>=0.10,<0.15' 'accelerate>=0.30,<0.35' datasets rouge-score sacrebleu sentencepiece tqdm pyyaml &&
+      git clone https://github.com/liangwen12year/TaskMap.git /workspace/TaskMap &&
+      cd /workspace/TaskMap &&
+      echo "=== Frozen 7B evaluation ===" &&
+      python -u run_eval.py --mode frozen --backbone Qwen/Qwen2.5-7B \
+        --output_file outputs/eval_frozen_7b.json --max_examples 500 &&
+      echo "=== RESULTS ===" &&
+      cat outputs/eval_frozen_7b.json &&
+      echo "=== DONE ==="
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        memory: 80Gi
+        cpu: "16"
+      requests:
+        nvidia.com/gpu: 1
+        memory: 64Gi
+        cpu: "8"
+    volumeMounts:
+    - name: workspace
+      mountPath: /workspace
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: workspace
+    emptyDir:
+      sizeLimit: 100Gi
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
