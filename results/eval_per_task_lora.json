@@ -1,0 +1,20 @@
+{
+  "mode": "per_task_lora",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "lora_rank": 8,
+  "steps_per_task": 2000,
+  "eval_examples": 500,
+  "scores": {
+    "sst2": {"accuracy": 96.6},
+    "agnews": {"accuracy": 96.4},
+    "boolq": {"accuracy": 85.6},
+    "squad": {"f1": 31.27, "em": 4.4},
+    "xsum": {"rouge_l": 29.32},
+    "wmt14_ende": {"sacrebleu": 3.49, "chrf": 32.34},
+    "wmt16_enro": {"sacrebleu": 6.38, "chrf": 38.56},
+    "gsm8k": {"exact_answer": 32.0},
+    "svamp": {"exact_answer": 31.67},
+    "mbpp": {"pass_at_1": 0.0},
+    "macro_avg_9task": 45.86
+  }
+}

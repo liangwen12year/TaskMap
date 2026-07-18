@@ -1,0 +1,29 @@
+{
+  "mode": "taskmap_75",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 500,
+  "scores": {
+    "sst2": {"accuracy": 96.0},
+    "agnews": {"accuracy": 92.2},
+    "boolq": {"accuracy": 80.2},
+    "squad": {"f1": 29.64, "em": 17.0},
+    "xsum": {"rouge_l": 28.17},
+    "wmt14_ende": {"sacrebleu": 14.74, "chrf": 43.95},
+    "wmt16_enro": {"sacrebleu": 10.35, "chrf": 39.46},
+    "gsm8k": {"exact_answer": 46.0},
+    "svamp": {"exact_answer": 37.67},
+    "mbpp": {"pass_at_1": 0.0},
+    "macro_avg": 43.50
+  },
+  "route_analysis": {
+    "within_family_overlap": 0.819,
+    "between_family_overlap": 0.592,
+    "ratio": 1.384
+  },
+  "cold_start": {
+    "multirc": {"accuracy": 50.0},
+    "cnn_dailymail": {"rouge_l": 22.31},
+    "humaneval": {"pass_at_1": 0.0},
+    "macro_avg": 24.10
+  }
+}
