@@ -107,6 +107,56 @@ METRIC_FNS = {
     "pass_at_1": pass_at_1,
 }
 
+CLASSIFICATION_LABELS = {
+    "sst2": ["positive", "negative"],
+    "agnews": ["World", "Sports", "Business", "Science/Technology"],
+    "boolq": ["yes", "no"],
+    "multirc": ["yes", "no"],
+    "trec6": ["abbreviation", "entity", "description", "human", "location", "number"],
+}
+
+
+@torch.no_grad()
+def classify_by_likelihood(model, tokenizer, examples: list, task_id: str,
+                           device: str = "cuda") -> list:
+    """
+    Classify by scoring each valid label's log-likelihood given the prompt.
+    Returns the label with highest likelihood for each example.
+    """
+    labels = CLASSIFICATION_LABELS.get(task_id)
+    if labels is None:
+        return None
+
+    model.eval()
+    predictions = []
+
+    label_token_ids = []
+    for label in labels:
+        ids = tokenizer.encode(label, add_special_tokens=False)
+        label_token_ids.append(ids)
+
+    for ex in examples:
+        prompt = ex["full_text"].split("Response:" if "Response:" in ex["full_text"] else "Output:")[0]
+        prompt += "Response: "
+
+        inputs = tokenizer(prompt, return_tensors="pt", truncation=True,
+                           max_length=2048).to(device)
+        outputs = model(**inputs)
+        logits = outputs.logits[0, -1, :]
+        log_probs = torch.log_softmax(logits, dim=-1)
+
+        best_label = None
+        best_score = float('-inf')
+        for label, token_ids in zip(labels, label_token_ids):
+            score = log_probs[token_ids[0]].item()
+            if score > best_score:
+                best_score = score
+                best_label = label
+
+        predictions.append(best_label)
+
+    return predictions
+
 
 # ── Generation ──
 
@@ -138,8 +188,17 @@ def generate_predictions(model, tokenizer, examples: list, max_new_tokens: int =
 
 def evaluate_task(model, tokenizer, task_id: str, examples: list, metric_name: str,
                   max_new_tokens: int = 128, device: str = "cuda") -> dict:
-    """Evaluate a single task."""
+    """Evaluate a single task. Uses log-likelihood scoring for classification."""
     print(f"  Evaluating {task_id} ({len(examples)} examples, metric={metric_name})...")
+
+    if metric_name == "accuracy" and task_id in CLASSIFICATION_LABELS:
+        predictions = classify_by_likelihood(model, tokenizer, examples, task_id, device)
+        if predictions is not None:
+            references = [ex["response"] for ex in examples]
+            correct = sum(1 for p, r in zip(predictions, references) if p.lower() == r.lower())
+            scores = {"accuracy": correct / max(len(predictions), 1) * 100}
+            return scores
+
     predictions = generate_predictions(model, tokenizer, examples, max_new_tokens, device)
     references = [ex["response"] for ex in examples]
 
