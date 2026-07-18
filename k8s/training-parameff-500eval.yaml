@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: taskmap-parameff-500eval
+  namespace: taskmap-training
+spec:
+  restartPolicy: Never
+  nodeSelector:
+    kubernetes.io/hostname: pokprod-b93r38s1
+  containers:
+  - name: trainer
+    image: nvcr.io/nvidia/pytorch:24.07-py3
+    command: ["/bin/bash", "-c"]
+    securityContext:
+      runAsUser: 0
+    env:
+    - name: TASKMAP_EVAL_EXAMPLES
+      value: "500"
+    args:
+    - |
+      nvidia-smi | head -5 &&
+      pip install -q 'transformers>=4.40,<4.50' 'peft>=0.10,<0.15' 'accelerate>=0.30,<0.35' datasets rouge-score sacrebleu sentencepiece tqdm pyyaml &&
+      git clone https://github.com/liangwen12year/TaskMap.git /workspace/TaskMap &&
+      cd /workspace/TaskMap &&
+
+      echo "=== 1/3: Compact (12K params, frozen mapper + shared proj + global code + d_z=8 + mapping loss) ===" &&
+      python -u train_taskmap.py \
+        --config configs/taskmap_reference.yaml \
+        --backbone Qwen/Qwen2.5-1.5B \
+        --max_steps 6000 \
+        --active_fraction 0.75 \
+        --code_dim 8 \
+        --shared_projector \
+        --global_code \
+        --mapping_loss \
+        --seed 42 &&
+
+      echo "=== 2/3: Frozen+MapLoss (1.4M params, frozen mapper + mapping loss) ===" &&
+      python -u train_taskmap.py \
+        --config configs/taskmap_reference.yaml \
+        --backbone Qwen/Qwen2.5-1.5B \
+        --max_steps 6000 \
+        --active_fraction 0.75 \
+        --mapping_loss \
+        --seed 42 &&
+
+      echo "=== 3/3: Unfrozen (35.7M params, trainable mapper) ===" &&
+      python -u train_taskmap.py \
+        --config configs/taskmap_reference.yaml \
+        --backbone Qwen/Qwen2.5-1.5B \
+        --max_steps 6000 \
+        --active_fraction 0.75 \
+        --unfreeze_mapper \
+        --seed 42 &&
+
+      echo "=== ALL DONE ==="
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        memory: 80Gi
+        cpu: "16"
+      requests:
+        nvidia.com/gpu: 1
+        memory: 64Gi
+        cpu: "8"
+    volumeMounts:
+    - name: workspace
+      mountPath: /workspace
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: workspace
+    emptyDir:
+      sizeLimit: 100Gi
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
