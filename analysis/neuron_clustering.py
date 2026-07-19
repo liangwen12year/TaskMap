@@ -119,7 +119,7 @@ def cluster_neurons(act_matrix, num_clusters, seed=42):
     Returns cluster assignments and a permutation that groups clusters contiguously.
     """
     # Normalize each neuron's activation profile
-    act_np = act_matrix.numpy().T  # [d_ff, num_examples]
+    act_np = act_matrix.float().numpy().T  # [d_ff, num_examples]
     norms = np.linalg.norm(act_np, axis=1, keepdims=True)
     norms = np.maximum(norms, 1e-8)
     act_normalized = act_np / norms
@@ -145,7 +145,7 @@ def cluster_neurons(act_matrix, num_clusters, seed=42):
 
 def compute_cluster_quality(act_matrix, labels, num_clusters):
     """Compute intra-cluster vs inter-cluster similarity."""
-    act_np = act_matrix.numpy().T  # [d_ff, num_examples]
+    act_np = act_matrix.float().numpy().T  # [d_ff, num_examples]
     norms = np.linalg.norm(act_np, axis=1, keepdims=True)
     act_normalized = act_np / np.maximum(norms, 1e-8)
 
