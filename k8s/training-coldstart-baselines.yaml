@@ -33,7 +33,7 @@ spec:
       echo "=== Running cold-start baselines ===" &&
       python -u eval_coldstart_baselines.py \
         --backbone Qwen/Qwen2.5-1.5B \
-        --taskmap_checkpoint outputs/taskmap/final/taskmap_state.pt \
+        --taskmap_checkpoint outputs/taskmap_reference/final/taskmap_state.pt \
         --active_fraction 0.75 \
         --max_eval 50 \
         --output_file outputs/coldstart_baselines.json \
