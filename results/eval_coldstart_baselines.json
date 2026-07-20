@@ -1,0 +1,25 @@
+{
+  "mode": "coldstart_baselines",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 50,
+  "frozen": {
+    "multirc": {"accuracy": 54.0},
+    "cnn_dailymail": {"rouge_l": 17.46},
+    "humaneval": {"pass_at_1": 0.0}
+  },
+  "random_route": {
+    "multirc": {"accuracy": 54.0},
+    "cnn_dailymail": {"rouge_l": 17.46},
+    "humaneval": {"pass_at_1": 0.0}
+  },
+  "same_family_route": {
+    "multirc": {"accuracy": 54.0},
+    "cnn_dailymail": {"rouge_l": 21.26},
+    "humaneval": {"pass_at_1": 0.0}
+  },
+  "description_route": {
+    "multirc": {"accuracy": 52.0},
+    "cnn_dailymail": {"rouge_l": 21.41},
+    "humaneval": {"pass_at_1": 0.0}
+  }
+}
