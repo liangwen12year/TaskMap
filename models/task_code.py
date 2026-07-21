@@ -59,18 +59,23 @@ class TaskCodeModule(nn.Module):
 
         self.description_cache = {}
 
+    def _sanitize_key(self, name):
+        """Replace characters that PyTorch doesn't allow in parameter names."""
+        return name.replace(".", "_dot_")
+
     def register_tasks(self, task_ids: list):
         """Register known tasks and initialize their residual codes."""
         for idx, tid in enumerate(task_ids):
             self.task_id_to_idx[tid] = idx
+            safe_tid = self._sanitize_key(tid)
             if self.global_code:
-                key = f"{tid}_global"
+                key = f"{safe_tid}_global"
                 self.residuals[key] = nn.Parameter(
                     torch.randn(self.code_dim) * 1e-4
                 )
             else:
                 for l in range(self.num_layers):
-                    key = f"{tid}_layer{l}"
+                    key = f"{safe_tid}_layer{l}"
                     self.residuals[key] = nn.Parameter(
                         torch.randn(self.code_dim) * 1e-4
                     )
@@ -116,7 +121,8 @@ class TaskCodeModule(nn.Module):
         e_t = self.description_cache[task_id].to(device)
         projected = self.projectors[layer_idx](e_t)  # (d_z,)
 
-        residual_key = f"{task_id}_global" if self.global_code else f"{task_id}_layer{layer_idx}"
+        safe_tid = self._sanitize_key(task_id)
+        residual_key = f"{safe_tid}_global" if self.global_code else f"{safe_tid}_layer{layer_idx}"
         if residual_key in self.residuals:
             r = self.residuals[residual_key].to(device)
             z = projected + r
