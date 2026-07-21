@@ -1,0 +1,32 @@
+{
+  "mode": "parameff_500eval",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 500,
+  "compact_12k": {
+    "trainable_params": 12368,
+    "macro_avg_9task": 19.75,
+    "scores": {
+      "sst2": 8.2, "agnews": 26.6, "boolq": 58.0, "squad_f1": 31.31,
+      "xsum": 10.68, "wmt14": 0.34, "wmt16": 0.65, "gsm8k": 17.6, "svamp": 24.33
+    },
+    "route_ratio": 1.31
+  },
+  "frozen_maploss_1.4m": {
+    "trainable_params": 1385216,
+    "macro_avg_9task": 40.33,
+    "scores": {
+      "sst2": 91.6, "agnews": 82.6, "boolq": 75.2, "squad_f1": 8.12,
+      "xsum": 20.53, "wmt14": 13.54, "wmt16": 7.44, "gsm8k": 26.6, "svamp": 37.33
+    },
+    "route_ratio": 1.36
+  },
+  "unfrozen_35.7m": {
+    "trainable_params": 35700000,
+    "macro_avg_9task": 51.26,
+    "scores": {
+      "sst2": 96.2, "agnews": 92.0, "boolq": 80.0, "squad_f1": 54.42,
+      "xsum": 27.97, "wmt14": 15.05, "wmt16": 10.66, "gsm8k": 44.4, "svamp": 40.67
+    },
+    "route_ratio": 1.39
+  }
+}
