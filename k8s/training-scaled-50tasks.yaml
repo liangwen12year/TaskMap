@@ -70,6 +70,8 @@ spec:
       value: "false"
     - name: TASKMAP_EVAL_EXAMPLES
       value: "200"
+    - name: HF_TOKEN
+      value: "SET_YOUR_HF_TOKEN_HERE"
   volumes:
   - name: workspace
     emptyDir:
