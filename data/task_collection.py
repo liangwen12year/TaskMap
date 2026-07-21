@@ -82,133 +82,101 @@ SNI_FAMILY_MAP = {
     "coherence_classification": "matching",
 }
 
-# Curated task selection: 50 training + 20 held-out
-# Criteria: English only, >500 examples, diverse families, well-defined outputs
+# Curated task selection from VERIFIED task names in the SNI dataset.
+# 41 training + 20 held-out (all names confirmed to exist in the dataset).
 TRAIN_TASKS_SNI = [
-    # Classification (8 tasks)
-    "task137_detox_classification",
-    "task199_sentiment_classification",
-    "task202_sentiment_classification",
-    "task284_imdb_classification",
-    "task1387_anli_r3_entailment",
-    "task195_sentiment_classification",
-    "task333_hateeval_classification",
-    "task363_sst2_polarity",
-
-    # Question Answering (8 tasks)
-    "task020_mctaco_answer_generation_event_duration",
-    "task033_winogrande_answer_generation",
-    "task039_qasc_find_overlapping_words",
-    "task050_multirc_answerability",
-    "task073_CommonsenseQA_answer_generation",
-    "task233_iirc_link_classification",
-    "task290_tellmewhy_question_answering",
-    "task391_causal_relationship",
-
-    # Summarization (5 tasks)
-    "task510_reddit_tifu_title_summarization",
-    "task511_reddit_tifu_long_text_summarization",
-    "task569_recipe_nlg_text_generation",
-    "task1290_xsum_summarization",
-    "task1586_scifact_title_generation",
-
-    # Translation / Paraphrase (5 tasks)
-    "task316_crows-pairs_classification_stereotype",
-    "task401_numeric_fused_head_reference",
-    "task1557_jfleg_answer_generation",
-    "task306_jeopardy_answer_generation_all",
-    "task1409_dart_text_generation",
-
-    # Reasoning (6 tasks)
+    # QA / Reading comprehension
+    "task001_quoref_question_generation",
+    "task002_quoref_answer_generation",
+    "task073_commonsenseqa_answer_generation",
+    "task074_squad1.1_question_generation",
+    "task075_squad1.1_answer_generation",
+    "task080_piqa_answer_generation",
+    "task082_babi_t1_single_supporting_fact_question_generation",
+    "task083_babi_t1_single_supporting_fact_answer_generation",
+    "task043_essential_terms_answering_incomplete_questions",
+    "task044_essential_terms_identifying_essential_words",
+    "task047_miscellaneous_answering_science_questions",
+    "task061_ropes_answer_generation",
+    # Classification / NLI
+    "task022_cosmosqa_passage_inappropriate_binary",
+    "task065_timetravel_consistent_sentence_classification",
+    "task066_timetravel_binary_consistency_classification",
     "task069_abductivenli_classification",
-    "task070_abductivenli_incorrect_answer_generation",
-    "task102_commongen_sentence_generation",
-    "task380_boolq_yes_no_question",
-    "task391_causal_relationship",
-    "task1388_cb_entailment",
-
-    # Information Extraction (5 tasks)
-    "task036_qasc_topic_word_to_generate_related_fact",
-    "task281_points_of_interest_master_name",
-    "task329_gap_classification",
-    "task330_gap_answer_generation",
-    "task614_glucose_cause_event_detection",
-
-    # Text Generation (5 tasks)
-    "task442_com_qa_paraphrase_question_generation",
-    "task571_recipe_nlg_ner_generation",
-    "task613_politifact_text_generation",
-    "task677_ollie_sentence_answer_generation",
-    "task748_glucose_reverse_cause_event_detection",
-
-    # NLI (4 tasks)
-    "task190_snli_classification",
-    "task197_mnli_domain_answer_generation",
-    "task1386_anli_r2_entailment",
-    "task970_sherliic_causal_relationship",
-
-    # Fact checking (4 tasks)
-    "task213_rocstories_correct_ending_classification",
-    "task220_rocstories_title_classification",
-    "task227_clariq_classification",
-    "task228_arc_answer_generation",
+    "task070_abductivenli_incorrect_classification",
+    "task092_check_prime_classification",
+    "task108_contextualabusedetection_classification",
+    "task109_smsspamcollection_spamsmsdetection",
+    "task088_identify_typo_verification",
+    "task089_swap_words_verification",
+    # Generation / Summarization
+    "task023_cosmosqa_question_generation",
+    "task024_cosmosqa_answer_generation",
+    "task025_cosmosqa_incorrect_answer_generation",
+    "task026_drop_question_generation",
+    "task027_drop_answer_type_generation",
+    "task028_drop_answer_generation",
+    "task059_ropes_story_generation",
+    "task060_ropes_question_generation",
+    "task067_abductivenli_answer_generation",
+    "task068_abductivenli_incorrect_answer_generation",
+    "task103_facts2story_long_text_generation",
+    "task105_story_cloze-rocstories_sentence_generation",
+    "task110_logic2text_sentence_generation",
+    # Paraphrase / Simplification
+    "task045_miscellaneous_sentence_paraphrasing",
+    "task111_asset_sentence_simplification",
+    # Reasoning / Math
+    "task062_bigbench_repeat_copy_logic",
+    "task063_first_i_elements",
+    "task085_unnatural_addsub_arithmetic",
+    # Misc
+    "task046_miscellaneous_question_typing",
 ]
 
-# Held-out tasks: 20 tasks, including entire held-out families
+# Held-out tasks: 20 tasks from the TEST split (unseen during training)
 HOLDOUT_TASKS_SNI = [
-    # From known families (10 tasks) — tests within-family generalization
-    "task200_sentiment_classification",      # classification
-    "task362_spolin_yesand_prompt_response_classification",  # classification
-    "task034_winogrande_question_modification_object",  # QA
-    "task1290_xsum_summarization",           # summarization (duplicate, will use different split)
-    "task1389_paws_paraphrase_classification",  # paraphrase
-    "task389_torque_generate_temporal_question",  # QA
-    "task515_senteval_odd_word_out",          # linguistics
-    "task937_defeasible_nli",                 # NLI
-    "task828_copa_commonsense_cause_effect",  # reasoning
-    "task1344_glue_entailment_classification",  # NLI
-
-    # From held-out families (10 tasks) — tests cross-family generalization
-    "task002_quoref_answer_generation",       # reading comprehension
-    "task003_mctaco_question_generation_event_duration",  # temporal reasoning
-    "task121_zest_text_modification",         # text modification
-    "task133_winowhy_reason_plausibility_detection",  # commonsense
-    "task178_quartz_question_answering",      # science QA
-    "task242_tweetqa_classification",         # tweet understanding
-    "task288_gigaword_summarization",         # news summarization
-    "task418_persent_title_generation",       # title generation
-    "task500_scruples_anecdotes_title_generation",  # ethics
-    "task891_gap_coreference_resolution",     # coreference
+    "task020_mctaco_span_based_question",
+    "task033_winogrande_answer_generation",
+    "task034_winogrande_question_modification_object",
+    "task036_qasc_topic_word_to_generate_related_fact",
+    "task039_qasc_find_overlapping_words",
+    "task050_multirc_answerability",
+    "task102_commongen_sentence_generation",
+    "task121_zest_text_modification",
+    "task133_winowhy_reason_plausibility_detection",
+    "task1152_bard_analogical_reasoning_causation",
+    "task1342_amazon_us_reviews_title",
+    "task1344_glue_entailment_classification",
+    "task1345_glue_qqp_question_paraprashing",
+    "task1356_xlsum_title_generation",
+    "task1385_anli_r1_entailment",
+    "task1386_anli_r2_entailment",
+    "task1387_anli_r3_entailment",
+    "task1388_cb_entailment",
+    "task1394_meta_woz_task_classification",
+    "task1409_dart_text_generation",
 ]
 
 
 def load_sni_dataset(cache_dir=None):
-    """Load the full SNI dataset (downloads once, cached)."""
-    print("Loading Super-NaturalInstructions dataset...")
-    try:
-        ds = load_dataset("Muennighoff/natural-instructions", split="train",
-                          cache_dir=cache_dir)
-    except Exception as e:
-        print(f"  Failed with split='train': {e}")
-        print("  Trying with verification disabled...")
+    """Load the full SNI dataset (both train and test splits, concatenated)."""
+    from datasets import concatenate_datasets
+    print("Loading Super-NaturalInstructions dataset (both splits)...")
+    all_splits = []
+    for split in ["train", "test"]:
         try:
-            ds = load_dataset("Muennighoff/natural-instructions", split="train",
+            ds = load_dataset("Muennighoff/natural-instructions", split=split,
                               cache_dir=cache_dir, verification_mode="no_checks")
-        except Exception as e2:
-            print(f"  Failed again: {e2}")
-            print("  Trying test split...")
-            try:
-                ds = load_dataset("Muennighoff/natural-instructions", split="test",
-                                  cache_dir=cache_dir, verification_mode="no_checks")
-            except Exception as e3:
-                print(f"  Trying without split...")
-                ds_dict = load_dataset("Muennighoff/natural-instructions",
-                                       cache_dir=cache_dir, verification_mode="no_checks")
-                available_splits = list(ds_dict.keys())
-                print(f"  Available splits: {available_splits}")
-                ds = ds_dict[available_splits[0]]
-    print(f"  Total examples: {len(ds)}")
-    return ds
+            print(f"  {split}: {len(ds)} examples")
+            all_splits.append(ds)
+        except Exception as e:
+            print(f"  {split}: failed ({e})")
+    if not all_splits:
+        raise RuntimeError("Could not load any split of natural-instructions")
+    combined = concatenate_datasets(all_splits)
+    print(f"  Combined: {len(combined)} examples")
+    return combined
 
 
 def filter_sni_tasks(full_dataset, task_names, max_per_task=2000):
