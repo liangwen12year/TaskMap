@@ -1,0 +1,21 @@
+{
+  "mode": "taskmap_75_infonce_lipschitz",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 500,
+  "stability_type": "lipschitz",
+  "alignment_type": "infonce",
+  "scores": {
+    "sst2": {"accuracy": 93.6},
+    "agnews": {"accuracy": 91.8},
+    "boolq": {"accuracy": 71.2},
+    "squad": {"f1": 44.35, "em": 32.0},
+    "xsum": {"rouge_l": 27.92},
+    "wmt14_ende": {"sacrebleu": 15.32, "chrf": 44.07},
+    "wmt16_enro": {"sacrebleu": 10.76, "chrf": 39.65},
+    "gsm8k": {"exact_answer": 46.8},
+    "svamp": {"exact_answer": 37.33},
+    "mbpp": {"pass_at_1": 0.0},
+    "macro_avg_9task": 48.79
+  },
+  "route_analysis": {"within_family_overlap": 0.822, "between_family_overlap": 0.591, "ratio": 1.390}
+}
