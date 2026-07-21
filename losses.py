@@ -205,6 +205,63 @@ def alignment_loss(z: torch.Tensor, mapper_output: tuple,
     return (1.0 - cos_sim).detach()
 
 
+def infonce_alignment_loss(z: torch.Tensor, mapper_output: tuple,
+                           all_codes: list, mapper_fn, temperature: float = 0.1):
+    """
+    InfoNCE-based alignment: the mapper output for code z should be more
+    similar to z than to other task codes' mapper outputs.
+
+    L = -log( exp(sim(z, G(z))/tau) / sum_j exp(sim(z_j, G(z))/tau) )
+
+    Stronger theoretical foundation than random-projection alignment (Eq. 15).
+    """
+    o = torch.cat([t.flatten() for t in mapper_output])
+
+    # Positive pair: (z, o)
+    z_norm = F.normalize(z.unsqueeze(0), dim=-1)
+    o_norm = F.normalize(o.unsqueeze(0), dim=-1)
+    pos_sim = (z_norm * o_norm).sum() / temperature
+
+    # Negative pairs: (z_j, o) for other task codes
+    neg_sims = []
+    for z_neg in all_codes:
+        z_neg_norm = F.normalize(z_neg.unsqueeze(0), dim=-1)
+        neg_sim = (z_neg_norm * o_norm).sum() / temperature
+        neg_sims.append(neg_sim)
+
+    if not neg_sims:
+        return 1.0 - (z_norm * o_norm).sum()
+
+    all_sims = torch.stack([pos_sim] + neg_sims)
+    loss = -pos_sim + torch.logsumexp(all_sims, dim=0)
+    return loss
+
+
+def lipschitz_stability_loss(mapper_fn, z: torch.Tensor, num_samples: int = 3,
+                              sigma: float = 0.01, epsilon: float = 1e-8):
+    """
+    Lipschitz-based local consistency: the mapper should be locally Lipschitz,
+    meaning ||G(z1) - G(z2)|| <= L * ||z1 - z2|| for some small L.
+
+    Estimated by sampling perturbations and computing the maximum ratio.
+    This is a tighter bound than the mean-ratio stability loss.
+    """
+    ratios = []
+    for _ in range(num_samples):
+        delta = torch.randn_like(z) * sigma
+        out_clean = mapper_fn(z)
+        out_noisy = mapper_fn(z + delta)
+
+        out_clean_cat = torch.cat([o.flatten() for o in out_clean])
+        out_noisy_cat = torch.cat([o.flatten() for o in out_noisy])
+
+        diff_norm = (out_noisy_cat - out_clean_cat).pow(2).sum().sqrt()
+        delta_norm = delta.pow(2).sum().sqrt() + epsilon
+        ratios.append(diff_norm / delta_norm)
+
+    return torch.stack(ratios).max()
+
+
 class TaskMapLossComputer:
     """
     Computes all TaskMap losses for a training step.
@@ -214,7 +271,9 @@ class TaskMapLossComputer:
                  lambda_bud: float = 0.05, lambda_topo: float = 0.01,
                  lambda_bal: float = 0.01, lambda_stab: float = 1e-3,
                  lambda_sm: float = 1e-3, lambda_align: float = 1e-4,
-                 active_mapping_loss: bool = False):
+                 active_mapping_loss: bool = False,
+                 stability_type: str = "perturbation",
+                 alignment_type: str = "random_projection"):
         self.config = config
         self.family_pairs = family_pairs
         self.task_families = task_families
@@ -225,6 +284,8 @@ class TaskMapLossComputer:
         self.lambda_sm = lambda_sm
         self.lambda_align = lambda_align
         self.active_mapping_loss = active_mapping_loss
+        self.stability_type = stability_type  # "perturbation" or "lipschitz"
+        self.alignment_type = alignment_type  # "random_projection" or "infonce"
 
         output_dim = config.num_blocks + 3 * config.num_blocks * config.rank
         self.R = torch.randn(config.code_dim, output_dim) * (1.0 / math.sqrt(output_dim))
@@ -280,13 +341,15 @@ class TaskMapLossComputer:
             z = taskmap_model.task_code.get_code(current_task, l_idx, device)
             mapper_fn = lambda z_in: taskmap_model.mapper_bank(l_idx, z_in)
             if self.active_mapping_loss:
-                # Differentiable: gradients flow to task codes
-                delta = torch.randn_like(z) * 0.01
-                out_clean = mapper_fn(z)
-                out_noisy = mapper_fn(z + delta)
-                out_clean_cat = torch.cat([o.flatten() for o in out_clean])
-                out_noisy_cat = torch.cat([o.flatten() for o in out_noisy])
-                l_stab = (out_noisy_cat - out_clean_cat).pow(2).sum() / (delta.pow(2).sum() + 1e-8)
+                if self.stability_type == "lipschitz":
+                    l_stab = lipschitz_stability_loss(mapper_fn, z)
+                else:
+                    delta = torch.randn_like(z) * 0.01
+                    out_clean = mapper_fn(z)
+                    out_noisy = mapper_fn(z + delta)
+                    out_clean_cat = torch.cat([o.flatten() for o in out_clean])
+                    out_noisy_cat = torch.cat([o.flatten() for o in out_noisy])
+                    l_stab = (out_noisy_cat - out_clean_cat).pow(2).sum() / (delta.pow(2).sum() + 1e-8)
                 losses["stability"] = l_stab
                 total = total + self.lambda_stab * l_stab
             else:
@@ -299,12 +362,20 @@ class TaskMapLossComputer:
             z = taskmap_model.task_code.get_code(current_task, l_idx, device)
             mapper_out = taskmap_model.mapper_bank(l_idx, z)
             if self.active_mapping_loss:
-                # Differentiable: gradients flow to task codes
-                o = torch.cat([t.flatten() for t in mapper_out])
-                projected = self.R.to(device) @ o
-                z_norm = F.normalize(z.unsqueeze(0), dim=-1)
-                p_norm = F.normalize(projected.unsqueeze(0), dim=-1)
-                l_align = 1.0 - (z_norm * p_norm).sum()
+                if self.alignment_type == "infonce":
+                    all_codes = []
+                    task_ids = list(all_route_masks.keys())
+                    for tid in task_ids:
+                        if tid != current_task:
+                            z_other = taskmap_model.task_code.get_code(tid, l_idx, device)
+                            all_codes.append(z_other.detach())
+                    l_align = infonce_alignment_loss(z, mapper_out, all_codes, mapper_fn)
+                else:
+                    o = torch.cat([t.flatten() for t in mapper_out])
+                    projected = self.R.to(device) @ o
+                    z_norm = F.normalize(z.unsqueeze(0), dim=-1)
+                    p_norm = F.normalize(projected.unsqueeze(0), dim=-1)
+                    l_align = 1.0 - (z_norm * p_norm).sum()
                 losses["alignment"] = l_align
                 total = total + self.lambda_align * l_align
             else:

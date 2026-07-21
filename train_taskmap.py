@@ -58,6 +58,12 @@ def parse_args():
     parser.add_argument("--microbatch_size", type=int, default=None)
     parser.add_argument("--gradient_accumulation_steps", type=int, default=None)
     parser.add_argument("--max_seq_length", type=int, default=None)
+    parser.add_argument("--stability_type", type=str, default="perturbation",
+                        choices=["perturbation", "lipschitz"],
+                        help="Stability loss variant: perturbation (default) or lipschitz")
+    parser.add_argument("--alignment_type", type=str, default="random_projection",
+                        choices=["random_projection", "infonce"],
+                        help="Alignment loss variant: random_projection (default) or infonce")
     parser.add_argument("--dry_run", action="store_true")
     return parser.parse_args()
 
@@ -213,7 +219,13 @@ def train_taskmap(args):
         lambda_sm=cfg.get("lambda_sm", 1e-3),
         lambda_align=cfg.get("lambda_align", 1e-4),
         active_mapping_loss=use_mapping_loss,
+        stability_type=getattr(args, 'stability_type', 'perturbation'),
+        alignment_type=getattr(args, 'alignment_type', 'random_projection'),
     )
+    stab_type = getattr(args, 'stability_type', 'perturbation')
+    align_type = getattr(args, 'alignment_type', 'random_projection')
+    if stab_type != 'perturbation' or align_type != 'random_projection':
+        print(f"  Loss variants: stability={stab_type}, alignment={align_type}")
 
     # ── Training loop ──
     grad_accum = cfg.get("gradient_accumulation_steps", 8)
