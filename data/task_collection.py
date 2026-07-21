@@ -185,8 +185,17 @@ HOLDOUT_TASKS_SNI = [
 def load_sni_dataset(cache_dir=None):
     """Load the full SNI dataset (downloads once, cached)."""
     print("Loading Super-NaturalInstructions dataset...")
-    ds = load_dataset("Muennighoff/natural-instructions", split="train",
-                      cache_dir=cache_dir)
+    try:
+        ds = load_dataset("Muennighoff/natural-instructions", split="train",
+                          cache_dir=cache_dir)
+    except Exception as e:
+        print(f"  Failed with split='train': {e}")
+        print("  Trying without split specification...")
+        ds_dict = load_dataset("Muennighoff/natural-instructions",
+                               cache_dir=cache_dir)
+        available_splits = list(ds_dict.keys())
+        print(f"  Available splits: {available_splits}")
+        ds = ds_dict[available_splits[0]]
     print(f"  Total examples: {len(ds)}")
     return ds
 

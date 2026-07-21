@@ -33,8 +33,7 @@ spec:
       echo "=== Cloning TaskMap ===" &&
       git clone https://github.com/liangwen12year/TaskMap.git /workspace/TaskMap &&
       cd /workspace/TaskMap &&
-      echo "=== Pre-downloading SNI dataset ===" &&
-      python -c "from data.task_collection import load_sni_dataset; ds = load_sni_dataset(); print('SNI dataset loaded:', len(ds), 'examples')" &&
+      echo "=== Skipping pre-download, training script handles it ===" &&
       echo "=== Starting scaled 50-task training ===" &&
       python -u train_taskmap_scaled.py \
         --backbone Qwen/Qwen2.5-1.5B \
