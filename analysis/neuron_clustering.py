@@ -113,30 +113,72 @@ def collect_activations(model, tokenizer, examples, device, max_seq=512):
     return act_matrices
 
 
-def cluster_neurons(act_matrix, num_clusters, seed=42):
+def cluster_neurons(act_matrix, num_clusters, seed=42, balanced=True):
     """
-    Cluster neurons by activation similarity using k-means.
-    Returns cluster assignments and a permutation that groups clusters contiguously.
+    Cluster neurons by activation similarity.
+    If balanced=True, forces all clusters to have exactly d_ff/num_clusters neurons
+    using a greedy balanced assignment after k-means initialization.
     """
-    # Normalize each neuron's activation profile
+    d_ff = act_matrix.shape[1]
+    block_size = d_ff // num_clusters
+
     act_np = act_matrix.float().numpy().T  # [d_ff, num_examples]
     norms = np.linalg.norm(act_np, axis=1, keepdims=True)
     norms = np.maximum(norms, 1e-8)
     act_normalized = act_np / norms
 
     kmeans = KMeans(n_clusters=num_clusters, random_state=seed, n_init=10)
-    labels = kmeans.fit_predict(act_normalized)
+    kmeans.fit(act_normalized)
+    centers = kmeans.cluster_centers_
+
+    if balanced:
+        # Balanced assignment: each cluster gets exactly block_size neurons
+        # Compute distance from each neuron to each center
+        # Then greedily assign neurons to nearest available cluster
+        dists = np.zeros((d_ff, num_clusters))
+        for c in range(num_clusters):
+            dists[:, c] = np.linalg.norm(act_normalized - centers[c], axis=1)
+
+        # Sort all (neuron, cluster) pairs by distance
+        neuron_indices, cluster_indices = np.unravel_index(
+            np.argsort(dists, axis=None), dists.shape
+        )
+
+        labels = np.full(d_ff, -1, dtype=int)
+        cluster_counts = np.zeros(num_clusters, dtype=int)
+        neuron_assigned = np.zeros(d_ff, dtype=bool)
+
+        for n_idx, c_idx in zip(neuron_indices, cluster_indices):
+            if neuron_assigned[n_idx]:
+                continue
+            if cluster_counts[c_idx] >= block_size:
+                continue
+            labels[n_idx] = c_idx
+            cluster_counts[c_idx] += 1
+            neuron_assigned[n_idx] = True
+            if neuron_assigned.all():
+                break
+
+        # Assign any remaining unassigned neurons to unfilled clusters
+        for n_idx in range(d_ff):
+            if not neuron_assigned[n_idx]:
+                for c_idx in range(num_clusters):
+                    if cluster_counts[c_idx] < block_size:
+                        labels[n_idx] = c_idx
+                        cluster_counts[c_idx] += 1
+                        neuron_assigned[n_idx] = True
+                        break
+    else:
+        labels = kmeans.labels_
 
     # Create permutation: sort neurons by cluster assignment
-    # Within each cluster, sort by distance to cluster center (most representative first)
     permutation = []
     cluster_sizes = []
     for c in range(num_clusters):
         members = np.where(labels == c)[0]
-        # Sort by distance to center
-        center = kmeans.cluster_centers_[c]
-        dists = np.linalg.norm(act_normalized[members] - center, axis=1)
-        sorted_members = members[np.argsort(dists)]
+        center = centers[c]
+        dists_to_center = np.linalg.norm(act_normalized[members] - center, axis=1)
+        sorted_members = members[np.argsort(dists_to_center)]
         permutation.extend(sorted_members.tolist())
         cluster_sizes.append(len(members))
 
