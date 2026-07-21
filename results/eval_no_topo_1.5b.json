@@ -1,0 +1,24 @@
+{
+  "mode": "taskmap_75_no_topology",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 500,
+  "lambda_topo": 0.0,
+  "scores": {
+    "sst2": {"accuracy": 95.8},
+    "agnews": {"accuracy": 91.4},
+    "boolq": {"accuracy": 71.6},
+    "squad": {"f1": 61.51, "em": 46.2},
+    "xsum": {"rouge_l": 28.04},
+    "wmt14_ende": {"sacrebleu": 15.20, "chrf": 43.80},
+    "wmt16_enro": {"sacrebleu": 10.35, "chrf": 39.16},
+    "gsm8k": {"exact_answer": 47.2},
+    "svamp": {"exact_answer": 48.67},
+    "mbpp": {"pass_at_1": 0.0},
+    "macro_avg_9task": 52.20
+  },
+  "route_analysis": {
+    "within_family_overlap": 0.822,
+    "between_family_overlap": 0.593,
+    "ratio": 1.386
+  }
+}
