@@ -190,12 +190,23 @@ def load_sni_dataset(cache_dir=None):
                           cache_dir=cache_dir)
     except Exception as e:
         print(f"  Failed with split='train': {e}")
-        print("  Trying without split specification...")
-        ds_dict = load_dataset("Muennighoff/natural-instructions",
-                               cache_dir=cache_dir)
-        available_splits = list(ds_dict.keys())
-        print(f"  Available splits: {available_splits}")
-        ds = ds_dict[available_splits[0]]
+        print("  Trying with verification disabled...")
+        try:
+            ds = load_dataset("Muennighoff/natural-instructions", split="train",
+                              cache_dir=cache_dir, verification_mode="no_checks")
+        except Exception as e2:
+            print(f"  Failed again: {e2}")
+            print("  Trying test split...")
+            try:
+                ds = load_dataset("Muennighoff/natural-instructions", split="test",
+                                  cache_dir=cache_dir, verification_mode="no_checks")
+            except Exception as e3:
+                print(f"  Trying without split...")
+                ds_dict = load_dataset("Muennighoff/natural-instructions",
+                                       cache_dir=cache_dir, verification_mode="no_checks")
+                available_splits = list(ds_dict.keys())
+                print(f"  Available splits: {available_splits}")
+                ds = ds_dict[available_splits[0]]
     print(f"  Total examples: {len(ds)}")
     return ds
 
