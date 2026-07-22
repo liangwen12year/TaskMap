@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: taskmap-scaled-6gpu
+  namespace: taskmap-training
+spec:
+  restartPolicy: Never
+  nodeSelector:
+    kubernetes.io/hostname: pokprod-b93r38s1
+  containers:
+  - name: trainer
+    image: nvcr.io/nvidia/pytorch:24.07-py3
+    command: ["/bin/bash", "-c"]
+    securityContext:
+      runAsUser: 0
+    args:
+    - |
+      nvidia-smi | head -5 &&
+      pip install -q 'transformers>=4.40,<4.50' 'peft>=0.10,<0.15' 'accelerate>=0.30,<0.35' datasets rouge-score sacrebleu sentencepiece tqdm pyyaml &&
+      git clone https://github.com/liangwen12year/TaskMap.git /workspace/TaskMap &&
+      cd /workspace/TaskMap &&
+      echo "=== 6-GPU scaled 50-task training ===" &&
+      accelerate launch --num_processes 6 --mixed_precision bf16 \
+        train_taskmap_multigpu.py \
+        --backbone Qwen/Qwen2.5-1.5B \
+        --max_steps 12000 \
+        --active_fraction 0.5 \
+        --microbatch_size 4 \
+        --gradient_accumulation_steps 2 \
+        --max_seq_length 2048 \
+        --max_per_task 2000 \
+        --max_eval_examples 200 \
+        --save_every 3000 \
+        --unfreeze_mapper \
+        --seed 42 \
+        --output_dir outputs/taskmap_scaled_6gpu &&
+      echo "=== DONE ==="
+    resources:
+      limits:
+        nvidia.com/gpu: 6
+        memory: 480Gi
+        cpu: "96"
+      requests:
+        nvidia.com/gpu: 6
+        memory: 384Gi
+        cpu: "48"
+    volumeMounts:
+    - name: workspace
+      mountPath: /workspace
+    - name: shm
+      mountPath: /dev/shm
+    - name: hf-cache
+      mountPath: /root/.cache/huggingface
+    env:
+    - name: HF_HOME
+      value: /root/.cache/huggingface
+    - name: TOKENIZERS_PARALLELISM
+      value: "false"
+    - name: HF_TOKEN
+      value: "SET_YOUR_HF_TOKEN_HERE"
+  volumes:
+  - name: workspace
+    emptyDir:
+      sizeLimit: 200Gi
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 64Gi
+  - name: hf-cache
+    emptyDir:
+      sizeLimit: 50Gi
