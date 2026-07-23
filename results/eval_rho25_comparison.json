@@ -1,0 +1,22 @@
+{
+  "experiment": "learned_vs_random_rho25",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "active_fraction": 0.25,
+  "eval_examples": 500,
+  "learned_route": {
+    "macro_avg_9task": 48.44,
+    "route_ratio": 3.55,
+    "scores": {
+      "sst2": 64.8, "agnews": 89.8, "boolq": 69.2, "squad_f1": 67.3,
+      "xsum": 27.2, "wmt14": 14.4, "wmt16": 10.3, "gsm8k": 45.0, "svamp": 48.0
+    }
+  },
+  "random_route": {
+    "macro_avg_9task": 48.46,
+    "scores": {
+      "sst2": 88.8, "agnews": 83.4, "boolq": 72.2, "squad_f1": 70.2,
+      "xsum": 27.5, "wmt14": 15.2, "wmt16": 10.0, "gsm8k": 46.2, "svamp": 22.67
+    }
+  },
+  "conclusion": "Learned and random routing produce identical macro (48.44 vs 48.46) even at rho=0.25. Coefficients drive quality at all active fractions. Route family structure (3.55x ratio) does not translate to quality advantage."
+}
