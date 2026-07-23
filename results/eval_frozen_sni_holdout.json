@@ -1,0 +1,35 @@
+{
+  "mode": "frozen_baseline",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 200,
+  "holdout_tasks": 20,
+  "scores": {
+    "task020_mctaco": {"accuracy": 0.0},
+    "task033_winogrande": {"accuracy": 32.5},
+    "task034_winogrande_mod": {"rouge_l": 20.4},
+    "task036_qasc_fact": {"accuracy": 2.5},
+    "task039_qasc_overlap": {"accuracy": 17.5},
+    "task050_multirc": {"accuracy": 0.0},
+    "task102_commongen": {"rouge_l": 8.7},
+    "task121_zest": {"rouge_l": 38.5},
+    "task133_winowhy": {"accuracy": 54.0},
+    "task1152_bard": {"accuracy": 0.0},
+    "task1342_amazon": {"rouge_l": 11.1},
+    "task1344_glue_ent": {"accuracy": 0.0},
+    "task1345_glue_qqp": {"rouge_l": 35.8},
+    "task1356_xlsum": {"rouge_l": 18.0},
+    "task1385_anli_r1": {"accuracy": 2.5},
+    "task1386_anli_r2": {"accuracy": 5.5},
+    "task1387_anli_r3": {"accuracy": 10.0},
+    "task1388_cb": {"accuracy": 0.0},
+    "task1394_meta_woz": {"accuracy": 0.0},
+    "task1409_dart": {"rouge_l": 44.5}
+  },
+  "macro": 15.07,
+  "comparison_vs_taskmap_coldstart": {
+    "taskmap_wins": 15,
+    "frozen_wins": 2,
+    "ties": 3,
+    "taskmap_macro": 23.23
+  }
+}
