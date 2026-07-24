@@ -100,15 +100,15 @@ def train_random_coefficients(args):
 
     # Generate FIXED RANDOM coefficients per task per layer
     print("\nGenerating fixed random coefficients...")
-    gen = torch.Generator().manual_seed(args.seed + 2000)
+    gen = torch.Generator(device='cpu').manual_seed(args.seed + 2000)
     random_coefficients = {}
     for tid in task_ids:
         task_coeffs = {}
         for l in range(tm_config.num_layers):
             task_coeffs[l] = {
-                'c_u': torch.randn(tm_config.num_blocks, tm_config.rank, generator=gen, device=device) * 0.01,
-                'c_g': torch.randn(tm_config.num_blocks, tm_config.rank, generator=gen, device=device) * 0.01,
-                'c_d': torch.randn(tm_config.num_blocks, tm_config.rank, generator=gen, device=device) * 0.01,
+                'c_u': (torch.randn(tm_config.num_blocks, tm_config.rank, generator=gen) * 0.01).to(device),
+                'c_g': (torch.randn(tm_config.num_blocks, tm_config.rank, generator=gen) * 0.01).to(device),
+                'c_d': (torch.randn(tm_config.num_blocks, tm_config.rank, generator=gen) * 0.01).to(device),
             }
         random_coefficients[tid] = task_coeffs
     print(f"  Generated random coefficients for {len(task_ids)} tasks × {tm_config.num_layers} layers")
