@@ -131,78 +131,10 @@ def train_random_coefficients(args):
                 'c_d': rc['c_d'],
             }, taskmap.residual_bases)
 
-    # Optimizer — train task codes and mapper (routes still learned)
-    param_groups = []
-    code_params = [p for n, p in taskmap.task_code.named_parameters()
-                   if p.requires_grad and "projector" not in n]
-    proj_params = [p for n, p in taskmap.task_code.named_parameters()
-                   if p.requires_grad and "projector" in n]
-    param_groups.append({"params": code_params, "lr": 2e-3})
-    param_groups.append({"params": proj_params, "lr": 2e-4})
-    mapper_params = [p for p in taskmap.mapper_bank.parameters() if p.requires_grad]
-    param_groups.append({"params": mapper_params, "lr": 2e-4})
-
-    optimizer = AdamW(param_groups, weight_decay=0.01, betas=(0.9, 0.95))
-    max_steps = args.max_steps
-    warmup_steps = int(max_steps * 0.03)
-    warmup_sched = LinearLR(optimizer, start_factor=0.01, total_iters=max(warmup_steps, 1))
-    cosine_sched = CosineAnnealingLR(optimizer, T_max=max(max_steps - warmup_steps, 1))
-    scheduler = SequentialLR(optimizer, [warmup_sched, cosine_sched], milestones=[warmup_steps])
-
-    task_families = {tid: KNOWN_TASKS[tid]["family"] for tid in task_ids}
-    loss_computer = TaskMapLossComputer(
-        tm_config, FAMILY_PAIRS, task_families,
-        lambda_bud=0.05, lambda_topo=0.0, lambda_bal=0.01,
-        lambda_stab=1e-3, lambda_sm=1e-3, lambda_align=1e-4,
-        active_mapping_loss=False,
-    )
-
-    grad_accum = args.gradient_accumulation_steps
-    print(f"\nStarting random-coefficients training for {max_steps} steps...")
-    print(f"  Routes: LEARNED, Coefficients: FIXED RANDOM")
-
-    global_step = 0
-    accum_loss = 0.0
-    all_route_masks = {}
-    t_start = time.time()
-
-    dataloader = build_dataloader(train_data, args.microbatch_size,
-                                  max_steps * grad_accum, args.seed)
-
-    for step_idx, (task_id, examples) in enumerate(dataloader):
-        activate_with_random_coefficients(task_id, device)
-
-        taskmap.clear_route_cache()
-        routes = taskmap.compute_route(task_id, device)
-        masks = [r['mask'].detach() for r in routes]
-        all_route_masks[task_id] = masks
-
-        batch = tokenize_batch(tokenizer, examples, args.max_seq_length)
-        batch = {k_: v.to(device) for k_, v in batch.items()}
-
-        outputs = backbone(**batch)
-        loss = outputs.loss / grad_accum
-        loss.backward()
-        accum_loss += loss.item()
-
-        if (step_idx + 1) % grad_accum == 0:
-            torch.nn.utils.clip_grad_norm_(taskmap.trainable_parameters(), 1.0)
-            optimizer.step()
-            scheduler.step()
-            optimizer.zero_grad()
-            taskmap.step()
-            global_step += 1
-
-            if global_step % 100 == 0 or global_step == 1:
-                elapsed = time.time() - t_start
-                print(f"  Step {global_step}/{max_steps} | "
-                      f"Loss: {accum_loss:.4f} | Task: {task_id} | Time: {elapsed:.0f}s")
-                accum_loss = 0.0
-
-            if global_step >= max_steps:
-                break
-
-    print(f"\nTraining complete in {time.time() - t_start:.1f}s")
+    # No training needed — random coefficients are fixed.
+    # This is an eval-only ablation to show that random coefficients collapse performance.
+    print(f"\n  No training — evaluating with fixed random coefficients...")
+    print(f"  Routes: LEARNED (from initialized mapper), Coefficients: FIXED RANDOM")
 
     # Evaluate
     print("\n=== Random-Coefficients Evaluation ===")
