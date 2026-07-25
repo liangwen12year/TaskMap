@@ -1,0 +1,18 @@
+{
+  "mode": "ablation_shared_coefficients",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 500,
+  "macro_avg_9task": 40.41,
+  "scores": {
+    "sst2": {"accuracy": 81.4},
+    "agnews": {"accuracy": 76.6},
+    "boolq": {"accuracy": 65.4},
+    "squad": {"f1": 21.98, "em": 13.2},
+    "xsum": {"rouge_l": 23.89},
+    "wmt14_ende": {"sacrebleu": 12.75, "chrf": 41.11},
+    "wmt16_enro": {"sacrebleu": 7.86, "chrf": 34.44},
+    "gsm8k": {"exact_answer": 36.8},
+    "svamp": {"exact_answer": 37.0},
+    "mbpp": {"pass_at_1": 0.0}
+  }
+}
