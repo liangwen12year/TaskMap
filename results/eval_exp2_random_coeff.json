@@ -1,0 +1,19 @@
+{
+  "mode": "random_coefficients_learned_routing",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 500,
+  "active_fraction": 0.75,
+  "macro_avg_9task": 31.25,
+  "scores": {
+    "sst2": {"accuracy": 53.0},
+    "agnews": {"accuracy": 53.0},
+    "boolq": {"accuracy": 63.0},
+    "squad": {"f1": 38.14, "em": 29.2},
+    "xsum": {"rouge_l": 10.56},
+    "wmt14_ende": {"sacrebleu": 0.38, "chrf": 17.60},
+    "wmt16_enro": {"sacrebleu": 0.67, "chrf": 19.91},
+    "gsm8k": {"exact_answer": 11.8},
+    "svamp": {"exact_answer": 50.67},
+    "mbpp": {"pass_at_1": 0.0}
+  }
+}
