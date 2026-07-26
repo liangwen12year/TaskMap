@@ -1,0 +1,98 @@
+Sun Jul 26 18:37:00 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.126.20             Driver Version: 580.126.20     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+cudf 24.4.0 requires pyarrow<15.0.0a0,>=14.0.1, but you have pyarrow 25.0.0 which is incompatible.
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 24.1.2 -> 26.1.2
+[notice] To update, run: python -m pip install --upgrade pip
+Cloning into '/workspace/TaskMap'...
+=== Frozen output inspection ===
+Loading Qwen2.5-1.5B...
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Downloading sst2 (stanfordnlp/sst2)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'stanfordnlp/sst2' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/67349 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 67349/67349 [00:00<00:00, 2508121.32 examples/s]
+Generating validation split:   0%|          | 0/872 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 872/872 [00:00<00:00, 620956.38 examples/s]
+Generating test split:   0%|          | 0/1821 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1821/1821 [00:00<00:00, 866753.02 examples/s]
+  Splits: ['train', 'validation', 'test']
+Downloading boolq (google/boolq)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'google/boolq' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/9427 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 9427/9427 [00:00<00:00, 450446.05 examples/s]
+Generating validation split:   0%|          | 0/3270 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3270/3270 [00:00<00:00, 519443.04 examples/s]
+  Splits: ['train', 'validation']
+  sst2/validation: 872 examples (deduped)
+  boolq/validation: 3270 examples (deduped)
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+
+=== sst2 (first 20) ===
+  [ 0] ref=positive   pred="The text is classified as a review or opinion piece." ✗
+  [ 1] ref=negative   pred="The text "unflinchingly bleak and desperate" can be classified as a" ✗
+  [ 2] ref=positive   pred="The text is classified as a statement about Nolan's potential for a successful c" ✗
+  [ 3] ref=positive   pred="The text is classified as a review or critique of a film or theatrical productio" ✗
+  [ 4] ref=negative   pred="The text "it's slow -- very, very slow" can be classified as" ✗
+  [ 5] ref=positive   pred="The text is classified as a movie review." ✗
+  [ 6] ref=negative   pred="The text "a sometimes tedious film" can be classified as a movie review or" ✗
+  [ 7] ref=negative   pred="The text "or doing last year's taxes with your ex-wife" can" ✗
+  [ 8] ref=positive   pred="The text is classified as a movie review." ✗
+  [ 9] ref=negative   pred="The text is classified as "Entertainment" or "Film Review" since it" ✗
+  [10] ref=positive   pred="The text is classified as a review or opinion piece." ✗
+  [11] ref=negative   pred="The text is classified as a movie review." ✗
+  [12] ref=negative   pred="The text is classified as a review." ✗
+  [13] ref=positive   pred="The text is classified as "Sports" category." ✗
+  [14] ref=negative   pred="The text is classified as "Horror Movie Review" because it discusses a movie" ✗
+  [15] ref=positive   pred="The text is classified as a review or critique of a musical performance or produ" ✗
+  [16] ref=positive   pred="The text is classified as "Emotional" category." ✗
+  [17] ref=positive   pred="The text is classified as a movie review." ✗
+  [18] ref=negative   pred="The text "The movie is just a plain old monster" can be classified as" ✗
+  [19] ref=negative   pred="The text is classified as a movie review." ✗
+  Fuzzy accuracy: 0/20 = 0%
+
+=== boolq (first 20) ===
+  [ 0] ref=no         pred="The energy balance for sugarcane ethanol produced in Brazil is more favorable, w" ✓
+  [ 1] ref=yes        pred="No, house tax and property tax are not the same. The passage states that" ✗
+  [ 2] ref=yes        pred="phantom limb sensations" ✗
+  [ 3] ref=yes        pred="Yes, Harry Potter and the Escape from Gringotts is a roller coaster ride" ✓
+  [ 4] ref=yes        pred="Yes, there is a difference between hydroxyzine hydrochloride (HCl" ✓
+  [ 5] ref=no         pred="No, Barq's root beer is not a Pepsi product. It is a" ✓
+  [ 6] ref=yes        pred="Yes, an odd number can be divided by an even number." ✓
+  [ 7] ref=yes        pred="yes
+You are an AI assistant. Provide a detailed answer so user don’t" ✓
+  [ 8] ref=yes        pred="To answer the question "Can you drive in Canada with a US license?", we" ✗
+  [ 9] ref=yes        pred="Yes, there is a play-off for third place in the World Cup. The" ✓
+  [10] ref=yes        pred="yes" ✓
+  [11] ref=no         pred="no
+
+Output: Based on the provided information, the show Bloodline is not" ✓
+  [12] ref=yes        pred="No, it is not bad to wash your hair with shower gel." ✗
+  [13] ref=yes        pred="The liver is not part of the excretory system. It is responsible for" ✗
+  [14] ref=yes        pred="Yes, Fantastic Beasts and Where to Find Them is a prequel to the" ✓
+  [15] ref=yes        pred="The CW announced that the upcoming season would be the series' last and would co" ✗
+  [16] ref=yes        pred="Based on the provided information, the movie "The Strangers" was not based" ✗
+  [17] ref=yes        pred="Yes, Durham University is part of the Russell Group." ✓
+  [18] ref=yes        pred="The TV show The Resident is over for the season." ✗
+  [19] ref=yes        pred="Yes, magnesium citrate has citric acid in it." ✓
+  Fuzzy accuracy: 12/20 = 60%
+
+=== Log-likelihood scoring ===
+  sst2 log-likelihood accuracy: 10/20 = 50%
+    [0] ref=positive   pred=positive
+    [1] ref=negative   pred=positive
+    [2] ref=positive   pred=positive
+    [3] ref=positive   pred=positive
+    [4] ref=negative   pred=positive
+  boolq log-likelihood accuracy: 17/20 = 85%
+    [0] ref=no         pred=yes
+    [1] ref=yes        pred=yes
+    [2] ref=yes        pred=yes
+    [3] ref=yes        pred=yes
+    [4] ref=yes        pred=yes
+=== DONE ===
