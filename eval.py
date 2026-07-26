@@ -187,7 +187,8 @@ def generate_predictions(model, tokenizer, examples: list, max_new_tokens: int =
 
 
 def evaluate_task(model, tokenizer, task_id: str, examples: list, metric_name: str,
-                  max_new_tokens: int = 128, device: str = "cuda") -> dict:
+                  max_new_tokens: int = 128, device: str = "cuda",
+                  save_predictions: bool = False) -> dict:
     """Evaluate a single task. Uses log-likelihood scoring for classification."""
     print(f"  Evaluating {task_id} ({len(examples)} examples, metric={metric_name})...")
 
@@ -197,6 +198,11 @@ def evaluate_task(model, tokenizer, task_id: str, examples: list, metric_name: s
             references = [ex["response"] for ex in examples]
             correct = sum(1 for p, r in zip(predictions, references) if p.lower() == r.lower())
             scores = {"accuracy": correct / max(len(predictions), 1) * 100}
+            if save_predictions:
+                scores["_predictions"] = predictions
+                scores["_references"] = references
+                scores["_per_example"] = [1 if p.lower() == r.lower() else 0
+                                          for p, r in zip(predictions, references)]
             return scores
 
     predictions = generate_predictions(model, tokenizer, examples, max_new_tokens, device)
@@ -204,6 +210,9 @@ def evaluate_task(model, tokenizer, task_id: str, examples: list, metric_name: s
 
     metric_fn = METRIC_FNS[metric_name]
     scores = metric_fn(predictions, references)
+    if save_predictions:
+        scores["_predictions"] = predictions
+        scores["_references"] = references
     return scores
 
 
