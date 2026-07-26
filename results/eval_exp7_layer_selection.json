@@ -1,0 +1,25 @@
+{
+  "experiment": "layer_selection_ablation",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 500,
+  "num_layers": 28,
+  "top_layers": {
+    "layers": "19-27",
+    "macro_avg_9task": 41.05,
+    "scores": {"sst2": 78.8, "agnews": 67.8, "boolq": 64.6, "squad_f1": 61.88, "xsum": 13.21, "wmt14": 13.14, "wmt16": 6.90, "gsm8k": 25.8, "svamp": 37.33}
+  },
+  "middle_layers": {
+    "layers": "9-18",
+    "macro_avg_9task": 44.11,
+    "scores": {"sst2": 71.2, "agnews": 78.8, "boolq": 69.2, "squad_f1": 64.20, "xsum": 27.41, "wmt14": 11.98, "wmt16": 4.36, "gsm8k": 41.8, "svamp": 28.0}
+  },
+  "bottom_layers": {
+    "layers": "0-8",
+    "macro_avg_9task": 42.69,
+    "scores": {"sst2": 87.0, "agnews": 63.0, "boolq": 71.2, "squad_f1": 43.03, "xsum": 28.11, "wmt14": 14.35, "wmt16": 9.96, "gsm8k": 45.2, "svamp": 22.33}
+  },
+  "all_layers": {
+    "layers": "0-27",
+    "macro_avg_9task": 52.20
+  }
+}
