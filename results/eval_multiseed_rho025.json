@@ -1,0 +1,17 @@
+{
+  "experiment": "multiseed_routing_rho025",
+  "active_fraction": 0.25,
+  "seeds": [42, 137, 2024],
+  "learned_route": {
+    "macro_10task": [41.13, 41.93, 43.91],
+    "macro_9task_estimated": [45.70, 46.59, 48.79],
+    "mean_9task": 47.03,
+    "std_9task": 1.30
+  },
+  "random_route": {
+    "macro_9task": [49.03, 46.20, 42.24],
+    "mean_9task": 45.82,
+    "std_9task": 2.78
+  },
+  "note": "Learned 9-task estimated as 10-task * 10/9 (MBPP=0). Need to verify from per-task scores."
+}
