@@ -64,6 +64,14 @@ def parse_args():
     parser.add_argument("--alignment_type", type=str, default="random_projection",
                         choices=["random_projection", "infonce"],
                         help="Alignment loss variant: random_projection (default) or infonce")
+    parser.add_argument("--no_balance_loss", action="store_true",
+                        help="Disable balance loss (lambda_bal=0)")
+    parser.add_argument("--no_alignment_loss", action="store_true",
+                        help="Disable alignment loss (lambda_align=0)")
+    parser.add_argument("--no_consistency_loss", action="store_true",
+                        help="Disable consistency/stability loss (lambda_stab=0)")
+    parser.add_argument("--save_checkpoint", action="store_true",
+                        help="Save final checkpoint with coefficients for analysis")
     parser.add_argument("--dry_run", action="store_true")
     return parser.parse_args()
 
@@ -210,14 +218,24 @@ def train_taskmap(args):
     use_mapping_loss = args.mapping_loss if hasattr(args, 'mapping_loss') else False
     if use_mapping_loss:
         print("  Mapping Networks losses ACTIVE in backward pass")
+    # Apply individual loss ablation flags
+    lambda_bal = 0.0 if getattr(args, 'no_balance_loss', False) else cfg.get("lambda_bal", 0.01)
+    lambda_stab = 0.0 if getattr(args, 'no_consistency_loss', False) else cfg.get("lambda_stab", 1e-3)
+    lambda_align = 0.0 if getattr(args, 'no_alignment_loss', False) else cfg.get("lambda_align", 1e-4)
+    if getattr(args, 'no_balance_loss', False):
+        print("  Balance loss DISABLED")
+    if getattr(args, 'no_consistency_loss', False):
+        print("  Consistency loss DISABLED")
+    if getattr(args, 'no_alignment_loss', False):
+        print("  Alignment loss DISABLED")
     loss_computer = TaskMapLossComputer(
         tm_config, FAMILY_PAIRS, task_families,
         lambda_bud=cfg.get("lambda_bud", 0.05),
         lambda_topo=cfg.get("lambda_topo", 0.01),
-        lambda_bal=cfg.get("lambda_bal", 0.01),
-        lambda_stab=cfg.get("lambda_stab", 1e-3),
+        lambda_bal=lambda_bal,
+        lambda_stab=lambda_stab,
         lambda_sm=cfg.get("lambda_sm", 1e-3),
-        lambda_align=cfg.get("lambda_align", 1e-4),
+        lambda_align=lambda_align,
         active_mapping_loss=use_mapping_loss,
         stability_type=getattr(args, 'stability_type', 'perturbation'),
         alignment_type=getattr(args, 'alignment_type', 'random_projection'),
