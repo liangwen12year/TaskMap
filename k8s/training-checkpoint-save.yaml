@@ -19,97 +19,19 @@ spec:
     args:
     - |
       nvidia-smi | head -5 &&
-      pip install -q 'transformers>=4.40,<4.50' 'peft>=0.10,<0.15' 'accelerate>=0.30,<0.35' datasets rouge-score sacrebleu sentencepiece tqdm pyyaml scikit-learn &&
+      pip install -q 'transformers>=4.40,<4.50' 'peft>=0.10,<0.15' 'accelerate>=0.30,<0.35' datasets rouge-score sacrebleu sentencepiece tqdm pyyaml scikit-learn scipy &&
       git clone https://github.com/liangwen12year/TaskMap.git /workspace/TaskMap &&
       cd /workspace/TaskMap &&
-      echo "=== TaskMap with checkpoint saving (for analysis) ===" &&
+      echo "=== TaskMap training with checkpoint saving ===" &&
       python -u train_taskmap.py \
         --config configs/taskmap_no_topology.yaml \
         --backbone Qwen/Qwen2.5-1.5B \
         --max_steps 6000 \
         --active_fraction 0.75 \
         --unfreeze_mapper \
-        --save_checkpoint \
         --seed 42 &&
       echo "=== Extracting coefficients for analysis ===" &&
-      python -u -c "
-import torch, json, numpy as np, sys
-sys.path.insert(0, '.')
-from models.backbone import load_backbone
-from models.taskmap_model import TaskMapModel, TaskMapConfig
-from data.config import KNOWN_TASKS
-from train import set_seed
-set_seed(42)
-device = 'cuda'
-
-# Load checkpoint
-ckpt = torch.load('outputs/taskmap_no_topology/final/taskmap_state.pt', map_location='cpu')
-cfg = ckpt['config']
-task_ids = list(KNOWN_TASKS.keys())
-
-# Rebuild model
-tm_config = TaskMapConfig.from_backbone(cfg.get('backbone', 'Qwen/Qwen2.5-1.5B'),
-    block_size=cfg.get('block_size', 128), active_fraction=cfg.get('active_fraction', 0.75),
-    code_dim=cfg.get('code_dim', 32), rank=cfg.get('rank', 8), mapper_hidden=cfg.get('mapper_hidden', 512))
-taskmap = TaskMapModel(tm_config, num_tasks=len(task_ids), freeze_mapper=False)
-taskmap.register_tasks(task_ids)
-taskmap.task_code.load_state_dict(ckpt['task_code_state'], strict=False)
-if 'mapper_state' in ckpt:
-    taskmap.mapper_bank.load_state_dict(ckpt['mapper_state'], strict=False)
-taskmap = taskmap.to(device)
-
-# Load backbone for description embeddings
-backbone, tokenizer = load_backbone(cfg.get('backbone', 'Qwen/Qwen2.5-1.5B'))
-backbone = backbone.to(device)
-backbone.eval()
-
-# Cache descriptions and compute codes + coefficients
-all_coefficients = {}
-all_codes = {}
-for tid in task_ids:
-    desc = KNOWN_TASKS[tid]['descriptions'][0]
-    embed = taskmap.task_code.compute_description_embedding(backbone, tokenizer, desc, device)
-    taskmap.cache_description(tid, embed)
-
-    layer_coeffs = []
-    layer_codes = []
-    for l in range(tm_config.num_layers):
-        z = taskmap.task_code.get_code(tid, l, device)
-        layer_codes.append(z.detach().cpu().numpy())
-        out = taskmap.mapper_bank(l, z)
-        q, cu, cg, cd = out
-        coeffs = torch.cat([cu.flatten(), cg.flatten(), cd.flatten()]).detach().cpu().numpy()
-        layer_coeffs.append(coeffs)
-    all_coefficients[tid] = np.stack(layer_coeffs)  # [num_layers, coeff_dim]
-    all_codes[tid] = np.stack(layer_codes)  # [num_layers, code_dim]
-    print(f'  {tid}: coeff shape={all_coefficients[tid].shape}, code shape={all_codes[tid].shape}')
-
-# Save for analysis
-np.savez('outputs/taskmap_coefficients.npz', **{f'coeff_{tid}': v for tid, v in all_coefficients.items()},
-         **{f'code_{tid}': v for tid, v in all_codes.items()})
-print('Saved coefficients and codes to outputs/taskmap_coefficients.npz')
-
-# PCA visualization data
-from sklearn.decomposition import PCA
-# Average coefficients across layers for each task
-avg_coeffs = np.stack([v.mean(axis=0) for v in all_coefficients.values()])
-pca = PCA(n_components=2)
-coords = pca.fit_transform(avg_coeffs)
-families = [KNOWN_TASKS[tid]['family'] for tid in task_ids]
-print('\\nPCA of average coefficients (2D):')
-for tid, (x, y), fam in zip(task_ids, coords, families):
-    print(f'  {tid:15s} ({fam:20s}): ({x:.3f}, {y:.3f})')
-
-# Nearest-task analysis
-from scipy.spatial.distance import cdist
-dists = cdist(avg_coeffs, avg_coeffs, metric='cosine')
-print('\\nNearest task by coefficient similarity:')
-for i, tid in enumerate(task_ids):
-    nearest_idx = np.argsort(dists[i])[1]  # skip self
-    print(f'  {tid:15s} -> {task_ids[nearest_idx]:15s} (dist={dists[i][nearest_idx]:.3f}, same_family={families[i]==families[nearest_idx]})')
-
-print('\\n=== ANALYSIS COMPLETE ===')
-" &&
+      python -u extract_coefficients.py &&
       echo "=== DONE ==="
     resources:
       limits:
