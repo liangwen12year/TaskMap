@@ -1,0 +1,16 @@
+{
+  "experiment": "multiseed_routing_rho075",
+  "active_fraction": 0.75,
+  "seeds": [42, 137, 2024],
+  "learned_route": {
+    "macro_10task": [41.11, 37.53, 40.25],
+    "macro_9task_estimated": [45.7, 41.7, 44.7],
+    "mean_9task": 44.03,
+    "std_9task": 1.70
+  },
+  "random_route": {
+    "macro_9task": [47.53, 42.85, 43.33],
+    "mean_9task": 44.57,
+    "std_9task": 2.10
+  }
+}

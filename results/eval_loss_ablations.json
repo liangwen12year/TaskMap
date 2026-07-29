@@ -1,0 +1,9 @@
+{
+  "experiment": "individual_loss_ablations",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 500,
+  "baseline_macro_9task": 52.20,
+  "no_balance": {"macro_10task": 42.01, "macro_9task_estimated": 46.7, "drop": -5.5},
+  "no_alignment": {"macro_10task": 39.36, "macro_9task_estimated": 43.7, "drop": -8.5},
+  "no_consistency": {"macro_10task": 38.74, "macro_9task_estimated": 43.0, "drop": -9.2}
+}
