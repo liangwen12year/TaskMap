@@ -20,6 +20,8 @@ spec:
       value: "false"
     args:
     - |
+      echo "=== Waiting 10 min for staggered HF API access ===" &&
+      sleep 600 &&
       nvidia-smi | head -5 &&
       pip install -q 'transformers>=4.40,<4.50' 'peft>=0.10,<0.15' 'accelerate>=0.30,<0.35' datasets rouge-score sacrebleu sentencepiece tqdm pyyaml &&
       git clone https://github.com/liangwen12year/TaskMap.git /workspace/TaskMap &&

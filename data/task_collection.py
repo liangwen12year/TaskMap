@@ -160,18 +160,31 @@ HOLDOUT_TASKS_SNI = [
 
 
 def load_sni_dataset(cache_dir=None):
-    """Load the full SNI dataset (both train and test splits, concatenated)."""
+    """Load the full SNI dataset (both train and test splits, concatenated).
+
+    Retries with exponential backoff on HuggingFace rate-limit errors (429).
+    """
+    import time as _time
     from datasets import concatenate_datasets
     print("Loading Super-NaturalInstructions dataset (both splits)...")
     all_splits = []
     for split in ["train", "test"]:
-        try:
-            ds = load_dataset("Muennighoff/natural-instructions", split=split,
-                              cache_dir=cache_dir, verification_mode="no_checks")
-            print(f"  {split}: {len(ds)} examples")
-            all_splits.append(ds)
-        except Exception as e:
-            print(f"  {split}: failed ({e})")
+        for attempt in range(5):
+            try:
+                ds = load_dataset("Muennighoff/natural-instructions", split=split,
+                                  cache_dir=cache_dir, verification_mode="no_checks")
+                print(f"  {split}: {len(ds)} examples")
+                all_splits.append(ds)
+                break
+            except Exception as e:
+                if "429" in str(e) and attempt < 4:
+                    wait = 60 * (2 ** attempt)
+                    print(f"  {split}: rate limited, retrying in {wait}s "
+                          f"(attempt {attempt + 1}/5)")
+                    _time.sleep(wait)
+                else:
+                    print(f"  {split}: failed ({e})")
+                    break
     if not all_splits:
         raise RuntimeError("Could not load any split of natural-instructions")
     combined = concatenate_datasets(all_splits)
