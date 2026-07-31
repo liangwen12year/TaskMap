@@ -399,6 +399,109 @@ def evaluate_sni_tasks(backbone_model, tokenizer, taskmap, hook_manager,
 
 
 @torch.no_grad()
+def evaluate_nearest_reuse(backbone_model, tokenizer, taskmap, hook_manager,
+                           holdout_data, holdout_definitions, holdout_metrics,
+                           train_task_ids, train_definitions, device,
+                           max_examples=200):
+    """Nearest-task coefficient reuse: for each held-out task, find the most
+    similar training task by description embedding cosine similarity, then
+    evaluate using that training task's learned routes and coefficients.
+
+    This tests whether the mapper adds value beyond copying an adaptation
+    from the most similar known task.
+    """
+    print(f"\n=== Nearest-Task Coefficient Reuse ({len(holdout_data)} held-out tasks) ===")
+    backbone_model.eval()
+
+    # Collect description embeddings for training tasks
+    train_embeds = {}
+    for tid in train_task_ids:
+        if tid in taskmap.task_code.description_cache:
+            train_embeds[tid] = taskmap.task_code.description_cache[tid]
+
+    if not train_embeds:
+        print("  ERROR: No training task embeddings cached. Skipping.")
+        return {}, {}
+
+    train_tids = list(train_embeds.keys())
+    train_matrix = torch.stack([train_embeds[t] for t in train_tids])  # (N, d_e)
+    train_matrix = F.normalize(train_matrix, dim=-1)
+
+    all_scores = {}
+    donor_map = {}
+
+    for tid, examples in holdout_data.items():
+        if tid not in holdout_metrics:
+            continue
+
+        # Compute holdout embedding
+        desc = holdout_definitions.get(tid, f"Complete the following task: {tid}")
+        desc = desc[:200]
+        try:
+            embed = taskmap.task_code.compute_description_embedding(
+                backbone_model, tokenizer, desc, device
+            )
+        except Exception as e:
+            print(f"  Skipping {tid}: embedding failed: {e}")
+            continue
+
+        # Find nearest training task by cosine similarity
+        embed_norm = F.normalize(embed.unsqueeze(0), dim=-1)  # (1, d_e)
+        sims = (embed_norm @ train_matrix.T).squeeze(0)  # (N,)
+        best_idx = sims.argmax().item()
+        donor_tid = train_tids[best_idx]
+        donor_sim = sims[best_idx].item()
+        donor_map[tid] = {"donor": donor_tid, "similarity": donor_sim}
+
+        # Use the DONOR task's routes and coefficients
+        try:
+            taskmap.clear_route_cache()
+            taskmap.compute_route(donor_tid, device)
+            hook_manager.activate_for_task(donor_tid, device)
+        except Exception as e:
+            print(f"  Skipping {tid}: route from donor {donor_tid} failed: {e}")
+            continue
+
+        eval_examples = examples[:max_examples]
+        metric_name = holdout_metrics[tid]["metric"]
+        max_tokens = holdout_metrics[tid]["max_response_tokens"]
+
+        try:
+            predictions = generate_predictions(
+                backbone_model, tokenizer, eval_examples,
+                max_new_tokens=max_tokens, device=device,
+            )
+            references = [ex["response"] for ex in eval_examples]
+
+            metric_fn = METRIC_FNS.get(metric_name, accuracy)
+            scores = metric_fn(predictions, references)
+            all_scores[tid] = scores
+            primary = list(scores.values())[0]
+            print(f"  {tid}: {primary:.2f} ({metric_name}) "
+                  f"[donor={donor_tid}, sim={donor_sim:.3f}]")
+
+        except Exception as e:
+            print(f"  Skipping {tid} eval: {e}")
+            continue
+
+    if all_scores:
+        primary_values = [list(v.values())[0] for v in all_scores.values()]
+        macro = float(np.mean(primary_values))
+        all_scores["macro_avg"] = macro
+        print(f"\n  Nearest-reuse macro: {macro:.2f} "
+              f"(over {len(primary_values)} tasks)")
+    else:
+        print("  No tasks evaluated successfully for nearest-reuse")
+
+    # Print donor map summary
+    print("\n  Donor assignments:")
+    for tid, info in sorted(donor_map.items()):
+        print(f"    {tid} <- {info['donor']} (sim={info['similarity']:.3f})")
+
+    return all_scores, donor_map
+
+
+@torch.no_grad()
 def evaluate_coldstart_sni(backbone_model, tokenizer, taskmap, hook_manager,
                            holdout_data, holdout_definitions, holdout_metrics,
                            device, max_examples=200):
@@ -767,6 +870,14 @@ def train_taskmap_scaled(args):
         device, max_examples=args.max_eval_examples,
     )
 
+    # ── 4. Nearest-task coefficient reuse on held-out tasks ──
+    nearest_reuse_scores, donor_map = evaluate_nearest_reuse(
+        backbone_model, tokenizer, taskmap, hook_manager,
+        holdout_data, holdout_defs, holdout_metrics,
+        task_ids, train_definitions, device,
+        max_examples=args.max_eval_examples,
+    )
+
     # ==================================================================
     # Final results summary
     # ==================================================================
@@ -806,6 +917,19 @@ def train_taskmap_scaled(args):
                   f"(n={len(vals)})")
         print(f"  {'MACRO':20s}: {coldstart_scores.get('macro_avg', 0):.2f}")
 
+    # Nearest-reuse vs cold-start comparison
+    if nearest_reuse_scores and coldstart_scores:
+        print("\n=== Cold-Start vs Nearest-Reuse Comparison ===")
+        print(f"  {'Task':<25s} {'Frozen':>8s} {'Nearest':>8s} {'TaskMap':>8s}")
+        for tid in sorted(holdout_data.keys()):
+            cs_val = list(coldstart_scores[tid].values())[0] if tid in coldstart_scores else float('nan')
+            nr_val = list(nearest_reuse_scores[tid].values())[0] if tid in nearest_reuse_scores else float('nan')
+            donor = donor_map.get(tid, {}).get("donor", "?")
+            print(f"  {tid:<25s} {'--':>8s} {nr_val:>8.1f} {cs_val:>8.1f}  <- {donor}")
+        cs_macro = coldstart_scores.get("macro_avg", 0)
+        nr_macro = nearest_reuse_scores.get("macro_avg", 0)
+        print(f"  {'MACRO':<25s} {'--':>8s} {nr_macro:>8.1f} {cs_macro:>8.1f}")
+
     # Build full results dict
     active_frac = cfg.get("active_fraction", 0.50)
     results = {
@@ -822,6 +946,8 @@ def train_taskmap_scaled(args):
             "ratio": float(within_avg / max(between_avg, 1e-8)),
         },
         "cold_start_scores": coldstart_scores,
+        "nearest_reuse_scores": nearest_reuse_scores,
+        "nearest_reuse_donors": {tid: info["donor"] for tid, info in donor_map.items()},
         "task_ids": task_ids,
         "task_families": train_families,
         "training_time_seconds": total_time,

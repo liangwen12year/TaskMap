@@ -1,8 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: taskmap-lora-sni41
+  name: taskmap-coldstart-full
   namespace: taskmap-training
+  labels:
+    experiment: coldstart-comparison
 spec:
   restartPolicy: Never
   nodeSelector:
@@ -13,27 +15,37 @@ spec:
     command: ["/bin/bash", "-c"]
     securityContext:
       runAsUser: 0
-    env:
-    - name: HF_TOKEN
-      value: "SET_YOUR_HF_TOKEN_HERE"
-    - name: TOKENIZERS_PARALLELISM
-      value: "false"
     args:
     - |
       nvidia-smi | head -5 &&
-      pip install -q 'transformers>=4.40,<4.50' 'peft>=0.10,<0.15' 'accelerate>=0.30,<0.35' datasets rouge-score sacrebleu sentencepiece tqdm pyyaml &&
+      echo "=== Installing dependencies ===" &&
+      pip install -q \
+        'transformers>=4.40,<4.50' \
+        'peft>=0.10,<0.15' \
+        'accelerate>=0.30,<0.35' \
+        datasets \
+        rouge-score \
+        sacrebleu \
+        sentencepiece \
+        tqdm \
+        pyyaml \
+        scikit-learn \
+        scipy &&
+      echo "=== Cloning TaskMap ===" &&
       git clone https://github.com/liangwen12year/TaskMap.git /workspace/TaskMap &&
       cd /workspace/TaskMap &&
-      echo "=== Shared LoRA on 41 SNI tasks (cold-start baseline) ===" &&
-      python -u train_lora_sni41.py \
+      echo "=== TaskMap scaled training (41 SNI tasks) + cold-start + nearest-reuse ===" &&
+      python -u train_taskmap_scaled.py \
+        --config configs/taskmap_no_topology.yaml \
         --backbone Qwen/Qwen2.5-1.5B \
-        --lora_rank 8 \
-        --lora_alpha 16 \
-        --max_steps 6000 \
+        --max_steps 12000 \
+        --active_fraction 0.75 \
+        --unfreeze_mapper \
         --seed 42 \
         --max_per_task 2000 \
         --max_eval_examples 200 \
-        --output_dir outputs/lora_sni41 &&
+        --save_every 4000 \
+        --output_dir outputs/taskmap_coldstart_full &&
       echo "=== DONE ==="
     resources:
       limits:
@@ -42,7 +54,7 @@ spec:
         cpu: "16"
       requests:
         nvidia.com/gpu: 1
-        memory: 40Gi
+        memory: 48Gi
         cpu: "8"
     volumeMounts:
     - name: workspace
@@ -51,6 +63,15 @@ spec:
       mountPath: /dev/shm
     - name: hf-cache
       mountPath: /root/.cache/huggingface
+    env:
+    - name: HF_HOME
+      value: /root/.cache/huggingface
+    - name: TOKENIZERS_PARALLELISM
+      value: "false"
+    - name: TASKMAP_EVAL_EXAMPLES
+      value: "200"
+    - name: HF_TOKEN
+      value: "SET_YOUR_HF_TOKEN_HERE"
   volumes:
   - name: workspace
     emptyDir:
