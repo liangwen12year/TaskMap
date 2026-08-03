@@ -1,0 +1,74 @@
+{
+  "experiment": "loss_ablations_corrected_mapping_losses_active",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 500,
+  "note": "These runs have --mapping_loss flag active (consistency+alignment contribute gradients). The best config (52.2) has them as diagnostic-only.",
+  "best_config_reference": {
+    "macro_9task": 52.2,
+    "note": "No topology, unfrozen mapper, mapping losses DIAGNOSTIC only (no gradient contribution)"
+  },
+  "baseline_maploss_active": {
+    "sst2": {"accuracy": 62.2},
+    "agnews": {"accuracy": 86.6},
+    "boolq": {"accuracy": 69.6},
+    "squad": {"f1": 21.09, "em": 7.6},
+    "xsum": {"rouge_l": 27.72},
+    "wmt14_ende": {"sacrebleu": 15.29, "chrf": 43.90},
+    "wmt16_enro": {"sacrebleu": 10.00, "chrf": 38.47},
+    "gsm8k": {"exact_answer": 47.0},
+    "svamp": {"exact_answer": 37.0},
+    "mbpp": {"pass_at_1": 0.0},
+    "macro_9task": 41.8
+  },
+  "no_balance_maploss_active": {
+    "sst2": {"accuracy": 60.0},
+    "agnews": {"accuracy": 81.6},
+    "boolq": {"accuracy": 70.2},
+    "squad": {"f1": 21.53, "em": 8.8},
+    "xsum": {"rouge_l": 27.57},
+    "wmt14_ende": {"sacrebleu": 15.14, "chrf": 44.17},
+    "wmt16_enro": {"sacrebleu": 10.07, "chrf": 38.85},
+    "gsm8k": {"exact_answer": 46.2},
+    "svamp": {"exact_answer": 34.3},
+    "mbpp": {"pass_at_1": 0.0},
+    "macro_9task": 40.7,
+    "drop_from_baseline": -1.1
+  },
+  "no_alignment_maploss_active": {
+    "sst2": {"accuracy": 53.6},
+    "agnews": {"accuracy": 80.8},
+    "boolq": {"accuracy": 73.0},
+    "squad": {"f1": 64.22, "em": 48.8},
+    "xsum": {"rouge_l": 27.99},
+    "wmt14_ende": {"sacrebleu": 14.93, "chrf": 44.02},
+    "wmt16_enro": {"sacrebleu": 10.71, "chrf": 39.34},
+    "gsm8k": {"exact_answer": 45.2},
+    "svamp": {"exact_answer": 40.3},
+    "mbpp": {"pass_at_1": 0.0},
+    "macro_9task": 45.6,
+    "drop_from_baseline": 3.8,
+    "note": "Removing alignment IMPROVES performance (+3.8)"
+  },
+  "no_consistency_maploss_active": {
+    "sst2": {"accuracy": 65.4},
+    "agnews": {"accuracy": 84.2},
+    "boolq": {"accuracy": 70.8},
+    "squad": {"f1": 27.83, "em": 13.6},
+    "xsum": {"rouge_l": 28.02},
+    "wmt14_ende": {"sacrebleu": 14.95, "chrf": 43.83},
+    "wmt16_enro": {"sacrebleu": 10.43, "chrf": 39.10},
+    "gsm8k": {"exact_answer": 46.2},
+    "svamp": {"exact_answer": 45.3},
+    "mbpp": {"pass_at_1": 0.0},
+    "macro_9task": 43.7,
+    "drop_from_baseline": 1.8,
+    "note": "Removing consistency IMPROVES performance (+1.8)"
+  },
+  "summary": {
+    "activating_mapping_losses_hurts": "52.2 -> 41.8 (-10.4 points)",
+    "balance_loss": "contributes -1.1 when removed (only loss that helps when active)",
+    "alignment_loss": "hurts when active; removing it improves +3.8",
+    "consistency_loss": "hurts when active; removing it improves +1.8",
+    "conclusion": "Consistency and alignment losses should remain diagnostic-only. Only balance loss contributes positively."
+  }
+}

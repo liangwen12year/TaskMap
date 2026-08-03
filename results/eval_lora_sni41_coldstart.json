@@ -1,0 +1,262 @@
+{
+  "experiment": "shared_lora_sni41_coldstart",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "lora_rank": 8,
+  "trainable_params": 7053312,
+  "num_train_tasks": 41,
+  "num_holdout_tasks": 20,
+  "max_steps": 6000,
+  "trained_scores": {
+    "task001_quoref_question_generation": {
+      "rouge_l": 18.620907548203675
+    },
+    "task002_quoref_answer_generation": {
+      "accuracy": 61.0
+    },
+    "task073_commonsenseqa_answer_generation": {
+      "accuracy": 96.5
+    },
+    "task074_squad1.1_question_generation": {
+      "rouge_l": 9.577683961501153
+    },
+    "task075_squad1.1_answer_generation": {
+      "accuracy": 76.0
+    },
+    "task080_piqa_answer_generation": {
+      "rouge_l": 9.669728700312742
+    },
+    "task082_babi_t1_single_supporting_fact_question_generation": {
+      "accuracy": 81.5
+    },
+    "task083_babi_t1_single_supporting_fact_answer_generation": {
+      "accuracy": 98.49246231155779
+    },
+    "task043_essential_terms_answering_incomplete_questions": {
+      "accuracy": 90.0
+    },
+    "task044_essential_terms_identifying_essential_words": {
+      "accuracy": 44.0
+    },
+    "task047_miscellaneous_answering_science_questions": {
+      "accuracy": 100.0
+    },
+    "task061_ropes_answer_generation": {
+      "accuracy": 73.0
+    },
+    "task022_cosmosqa_passage_inappropriate_binary": {
+      "accuracy": 76.92307692307693
+    },
+    "task065_timetravel_consistent_sentence_classification": {
+      "accuracy": 92.0
+    },
+    "task066_timetravel_binary_consistency_classification": {
+      "accuracy": 97.0
+    },
+    "task069_abductivenli_classification": {
+      "accuracy": 91.5
+    },
+    "task070_abductivenli_incorrect_classification": {
+      "accuracy": 94.5
+    },
+    "task092_check_prime_classification": {
+      "accuracy": 94.5
+    },
+    "task108_contextualabusedetection_classification": {
+      "accuracy": 79.0
+    },
+    "task109_smsspamcollection_spamsmsdetection": {
+      "accuracy": 98.5
+    },
+    "task088_identify_typo_verification": {
+      "accuracy": 100.0
+    },
+    "task089_swap_words_verification": {
+      "accuracy": 56.99999999999999
+    },
+    "task023_cosmosqa_question_generation": {
+      "rouge_l": 12.306461133048508
+    },
+    "task024_cosmosqa_answer_generation": {
+      "rouge_l": 4.426187868020433
+    },
+    "task025_cosmosqa_incorrect_answer_generation": {
+      "rouge_l": 17.474125242610214
+    },
+    "task026_drop_question_generation": {
+      "rouge_l": 12.319520278349847
+    },
+    "task027_drop_answer_type_generation": {
+      "accuracy": 98.5
+    },
+    "task028_drop_answer_generation": {
+      "accuracy": 45.0
+    },
+    "task059_ropes_story_generation": {
+      "rouge_l": 12.68229557364007
+    },
+    "task060_ropes_question_generation": {
+      "rouge_l": 11.868660665252868
+    },
+    "task067_abductivenli_answer_generation": {
+      "rouge_l": 5.9308542619620885
+    },
+    "task068_abductivenli_incorrect_answer_generation": {
+      "rouge_l": 15.672281054728918
+    },
+    "task103_facts2story_long_text_generation": {
+      "rouge_l": 21.784527716413628
+    },
+    "task105_story_cloze-rocstories_sentence_generation": {
+      "rouge_l": 4.7995197064016395
+    },
+    "task110_logic2text_sentence_generation": {
+      "rouge_l": 71.08642366963264
+    },
+    "task045_miscellaneous_sentence_paraphrasing": {
+      "rouge_l": 13.895014805597384
+    },
+    "task111_asset_sentence_simplification": {
+      "rouge_l": 19.667116508190087
+    },
+    "task062_bigbench_repeat_copy_logic": {
+      "rouge_l": 37.23338610806641
+    },
+    "task063_first_i_elements": {
+      "accuracy": 62.0
+    },
+    "task085_unnatural_addsub_arithmetic": {
+      "accuracy": 3.0
+    },
+    "task046_miscellaneous_question_typing": {
+      "accuracy": 56.99999999999999
+    },
+    "macro_avg": 52.827566683818695
+  },
+  "coldstart_scores": {
+    "task020_mctaco_span_based_question": {
+      "accuracy": 71.42857142857143
+    },
+    "task033_winogrande_answer_generation": {
+      "accuracy": 54.0
+    },
+    "task034_winogrande_question_modification_object": {
+      "rouge_l": 19.22271498774361
+    },
+    "task036_qasc_topic_word_to_generate_related_fact": {
+      "accuracy": 10.5
+    },
+    "task039_qasc_find_overlapping_words": {
+      "accuracy": 56.00000000000001
+    },
+    "task050_multirc_answerability": {
+      "accuracy": 73.5
+    },
+    "task102_commongen_sentence_generation": {
+      "rouge_l": 9.150217767072538
+    },
+    "task121_zest_text_modification": {
+      "rouge_l": 11.674916389729985
+    },
+    "task133_winowhy_reason_plausibility_detection": {
+      "accuracy": 64.5
+    },
+    "task1152_bard_analogical_reasoning_causation": {
+      "accuracy": 46.34146341463415
+    },
+    "task1342_amazon_us_reviews_title": {
+      "accuracy": 3.5000000000000004
+    },
+    "task1344_glue_entailment_classification": {
+      "accuracy": 41.5
+    },
+    "task1345_glue_qqp_question_paraprashing": {
+      "rouge_l": 8.686091837348256
+    },
+    "task1356_xlsum_title_generation": {
+      "rouge_l": 6.429023609407665
+    },
+    "task1385_anli_r1_entailment": {
+      "accuracy": 2.525252525252525
+    },
+    "task1386_anli_r2_entailment": {
+      "accuracy": 4.0201005025125625
+    },
+    "task1387_anli_r3_entailment": {
+      "accuracy": 10.5
+    },
+    "task1388_cb_entailment": {
+      "accuracy": 0.0
+    },
+    "task1394_meta_woz_task_classification": {
+      "accuracy": 0.0
+    },
+    "task1409_dart_text_generation": {
+      "rouge_l": 21.194608271023284
+    },
+    "macro_avg": 25.7336480366648
+  },
+  "frozen_scores": {
+    "task020_mctaco_span_based_question": {
+      "accuracy": 0.0
+    },
+    "task033_winogrande_answer_generation": {
+      "accuracy": 32.5
+    },
+    "task034_winogrande_question_modification_object": {
+      "rouge_l": 20.399454063615234
+    },
+    "task036_qasc_topic_word_to_generate_related_fact": {
+      "accuracy": 2.0
+    },
+    "task039_qasc_find_overlapping_words": {
+      "accuracy": 16.5
+    },
+    "task050_multirc_answerability": {
+      "accuracy": 0.0
+    },
+    "task102_commongen_sentence_generation": {
+      "rouge_l": 8.715324750082308
+    },
+    "task121_zest_text_modification": {
+      "rouge_l": 38.549537811961684
+    },
+    "task133_winowhy_reason_plausibility_detection": {
+      "accuracy": 54.0
+    },
+    "task1152_bard_analogical_reasoning_causation": {
+      "accuracy": 0.0
+    },
+    "task1342_amazon_us_reviews_title": {
+      "accuracy": 4.0
+    },
+    "task1344_glue_entailment_classification": {
+      "accuracy": 0.0
+    },
+    "task1345_glue_qqp_question_paraprashing": {
+      "rouge_l": 35.83555533702885
+    },
+    "task1356_xlsum_title_generation": {
+      "rouge_l": 17.953515244468207
+    },
+    "task1385_anli_r1_entailment": {
+      "accuracy": 2.525252525252525
+    },
+    "task1386_anli_r2_entailment": {
+      "accuracy": 5.527638190954774
+    },
+    "task1387_anli_r3_entailment": {
+      "accuracy": 10.0
+    },
+    "task1388_cb_entailment": {
+      "accuracy": 0.0
+    },
+    "task1394_meta_woz_task_classification": {
+      "accuracy": 0.0
+    },
+    "task1409_dart_text_generation": {
+      "rouge_l": 44.53290919119517
+    },
+    "macro_avg": 14.65195935572794
+  },
+  "training_time_seconds": 3694.409059524536
+}
