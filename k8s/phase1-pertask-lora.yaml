@@ -28,7 +28,7 @@ spec:
       python -u train_per_task_lora.py \
         --backbone Qwen/Qwen2.5-1.5B \
         --lora_rank 8 --lora_alpha 16 \
-        --max_steps 6000 \
+        --steps_per_task 6000 \
         --max_eval_examples 500 \
         --seed 42 &&
       echo "=== DONE ==="
