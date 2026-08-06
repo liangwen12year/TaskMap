@@ -70,6 +70,8 @@ def parse_args():
                         help="Disable alignment loss (lambda_align=0)")
     parser.add_argument("--no_consistency_loss", action="store_true",
                         help="Disable consistency/stability loss (lambda_stab=0)")
+    parser.add_argument("--no_residual", action="store_true",
+                        help="Force r_{t,l}=0: description-only, no learned residual")
     parser.add_argument("--save_checkpoint", action="store_true",
                         help="Save final checkpoint with coefficients for analysis")
     parser.add_argument("--dry_run", action="store_true")
@@ -187,6 +189,12 @@ def train_taskmap(args):
     print(f"\nTaskMap parameter summary: {summary}")
 
     # ── Optimizer (separate param groups) ──
+    if args.no_residual:
+        print("  NO RESIDUAL MODE: r_{t,l} forced to zero, description-only")
+        for name, param in taskmap.task_code.residuals.items():
+            param.data.zero_()
+            param.requires_grad = False
+
     param_groups = []
     code_params = []
     projector_params = []
@@ -196,7 +204,8 @@ def train_taskmap(args):
                 projector_params.append(param)
             else:
                 code_params.append(param)
-    param_groups.append({"params": code_params, "lr": cfg.get("code_learning_rate", 2e-3)})
+    if code_params:
+        param_groups.append({"params": code_params, "lr": cfg.get("code_learning_rate", 2e-3)})
     param_groups.append({"params": projector_params, "lr": cfg.get("projector_learning_rate", 2e-4)})
 
     if unfreeze_mapper:
