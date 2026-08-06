@@ -176,19 +176,6 @@ KNOWN_TASKS = {
         "max_response_tokens": 384,
         "metric": "pass_at_1",
     },
-    "mbpp": {
-        "family": "code_generation",
-        "descriptions": [
-            "Write a correct Python function satisfying the specification.",
-            "Implement the described Python function.",
-            "Generate the Python code for the given task description.",
-        ],
-        "dataset": "google-research-datasets/mbpp",
-        "subset": "full",
-        "split_map": {"train": "train", "validation": "validation", "test": "test"},
-        "max_response_tokens": 384,
-        "metric": "pass_at_1",
-    },
 }
 
 COLD_START_TASKS = {
