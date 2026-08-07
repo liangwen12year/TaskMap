@@ -1,0 +1,59 @@
+{
+  "experiment": "phase1_corrected_log_likelihood_scoring",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 500,
+  "seed": 42,
+  "max_steps": 6000,
+  "scoring": "log-likelihood for SST-2/AG/BoolQ, generation+metric for others",
+  "note": "MBPP removed. All methods use evaluate_task with classify_by_likelihood for classification.",
+  "frozen": {
+    "sst2": 53.0, "agnews": 53.0, "boolq": 63.0,
+    "squad_f1": 38.1, "xsum_rl": 10.5,
+    "wmt14_bleu": 0.4, "wmt16_bleu": 0.7,
+    "gsm8k": 10.4, "svamp": 50.3,
+    "macro_9task": 31.0
+  },
+  "shared_lora_r8": {
+    "sst2": 72.2, "agnews": 91.2, "boolq": 64.0,
+    "squad_f1": 14.7, "xsum_rl": 27.9,
+    "wmt14_bleu": 1.8, "wmt16_bleu": 1.9,
+    "gsm8k": 36.8, "svamp": 43.3,
+    "macro_9task": 39.3
+  },
+  "pertask_lora_r8": {
+    "sst2": 88.8, "agnews": 93.2, "boolq": 81.0,
+    "squad_f1": 29.8, "xsum_rl": 30.4,
+    "wmt14_bleu": 3.2, "wmt16_bleu": 6.1,
+    "gsm8k": 30.0, "svamp": 3.0,
+    "macro_9task": 40.6
+  },
+  "direct_optim_rho075": {
+    "sst2": 90.0, "agnews": 80.6, "boolq": 70.0,
+    "squad_f1": 70.2, "xsum_rl": 28.1,
+    "wmt14_bleu": 14.2, "wmt16_bleu": 9.4,
+    "gsm8k": 45.8, "svamp": 29.7,
+    "macro_9task": 48.7
+  },
+  "taskmap_notopo_rho075_unfrozen": {
+    "sst2": 68.6, "agnews": 81.2, "boolq": 70.0,
+    "squad_f1": 59.7, "xsum_rl": 27.9,
+    "wmt14_bleu": 15.1, "wmt16_bleu": 10.1,
+    "gsm8k": 44.2, "svamp": 46.7,
+    "macro_9task": 47.1
+  },
+  "taskmap_no_residual": {
+    "sst2": 57.4, "agnews": 85.8, "boolq": 69.6,
+    "squad_f1": 42.1, "xsum_rl": 28.1,
+    "wmt14_bleu": 8.2, "wmt16_bleu": 6.0,
+    "gsm8k": 39.0, "svamp": 48.0,
+    "macro_9task": 42.7,
+    "note": "description-only, r_{t,l}=0 throughout training"
+  },
+  "comparison_vs_old": {
+    "frozen": "31.0 (was 16.9, +14.1 from log-likelihood fix)",
+    "shared_lora": "39.3 (was 42.6, -3.3)",
+    "pertask_lora": "40.6 (was 45.9, -5.3)",
+    "direct_optim": "48.7 (was 51.3, -2.6)",
+    "taskmap": "47.1 (was 52.2, -5.1)"
+  }
+}

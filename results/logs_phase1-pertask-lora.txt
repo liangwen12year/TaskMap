@@ -1,0 +1,523 @@
+Thu Aug  6 04:07:19 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.126.20             Driver Version: 580.126.20     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+cudf 24.4.0 requires pyarrow<15.0.0a0,>=14.0.1, but you have pyarrow 25.0.0 which is incompatible.
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 24.1.2 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip
+Cloning into '/workspace/TaskMap'...
+=== Phase 1: Per-task LoRA r=8 (log-likelihood classification) ===
+Loading backbone: Qwen/Qwen2.5-1.5B
+Downloading sst2 (stanfordnlp/sst2)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'stanfordnlp/sst2' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/67349 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 67349/67349 [00:00<00:00, 2378957.57 examples/s]
+Generating validation split:   0%|          | 0/872 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 872/872 [00:00<00:00, 513468.07 examples/s]
+Generating test split:   0%|          | 0/1821 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1821/1821 [00:00<00:00, 801955.86 examples/s]
+  Splits: ['train', 'validation', 'test']
+Downloading agnews (fancyzhx/ag_news)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'fancyzhx/ag_news' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/120000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 120000/120000 [00:00<00:00, 1520910.64 examples/s]
+Generating test split:   0%|          | 0/7600 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 7600/7600 [00:00<00:00, 1405994.64 examples/s]
+  Splits: ['train', 'test']
+Downloading boolq (google/boolq)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'google/boolq' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/9427 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 9427/9427 [00:00<00:00, 455353.42 examples/s]
+Generating validation split:   0%|          | 0/3270 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3270/3270 [00:00<00:00, 560131.26 examples/s]
+  Splits: ['train', 'validation']
+Downloading squad (rajpurkar/squad)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'rajpurkar/squad' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/87599 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 87599/87599 [00:00<00:00, 1229571.40 examples/s]
+Generating validation split:   0%|          | 0/10570 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 10570/10570 [00:00<00:00, 901075.04 examples/s]
+  Splits: ['train', 'validation']
+Downloading xsum (EdinburghNLP/xsum)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'EdinburghNLP/xsum' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/204045 [00:00<?, ? examples/s]Generating train split:   9%|▉         | 19000/204045 [00:00<00:01, 181533.55 examples/s]Generating train split:  20%|██        | 41000/204045 [00:00<00:00, 199115.97 examples/s]Generating train split:  31%|███▏      | 64000/204045 [00:00<00:00, 210564.79 examples/s]Generating train split:  43%|████▎     | 87000/204045 [00:00<00:00, 216466.12 examples/s]Generating train split:  54%|█████▍    | 110000/204045 [00:00<00:00, 219286.29 examples/s]Generating train split:  65%|██████▍   | 132000/204045 [00:00<00:00, 216776.56 examples/s]Generating train split:  75%|███████▌  | 154000/204045 [00:00<00:00, 213378.37 examples/s]Generating train split:  86%|████████▋ | 176000/204045 [00:00<00:00, 214397.05 examples/s]Generating train split:  98%|█████████▊| 199000/204045 [00:00<00:00, 215719.28 examples/s]Generating train split: 100%|██████████| 204045/204045 [00:00<00:00, 214413.50 examples/s]
+Generating validation split:   0%|          | 0/11332 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 11332/11332 [00:00<00:00, 215168.46 examples/s]
+Generating test split:   0%|          | 0/11334 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 11334/11334 [00:00<00:00, 195760.32 examples/s]
+  Splits: ['train', 'validation', 'test']
+Downloading samsum (Samsung/samsum)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'Samsung/samsum' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  FAILED: Dataset 'Samsung/samsum' doesn't exist on the Hub or cannot be accessed.
+Downloading wmt14_ende (wmt14)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'wmt14' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/4508785 [00:00<?, ? examples/s]Generating train split:   3%|▎         | 117000/4508785 [00:00<00:03, 1155009.65 examples/s]Generating train split:   6%|▌         | 258000/4508785 [00:00<00:03, 1293832.77 examples/s]Generating train split:   9%|▉         | 395000/4508785 [00:00<00:03, 1325117.50 examples/s]Generating train split:  12%|█▏        | 536000/4508785 [00:00<00:02, 1355921.20 examples/s]Generating train split:  16%|█▌        | 702000/4508785 [00:00<00:02, 1460544.92 examples/s]Generating train split:  20%|██        | 906000/4508785 [00:00<00:02, 1411058.49 examples/s]Generating train split:  24%|██▍       | 1076000/4508785 [00:00<00:02, 1440530.45 examples/s]Generating train split:  28%|██▊       | 1243000/4508785 [00:00<00:02, 1503539.22 examples/s]Generating train split:  32%|███▏      | 1465000/4508785 [00:01<00:02, 1491081.02 examples/s]Generating train split:  37%|███▋      | 1680929/4508785 [00:01<00:01, 1461858.20 examples/s]Generating train split:  41%|████      | 1847929/4508785 [00:01<00:01, 1511219.76 examples/s]Generating train split:  45%|████▍     | 2011929/4508785 [00:01<00:01, 1543065.24 examples/s]Generating train split:  48%|████▊     | 2176929/4508785 [00:01<00:01, 1567760.33 examples/s]Generating train split:  52%|█████▏    | 2347929/4508785 [00:01<00:01, 1585330.38 examples/s]Generating train split:  56%|█████▌    | 2508929/4508785 [00:01<00:01, 1590036.17 examples/s]Generating train split:  61%|██████    | 2757929/4508785 [00:01<00:01, 1609378.16 examples/s]Generating train split:  65%|██████▌   | 2930929/4508785 [00:01<00:00, 1620958.55 examples/s]Generating train split:  70%|███████   | 3175857/4508785 [00:02<00:00, 1599224.42 examples/s]Generating train split:  76%|███████▌  | 3409857/4508785 [00:02<00:00, 1584965.75 examples/s]Generating train split:  79%|███████▉  | 3575857/4508785 [00:02<00:00, 1601057.54 examples/s]Generating train split:  83%|████████▎ | 3753857/4508785 [00:02<00:00, 1620555.27 examples/s]Generating train split:  87%|████████▋ | 3930857/4508785 [00:02<00:00, 1656130.15 examples/s]Generating train split:  92%|█████████▏| 4155857/4508785 [00:02<00:00, 1595301.40 examples/s]Generating train split:  98%|█████████▊| 4396857/4508785 [00:02<00:00, 1577531.18 examples/s]Generating train split: 100%|██████████| 4508785/4508785 [00:02<00:00, 1537831.97 examples/s]
+Generating validation split:   0%|          | 0/3000 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3000/3000 [00:00<00:00, 777010.74 examples/s]
+Generating test split:   0%|          | 0/3003 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 3003/3003 [00:00<00:00, 1010387.85 examples/s]
+  Splits: ['train', 'validation', 'test']
+Downloading wmt16_enro (wmt16)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'wmt16' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/610320 [00:00<?, ? examples/s]Generating train split:  23%|██▎       | 140000/610320 [00:00<00:00, 1383462.98 examples/s]Generating train split:  49%|████▊     | 297000/610320 [00:00<00:00, 1488228.03 examples/s]Generating train split:  77%|███████▋  | 468000/610320 [00:00<00:00, 1541774.97 examples/s]Generating train split: 100%|██████████| 610320/610320 [00:00<00:00, 1551062.66 examples/s]
+Generating validation split:   0%|          | 0/1999 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 1999/1999 [00:00<00:00, 666328.67 examples/s]
+Generating test split:   0%|          | 0/1999 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1999/1999 [00:00<00:00, 755148.49 examples/s]
+  Splits: ['train', 'validation', 'test']
+Downloading gsm8k (openai/gsm8k)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'openai/gsm8k' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/7473 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 7473/7473 [00:00<00:00, 764619.17 examples/s]
+Generating test split:   0%|          | 0/1319 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1319/1319 [00:00<00:00, 544409.27 examples/s]
+  Splits: ['train', 'test']
+Downloading svamp (ChilleD/SVAMP)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'ChilleD/SVAMP' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/700 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 700/700 [00:00<00:00, 198674.57 examples/s]
+Generating test split:   0%|          | 0/300 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 300/300 [00:00<00:00, 145517.66 examples/s]
+  Splits: ['train', 'test']
+Downloading apps_intro (codeparrot/apps)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'codeparrot/apps' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  FAILED: Dataset scripts are no longer supported, but found apps.py
+  sst2/train: 40000 examples (deduped)
+  agnews/train: 40000 examples (deduped)
+  boolq/train: 9427 examples (deduped)
+  squad/train: 40000 examples (deduped)
+  xsum/train: 40000 examples (deduped)
+  wmt14_ende/train: 40000 examples (deduped)
+  wmt16_enro/train: 40000 examples (deduped)
+  gsm8k/train: 7473 examples (deduped)
+  svamp/train: 700 examples (deduped)
+  sst2/validation: 872 examples (deduped)
+  agnews/validation: 7600 examples (deduped)
+  boolq/validation: 3270 examples (deduped)
+  squad/validation: 10552 examples (deduped)
+  xsum/validation: 11327 examples (deduped)
+  wmt14_ende/validation: 2996 examples (deduped)
+  wmt16_enro/validation: 1999 examples (deduped)
+  gsm8k/validation: 1319 examples (deduped)
+  svamp/validation: 300 examples (deduped)
+Tasks: ['sst2', 'agnews', 'boolq', 'squad', 'xsum', 'wmt14_ende', 'wmt16_enro', 'gsm8k', 'svamp']
+
+============================================================
+Training LoRA for task: sst2
+============================================================
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+trainable params: 7,053,312 || all params: 1,550,767,616 || trainable%: 0.4548
+  Trainable params: 7,053,312
+  Step 1/6000 | Loss: 4.6351 | Task: sst2 | Time: 1s
+  Step 200/6000 | Loss: 394.5606 | Task: sst2 | Time: 107s
+  Step 400/6000 | Loss: 281.3992 | Task: sst2 | Time: 214s
+  Step 600/6000 | Loss: 284.1701 | Task: sst2 | Time: 322s
+  Step 800/6000 | Loss: 278.6765 | Task: sst2 | Time: 429s
+  Step 1000/6000 | Loss: 274.8087 | Task: sst2 | Time: 536s
+  Step 1200/6000 | Loss: 268.1987 | Task: sst2 | Time: 643s
+  Step 1400/6000 | Loss: 272.1744 | Task: sst2 | Time: 750s
+  Step 1600/6000 | Loss: 263.6668 | Task: sst2 | Time: 857s
+  Step 1800/6000 | Loss: 263.7392 | Task: sst2 | Time: 967s
+  Step 2000/6000 | Loss: 256.1464 | Task: sst2 | Time: 1074s
+  Step 2200/6000 | Loss: 252.1199 | Task: sst2 | Time: 1182s
+  Step 2400/6000 | Loss: 247.2672 | Task: sst2 | Time: 1288s
+  Step 2600/6000 | Loss: 240.2635 | Task: sst2 | Time: 1394s
+  Step 2800/6000 | Loss: 231.4506 | Task: sst2 | Time: 1500s
+  Step 3000/6000 | Loss: 223.7571 | Task: sst2 | Time: 1606s
+  Step 3200/6000 | Loss: 224.1721 | Task: sst2 | Time: 1712s
+  Step 3400/6000 | Loss: 224.4451 | Task: sst2 | Time: 1819s
+  Step 3600/6000 | Loss: 216.8204 | Task: sst2 | Time: 1925s
+  Step 3800/6000 | Loss: 214.2401 | Task: sst2 | Time: 2032s
+  Step 4000/6000 | Loss: 210.6875 | Task: sst2 | Time: 2138s
+  Step 4200/6000 | Loss: 213.0993 | Task: sst2 | Time: 2244s
+  Step 4400/6000 | Loss: 208.6201 | Task: sst2 | Time: 2351s
+  Step 4600/6000 | Loss: 206.7798 | Task: sst2 | Time: 2459s
+  Step 4800/6000 | Loss: 205.8690 | Task: sst2 | Time: 2566s
+  Step 5000/6000 | Loss: 205.0842 | Task: sst2 | Time: 2673s
+  Step 5200/6000 | Loss: 190.4738 | Task: sst2 | Time: 2780s
+  Step 5400/6000 | Loss: 190.6987 | Task: sst2 | Time: 2887s
+  Step 5600/6000 | Loss: 188.0801 | Task: sst2 | Time: 2994s
+  Step 5800/6000 | Loss: 187.8077 | Task: sst2 | Time: 3102s
+  Step 6000/6000 | Loss: 187.7288 | Task: sst2 | Time: 3210s
+  Training complete for sst2 in 3210s
+  Evaluating sst2 (500 examples, metric=accuracy)...
+  sst2: {'accuracy': 88.8}
+
+============================================================
+Training LoRA for task: agnews
+============================================================
+trainable params: 7,053,312 || all params: 1,550,767,616 || trainable%: 0.4548
+  Trainable params: 7,053,312
+  Step 1/6000 | Loss: 3.0139 | Task: agnews | Time: 1s
+  Step 200/6000 | Loss: 406.5789 | Task: agnews | Time: 112s
+  Step 400/6000 | Loss: 364.2239 | Task: agnews | Time: 223s
+  Step 600/6000 | Loss: 358.4133 | Task: agnews | Time: 335s
+  Step 800/6000 | Loss: 361.3236 | Task: agnews | Time: 446s
+  Step 1000/6000 | Loss: 350.0884 | Task: agnews | Time: 557s
+  Step 1200/6000 | Loss: 345.1529 | Task: agnews | Time: 668s
+  Step 1400/6000 | Loss: 341.5883 | Task: agnews | Time: 779s
+  Step 1600/6000 | Loss: 346.6067 | Task: agnews | Time: 890s
+  Step 1800/6000 | Loss: 336.1300 | Task: agnews | Time: 1001s
+  Step 2000/6000 | Loss: 334.6382 | Task: agnews | Time: 1113s
+  Step 2200/6000 | Loss: 333.9015 | Task: agnews | Time: 1223s
+  Step 2400/6000 | Loss: 327.8500 | Task: agnews | Time: 1334s
+  Step 2600/6000 | Loss: 318.0454 | Task: agnews | Time: 1446s
+  Step 2800/6000 | Loss: 299.5453 | Task: agnews | Time: 1558s
+  Step 3000/6000 | Loss: 305.9616 | Task: agnews | Time: 1669s
+  Step 3200/6000 | Loss: 294.3527 | Task: agnews | Time: 1780s
+  Step 3400/6000 | Loss: 298.8241 | Task: agnews | Time: 1890s
+  Step 3600/6000 | Loss: 290.7316 | Task: agnews | Time: 2002s
+  Step 3800/6000 | Loss: 292.2132 | Task: agnews | Time: 2112s
+  Step 4000/6000 | Loss: 288.9551 | Task: agnews | Time: 2223s
+  Step 4200/6000 | Loss: 288.2041 | Task: agnews | Time: 2334s
+  Step 4400/6000 | Loss: 288.3781 | Task: agnews | Time: 2445s
+  Step 4600/6000 | Loss: 287.4026 | Task: agnews | Time: 2556s
+  Step 4800/6000 | Loss: 285.2587 | Task: agnews | Time: 2667s
+  Step 5000/6000 | Loss: 279.6393 | Task: agnews | Time: 2779s
+  Step 5200/6000 | Loss: 266.2492 | Task: agnews | Time: 2890s
+  Step 5400/6000 | Loss: 266.7799 | Task: agnews | Time: 3001s
+  Step 5600/6000 | Loss: 266.5828 | Task: agnews | Time: 3113s
+  Step 5800/6000 | Loss: 260.8597 | Task: agnews | Time: 3224s
+  Step 6000/6000 | Loss: 264.6929 | Task: agnews | Time: 3337s
+  Training complete for agnews in 3337s
+  Evaluating agnews (500 examples, metric=accuracy)...
+  agnews: {'accuracy': 93.2}
+
+============================================================
+Training LoRA for task: boolq
+============================================================
+trainable params: 7,053,312 || all params: 1,550,767,616 || trainable%: 0.4548
+  Trainable params: 7,053,312
+  Step 1/6000 | Loss: 2.1805 | Task: boolq | Time: 1s
+  Step 200/6000 | Loss: 332.0775 | Task: boolq | Time: 122s
+  Step 400/6000 | Loss: 302.8638 | Task: boolq | Time: 244s
+  Step 600/6000 | Loss: 284.5416 | Task: boolq | Time: 364s
+  Step 800/6000 | Loss: 262.3649 | Task: boolq | Time: 484s
+  Step 1000/6000 | Loss: 250.9179 | Task: boolq | Time: 604s
+  Step 1200/6000 | Loss: 235.9022 | Task: boolq | Time: 724s
+  Step 1400/6000 | Loss: 207.9873 | Task: boolq | Time: 845s
+  Step 1600/6000 | Loss: 208.1956 | Task: boolq | Time: 965s
+  Step 1800/6000 | Loss: 196.6913 | Task: boolq | Time: 1086s
+  Step 2000/6000 | Loss: 169.5069 | Task: boolq | Time: 1206s
+  Step 2200/6000 | Loss: 165.3689 | Task: boolq | Time: 1325s
+  Step 2400/6000 | Loss: 155.7829 | Task: boolq | Time: 1445s
+  Step 2600/6000 | Loss: 138.4679 | Task: boolq | Time: 1564s
+  Step 2800/6000 | Loss: 136.7776 | Task: boolq | Time: 1682s
+  Step 3000/6000 | Loss: 122.7052 | Task: boolq | Time: 1801s
+  Step 3200/6000 | Loss: 108.8660 | Task: boolq | Time: 1920s
+  Step 3400/6000 | Loss: 111.5398 | Task: boolq | Time: 2041s
+  Step 3600/6000 | Loss: 105.4236 | Task: boolq | Time: 2160s
+  Step 3800/6000 | Loss: 90.6385 | Task: boolq | Time: 2279s
+  Step 4000/6000 | Loss: 92.6734 | Task: boolq | Time: 2399s
+  Step 4200/6000 | Loss: 86.6343 | Task: boolq | Time: 2520s
+  Step 4400/6000 | Loss: 80.7838 | Task: boolq | Time: 2640s
+  Step 4600/6000 | Loss: 76.7296 | Task: boolq | Time: 2760s
+  Step 4800/6000 | Loss: 75.6025 | Task: boolq | Time: 2880s
+  Step 5000/6000 | Loss: 71.9354 | Task: boolq | Time: 3000s
+  Step 5200/6000 | Loss: 71.3019 | Task: boolq | Time: 3120s
+  Step 5400/6000 | Loss: 67.5107 | Task: boolq | Time: 3240s
+  Step 5600/6000 | Loss: 67.2973 | Task: boolq | Time: 3361s
+  Step 5800/6000 | Loss: 65.0812 | Task: boolq | Time: 3481s
+  Step 6000/6000 | Loss: 72.7897 | Task: boolq | Time: 3601s
+  Training complete for boolq in 3601s
+  Evaluating boolq (500 examples, metric=accuracy)...
+  boolq: {'accuracy': 81.0}
+
+============================================================
+Training LoRA for task: squad
+============================================================
+trainable params: 7,053,312 || all params: 1,550,767,616 || trainable%: 0.4548
+  Trainable params: 7,053,312
+  Step 1/6000 | Loss: 1.7443 | Task: squad | Time: 1s
+  Step 200/6000 | Loss: 338.6165 | Task: squad | Time: 124s
+  Step 400/6000 | Loss: 322.1964 | Task: squad | Time: 249s
+  Step 600/6000 | Loss: 311.7838 | Task: squad | Time: 374s
+  Step 800/6000 | Loss: 297.0411 | Task: squad | Time: 499s
+  Step 1000/6000 | Loss: 288.3669 | Task: squad | Time: 623s
+  Step 1200/6000 | Loss: 276.8838 | Task: squad | Time: 748s
+  Step 1400/6000 | Loss: 263.6917 | Task: squad | Time: 872s
+  Step 1600/6000 | Loss: 255.7801 | Task: squad | Time: 996s
+  Step 1800/6000 | Loss: 242.6894 | Task: squad | Time: 1119s
+  Step 2000/6000 | Loss: 234.4465 | Task: squad | Time: 1243s
+  Step 2200/6000 | Loss: 225.9859 | Task: squad | Time: 1366s
+  Step 2400/6000 | Loss: 213.1213 | Task: squad | Time: 1490s
+  Step 2600/6000 | Loss: 196.6605 | Task: squad | Time: 1614s
+  Step 2800/6000 | Loss: 185.4924 | Task: squad | Time: 1738s
+  Step 3000/6000 | Loss: 178.6358 | Task: squad | Time: 1862s
+  Step 3200/6000 | Loss: 171.8311 | Task: squad | Time: 1986s
+  Step 3400/6000 | Loss: 169.1724 | Task: squad | Time: 2110s
+  Step 3600/6000 | Loss: 159.6481 | Task: squad | Time: 2233s
+  Step 3800/6000 | Loss: 157.2874 | Task: squad | Time: 2357s
+  Step 4000/6000 | Loss: 153.3745 | Task: squad | Time: 2481s
+  Step 4200/6000 | Loss: 143.8092 | Task: squad | Time: 2605s
+  Step 4400/6000 | Loss: 146.6009 | Task: squad | Time: 2729s
+  Step 4600/6000 | Loss: 141.5831 | Task: squad | Time: 2853s
+  Step 4800/6000 | Loss: 141.1899 | Task: squad | Time: 2977s
+  Step 5000/6000 | Loss: 140.1496 | Task: squad | Time: 3101s
+  Step 5200/6000 | Loss: 131.9094 | Task: squad | Time: 3226s
+  Step 5400/6000 | Loss: 128.8167 | Task: squad | Time: 3350s
+  Step 5600/6000 | Loss: 129.1328 | Task: squad | Time: 3473s
+  Step 5800/6000 | Loss: 128.4545 | Task: squad | Time: 3597s
+  Step 6000/6000 | Loss: 126.5468 | Task: squad | Time: 3719s
+  Training complete for squad in 3719s
+  Evaluating squad (500 examples, metric=f1_em)...
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+  squad: {'f1': 29.773593201273403, 'em': 4.6}
+
+============================================================
+Training LoRA for task: xsum
+============================================================
+trainable params: 7,053,312 || all params: 1,550,767,616 || trainable%: 0.4548
+  Trainable params: 7,053,312
+  Step 1/6000 | Loss: 2.4676 | Task: xsum | Time: 2s
+  Step 200/6000 | Loss: 435.2345 | Task: xsum | Time: 272s
+  Step 400/6000 | Loss: 426.9597 | Task: xsum | Time: 541s
+  Step 600/6000 | Loss: 427.7442 | Task: xsum | Time: 818s
+  Step 800/6000 | Loss: 424.7894 | Task: xsum | Time: 1087s
+  Step 1000/6000 | Loss: 422.8425 | Task: xsum | Time: 1356s
+  Step 1200/6000 | Loss: 423.0756 | Task: xsum | Time: 1624s
+  Step 1400/6000 | Loss: 421.9556 | Task: xsum | Time: 1896s
+  Step 1600/6000 | Loss: 421.2821 | Task: xsum | Time: 2169s
+  Step 1800/6000 | Loss: 419.7581 | Task: xsum | Time: 2440s
+  Step 2000/6000 | Loss: 417.8652 | Task: xsum | Time: 2713s
+  Step 2200/6000 | Loss: 417.6397 | Task: xsum | Time: 2981s
+  Step 2400/6000 | Loss: 414.8482 | Task: xsum | Time: 3253s
+  Step 2600/6000 | Loss: 411.9268 | Task: xsum | Time: 3526s
+  Step 2800/6000 | Loss: 406.7862 | Task: xsum | Time: 3794s
+  Step 3000/6000 | Loss: 407.4713 | Task: xsum | Time: 4062s
+  Step 3200/6000 | Loss: 407.3064 | Task: xsum | Time: 4333s
+  Step 3400/6000 | Loss: 406.4183 | Task: xsum | Time: 4606s
+  Step 3600/6000 | Loss: 404.4012 | Task: xsum | Time: 4879s
+  Step 3800/6000 | Loss: 403.8061 | Task: xsum | Time: 5151s
+  Step 4000/6000 | Loss: 405.0844 | Task: xsum | Time: 5422s
+  Step 4200/6000 | Loss: 403.0377 | Task: xsum | Time: 5693s
+  Step 4400/6000 | Loss: 405.1483 | Task: xsum | Time: 5967s
+  Step 4600/6000 | Loss: 401.3764 | Task: xsum | Time: 6235s
+  Step 4800/6000 | Loss: 403.9913 | Task: xsum | Time: 6504s
+  Step 5000/6000 | Loss: 403.2370 | Task: xsum | Time: 6774s
+  Step 5200/6000 | Loss: 397.3469 | Task: xsum | Time: 7046s
+  Step 5400/6000 | Loss: 397.4089 | Task: xsum | Time: 7320s
+  Step 5600/6000 | Loss: 395.9820 | Task: xsum | Time: 7587s
+  Step 5800/6000 | Loss: 398.6308 | Task: xsum | Time: 7859s
+  Step 6000/6000 | Loss: 396.9414 | Task: xsum | Time: 8130s
+  Training complete for xsum in 8130s
+  Evaluating xsum (500 examples, metric=rouge_l)...
+  xsum: {'rouge_l': 30.419207185448293}
+
+============================================================
+Training LoRA for task: wmt14_ende
+============================================================
+trainable params: 7,053,312 || all params: 1,550,767,616 || trainable%: 0.4548
+  Trainable params: 7,053,312
+  Step 1/6000 | Loss: 2.4096 | Task: wmt14_ende | Time: 1s
+  Step 200/6000 | Loss: 335.2732 | Task: wmt14_ende | Time: 113s
+  Step 400/6000 | Loss: 295.7892 | Task: wmt14_ende | Time: 226s
+  Step 600/6000 | Loss: 289.4194 | Task: wmt14_ende | Time: 339s
+  Step 800/6000 | Loss: 283.1497 | Task: wmt14_ende | Time: 452s
+  Step 1000/6000 | Loss: 279.8872 | Task: wmt14_ende | Time: 564s
+  Step 1200/6000 | Loss: 276.0226 | Task: wmt14_ende | Time: 676s
+  Step 1400/6000 | Loss: 273.4487 | Task: wmt14_ende | Time: 789s
+  Step 1600/6000 | Loss: 268.9191 | Task: wmt14_ende | Time: 902s
+  Step 1800/6000 | Loss: 269.7683 | Task: wmt14_ende | Time: 1015s
+  Step 2000/6000 | Loss: 265.9508 | Task: wmt14_ende | Time: 1127s
+  Step 2200/6000 | Loss: 264.7664 | Task: wmt14_ende | Time: 1239s
+  Step 2400/6000 | Loss: 261.5933 | Task: wmt14_ende | Time: 1351s
+  Step 2600/6000 | Loss: 254.3951 | Task: wmt14_ende | Time: 1464s
+  Step 2800/6000 | Loss: 243.7831 | Task: wmt14_ende | Time: 1577s
+  Step 3000/6000 | Loss: 241.1019 | Task: wmt14_ende | Time: 1689s
+  Step 3200/6000 | Loss: 241.4710 | Task: wmt14_ende | Time: 1801s
+  Step 3400/6000 | Loss: 242.2988 | Task: wmt14_ende | Time: 1914s
+  Step 3600/6000 | Loss: 239.4393 | Task: wmt14_ende | Time: 2026s
+  Step 3800/6000 | Loss: 238.1449 | Task: wmt14_ende | Time: 2139s
+  Step 4000/6000 | Loss: 237.3837 | Task: wmt14_ende | Time: 2252s
+  Step 4200/6000 | Loss: 237.2698 | Task: wmt14_ende | Time: 2364s
+  Step 4400/6000 | Loss: 233.8770 | Task: wmt14_ende | Time: 2477s
+  Step 4600/6000 | Loss: 234.1408 | Task: wmt14_ende | Time: 2589s
+  Step 4800/6000 | Loss: 233.9532 | Task: wmt14_ende | Time: 2702s
+  Step 5000/6000 | Loss: 234.7071 | Task: wmt14_ende | Time: 2814s
+  Step 5200/6000 | Loss: 223.7549 | Task: wmt14_ende | Time: 2927s
+  Step 5400/6000 | Loss: 221.9342 | Task: wmt14_ende | Time: 3039s
+  Step 5600/6000 | Loss: 222.9163 | Task: wmt14_ende | Time: 3151s
+  Step 5800/6000 | Loss: 221.5794 | Task: wmt14_ende | Time: 3263s
+  Step 6000/6000 | Loss: 222.0710 | Task: wmt14_ende | Time: 3376s
+  Training complete for wmt14_ende in 3376s
+  Evaluating wmt14_ende (500 examples, metric=sacrebleu_chrf)...
+  wmt14_ende: {'sacrebleu': 3.152514844245019, 'chrf': 32.909169594495474}
+
+============================================================
+Training LoRA for task: wmt16_enro
+============================================================
+trainable params: 7,053,312 || all params: 1,550,767,616 || trainable%: 0.4548
+  Trainable params: 7,053,312
+  Step 1/6000 | Loss: 2.2513 | Task: wmt16_enro | Time: 1s
+  Step 200/6000 | Loss: 306.0527 | Task: wmt16_enro | Time: 112s
+  Step 400/6000 | Loss: 254.9907 | Task: wmt16_enro | Time: 225s
+  Step 600/6000 | Loss: 240.9377 | Task: wmt16_enro | Time: 338s
+  Step 800/6000 | Loss: 231.7746 | Task: wmt16_enro | Time: 450s
+  Step 1000/6000 | Loss: 225.8356 | Task: wmt16_enro | Time: 563s
+  Step 1200/6000 | Loss: 219.7477 | Task: wmt16_enro | Time: 675s
+  Step 1400/6000 | Loss: 214.8670 | Task: wmt16_enro | Time: 788s
+  Step 1600/6000 | Loss: 208.3585 | Task: wmt16_enro | Time: 900s
+  Step 1800/6000 | Loss: 206.3434 | Task: wmt16_enro | Time: 1011s
+  Step 2000/6000 | Loss: 202.3237 | Task: wmt16_enro | Time: 1123s
+  Step 2200/6000 | Loss: 200.5778 | Task: wmt16_enro | Time: 1235s
+  Step 2400/6000 | Loss: 197.1612 | Task: wmt16_enro | Time: 1347s
+  Step 2600/6000 | Loss: 189.9298 | Task: wmt16_enro | Time: 1459s
+  Step 2800/6000 | Loss: 180.7210 | Task: wmt16_enro | Time: 1571s
+  Step 3000/6000 | Loss: 180.8091 | Task: wmt16_enro | Time: 1683s
+  Step 3200/6000 | Loss: 180.4947 | Task: wmt16_enro | Time: 1795s
+  Step 3400/6000 | Loss: 179.5890 | Task: wmt16_enro | Time: 1907s
+  Step 3600/6000 | Loss: 176.1774 | Task: wmt16_enro | Time: 2019s
+  Step 3800/6000 | Loss: 173.9524 | Task: wmt16_enro | Time: 2131s
+  Step 4000/6000 | Loss: 174.4760 | Task: wmt16_enro | Time: 2243s
+  Step 4200/6000 | Loss: 173.2942 | Task: wmt16_enro | Time: 2355s
+  Step 4400/6000 | Loss: 172.4476 | Task: wmt16_enro | Time: 2467s
+  Step 4600/6000 | Loss: 172.9216 | Task: wmt16_enro | Time: 2579s
+  Step 4800/6000 | Loss: 171.2278 | Task: wmt16_enro | Time: 2692s
+  Step 5000/6000 | Loss: 169.4088 | Task: wmt16_enro | Time: 2804s
+  Step 5200/6000 | Loss: 160.6536 | Task: wmt16_enro | Time: 2916s
+  Step 5400/6000 | Loss: 160.1655 | Task: wmt16_enro | Time: 3027s
+  Step 5600/6000 | Loss: 161.2779 | Task: wmt16_enro | Time: 3136s
+  Step 5800/6000 | Loss: 159.8916 | Task: wmt16_enro | Time: 3245s
+  Step 6000/6000 | Loss: 159.6837 | Task: wmt16_enro | Time: 3353s
+  Training complete for wmt16_enro in 3353s
+  Evaluating wmt16_enro (500 examples, metric=sacrebleu_chrf)...
+WARNING:sacrebleu:That's 100 lines that end in a tokenized period ('.')
+WARNING:sacrebleu:It looks like you forgot to detokenize your test data, which may hurt your score.
+WARNING:sacrebleu:If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+  wmt16_enro: {'sacrebleu': 6.093627149532231, 'chrf': 40.69387948754115}
+
+============================================================
+Training LoRA for task: gsm8k
+============================================================
+trainable params: 7,053,312 || all params: 1,550,767,616 || trainable%: 0.4548
+  Trainable params: 7,053,312
+  Step 1/6000 | Loss: 0.7378 | Task: gsm8k | Time: 1s
+  Step 200/6000 | Loss: 71.8817 | Task: gsm8k | Time: 118s
+  Step 400/6000 | Loss: 54.8651 | Task: gsm8k | Time: 236s
+  Step 600/6000 | Loss: 48.0127 | Task: gsm8k | Time: 354s
+  Step 800/6000 | Loss: 43.6906 | Task: gsm8k | Time: 472s
+  Step 1000/6000 | Loss: 37.4197 | Task: gsm8k | Time: 589s
+  Step 1200/6000 | Loss: 30.6162 | Task: gsm8k | Time: 706s
+  Step 1400/6000 | Loss: 27.4972 | Task: gsm8k | Time: 823s
+  Step 1600/6000 | Loss: 19.4093 | Task: gsm8k | Time: 941s
+  Step 1800/6000 | Loss: 17.5780 | Task: gsm8k | Time: 1058s
+  Step 2000/6000 | Loss: 13.2828 | Task: gsm8k | Time: 1175s
+  Step 2200/6000 | Loss: 11.7421 | Task: gsm8k | Time: 1292s
+  Step 2400/6000 | Loss: 10.2116 | Task: gsm8k | Time: 1410s
+  Step 2600/6000 | Loss: 8.7825 | Task: gsm8k | Time: 1527s
+  Step 2800/6000 | Loss: 8.4975 | Task: gsm8k | Time: 1644s
+  Step 3000/6000 | Loss: 7.5341 | Task: gsm8k | Time: 1762s
+  Step 3200/6000 | Loss: 7.5204 | Task: gsm8k | Time: 1879s
+  Step 3400/6000 | Loss: 7.0307 | Task: gsm8k | Time: 1996s
+  Step 3600/6000 | Loss: 6.9179 | Task: gsm8k | Time: 2112s
+  Step 3800/6000 | Loss: 6.5751 | Task: gsm8k | Time: 2229s
+  Step 4000/6000 | Loss: 6.4050 | Task: gsm8k | Time: 2346s
+  Step 4200/6000 | Loss: 6.4358 | Task: gsm8k | Time: 2463s
+  Step 4400/6000 | Loss: 6.1592 | Task: gsm8k | Time: 2580s
+  Step 4600/6000 | Loss: 6.1562 | Task: gsm8k | Time: 2697s
+  Step 4800/6000 | Loss: 5.9969 | Task: gsm8k | Time: 2814s
+  Step 5000/6000 | Loss: 6.1233 | Task: gsm8k | Time: 2930s
+  Step 5200/6000 | Loss: 5.9017 | Task: gsm8k | Time: 3047s
+  Step 5400/6000 | Loss: 5.8924 | Task: gsm8k | Time: 3165s
+  Step 5600/6000 | Loss: 6.0092 | Task: gsm8k | Time: 3282s
+  Step 5800/6000 | Loss: 5.8516 | Task: gsm8k | Time: 3400s
+  Step 6000/6000 | Loss: 5.9031 | Task: gsm8k | Time: 3517s
+  Training complete for gsm8k in 3517s
+  Evaluating gsm8k (500 examples, metric=exact_answer)...
+  gsm8k: {'exact_answer': 30.0}
+
+============================================================
+Training LoRA for task: svamp
+============================================================
+trainable params: 7,053,312 || all params: 1,550,767,616 || trainable%: 0.4548
+  Trainable params: 7,053,312
+  Step 1/6000 | Loss: 1.6947 | Task: svamp | Time: 1s
+  Step 200/6000 | Loss: 120.7181 | Task: svamp | Time: 103s
+  Step 400/6000 | Loss: 22.6013 | Task: svamp | Time: 205s
+  Step 600/6000 | Loss: 11.3897 | Task: svamp | Time: 308s
+  Step 800/6000 | Loss: 7.6655 | Task: svamp | Time: 411s
+  Step 1000/6000 | Loss: 6.9921 | Task: svamp | Time: 514s
+  Step 1200/6000 | Loss: 5.4858 | Task: svamp | Time: 617s
+  Step 1400/6000 | Loss: 5.0495 | Task: svamp | Time: 719s
+  Step 1600/6000 | Loss: 4.1103 | Task: svamp | Time: 821s
+  Step 1800/6000 | Loss: 4.0086 | Task: svamp | Time: 925s
+  Step 2000/6000 | Loss: 3.9677 | Task: svamp | Time: 1027s
+  Step 2200/6000 | Loss: 3.4902 | Task: svamp | Time: 1130s
+  Step 2400/6000 | Loss: 3.1590 | Task: svamp | Time: 1233s
+  Step 2600/6000 | Loss: 2.7488 | Task: svamp | Time: 1335s
+  Step 2800/6000 | Loss: 2.7505 | Task: svamp | Time: 1437s
+  Step 3000/6000 | Loss: 2.6227 | Task: svamp | Time: 1539s
+  Step 3200/6000 | Loss: 2.4276 | Task: svamp | Time: 1641s
+  Step 3400/6000 | Loss: 2.4040 | Task: svamp | Time: 1744s
+  Step 3600/6000 | Loss: 2.3465 | Task: svamp | Time: 1846s
+  Step 3800/6000 | Loss: 2.0197 | Task: svamp | Time: 1948s
+  Step 4000/6000 | Loss: 1.9605 | Task: svamp | Time: 2050s
+  Step 4200/6000 | Loss: 2.0467 | Task: svamp | Time: 2152s
+  Step 4400/6000 | Loss: 2.1212 | Task: svamp | Time: 2255s
+  Step 4600/6000 | Loss: 1.8255 | Task: svamp | Time: 2357s
+  Step 4800/6000 | Loss: 2.0832 | Task: svamp | Time: 2459s
+  Step 5000/6000 | Loss: 1.8740 | Task: svamp | Time: 2562s
+  Step 5200/6000 | Loss: 1.7493 | Task: svamp | Time: 2664s
+  Step 5400/6000 | Loss: 1.8178 | Task: svamp | Time: 2767s
+  Step 5600/6000 | Loss: 1.8728 | Task: svamp | Time: 2868s
+  Step 5800/6000 | Loss: 1.8577 | Task: svamp | Time: 2971s
+  Step 6000/6000 | Loss: 1.6263 | Task: svamp | Time: 3073s
+  Training complete for svamp in 3073s
+  Evaluating svamp (300 examples, metric=exact_answer)...
+  svamp: {'exact_answer': 3.0}
+
+  Per-task LoRA macro (excl MBPP): 40.60
+
+=== RESULTS JSON ===
+{
+  "mode": "per_task_lora",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "lora_rank": 8,
+  "steps_per_task": 6000,
+  "eval_examples": 500,
+  "scores": {
+    "sst2": {
+      "accuracy": 88.8
+    },
+    "agnews": {
+      "accuracy": 93.2
+    },
+    "boolq": {
+      "accuracy": 81.0
+    },
+    "squad": {
+      "f1": 29.773593201273403,
+      "em": 4.6
+    },
+    "xsum": {
+      "rouge_l": 30.419207185448293
+    },
+    "wmt14_ende": {
+      "sacrebleu": 3.152514844245019,
+      "chrf": 32.909169594495474
+    },
+    "wmt16_enro": {
+      "sacrebleu": 6.093627149532231,
+      "chrf": 40.69387948754115
+    },
+    "gsm8k": {
+      "exact_answer": 30.0
+    },
+    "svamp": {
+      "exact_answer": 3.0
+    },
+    "macro_avg_9task": 40.60432693116655
+  }
+}
+=== END RESULTS ===
+Saved to outputs/per_task_lora/eval_per_task_lora.json
+=== DONE ===
