@@ -72,6 +72,10 @@ def parse_args():
                         help="Disable consistency/stability loss (lambda_stab=0)")
     parser.add_argument("--no_residual", action="store_true",
                         help="Force r_{t,l}=0: description-only, no learned residual")
+    parser.add_argument("--shuffle_descriptions", action="store_true",
+                        help="Randomly reassign descriptions across tasks")
+    parser.add_argument("--task_id_conditioning", action="store_true",
+                        help="Replace description embeddings with random learned vectors")
     parser.add_argument("--save_checkpoint", action="store_true",
                         help="Save final checkpoint with coefficients for analysis")
     parser.add_argument("--dry_run", action="store_true")
@@ -130,14 +134,36 @@ def setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device,
 
     # Compute and cache description embeddings for all tasks
     print("Computing description embeddings...")
+    all_embeds = {}
     for tid in task_ids:
         meta = KNOWN_TASKS[tid]
         description = meta["descriptions"][0]
         embed = taskmap.task_code.compute_description_embedding(
             backbone_model, tokenizer, description, device
         )
-        taskmap.cache_description(tid, embed)
+        all_embeds[tid] = embed
         print(f"  {tid}: '{description[:50]}...' -> embed norm={embed.norm():.3f}")
+
+    if args.shuffle_descriptions:
+        import random as _rng
+        _rng.seed(args.seed)
+        shuffled_tids = list(all_embeds.keys())
+        shuffled_embeds = list(all_embeds.values())
+        _rng.shuffle(shuffled_embeds)
+        print("  SHUFFLED DESCRIPTIONS: randomly reassigning embeddings")
+        for tid, embed in zip(shuffled_tids, shuffled_embeds):
+            all_embeds[tid] = embed
+
+    if args.task_id_conditioning:
+        import torch as _torch
+        print("  TASK-ID CONDITIONING: replacing descriptions with random vectors")
+        g = _torch.Generator().manual_seed(args.seed)
+        embed_dim = list(all_embeds.values())[0].shape[0]
+        for tid in all_embeds:
+            all_embeds[tid] = _torch.randn(embed_dim, generator=g)
+
+    for tid, embed in all_embeds.items():
+        taskmap.cache_description(tid, embed)
 
     # Install FFN hooks
     hook_manager = TaskMapHookManager(
