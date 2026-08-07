@@ -1,0 +1,500 @@
+Fri Aug  7 02:34:49 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.126.20             Driver Version: 580.126.20     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+cudf 24.4.0 requires pyarrow<15.0.0a0,>=14.0.1, but you have pyarrow 25.0.0 which is incompatible.
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 24.1.2 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip
+Cloning into '/workspace/TaskMap'...
+=== Phase 2: Shared LoRA SNI 41-task, seed 2024 ===
+Loading backbone: Qwen/Qwen2.5-1.5B
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Adding shared LoRA (rank=8, alpha=16)
+trainable params: 7,053,312 || all params: 1,550,767,616 || trainable%: 0.4548
+Parameters: 7,053,312 trainable / 1,550,767,616 total
+Loading Super-NaturalInstructions dataset (both splits)...
+Downloading data:   0%|          | 0/757 [00:00<?, ?files/s]Downloading data:   0%|          | 1/757 [00:00<11:10,  1.13files/s]Downloading data:   0%|          | 2/757 [00:01<06:43,  1.87files/s]Downloading data:   0%|          | 3/757 [00:01<04:40,  2.69files/s]Downloading data:   1%|          | 4/757 [00:01<05:10,  2.43files/s]Downloading data:   1%|          | 5/757 [00:02<05:26,  2.30files/s]Downloading data:   1%|          | 6/757 [00:02<05:03,  2.47files/s]Downloading data:   1%|          | 7/757 [00:03<06:52,  1.82files/s]Downloading data:   1%|          | 8/757 [00:04<06:57,  1.79files/s]Downloading data:   1%|          | 9/757 [00:04<06:09,  2.02files/s]Downloading data:   1%|▏         | 10/757 [00:04<05:02,  2.47files/s]Downloading data:   1%|▏         | 11/757 [00:05<05:06,  2.44files/s]Downloading data:   2%|▏         | 12/757 [00:05<04:18,  2.88files/s]Downloading data:   2%|▏         | 13/757 [00:05<04:29,  2.76files/s]Downloading data:   2%|▏         | 14/757 [00:05<03:52,  3.20files/s]Downloading data:   2%|▏         | 15/757 [00:06<04:36,  2.69files/s]Downloading data:   2%|▏         | 16/757 [00:06<04:32,  2.72files/s]Downloading data:   2%|▏         | 17/757 [00:07<04:22,  2.82files/s]Downloading data:   2%|▏         | 18/757 [00:07<04:03,  3.04files/s]Downloading data:   3%|▎         | 19/757 [00:07<04:04,  3.02files/s]Downloading data:   3%|▎         | 20/757 [00:07<04:02,  3.04files/s]Downloading data:   3%|▎         | 21/757 [00:08<04:46,  2.57files/s]Downloading data:   3%|▎         | 22/757 [00:08<04:58,  2.46files/s]Downloading data:   3%|▎         | 23/757 [00:09<04:50,  2.52files/s]Downloading data:   3%|▎         | 24/757 [00:09<04:53,  2.50files/s]Downloading data:   3%|▎         | 25/757 [00:10<04:57,  2.46files/s]Downloading data:   3%|▎         | 26/757 [00:10<04:43,  2.58files/s]Downloading data:   4%|▎         | 27/757 [00:10<04:02,  3.02files/s]Downloading data:   4%|▎         | 28/757 [00:11<04:02,  3.01files/s]Downloading data:   4%|▍         | 29/757 [00:11<03:45,  3.23files/s]Downloading data:   4%|▍         | 30/757 [00:11<05:09,  2.35files/s]Downloading data:   4%|▍         | 31/757 [00:12<05:36,  2.16files/s]Downloading data:   4%|▍         | 32/757 [00:12<05:03,  2.39files/s]Downloading data:   4%|▍         | 33/757 [00:13<04:45,  2.54files/s]Downloading data:   4%|▍         | 34/757 [00:13<04:30,  2.68files/s]Downloading data:   5%|▍         | 35/757 [00:13<03:59,  3.01files/s]Downloading data:   5%|▍         | 36/757 [00:14<03:57,  3.04files/s]Downloading data:   5%|▍         | 37/757 [00:14<03:57,  3.04files/s]Downloading data:   5%|▌         | 38/757 [00:14<03:44,  3.20files/s]Downloading data:   5%|▌         | 39/757 [00:14<03:23,  3.54files/s]Downloading data:   5%|▌         | 40/757 [00:15<03:05,  3.87files/s]Downloading data:   5%|▌         | 41/757 [00:15<03:08,  3.81files/s]Downloading data:   6%|▌         | 42/757 [00:15<02:46,  4.29files/s]Downloading data:   6%|▌         | 43/757 [00:15<02:40,  4.46files/s]Downloading data:   6%|▌         | 44/757 [00:16<02:52,  4.13files/s]Downloading data:   6%|▌         | 45/757 [00:16<02:55,  4.06files/s]Downloading data:   6%|▌         | 46/757 [00:16<03:30,  3.38files/s]Downloading data:   6%|▌         | 47/757 [00:16<03:07,  3.79files/s]Downloading data:   6%|▋         | 48/757 [00:17<02:59,  3.94files/s]Downloading data:   6%|▋         | 49/757 [00:17<02:55,  4.03files/s]Downloading data:   7%|▋         | 50/757 [00:17<03:38,  3.24files/s]Downloading data:   7%|▋         | 51/757 [00:17<03:14,  3.63files/s]Downloading data:   7%|▋         | 52/757 [00:18<03:06,  3.78files/s]Downloading data:   7%|▋         | 53/757 [00:18<03:31,  3.32files/s]Downloading data:   7%|▋         | 54/757 [00:18<03:14,  3.61files/s]Downloading data:   7%|▋         | 55/757 [00:19<03:13,  3.64files/s]Downloading data:   7%|▋         | 56/757 [00:19<03:23,  3.44files/s]Downloading data:   8%|▊         | 57/757 [00:19<03:23,  3.44files/s]Downloading data:   8%|▊         | 58/757 [00:19<03:11,  3.65files/s]Downloading data:   8%|▊         | 59/757 [00:20<03:20,  3.47files/s]Downloading data:   8%|▊         | 60/757 [00:20<03:25,  3.39files/s]Downloading data:   8%|▊         | 61/757 [00:20<02:55,  3.97files/s]Downloading data:   8%|▊         | 62/757 [00:20<02:36,  4.43files/s]Downloading data:   8%|▊         | 63/757 [00:21<02:21,  4.90files/s]Downloading data:   8%|▊         | 64/757 [00:21<02:43,  4.24files/s]Downloading data:   9%|▊         | 65/757 [00:21<02:27,  4.69files/s]Downloading data:   9%|▊         | 66/757 [00:22<03:26,  3.34files/s]Downloading data:   9%|▉         | 67/757 [00:22<03:58,  2.89files/s]Downloading data:   9%|▉         | 68/757 [00:22<03:45,  3.06files/s]Downloading data:   9%|▉         | 69/757 [00:23<03:29,  3.28files/s]Downloading data:   9%|▉         | 70/757 [00:23<03:26,  3.33files/s]Downloading data:   9%|▉         | 71/757 [00:23<03:08,  3.64files/s]Downloading data:  10%|▉         | 72/757 [00:23<02:45,  4.15files/s]Downloading data:  10%|▉         | 73/757 [00:23<02:30,  4.56files/s]Downloading data:  10%|▉         | 74/757 [00:24<02:17,  4.97files/s]Downloading data:  10%|▉         | 75/757 [00:24<02:45,  4.13files/s]Downloading data:  10%|█         | 76/757 [00:24<02:28,  4.57files/s]Downloading data:  10%|█         | 77/757 [00:24<02:14,  5.07files/s]Downloading data:  10%|█         | 78/757 [00:25<03:22,  3.36files/s]Downloading data:  10%|█         | 79/757 [00:25<03:19,  3.40files/s]Downloading data:  11%|█         | 80/757 [00:26<04:19,  2.61files/s]Downloading data:  11%|█         | 81/757 [00:26<03:55,  2.88files/s]Downloading data:  11%|█         | 82/757 [00:26<03:33,  3.15files/s]Downloading data:  11%|█         | 83/757 [00:26<02:54,  3.85files/s]Downloading data:  11%|█         | 84/757 [00:26<02:47,  4.03files/s]Downloading data:  11%|█         | 85/757 [00:27<02:27,  4.56files/s]Downloading data:  11%|█▏        | 86/757 [00:27<02:14,  5.00files/s]Downloading data:  11%|█▏        | 87/757 [00:27<02:04,  5.40files/s]Downloading data:  12%|█▏        | 88/757 [00:27<02:01,  5.51files/s]Downloading data:  12%|█▏        | 89/757 [00:27<01:55,  5.79files/s]Downloading data:  12%|█▏        | 90/757 [00:27<01:52,  5.92files/s]Downloading data:  12%|█▏        | 91/757 [00:28<02:22,  4.69files/s]Downloading data:  12%|█▏        | 92/757 [00:28<02:47,  3.97files/s]Downloading data:  12%|█▏        | 93/757 [00:28<02:50,  3.90files/s]Downloading data:  12%|█▏        | 94/757 [00:29<03:05,  3.58files/s]Downloading data:  13%|█▎        | 95/757 [00:29<02:36,  4.23files/s]Downloading data:  13%|█▎        | 96/757 [00:29<02:47,  3.94files/s]Downloading data:  13%|█▎        | 97/757 [00:29<02:42,  4.07files/s]Downloading data:  13%|█▎        | 98/757 [00:30<02:42,  4.07files/s]Downloading data:  13%|█▎        | 99/757 [00:30<02:31,  4.35files/s]Downloading data:  13%|█▎        | 100/757 [00:30<02:48,  3.90files/s]Downloading data:  13%|█▎        | 101/757 [00:30<03:21,  3.26files/s]Downloading data:  13%|█▎        | 102/757 [00:31<03:42,  2.94files/s]Downloading data:  14%|█▎        | 103/757 [00:31<03:34,  3.06files/s]Downloading data:  14%|█▎        | 104/757 [00:31<03:06,  3.50files/s]Downloading data:  14%|█▍        | 105/757 [00:32<02:59,  3.64files/s]Downloading data:  14%|█▍        | 106/757 [00:32<02:46,  3.92files/s]Downloading data:  14%|█▍        | 107/757 [00:32<02:40,  4.04files/s]Downloading data:  14%|█▍        | 108/757 [00:32<02:59,  3.62files/s]Downloading data:  14%|█▍        | 109/757 [00:33<02:54,  3.71files/s]Downloading data:  15%|█▍        | 110/757 [00:33<02:54,  3.71files/s]Downloading data:  15%|█▍        | 111/757 [00:33<02:37,  4.10files/s]Downloading data:  15%|█▍        | 112/757 [00:33<02:15,  4.76files/s]Downloading data:  15%|█▍        | 113/757 [00:34<02:29,  4.31files/s]Downloading data:  15%|█▌        | 114/757 [00:34<02:37,  4.08files/s]Downloading data:  15%|█▌        | 115/757 [00:34<02:39,  4.02files/s]Downloading data:  15%|█▌        | 116/757 [00:34<02:42,  3.94files/s]Downloading data:  15%|█▌        | 117/757 [00:35<02:42,  3.94files/s]Downloading data:  16%|█▌        | 118/757 [00:35<02:47,  3.82files/s]Downloading data:  16%|█▌        | 119/757 [00:35<02:45,  3.86files/s]Downloading data:  16%|█▌        | 120/757 [00:35<02:32,  4.19files/s]Downloading data:  16%|█▌        | 121/757 [00:36<02:27,  4.30files/s]Downloading data:  16%|█▌        | 122/757 [00:36<03:07,  3.39files/s]Downloading data:  16%|█▌        | 123/757 [00:36<02:45,  3.82files/s]Downloading data:  16%|█▋        | 124/757 [00:37<04:51,  2.17files/s]Downloading data:  17%|█▋        | 125/757 [00:37<04:17,  2.46files/s]Downloading data:  17%|█▋        | 126/757 [00:38<03:45,  2.80files/s]Downloading data:  17%|█▋        | 127/757 [00:38<05:01,  2.09files/s]Downloading data:  17%|█▋        | 128/757 [00:39<06:59,  1.50files/s]Downloading data:  17%|█▋        | 129/757 [00:40<06:16,  1.67files/s]Downloading data:  17%|█▋        | 130/757 [00:40<05:34,  1.88files/s]Downloading data:  17%|█▋        | 131/757 [00:40<04:32,  2.30files/s]Downloading data:  17%|█▋        | 132/757 [00:41<04:18,  2.41files/s]Downloading data:  18%|█▊        | 133/757 [00:42<06:14,  1.67files/s]Downloading data:  18%|█▊        | 134/757 [00:42<05:06,  2.04files/s]Downloading data:  18%|█▊        | 135/757 [00:42<04:27,  2.33files/s]Downloading data:  18%|█▊        | 136/757 [00:43<04:07,  2.51files/s]Downloading data:  18%|█▊        | 137/757 [00:43<03:52,  2.66files/s]Downloading data:  18%|█▊        | 138/757 [00:44<04:08,  2.49files/s]Downloading data:  18%|█▊        | 139/757 [00:44<04:11,  2.46files/s]Downloading data:  18%|█▊        | 140/757 [00:44<03:55,  2.62files/s]Downloading data:  19%|█▊        | 141/757 [00:44<03:23,  3.03files/s]Downloading data:  19%|█▉        | 142/757 [00:45<02:51,  3.59files/s]Downloading data:  19%|█▉        | 143/757 [00:45<02:29,  4.10files/s]Downloading data:  19%|█▉        | 144/757 [00:45<02:16,  4.49files/s]Downloading data:  19%|█▉        | 145/757 [00:45<02:00,  5.08files/s]Downloading data:  19%|█▉        | 146/757 [00:45<01:47,  5.67files/s]Downloading data:  19%|█▉        | 147/757 [00:45<01:45,  5.80files/s]Downloading data:  20%|█▉        | 148/757 [00:46<02:17,  4.42files/s]Downloading data:  20%|█▉        | 149/757 [00:46<02:08,  4.72files/s]Downloading data:  20%|█▉        | 150/757 [00:46<01:58,  5.12files/s]Downloading data:  20%|█▉        | 151/757 [00:46<01:53,  5.34files/s]Downloading data:  20%|██        | 152/757 [00:47<02:18,  4.36files/s]Downloading data:  20%|██        | 153/757 [00:47<02:29,  4.04files/s]Downloading data:  20%|██        | 154/757 [00:47<02:43,  3.68files/s]Downloading data:  20%|██        | 155/757 [00:47<02:33,  3.91files/s]Downloading data:  21%|██        | 156/757 [00:48<02:30,  3.99files/s]Downloading data:  21%|██        | 157/757 [00:48<02:10,  4.58files/s]Downloading data:  21%|██        | 158/757 [00:48<01:58,  5.04files/s]Downloading data:  21%|██        | 159/757 [00:48<01:47,  5.59files/s]Downloading data:  21%|██        | 160/757 [00:48<01:44,  5.72files/s]Downloading data:  21%|██▏       | 161/757 [00:49<02:12,  4.51files/s]Downloading data:  21%|██▏       | 162/757 [00:49<02:19,  4.27files/s]Downloading data:  22%|██▏       | 163/757 [00:49<02:36,  3.81files/s]Downloading data:  22%|██▏       | 164/757 [00:49<02:15,  4.38files/s]Downloading data:  22%|██▏       | 165/757 [00:50<02:18,  4.29files/s]Downloading data:  22%|██▏       | 166/757 [00:50<02:24,  4.10files/s]Downloading data:  22%|██▏       | 167/757 [00:50<02:21,  4.16files/s]Downloading data:  22%|██▏       | 168/757 [00:50<02:06,  4.64files/s]Downloading data:  22%|██▏       | 169/757 [00:50<01:56,  5.06files/s]Downloading data:  22%|██▏       | 170/757 [00:51<02:06,  4.65files/s]Downloading data:  23%|██▎       | 171/757 [00:51<04:00,  2.43files/s]Downloading data:  23%|██▎       | 172/757 [00:52<03:34,  2.73files/s]Downloading data:  23%|██▎       | 173/757 [00:52<03:05,  3.15files/s]Downloading data:  23%|██▎       | 174/757 [00:53<04:56,  1.97files/s]Downloading data:  23%|██▎       | 175/757 [00:53<05:02,  1.92files/s]Downloading data:  23%|██▎       | 176/757 [00:54<03:56,  2.45files/s]Downloading data:  23%|██▎       | 177/757 [00:54<03:11,  3.04files/s]Downloading data:  24%|██▎       | 178/757 [00:54<02:39,  3.63files/s]Downloading data:  24%|██▎       | 179/757 [00:54<02:23,  4.03files/s]Downloading data:  24%|██▍       | 180/757 [00:54<02:05,  4.61files/s]Downloading data:  24%|██▍       | 181/757 [00:54<01:53,  5.05files/s]Downloading data:  24%|██▍       | 182/757 [00:55<01:41,  5.65files/s]Downloading data:  24%|██▍       | 183/757 [00:55<02:00,  4.78files/s]Downloading data:  24%|██▍       | 184/757 [00:55<02:38,  3.62files/s]Downloading data:  24%|██▍       | 185/757 [00:55<02:14,  4.24files/s]Downloading data:  25%|██▍       | 186/757 [00:56<02:11,  4.35files/s]Downloading data:  25%|██▍       | 187/757 [00:56<02:19,  4.09files/s]Downloading data:  25%|██▍       | 188/757 [00:56<02:02,  4.66files/s]Downloading data:  25%|██▍       | 189/757 [00:56<02:07,  4.46files/s]Downloading data:  25%|██▌       | 190/757 [00:57<02:14,  4.22files/s]Downloading data:  25%|██▌       | 191/757 [00:57<02:12,  4.28files/s]Downloading data:  25%|██▌       | 192/757 [00:57<02:00,  4.70files/s]Downloading data:  25%|██▌       | 193/757 [00:57<01:58,  4.76files/s]Downloading data:  26%|██▌       | 194/757 [00:57<01:46,  5.29files/s]Downloading data:  26%|██▌       | 195/757 [00:57<01:44,  5.37files/s]Downloading data:  26%|██▌       | 196/757 [00:58<01:59,  4.71files/s]Downloading data:  26%|██▌       | 197/757 [00:58<02:10,  4.28files/s]Downloading data:  26%|██▌       | 198/757 [00:58<02:24,  3.87files/s]Downloading data:  26%|██▋       | 199/757 [00:58<02:09,  4.30files/s]Downloading data:  26%|██▋       | 200/757 [00:59<02:24,  3.85files/s]Downloading data:  27%|██▋       | 201/757 [00:59<02:25,  3.82files/s]Downloading data:  27%|██▋       | 202/757 [00:59<02:44,  3.38files/s]Downloading data:  27%|██▋       | 203/757 [01:00<02:25,  3.80files/s]Downloading data:  27%|██▋       | 204/757 [01:00<02:10,  4.25files/s]Downloading data:  27%|██▋       | 205/757 [01:00<02:00,  4.60files/s]Downloading data:  27%|██▋       | 206/757 [01:00<01:46,  5.17files/s]Downloading data:  27%|██▋       | 207/757 [01:00<01:36,  5.68files/s]Downloading data:  27%|██▋       | 208/757 [01:00<01:34,  5.83files/s]Downloading data:  28%|██▊       | 209/757 [01:01<01:37,  5.64files/s]Downloading data:  28%|██▊       | 210/757 [01:01<01:57,  4.65files/s]Downloading data:  28%|██▊       | 211/757 [01:01<02:01,  4.48files/s]Downloading data:  28%|██▊       | 212/757 [01:01<02:00,  4.53files/s]Downloading data:  28%|██▊       | 213/757 [01:02<02:29,  3.65files/s]Downloading data:  28%|██▊       | 214/757 [01:02<02:29,  3.63files/s]Downloading data:  28%|██▊       | 215/757 [01:02<02:34,  3.50files/s]Downloading data:  29%|██▊       | 216/757 [01:03<02:25,  3.71files/s]Downloading data:  29%|██▊       | 217/757 [01:03<02:23,  3.77files/s]Downloading data:  29%|██▉       | 218/757 [01:03<02:09,  4.17files/s]Downloading data:  29%|██▉       | 219/757 [01:03<01:50,  4.86files/s]Downloading data:  29%|██▉       | 220/757 [01:03<01:39,  5.41files/s]Downloading data:  29%|██▉       | 221/757 [01:03<01:44,  5.15files/s]Downloading data:  29%|██▉       | 222/757 [01:04<01:34,  5.68files/s]Downloading data:  29%|██▉       | 223/757 [01:04<01:30,  5.87files/s]Downloading data:  30%|██▉       | 224/757 [01:04<01:25,  6.22files/s]Downloading data:  30%|██▉       | 225/757 [01:04<01:29,  5.95files/s]Downloading data:  30%|██▉       | 226/757 [01:04<01:44,  5.09files/s]Downloading data:  30%|██▉       | 227/757 [01:05<01:34,  5.63files/s]Downloading data:  30%|███       | 228/757 [01:05<01:34,  5.58files/s]Downloading data:  30%|███       | 229/757 [01:05<01:27,  6.06files/s]Downloading data:  30%|███       | 230/757 [01:05<01:29,  5.86files/s]Downloading data:  31%|███       | 231/757 [01:05<01:26,  6.06files/s]Downloading data:  31%|███       | 232/757 [01:05<01:21,  6.40files/s]Downloading data:  31%|███       | 233/757 [01:05<01:21,  6.43files/s]Downloading data:  31%|███       | 234/757 [01:06<01:16,  6.84files/s]Downloading data:  31%|███       | 235/757 [01:06<01:16,  6.84files/s]Downloading data:  31%|███       | 236/757 [01:06<01:36,  5.41files/s]Downloading data:  31%|███▏      | 237/757 [01:06<01:45,  4.93files/s]Downloading data:  31%|███▏      | 238/757 [01:06<01:33,  5.56files/s]Downloading data:  32%|███▏      | 239/757 [01:07<01:33,  5.52files/s]Downloading data:  32%|███▏      | 240/757 [01:07<01:37,  5.32files/s]Downloading data:  32%|███▏      | 241/757 [01:07<01:29,  5.78files/s]Downloading data:  32%|███▏      | 242/757 [01:07<01:54,  4.50files/s]Downloading data:  32%|███▏      | 243/757 [01:08<02:09,  3.98files/s]Downloading data:  32%|███▏      | 244/757 [01:08<01:53,  4.50files/s]Downloading data:  32%|███▏      | 245/757 [01:08<01:55,  4.43files/s]Downloading data:  32%|███▏      | 246/757 [01:08<02:16,  3.75files/s]Downloading data:  33%|███▎      | 247/757 [01:09<02:11,  3.88files/s]Downloading data:  33%|███▎      | 248/757 [01:09<02:12,  3.85files/s]Downloading data:  33%|███▎      | 249/757 [01:09<01:55,  4.41files/s]Downloading data:  33%|███▎      | 250/757 [01:09<01:41,  4.99files/s]Downloading data:  33%|███▎      | 251/757 [01:09<01:59,  4.23files/s]Downloading data:  33%|███▎      | 252/757 [01:10<01:52,  4.50files/s]Downloading data:  33%|███▎      | 253/757 [01:10<01:39,  5.08files/s]Downloading data:  34%|███▎      | 254/757 [01:10<01:32,  5.43files/s]Downloading data:  34%|███▎      | 255/757 [01:10<01:51,  4.50files/s]Downloading data:  34%|███▍      | 256/757 [01:10<01:53,  4.43files/s]Downloading data:  34%|███▍      | 257/757 [01:11<01:44,  4.77files/s]Downloading data:  34%|███▍      | 258/757 [01:11<01:33,  5.33files/s]Downloading data:  34%|███▍      | 259/757 [01:11<02:03,  4.03files/s]Downloading data:  34%|███▍      | 260/757 [01:11<01:51,  4.45files/s]Downloading data:  34%|███▍      | 261/757 [01:12<02:03,  4.02files/s]Downloading data:  35%|███▍      | 262/757 [01:12<02:59,  2.76files/s]Downloading data:  35%|███▍      | 263/757 [01:13<02:50,  2.90files/s]Downloading data:  35%|███▍      | 264/757 [01:13<02:47,  2.94files/s]Downloading data:  35%|███▌      | 265/757 [01:13<02:17,  3.57files/s]Downloading data:  35%|███▌      | 266/757 [01:13<01:56,  4.22files/s]Downloading data:  35%|███▌      | 267/757 [01:14<02:34,  3.18files/s]Downloading data:  35%|███▌      | 268/757 [01:14<02:36,  3.12files/s]Downloading data:  36%|███▌      | 269/757 [01:14<02:38,  3.07files/s]Downloading data:  36%|███▌      | 270/757 [01:14<02:10,  3.73files/s]Downloading data:  36%|███▌      | 271/757 [01:15<02:20,  3.47files/s]Downloading data:  36%|███▌      | 272/757 [01:15<02:11,  3.68files/s]Downloading data:  36%|███▌      | 273/757 [01:15<01:54,  4.22files/s]Downloading data:  36%|███▌      | 274/757 [01:15<01:42,  4.72files/s]Downloading data:  36%|███▋      | 275/757 [01:15<01:29,  5.37files/s]Downloading data:  36%|███▋      | 276/757 [01:16<01:26,  5.55files/s]Downloading data:  37%|███▋      | 277/757 [01:16<01:21,  5.86files/s]Downloading data:  37%|███▋      | 278/757 [01:16<01:20,  5.98files/s]Downloading data:  37%|███▋      | 279/757 [01:16<01:17,  6.17files/s]Downloading data:  37%|███▋      | 280/757 [01:16<01:12,  6.60files/s]Downloading data:  37%|███▋      | 281/757 [01:16<01:25,  5.59files/s]Downloading data:  37%|███▋      | 282/757 [01:17<01:20,  5.92files/s]Downloading data:  37%|███▋      | 283/757 [01:17<01:12,  6.50files/s]Downloading data:  38%|███▊      | 284/757 [01:17<01:13,  6.40files/s]Downloading data:  38%|███▊      | 285/757 [01:17<01:14,  6.30files/s]Downloading data:  38%|███▊      | 286/757 [01:17<01:10,  6.69files/s]Downloading data:  38%|███▊      | 287/757 [01:17<01:07,  7.00files/s]Downloading data:  38%|███▊      | 288/757 [01:18<01:29,  5.21files/s]Downloading data:  38%|███▊      | 289/757 [01:18<01:28,  5.31files/s]Downloading data:  38%|███▊      | 290/757 [01:18<01:20,  5.79files/s]Downloading data:  38%|███▊      | 291/757 [01:18<01:30,  5.14files/s]Downloading data:  39%|███▊      | 292/757 [01:19<01:55,  4.03files/s]Downloading data:  39%|███▊      | 293/757 [01:19<01:57,  3.96files/s]Downloading data:  39%|███▉      | 294/757 [01:19<01:57,  3.94files/s]Downloading data:  39%|███▉      | 295/757 [01:19<01:52,  4.09files/s]Downloading data:  39%|███▉      | 296/757 [01:20<02:25,  3.17files/s]Downloading data:  39%|███▉      | 297/757 [01:20<02:07,  3.60files/s]Downloading data:  39%|███▉      | 298/757 [01:20<01:51,  4.12files/s]Downloading data:  39%|███▉      | 299/757 [01:20<01:45,  4.36files/s]Downloading data:  40%|███▉      | 300/757 [01:20<01:36,  4.74files/s]Downloading data:  40%|███▉      | 301/757 [01:21<01:26,  5.26files/s]Downloading data:  40%|███▉      | 302/757 [01:21<01:22,  5.51files/s]Downloading data:  40%|████      | 303/757 [01:21<01:24,  5.35files/s]Downloading data:  40%|████      | 304/757 [01:21<01:21,  5.56files/s]Downloading data:  40%|████      | 305/757 [01:21<01:20,  5.63files/s]Downloading data:  40%|████      | 306/757 [01:22<01:27,  5.15files/s]Downloading data:  41%|████      | 307/757 [01:22<01:42,  4.38files/s]Downloading data:  41%|████      | 308/757 [01:22<02:00,  3.73files/s]Downloading data:  41%|████      | 309/757 [01:22<01:48,  4.13files/s]Downloading data:  41%|████      | 310/757 [01:23<01:53,  3.95files/s]Downloading data:  41%|████      | 311/757 [01:23<01:39,  4.47files/s]Downloading data:  41%|████      | 312/757 [01:23<01:54,  3.89files/s]Downloading data:  41%|████▏     | 313/757 [01:23<01:39,  4.47files/s]Downloading data:  41%|████▏     | 314/757 [01:23<01:30,  4.91files/s]Downloading data:  42%|████▏     | 315/757 [01:24<01:45,  4.19files/s]Downloading data:  42%|████▏     | 316/757 [01:24<01:40,  4.40files/s]Downloading data:  42%|████▏     | 317/757 [01:24<02:01,  3.62files/s]Downloading data:  42%|████▏     | 318/757 [01:25<01:48,  4.06files/s]Downloading data:  42%|████▏     | 319/757 [01:25<01:33,  4.66files/s]Downloading data:  42%|████▏     | 320/757 [01:25<01:38,  4.45files/s]Downloading data:  42%|████▏     | 321/757 [01:25<01:26,  5.05files/s]Downloading data:  43%|████▎     | 322/757 [01:25<01:37,  4.48files/s]Downloading data:  43%|████▎     | 323/757 [01:26<01:42,  4.24files/s]Downloading data:  43%|████▎     | 324/757 [01:26<01:47,  4.03files/s]Downloading data:  43%|████▎     | 325/757 [01:26<02:03,  3.48files/s]Downloading data:  43%|████▎     | 326/757 [01:27<01:58,  3.63files/s]Downloading data:  43%|████▎     | 327/757 [01:27<01:43,  4.17files/s]Downloading data:  43%|████▎     | 328/757 [01:27<01:33,  4.59files/s]Downloading data:  43%|████▎     | 329/757 [01:27<01:26,  4.97files/s]Downloading data:  44%|████▎     | 330/757 [01:28<02:25,  2.94files/s]Downloading data:  44%|████▎     | 331/757 [01:28<02:17,  3.09files/s]Downloading data:  44%|████▍     | 332/757 [01:28<02:00,  3.53files/s]Downloading data:  44%|████▍     | 333/757 [01:28<01:43,  4.11files/s]Downloading data:  44%|████▍     | 334/757 [01:28<01:32,  4.56files/s]Downloading data:  44%|████▍     | 335/757 [01:29<01:22,  5.12files/s]Downloading data:  44%|████▍     | 336/757 [01:29<01:20,  5.22files/s]Downloading data:  45%|████▍     | 337/757 [01:29<01:16,  5.49files/s]Downloading data:  45%|████▍     | 338/757 [01:29<01:14,  5.66files/s]Downloading data:  45%|████▍     | 339/757 [01:29<01:11,  5.81files/s]Downloading data:  45%|████▍     | 340/757 [01:29<01:10,  5.92files/s]Downloading data:  45%|████▌     | 341/757 [01:30<01:16,  5.43files/s]Downloading data:  45%|████▌     | 342/757 [01:30<01:42,  4.04files/s]Downloading data:  45%|████▌     | 343/757 [01:31<02:17,  3.01files/s]Downloading data:  45%|████▌     | 344/757 [01:31<02:12,  3.13files/s]Downloading data:  46%|████▌     | 345/757 [01:31<02:01,  3.40files/s]Downloading data:  46%|████▌     | 346/757 [01:31<02:13,  3.08files/s]Downloading data:  46%|████▌     | 347/757 [01:32<02:13,  3.07files/s]Downloading data:  46%|████▌     | 348/757 [01:32<02:06,  3.24files/s]Downloading data:  46%|████▌     | 349/757 [01:32<01:49,  3.72files/s]Downloading data:  46%|████▌     | 350/757 [01:32<01:32,  4.39files/s]Downloading data:  46%|████▋     | 351/757 [01:33<01:29,  4.54files/s]Downloading data:  46%|████▋     | 352/757 [01:34<03:23,  1.99files/s]Downloading data:  47%|████▋     | 353/757 [01:34<02:56,  2.29files/s]Downloading data:  47%|████▋     | 354/757 [01:34<02:49,  2.38files/s]Downloading data:  47%|████▋     | 355/757 [01:35<03:09,  2.12files/s]Downloading data:  47%|████▋     | 356/757 [01:35<03:04,  2.17files/s]Downloading data:  47%|████▋     | 357/757 [01:36<04:00,  1.66files/s]Downloading data:  47%|████▋     | 358/757 [01:37<04:24,  1.51files/s]Downloading data:  47%|████▋     | 359/757 [01:37<03:37,  1.83files/s]Downloading data:  48%|████▊     | 360/757 [01:38<03:05,  2.14files/s]Downloading data:  48%|████▊     | 361/757 [01:38<02:46,  2.39files/s]Downloading data:  48%|████▊     | 362/757 [01:38<02:21,  2.80files/s]Downloading data:  48%|████▊     | 363/757 [01:38<02:01,  3.25files/s]Downloading data:  48%|████▊     | 364/757 [01:39<01:55,  3.39files/s]Downloading data:  48%|████▊     | 365/757 [01:39<01:39,  3.94files/s]Downloading data:  48%|████▊     | 366/757 [01:39<01:44,  3.74files/s]Downloading data:  48%|████▊     | 367/757 [01:40<01:51,  3.50files/s]Downloading data:  49%|████▊     | 368/757 [01:40<02:10,  2.98files/s]Downloading data:  49%|████▊     | 369/757 [01:40<01:57,  3.30files/s]Downloading data:  49%|████▉     | 370/757 [01:40<01:52,  3.44files/s]Downloading data:  49%|████▉     | 371/757 [01:41<01:50,  3.49files/s]Downloading data:  49%|████▉     | 372/757 [01:41<01:39,  3.87files/s]Downloading data:  49%|████▉     | 373/757 [01:41<01:43,  3.71files/s]Downloading data:  49%|████▉     | 374/757 [01:41<01:33,  4.09files/s]Downloading data:  50%|████▉     | 375/757 [01:42<01:42,  3.73files/s]Downloading data:  50%|████▉     | 376/757 [01:42<02:15,  2.82files/s]Downloading data:  50%|████▉     | 377/757 [01:43<02:57,  2.14files/s]Downloading data:  50%|████▉     | 378/757 [01:43<02:27,  2.57files/s]Downloading data:  50%|█████     | 379/757 [01:44<02:38,  2.39files/s]Downloading data:  50%|█████     | 380/757 [01:44<02:45,  2.27files/s]Downloading data:  50%|█████     | 381/757 [01:45<02:42,  2.32files/s]Downloading data:  50%|█████     | 382/757 [01:45<02:46,  2.26files/s]Downloading data:  51%|█████     | 383/757 [01:45<02:20,  2.66files/s]Downloading data:  51%|█████     | 384/757 [01:46<02:02,  3.05files/s]Downloading data:  51%|█████     | 385/757 [01:46<01:44,  3.56files/s]Downloading data:  51%|█████     | 386/757 [01:46<01:30,  4.11files/s]Downloading data:  51%|█████     | 387/757 [01:46<01:21,  4.53files/s]Downloading data:  51%|█████▏    | 388/757 [01:46<01:30,  4.07files/s]Downloading data:  51%|█████▏    | 389/757 [01:47<01:26,  4.25files/s]Downloading data:  52%|█████▏    | 390/757 [01:47<02:02,  3.00files/s]Downloading data:  52%|█████▏    | 391/757 [01:48<02:25,  2.51files/s]Downloading data:  52%|█████▏    | 392/757 [01:48<02:54,  2.09files/s]Downloading data:  52%|█████▏    | 393/757 [01:49<03:01,  2.00files/s]Downloading data:  52%|█████▏    | 394/757 [01:50<03:51,  1.57files/s]Downloading data:  52%|█████▏    | 395/757 [01:50<03:12,  1.88files/s]Downloading data:  52%|█████▏    | 396/757 [01:50<02:46,  2.17files/s]Downloading data:  52%|█████▏    | 397/757 [01:51<02:21,  2.55files/s]Downloading data:  53%|█████▎    | 398/757 [01:51<02:12,  2.70files/s]Downloading data:  53%|█████▎    | 399/757 [01:51<02:12,  2.71files/s]Downloading data:  53%|█████▎    | 400/757 [01:51<01:48,  3.30files/s]Downloading data:  53%|█████▎    | 401/757 [01:52<01:37,  3.65files/s]Downloading data:  53%|█████▎    | 402/757 [01:52<01:33,  3.79files/s]Downloading data:  53%|█████▎    | 403/757 [01:52<01:41,  3.49files/s]Downloading data:  53%|█████▎    | 404/757 [01:53<01:52,  3.13files/s]Downloading data:  54%|█████▎    | 405/757 [01:53<01:46,  3.29files/s]Downloading data:  54%|█████▎    | 406/757 [01:53<02:07,  2.75files/s]Downloading data:  54%|█████▍    | 407/757 [01:54<02:25,  2.40files/s]Downloading data:  54%|█████▍    | 408/757 [01:54<02:18,  2.52files/s]Downloading data:  54%|█████▍    | 409/757 [01:55<02:06,  2.74files/s]Downloading data:  54%|█████▍    | 410/757 [01:55<01:48,  3.19files/s]Downloading data:  54%|█████▍    | 411/757 [01:55<01:36,  3.59files/s]Downloading data:  54%|█████▍    | 412/757 [01:56<02:08,  2.67files/s]Downloading data:  55%|█████▍    | 413/757 [01:56<02:08,  2.67files/s]Downloading data:  55%|█████▍    | 414/757 [01:57<02:55,  1.96files/s]Downloading data:  55%|█████▍    | 415/757 [01:57<02:31,  2.25files/s]Downloading data:  55%|█████▍    | 416/757 [01:57<02:06,  2.70files/s]Downloading data:  55%|█████▌    | 417/757 [01:57<01:44,  3.24files/s]Downloading data:  55%|█████▌    | 418/757 [01:58<01:39,  3.40files/s]Downloading data:  55%|█████▌    | 419/757 [01:58<01:35,  3.55files/s]Downloading data:  55%|█████▌    | 420/757 [01:58<01:22,  4.11files/s]Downloading data:  56%|█████▌    | 421/757 [01:59<01:44,  3.20files/s]Downloading data:  56%|█████▌    | 422/757 [01:59<01:58,  2.83files/s]Downloading data:  56%|█████▌    | 423/757 [01:59<01:38,  3.39files/s]Downloading data:  56%|█████▌    | 424/757 [02:00<01:53,  2.95files/s]Downloading data:  56%|█████▌    | 425/757 [02:00<01:48,  3.07files/s]Downloading data:  56%|█████▋    | 426/757 [02:00<01:39,  3.32files/s]Downloading data:  56%|█████▋    | 427/757 [02:00<01:32,  3.58files/s]Downloading data:  57%|█████▋    | 428/757 [02:01<01:52,  2.93files/s]Downloading data:  57%|█████▋    | 429/757 [02:01<01:37,  3.36files/s]Downloading data:  57%|█████▋    | 430/757 [02:01<01:30,  3.60files/s]Downloading data:  57%|█████▋    | 431/757 [02:02<01:31,  3.58files/s]Downloading data:  57%|█████▋    | 432/757 [02:02<01:23,  3.87files/s]Downloading data:  57%|█████▋    | 433/757 [02:02<01:12,  4.44files/s]Downloading data:  57%|█████▋    | 434/757 [02:02<01:11,  4.50files/s]Downloading data:  57%|█████▋    | 435/757 [02:02<01:02,  5.12files/s]Downloading data:  58%|█████▊    | 436/757 [02:03<01:08,  4.66files/s]Downloading data:  58%|█████▊    | 437/757 [02:03<01:21,  3.92files/s]Downloading data:  58%|█████▊    | 438/757 [02:03<01:17,  4.11files/s]Downloading data:  58%|█████▊    | 439/757 [02:03<01:27,  3.65files/s]Downloading data:  58%|█████▊    | 440/757 [02:04<01:16,  4.14files/s]Downloading data:  58%|█████▊    | 441/757 [02:04<01:11,  4.39files/s]Downloading data:  58%|█████▊    | 442/757 [02:04<01:05,  4.82files/s]Downloading data:  59%|█████▊    | 443/757 [02:04<01:00,  5.23files/s]Downloading data:  59%|█████▊    | 444/757 [02:04<01:04,  4.82files/s]Downloading data:  59%|█████▉    | 445/757 [02:05<01:03,  4.91files/s]Downloading data:  59%|█████▉    | 446/757 [02:05<01:08,  4.56files/s]Downloading data:  59%|█████▉    | 447/757 [02:05<01:03,  4.90files/s]Downloading data:  59%|█████▉    | 448/757 [02:05<00:58,  5.28files/s]Downloading data:  59%|█████▉    | 449/757 [02:05<00:58,  5.25files/s]Downloading data:  59%|█████▉    | 450/757 [02:06<00:55,  5.56files/s]Downloading data:  60%|█████▉    | 451/757 [02:06<01:00,  5.09files/s]Downloading data:  60%|█████▉    | 452/757 [02:06<01:08,  4.45files/s]Downloading data:  60%|█████▉    | 453/757 [02:06<01:16,  3.97files/s]Downloading data:  60%|█████▉    | 454/757 [02:07<01:24,  3.60files/s]Downloading data:  60%|██████    | 455/757 [02:07<01:18,  3.87files/s]Downloading data:  60%|██████    | 456/757 [02:07<01:19,  3.79files/s]Downloading data:  60%|██████    | 457/757 [02:07<01:19,  3.79files/s]Downloading data:  61%|██████    | 458/757 [02:08<01:11,  4.15files/s]Downloading data:  61%|██████    | 459/757 [02:08<01:15,  3.92files/s]Downloading data:  61%|██████    | 460/757 [02:08<01:10,  4.20files/s]Downloading data:  61%|██████    | 461/757 [02:08<01:08,  4.33files/s]Downloading data:  61%|██████    | 462/757 [02:09<01:13,  4.01files/s]Downloading data:  61%|██████    | 463/757 [02:09<01:07,  4.38files/s]Downloading data:  61%|██████▏   | 464/757 [02:09<01:18,  3.74files/s]Downloading data:  61%|██████▏   | 465/757 [02:09<01:18,  3.72files/s]Downloading data:  62%|██████▏   | 466/757 [02:10<01:18,  3.69files/s]Downloading data:  62%|██████▏   | 467/757 [02:10<01:11,  4.04files/s]Downloading data:  62%|██████▏   | 468/757 [02:10<01:20,  3.60files/s]Downloading data:  62%|██████▏   | 469/757 [02:10<01:11,  4.00files/s]Downloading data:  62%|██████▏   | 470/757 [02:11<01:08,  4.20files/s]Downloading data:  62%|██████▏   | 471/757 [02:11<01:17,  3.69files/s]Downloading data:  62%|██████▏   | 472/757 [02:11<01:07,  4.22files/s]Downloading data:  62%|██████▏   | 473/757 [02:11<01:02,  4.57files/s]Downloading data:  63%|██████▎   | 474/757 [02:12<01:08,  4.14files/s]Downloading data:  63%|██████▎   | 475/757 [02:12<01:18,  3.58files/s]Downloading data:  63%|██████▎   | 476/757 [02:12<01:29,  3.15files/s]Downloading data:  63%|██████▎   | 477/757 [02:13<01:23,  3.35files/s]Downloading data:  63%|██████▎   | 478/757 [02:13<01:16,  3.64files/s]Downloading data:  63%|██████▎   | 479/757 [02:13<01:07,  4.11files/s]Downloading data:  63%|██████▎   | 480/757 [02:13<01:14,  3.71files/s]Downloading data:  64%|██████▎   | 481/757 [02:14<01:23,  3.31files/s]Downloading data:  64%|██████▎   | 482/757 [02:15<02:40,  1.72files/s]Downloading data:  64%|██████▍   | 483/757 [02:15<02:21,  1.93files/s]Downloading data:  64%|██████▍   | 484/757 [02:16<02:07,  2.15files/s]Downloading data:  64%|██████▍   | 485/757 [02:16<01:49,  2.49files/s]Downloading data:  64%|██████▍   | 486/757 [02:16<01:51,  2.43files/s]Downloading data:  64%|██████▍   | 487/757 [02:17<02:00,  2.23files/s]Downloading data:  64%|██████▍   | 488/757 [02:17<01:37,  2.77files/s]Downloading data:  65%|██████▍   | 489/757 [02:17<01:21,  3.29files/s]Downloading data:  65%|██████▍   | 490/757 [02:18<01:19,  3.37files/s]Downloading data:  65%|██████▍   | 491/757 [02:18<01:07,  3.94files/s]Downloading data:  65%|██████▍   | 492/757 [02:18<01:01,  4.33files/s]Downloading data:  65%|██████▌   | 493/757 [02:18<00:53,  4.93files/s]Downloading data:  65%|██████▌   | 494/757 [02:18<00:48,  5.43files/s]Downloading data:  65%|██████▌   | 495/757 [02:18<00:54,  4.78files/s]Downloading data:  66%|██████▌   | 496/757 [02:19<00:54,  4.77files/s]Downloading data:  66%|██████▌   | 497/757 [02:19<00:53,  4.90files/s]Downloading data:  66%|██████▌   | 498/757 [02:20<01:32,  2.79files/s]Downloading data:  66%|██████▌   | 499/757 [02:20<01:33,  2.76files/s]Downloading data:  66%|██████▌   | 500/757 [02:20<01:16,  3.38files/s]Downloading data:  66%|██████▌   | 501/757 [02:20<01:15,  3.37files/s]Downloading data:  66%|██████▋   | 502/757 [02:21<01:23,  3.06files/s]Downloading data:  66%|██████▋   | 503/757 [02:21<01:15,  3.35files/s]Downloading data:  67%|██████▋   | 504/757 [02:21<01:10,  3.57files/s]Downloading data:  67%|██████▋   | 505/757 [02:21<01:01,  4.13files/s]Downloading data:  67%|██████▋   | 506/757 [02:22<01:12,  3.46files/s]Downloading data:  67%|██████▋   | 507/757 [02:22<01:06,  3.73files/s]Downloading data:  67%|██████▋   | 508/757 [02:22<01:15,  3.31files/s]Downloading data:  67%|██████▋   | 509/757 [02:23<01:05,  3.76files/s]Downloading data:  67%|██████▋   | 510/757 [02:23<00:56,  4.41files/s]Downloading data:  68%|██████▊   | 511/757 [02:23<01:02,  3.97files/s]Downloading data:  68%|██████▊   | 512/757 [02:23<01:02,  3.92files/s]Downloading data:  68%|██████▊   | 513/757 [02:24<01:11,  3.40files/s]Downloading data:  68%|██████▊   | 514/757 [02:24<01:03,  3.84files/s]Downloading data:  68%|██████▊   | 515/757 [02:24<01:03,  3.80files/s]Downloading data:  68%|██████▊   | 516/757 [02:24<01:13,  3.26files/s]Downloading data:  68%|██████▊   | 517/757 [02:25<01:10,  3.42files/s]Downloading data:  68%|██████▊   | 518/757 [02:25<01:04,  3.72files/s]Downloading data:  69%|██████▊   | 519/757 [02:25<01:06,  3.60files/s]Downloading data:  69%|██████▊   | 520/757 [02:26<01:06,  3.55files/s]Downloading data:  69%|██████▉   | 521/757 [02:26<01:14,  3.18files/s]Downloading data:  69%|██████▉   | 522/757 [02:26<01:08,  3.42files/s]Downloading data:  69%|██████▉   | 523/757 [02:26<00:58,  4.00files/s]Downloading data:  69%|██████▉   | 524/757 [02:27<00:58,  3.97files/s]Downloading data:  69%|██████▉   | 525/757 [02:27<01:01,  3.77files/s]Downloading data:  69%|██████▉   | 526/757 [02:27<01:00,  3.83files/s]Downloading data:  70%|██████▉   | 527/757 [02:27<00:57,  4.03files/s]Downloading data:  70%|██████▉   | 528/757 [02:28<00:56,  4.04files/s]Downloading data:  70%|██████▉   | 529/757 [02:28<01:30,  2.53files/s]Downloading data:  70%|███████   | 530/757 [02:29<01:18,  2.91files/s]Downloading data:  70%|███████   | 531/757 [02:29<01:20,  2.80files/s]Downloading data:  70%|███████   | 532/757 [02:29<01:07,  3.33files/s]Downloading data:  70%|███████   | 533/757 [02:29<01:05,  3.43files/s]Downloading data:  71%|███████   | 534/757 [02:30<00:55,  3.99files/s]Downloading data:  71%|███████   | 535/757 [02:30<00:49,  4.47files/s]Downloading data:  71%|███████   | 536/757 [02:30<00:47,  4.69files/s]Downloading data:  71%|███████   | 537/757 [02:30<00:53,  4.15files/s]Downloading data:  71%|███████   | 538/757 [02:30<00:54,  4.02files/s]Downloading data:  71%|███████   | 539/757 [02:31<00:48,  4.47files/s]Downloading data:  71%|███████▏  | 540/757 [02:31<00:50,  4.32files/s]Downloading data:  71%|███████▏  | 541/757 [02:31<00:56,  3.84files/s]Downloading data:  72%|███████▏  | 542/757 [02:32<00:59,  3.61files/s]Downloading data:  72%|███████▏  | 543/757 [02:32<00:51,  4.14files/s]Downloading data:  72%|███████▏  | 544/757 [02:32<01:03,  3.36files/s]Downloading data:  72%|███████▏  | 545/757 [02:32<00:58,  3.60files/s]Downloading data:  72%|███████▏  | 546/757 [02:33<00:59,  3.57files/s]Downloading data:  72%|███████▏  | 547/757 [02:33<00:58,  3.58files/s]Downloading data:  72%|███████▏  | 548/757 [02:33<00:55,  3.74files/s]Downloading data:  73%|███████▎  | 549/757 [02:34<01:04,  3.21files/s]Downloading data:  73%|███████▎  | 550/757 [02:34<01:01,  3.37files/s]Downloading data:  73%|███████▎  | 551/757 [02:34<01:11,  2.88files/s]Downloading data:  73%|███████▎  | 552/757 [02:35<01:15,  2.71files/s]Downloading data:  73%|███████▎  | 553/757 [02:35<01:04,  3.18files/s]Downloading data:  73%|███████▎  | 554/757 [02:35<01:05,  3.10files/s]Downloading data:  73%|███████▎  | 555/757 [02:36<01:05,  3.09files/s]Downloading data:  73%|███████▎  | 556/757 [02:36<01:27,  2.31files/s]Downloading data:  74%|███████▎  | 557/757 [02:36<01:12,  2.76files/s]Downloading data:  74%|███████▎  | 558/757 [02:37<01:07,  2.94files/s]Downloading data:  74%|███████▍  | 559/757 [02:37<01:00,  3.26files/s]Downloading data:  74%|███████▍  | 560/757 [02:37<00:58,  3.39files/s]Downloading data:  74%|███████▍  | 561/757 [02:37<00:51,  3.81files/s]Downloading data:  74%|███████▍  | 562/757 [02:38<00:56,  3.42files/s]Downloading data:  74%|███████▍  | 563/757 [02:38<01:07,  2.88files/s]Downloading data:  75%|███████▍  | 564/757 [02:39<01:09,  2.78files/s]Downloading data:  75%|███████▍  | 565/757 [02:39<01:29,  2.15files/s]Downloading data:  75%|███████▍  | 566/757 [02:40<01:29,  2.13files/s]Downloading data:  75%|███████▍  | 567/757 [02:40<01:22,  2.30files/s]Downloading data:  75%|███████▌  | 568/757 [02:41<01:15,  2.49files/s]Downloading data:  75%|███████▌  | 569/757 [02:41<01:09,  2.69files/s]Downloading data:  75%|███████▌  | 570/757 [02:41<01:02,  3.00files/s]Downloading data:  75%|███████▌  | 571/757 [02:41<00:54,  3.39files/s]Downloading data:  76%|███████▌  | 572/757 [02:42<00:51,  3.57files/s]Downloading data:  76%|███████▌  | 573/757 [02:42<00:45,  4.04files/s]Downloading data:  76%|███████▌  | 574/757 [02:42<00:43,  4.16files/s]Downloading data:  76%|███████▌  | 575/757 [02:42<00:57,  3.17files/s]Downloading data:  76%|███████▌  | 576/757 [02:43<00:54,  3.33files/s]Downloading data:  76%|███████▌  | 577/757 [02:43<00:50,  3.57files/s]Downloading data:  76%|███████▋  | 578/757 [02:43<00:52,  3.40files/s]Downloading data:  76%|███████▋  | 579/757 [02:43<00:47,  3.77files/s]Downloading data:  77%|███████▋  | 580/757 [02:44<00:51,  3.45files/s]Downloading data:  77%|███████▋  | 581/757 [02:44<00:45,  3.87files/s]Downloading data:  77%|███████▋  | 582/757 [02:44<00:40,  4.30files/s]Downloading data:  77%|███████▋  | 583/757 [02:44<00:37,  4.62files/s]Downloading data:  77%|███████▋  | 584/757 [02:45<00:37,  4.66files/s]Downloading data:  77%|███████▋  | 585/757 [02:45<00:33,  5.06files/s]Downloading data:  77%|███████▋  | 586/757 [02:45<00:34,  5.01files/s]Downloading data:  78%|███████▊  | 587/757 [02:45<00:33,  5.14files/s]Downloading data:  78%|███████▊  | 588/757 [02:45<00:31,  5.39files/s]Downloading data:  78%|███████▊  | 589/757 [02:45<00:34,  4.86files/s]Downloading data:  78%|███████▊  | 590/757 [02:46<00:34,  4.79files/s]Downloading data:  78%|███████▊  | 591/757 [02:46<00:38,  4.37files/s]Downloading data:  78%|███████▊  | 592/757 [02:46<00:43,  3.79files/s]Downloading data:  78%|███████▊  | 593/757 [02:46<00:38,  4.22files/s]Downloading data:  78%|███████▊  | 594/757 [02:47<00:50,  3.26files/s]Downloading data:  79%|███████▊  | 595/757 [02:47<00:42,  3.82files/s]Downloading data:  79%|███████▊  | 596/757 [02:47<00:37,  4.29files/s]Downloading data:  79%|███████▉  | 597/757 [02:47<00:32,  4.86files/s]Downloading data:  79%|███████▉  | 598/757 [02:48<00:30,  5.18files/s]Downloading data:  79%|███████▉  | 599/757 [02:48<00:31,  5.04files/s]Downloading data:  79%|███████▉  | 600/757 [02:48<00:30,  5.21files/s]Downloading data:  79%|███████▉  | 601/757 [02:48<00:28,  5.52files/s]Downloading data:  80%|███████▉  | 602/757 [02:48<00:30,  5.02files/s]Downloading data:  80%|███████▉  | 603/757 [02:49<00:28,  5.40files/s]Downloading data:  80%|███████▉  | 604/757 [02:49<00:27,  5.48files/s]Downloading data:  80%|███████▉  | 605/757 [02:49<00:29,  5.10files/s]Downloading data:  80%|████████  | 606/757 [02:49<00:28,  5.29files/s]Downloading data:  80%|████████  | 607/757 [02:49<00:26,  5.70files/s]Downloading data:  80%|████████  | 608/757 [02:49<00:25,  5.89files/s]Downloading data:  80%|████████  | 609/757 [02:50<00:23,  6.17files/s]Downloading data:  81%|████████  | 610/757 [02:50<00:23,  6.23files/s]Downloading data:  81%|████████  | 611/757 [02:50<00:22,  6.38files/s]Downloading data:  81%|████████  | 612/757 [02:50<00:22,  6.40files/s]Downloading data:  81%|████████  | 613/757 [02:50<00:22,  6.36files/s]Downloading data:  81%|████████  | 614/757 [02:50<00:22,  6.41files/s]Downloading data:  81%|████████  | 615/757 [02:50<00:22,  6.27files/s]Downloading data:  81%|████████▏ | 616/757 [02:51<00:22,  6.32files/s]Downloading data:  82%|████████▏ | 617/757 [02:51<00:22,  6.35files/s]Downloading data:  82%|████████▏ | 618/757 [02:51<00:20,  6.80files/s]Downloading data:  82%|████████▏ | 619/757 [02:51<00:19,  7.03files/s]Downloading data:  82%|████████▏ | 620/757 [02:51<00:20,  6.73files/s]Downloading data:  82%|████████▏ | 621/757 [02:51<00:21,  6.42files/s]Downloading data:  82%|████████▏ | 622/757 [02:52<00:21,  6.35files/s]Downloading data:  82%|████████▏ | 623/757 [02:52<00:21,  6.11files/s]Downloading data:  82%|████████▏ | 624/757 [02:52<00:20,  6.53files/s]Downloading data:  83%|████████▎ | 625/757 [02:52<00:21,  6.07files/s]Downloading data:  83%|████████▎ | 626/757 [02:52<00:22,  5.88files/s]Downloading data:  83%|████████▎ | 627/757 [02:52<00:22,  5.89files/s]Downloading data:  83%|████████▎ | 628/757 [02:53<00:22,  5.74files/s]Downloading data:  83%|████████▎ | 629/757 [02:53<00:21,  6.06files/s]Downloading data:  83%|████████▎ | 630/757 [02:53<00:20,  6.29files/s]Downloading data:  83%|████████▎ | 631/757 [02:53<00:19,  6.38files/s]Downloading data:  83%|████████▎ | 632/757 [02:53<00:22,  5.46files/s]Downloading data:  84%|████████▎ | 633/757 [02:53<00:21,  5.82files/s]Downloading data:  84%|████████▍ | 634/757 [02:54<00:20,  6.14files/s]Downloading data:  84%|████████▍ | 635/757 [02:54<00:18,  6.42files/s]Downloading data:  84%|████████▍ | 636/757 [02:54<00:17,  6.80files/s]Downloading data:  84%|████████▍ | 637/757 [02:54<00:18,  6.49files/s]Downloading data:  84%|████████▍ | 638/757 [02:54<00:19,  6.12files/s]Downloading data:  84%|████████▍ | 639/757 [02:54<00:19,  6.14files/s]Downloading data:  85%|████████▍ | 640/757 [02:55<00:19,  6.10files/s]Downloading data:  85%|████████▍ | 641/757 [02:55<00:17,  6.57files/s]Downloading data:  85%|████████▍ | 642/757 [02:55<00:18,  6.08files/s]Downloading data:  85%|████████▍ | 643/757 [02:55<00:18,  6.26files/s]Downloading data:  85%|████████▌ | 644/757 [02:55<00:17,  6.40files/s]Downloading data:  85%|████████▌ | 645/757 [02:55<00:16,  6.68files/s]Downloading data:  85%|████████▌ | 646/757 [02:55<00:15,  7.03files/s]Downloading data:  85%|████████▌ | 647/757 [02:56<00:17,  6.40files/s]Downloading data:  86%|████████▌ | 648/757 [02:56<00:16,  6.66files/s]Downloading data:  86%|████████▌ | 649/757 [02:56<00:15,  6.77files/s]Downloading data:  86%|████████▌ | 650/757 [02:56<00:15,  6.99files/s]Downloading data:  86%|████████▌ | 651/757 [02:56<00:14,  7.20files/s]Downloading data:  86%|████████▌ | 652/757 [02:56<00:14,  7.24files/s]Downloading data:  86%|████████▋ | 653/757 [02:56<00:13,  7.47files/s]Downloading data:  86%|████████▋ | 654/757 [02:57<00:14,  7.33files/s]Downloading data:  87%|████████▋ | 655/757 [02:57<00:14,  7.25files/s]Downloading data:  87%|████████▋ | 656/757 [02:57<00:13,  7.36files/s]Downloading data:  87%|████████▋ | 657/757 [02:57<00:13,  7.48files/s]Downloading data:  87%|████████▋ | 658/757 [02:57<00:15,  6.28files/s]Downloading data:  87%|████████▋ | 659/757 [02:57<00:15,  6.49files/s]Downloading data:  87%|████████▋ | 660/757 [02:57<00:15,  6.41files/s]Downloading data:  87%|████████▋ | 661/757 [02:58<00:15,  6.20files/s]Downloading data:  87%|████████▋ | 662/757 [02:58<00:14,  6.48files/s]Downloading data:  88%|████████▊ | 663/757 [02:58<00:17,  5.52files/s]Downloading data:  88%|████████▊ | 664/757 [02:58<00:15,  6.02files/s]Downloading data:  88%|████████▊ | 665/757 [02:58<00:14,  6.43files/s]Downloading data:  88%|████████▊ | 666/757 [02:58<00:14,  6.24files/s]Downloading data:  88%|████████▊ | 667/757 [02:59<00:14,  6.33files/s]Downloading data:  88%|████████▊ | 668/757 [02:59<00:15,  5.82files/s]Downloading data:  88%|████████▊ | 669/757 [02:59<00:20,  4.31files/s]Downloading data:  89%|████████▊ | 670/757 [02:59<00:18,  4.69files/s]Downloading data:  89%|████████▊ | 671/757 [02:59<00:17,  5.04files/s]Downloading data:  89%|████████▉ | 672/757 [03:00<00:16,  5.29files/s]Downloading data:  89%|████████▉ | 673/757 [03:00<00:14,  5.81files/s]Downloading data:  89%|████████▉ | 674/757 [03:00<00:17,  4.61files/s]Downloading data:  89%|████████▉ | 675/757 [03:00<00:17,  4.57files/s]Downloading data:  89%|████████▉ | 676/757 [03:00<00:15,  5.12files/s]Downloading data:  89%|████████▉ | 677/757 [03:01<00:14,  5.37files/s]Downloading data:  90%|████████▉ | 678/757 [03:01<00:16,  4.74files/s]Downloading data:  90%|████████▉ | 679/757 [03:01<00:14,  5.34files/s]Downloading data:  90%|████████▉ | 680/757 [03:01<00:13,  5.66files/s]Downloading data:  90%|████████▉ | 681/757 [03:02<00:16,  4.48files/s]Downloading data:  90%|█████████ | 682/757 [03:02<00:17,  4.34files/s]Downloading data:  90%|█████████ | 683/757 [03:02<00:20,  3.53files/s]Downloading data:  90%|█████████ | 684/757 [03:02<00:17,  4.13files/s]Downloading data:  90%|█████████ | 685/757 [03:03<00:22,  3.18files/s]Downloading data:  91%|█████████ | 686/757 [03:03<00:22,  3.12files/s]Downloading data:  91%|█████████ | 687/757 [03:03<00:18,  3.70files/s]Downloading data:  91%|█████████ | 688/757 [03:04<00:19,  3.59files/s]Downloading data:  91%|█████████ | 689/757 [03:04<00:21,  3.22files/s]Downloading data:  91%|█████████ | 690/757 [03:04<00:19,  3.45files/s]Downloading data:  91%|█████████▏| 691/757 [03:05<00:22,  2.99files/s]Downloading data:  91%|█████████▏| 692/757 [03:06<00:33,  1.97files/s]Downloading data:  92%|█████████▏| 693/757 [03:06<00:36,  1.75files/s]Downloading data:  92%|█████████▏| 694/757 [03:07<00:29,  2.14files/s]Downloading data:  92%|█████████▏| 695/757 [03:07<00:29,  2.12files/s]Downloading data:  92%|█████████▏| 696/757 [03:07<00:26,  2.27files/s]Downloading data:  92%|█████████▏| 697/757 [03:07<00:21,  2.84files/s]Downloading data:  92%|█████████▏| 698/757 [03:08<00:17,  3.46files/s]Downloading data:  92%|█████████▏| 699/757 [03:08<00:14,  4.13files/s]Downloading data:  92%|█████████▏| 700/757 [03:08<00:11,  4.80files/s]Downloading data:  93%|█████████▎| 701/757 [03:08<00:10,  5.30files/s]Downloading data:  93%|█████████▎| 702/757 [03:08<00:09,  5.80files/s]Downloading data:  93%|█████████▎| 703/757 [03:08<00:08,  6.25files/s]Downloading data:  93%|█████████▎| 704/757 [03:09<00:09,  5.52files/s]Downloading data:  93%|█████████▎| 705/757 [03:09<00:08,  5.81files/s]Downloading data:  93%|█████████▎| 706/757 [03:09<00:08,  5.88files/s]Downloading data:  93%|█████████▎| 707/757 [03:09<00:08,  5.83files/s]Downloading data:  94%|█████████▎| 708/757 [03:09<00:08,  5.84files/s]Downloading data:  94%|█████████▎| 709/757 [03:09<00:07,  6.07files/s]Downloading data:  94%|█████████▍| 710/757 [03:10<00:07,  6.28files/s]Downloading data:  94%|█████████▍| 711/757 [03:10<00:07,  6.23files/s]Downloading data:  94%|█████████▍| 712/757 [03:10<00:07,  6.09files/s]Downloading data:  94%|█████████▍| 713/757 [03:10<00:07,  5.87files/s]Downloading data:  94%|█████████▍| 714/757 [03:10<00:07,  6.11files/s]Downloading data:  94%|█████████▍| 715/757 [03:10<00:06,  6.07files/s]Downloading data:  95%|█████████▍| 716/757 [03:11<00:12,  3.39files/s]Downloading data:  95%|█████████▍| 717/757 [03:11<00:09,  4.02files/s]Downloading data:  95%|█████████▍| 718/757 [03:11<00:08,  4.49files/s]Downloading data:  95%|█████████▍| 719/757 [03:11<00:08,  4.72files/s]Downloading data:  95%|█████████▌| 720/757 [03:12<00:07,  4.67files/s]Downloading data:  95%|█████████▌| 721/757 [03:12<00:07,  4.58files/s]Downloading data:  95%|█████████▌| 722/757 [03:12<00:07,  4.93files/s]Downloading data:  96%|█████████▌| 723/757 [03:12<00:06,  5.39files/s]Downloading data:  96%|█████████▌| 724/757 [03:12<00:07,  4.53files/s]Downloading data:  96%|█████████▌| 725/757 [03:13<00:06,  4.60files/s]Downloading data:  96%|█████████▌| 726/757 [03:13<00:07,  4.10files/s]Downloading data:  96%|█████████▌| 727/757 [03:13<00:07,  4.09files/s]Downloading data:  96%|█████████▌| 728/757 [03:14<00:07,  3.95files/s]Downloading data:  96%|█████████▋| 729/757 [03:14<00:07,  3.92files/s]Downloading data:  96%|█████████▋| 730/757 [03:14<00:06,  4.37files/s]Downloading data:  97%|█████████▋| 731/757 [03:14<00:06,  3.84files/s]Downloading data:  97%|█████████▋| 732/757 [03:15<00:07,  3.31files/s]Downloading data:  97%|█████████▋| 733/757 [03:15<00:06,  3.80files/s]Downloading data:  97%|█████████▋| 734/757 [03:15<00:05,  4.22files/s]Downloading data:  97%|█████████▋| 735/757 [03:15<00:04,  4.45files/s]Downloading data:  97%|█████████▋| 736/757 [03:15<00:04,  4.59files/s]Downloading data:  97%|█████████▋| 737/757 [03:16<00:04,  4.94files/s]Downloading data:  97%|█████████▋| 738/757 [03:16<00:03,  5.31files/s]Downloading data:  98%|█████████▊| 739/757 [03:16<00:03,  5.75files/s]Downloading data:  98%|█████████▊| 740/757 [03:16<00:02,  6.15files/s]Downloading data:  98%|█████████▊| 741/757 [03:16<00:02,  5.93files/s]Downloading data:  98%|█████████▊| 742/757 [03:16<00:02,  5.98files/s]Downloading data:  98%|█████████▊| 743/757 [03:17<00:02,  4.81files/s]Downloading data:  98%|█████████▊| 744/757 [03:17<00:02,  5.20files/s]Downloading data:  98%|█████████▊| 745/757 [03:17<00:02,  5.02files/s]Downloading data:  99%|█████████▊| 746/757 [03:17<00:02,  4.44files/s]Downloading data:  99%|█████████▊| 747/757 [03:17<00:02,  4.84files/s]Downloading data:  99%|█████████▉| 748/757 [03:18<00:02,  3.81files/s]Downloading data:  99%|█████████▉| 749/757 [03:18<00:02,  3.98files/s]Downloading data:  99%|█████████▉| 750/757 [03:18<00:02,  3.47files/s]Downloading data:  99%|█████████▉| 751/757 [03:19<00:01,  3.94files/s]Downloading data:  99%|█████████▉| 752/757 [03:19<00:01,  3.50files/s]Downloading data:  99%|█████████▉| 753/757 [03:19<00:00,  4.10files/s]Downloading data: 100%|█████████▉| 754/757 [03:19<00:00,  4.12files/s]Downloading data: 100%|█████████▉| 755/757 [03:20<00:00,  4.69files/s]Downloading data: 100%|█████████▉| 756/757 [03:20<00:00,  5.03files/s]Downloading data: 100%|██████████| 757/757 [03:20<00:00,  5.66files/s]Downloading data: 100%|██████████| 757/757 [03:20<00:00,  3.78files/s]
+Downloading data:   0%|          | 0/119 [00:00<?, ?files/s]Downloading data:   1%|          | 1/119 [00:00<00:17,  6.89files/s]Downloading data:   2%|▏         | 2/119 [00:00<00:44,  2.63files/s]Downloading data:  14%|█▍        | 17/119 [00:01<00:07, 14.47files/s]Downloading data:  34%|███▍      | 41/119 [00:01<00:02, 31.33files/s]Downloading data:  46%|████▌     | 55/119 [00:01<00:01, 40.41files/s]Downloading data:  53%|█████▎    | 63/119 [00:02<00:01, 43.10files/s]Downloading data:  58%|█████▊    | 69/119 [00:02<00:01, 36.53files/s]Downloading data:  64%|██████▍   | 76/119 [00:02<00:01, 22.25files/s]Downloading data:  78%|███████▊  | 93/119 [00:03<00:00, 35.65files/s]Downloading data:  97%|█████████▋| 115/119 [00:03<00:00, 53.52files/s]Downloading data: 100%|██████████| 119/119 [00:03<00:00, 34.39files/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 13993 examples [00:00, 126506.72 examples/s]Generating train split: 29451 examples [00:00, 140155.44 examples/s]Generating train split: 69293 examples [00:00, 215482.37 examples/s]Generating train split: 93431 examples [00:00, 201997.01 examples/s]Generating train split: 117448 examples [00:00, 194578.68 examples/s]Generating train split: 141566 examples [00:00, 191583.91 examples/s]Generating train split: 164736 examples [00:00, 198652.24 examples/s]Generating train split: 193481 examples [00:01, 191633.63 examples/s]Generating train split: 245813 examples [00:01, 273498.56 examples/s]Generating train split: 295310 examples [00:01, 319290.03 examples/s]Generating train split: 349396 examples [00:01, 323572.94 examples/s]Generating train split: 424080 examples [00:01, 415113.29 examples/s]Generating train split: 469217 examples [00:01, 401191.53 examples/s]Generating train split: 527081 examples [00:01, 386776.61 examples/s]Generating train split: 587921 examples [00:01, 382541.69 examples/s]Generating train split: 639405 examples [00:02, 409346.45 examples/s]Generating train split: 703028 examples [00:02, 458799.71 examples/s]Generating train split: 760989 examples [00:02, 461600.06 examples/s]Generating train split: 808897 examples [00:02, 312619.61 examples/s]Generating train split: 852443 examples [00:02, 288753.05 examples/s]Generating train split: 919773 examples [00:02, 353128.46 examples/s]Generating train split: 990596 examples [00:03, 366922.80 examples/s]Generating train split: 1056955 examples [00:03, 423249.71 examples/s]Generating train split: 1114405 examples [00:03, 446130.81 examples/s]Generating train split: 1169302 examples [00:03, 438997.51 examples/s]Generating train split: 1235178 examples [00:03, 490373.12 examples/s]Generating train split: 1303461 examples [00:03, 518848.33 examples/s]Generating train split: 1370826 examples [00:03, 409003.89 examples/s]Generating train split: 1417208 examples [00:04, 241335.86 examples/s]Generating train split: 1512289 examples [00:04, 212551.37 examples/s]Generating train split: 1556604 examples [00:05, 206400.29 examples/s]Generating train split: 1588457 examples [00:05, 211426.81 examples/s]Generating train split: 1632421 examples [00:05, 240284.90 examples/s]Generating train split: 1662620 examples [00:05, 249070.56 examples/s]Generating train split: 1700705 examples [00:05, 272304.19 examples/s]Generating train split: 1733212 examples [00:05, 238449.26 examples/s]Generating train split: 1799959 examples [00:05, 305605.57 examples/s]Generating train split: 1839790 examples [00:06, 283694.86 examples/s]Generating train split: 1885696 examples [00:06, 284934.78 examples/s]Generating train split: 1922967 examples [00:06, 288760.12 examples/s]Generating train split: 1982267 examples [00:06, 345524.62 examples/s]Generating train split: 2034445 examples [00:06, 379439.94 examples/s]Generating train split: 2119570 examples [00:06, 487630.88 examples/s]Generating train split: 2199034 examples [00:06, 468314.79 examples/s]Generating train split: 2254593 examples [00:07, 365468.28 examples/s]Generating train split: 2306404 examples [00:07, 300099.02 examples/s]Generating train split: 2373930 examples [00:07, 365065.53 examples/s]Generating train split: 2428456 examples [00:07, 398771.63 examples/s]Generating train split: 2503690 examples [00:07, 464743.05 examples/s]Generating train split: 2577756 examples [00:07, 505962.16 examples/s]Generating train split: 2663386 examples [00:07, 496306.94 examples/s]Generating train split: 2722019 examples [00:08, 390877.89 examples/s]Generating train split: 2785449 examples [00:08, 431378.96 examples/s]Generating train split: 2846105 examples [00:08, 419334.48 examples/s]Generating train split: 2916561 examples [00:08, 464840.49 examples/s]Generating train split: 2971721 examples [00:08, 425673.52 examples/s]Generating train split: 3045141 examples [00:08, 474958.37 examples/s]Generating train split: 3082094 examples [00:08, 346378.60 examples/s]
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 41227 examples [00:00, 345248.84 examples/s]Generating test split: 105615 examples [00:00, 416340.05 examples/s]Generating test split: 155951 examples [00:00, 413979.61 examples/s]Generating test split: 209670 examples [00:00, 418438.92 examples/s]Generating test split: 264136 examples [00:00, 451388.28 examples/s]Generating test split: 326492 examples [00:00, 406579.16 examples/s]Generating test split: 380833 examples [00:00, 353502.27 examples/s]Generating test split: 436327 examples [00:01, 381479.67 examples/s]Generating test split: 484006 examples [00:01, 403173.78 examples/s]
+  train: 3082094 examples
+  test: 484006 examples
+  Combined: 3566100 examples
+
+Training on 41 tasks, 58,214 examples
+
+Starting shared LoRA training for 6000 steps...
+  Step 1/6000 | Loss: 1.8900 | Task: task065_timetravel_consistent_sentence_classification (generation) | Time: 1s
+  Step 100/6000 | Loss: 180.0087 | Task: task065_timetravel_consistent_sentence_classification (generation) | Time: 64s
+  Step 200/6000 | Loss: 145.7055 | Task: task023_cosmosqa_question_generation (extraction) | Time: 129s
+  Step 300/6000 | Loss: 138.4710 | Task: task059_ropes_story_generation (extraction) | Time: 193s
+  Step 400/6000 | Loss: 132.5127 | Task: task109_smsspamcollection_spamsmsdetection (classification) | Time: 256s
+  Step 500/6000 | Loss: 129.1589 | Task: task026_drop_question_generation (generation) | Time: 320s
+  Step 600/6000 | Loss: 133.2340 | Task: task069_abductivenli_classification (generation) | Time: 384s
+  Step 700/6000 | Loss: 125.2439 | Task: task026_drop_question_generation (generation) | Time: 449s
+  Step 800/6000 | Loss: 125.3604 | Task: task065_timetravel_consistent_sentence_classification (generation) | Time: 514s
+  Step 900/6000 | Loss: 125.0939 | Task: task088_identify_typo_verification (other) | Time: 578s
+  Step 1000/6000 | Loss: 130.5161 | Task: task070_abductivenli_incorrect_classification (generation) | Time: 645s
+  Step 1100/6000 | Loss: 125.8184 | Task: task061_ropes_answer_generation (extraction) | Time: 710s
+  Step 1200/6000 | Loss: 126.9879 | Task: task047_miscellaneous_answering_science_questions (generation) | Time: 775s
+  Step 1300/6000 | Loss: 123.8604 | Task: task026_drop_question_generation (generation) | Time: 841s
+  Step 1400/6000 | Loss: 120.1334 | Task: task059_ropes_story_generation (extraction) | Time: 903s
+  Step 1500/6000 | Loss: 121.7442 | Task: task067_abductivenli_answer_generation (generation) | Time: 968s
+  Step 1600/6000 | Loss: 116.6105 | Task: task074_squad1.1_question_generation (question_answering) | Time: 1031s
+  Step 1700/6000 | Loss: 116.0460 | Task: task027_drop_answer_type_generation (classification) | Time: 1096s
+  Step 1800/6000 | Loss: 115.7007 | Task: task065_timetravel_consistent_sentence_classification (generation) | Time: 1159s
+  Step 1900/6000 | Loss: 118.4275 | Task: task027_drop_answer_type_generation (classification) | Time: 1224s
+  Step 2000/6000 | Loss: 117.1132 | Task: task060_ropes_question_generation (paraphrase) | Time: 1288s
+  Step 2100/6000 | Loss: 114.3954 | Task: task066_timetravel_binary_consistency_classification (generation) | Time: 1352s
+  Step 2200/6000 | Loss: 115.5623 | Task: task080_piqa_answer_generation (other) | Time: 1417s
+  Step 2300/6000 | Loss: 108.4705 | Task: task002_quoref_answer_generation (generation) | Time: 1482s
+  Step 2400/6000 | Loss: 116.0398 | Task: task001_quoref_question_generation (question_answering) | Time: 1545s
+  Step 2500/6000 | Loss: 112.0244 | Task: task070_abductivenli_incorrect_classification (generation) | Time: 1609s
+  Step 2600/6000 | Loss: 113.5077 | Task: task080_piqa_answer_generation (other) | Time: 1673s
+  Step 2700/6000 | Loss: 111.5344 | Task: task111_asset_sentence_simplification (paraphrase) | Time: 1738s
+  Step 2800/6000 | Loss: 113.1462 | Task: task065_timetravel_consistent_sentence_classification (generation) | Time: 1802s
+  Step 2900/6000 | Loss: 111.0696 | Task: task083_babi_t1_single_supporting_fact_answer_generation (fact_checking) | Time: 1866s
+  Step 3000/6000 | Loss: 111.4894 | Task: task074_squad1.1_question_generation (question_answering) | Time: 1931s
+  Step 3100/6000 | Loss: 108.3713 | Task: task074_squad1.1_question_generation (question_answering) | Time: 1994s
+  Step 3200/6000 | Loss: 109.3229 | Task: task082_babi_t1_single_supporting_fact_question_generation (generation) | Time: 2057s
+  Step 3300/6000 | Loss: 108.6948 | Task: task044_essential_terms_identifying_essential_words (generation) | Time: 2121s
+  Step 3400/6000 | Loss: 105.6799 | Task: task108_contextualabusedetection_classification (other) | Time: 2186s
+  Step 3500/6000 | Loss: 111.4955 | Task: task109_smsspamcollection_spamsmsdetection (classification) | Time: 2252s
+  Step 3600/6000 | Loss: 111.0361 | Task: task075_squad1.1_answer_generation (question_answering) | Time: 2317s
+  Step 3700/6000 | Loss: 108.4135 | Task: task067_abductivenli_answer_generation (generation) | Time: 2382s
+  Step 3800/6000 | Loss: 104.5750 | Task: task059_ropes_story_generation (extraction) | Time: 2447s
+  Step 3900/6000 | Loss: 100.7240 | Task: task083_babi_t1_single_supporting_fact_answer_generation (fact_checking) | Time: 2510s
+  Step 4000/6000 | Loss: 101.8299 | Task: task059_ropes_story_generation (extraction) | Time: 2575s
+  Step 4100/6000 | Loss: 100.7050 | Task: task108_contextualabusedetection_classification (other) | Time: 2639s
+  Step 4200/6000 | Loss: 98.4179 | Task: task044_essential_terms_identifying_essential_words (generation) | Time: 2702s
+  Step 4300/6000 | Loss: 103.5647 | Task: task108_contextualabusedetection_classification (other) | Time: 2767s
+  Step 4400/6000 | Loss: 98.2690 | Task: task070_abductivenli_incorrect_classification (generation) | Time: 2830s
+  Step 4500/6000 | Loss: 98.0107 | Task: task068_abductivenli_incorrect_answer_generation (generation) | Time: 2894s
+  Step 4600/6000 | Loss: 95.7737 | Task: task092_check_prime_classification (other) | Time: 2959s
+  Step 4700/6000 | Loss: 97.0034 | Task: task023_cosmosqa_question_generation (extraction) | Time: 3022s
+  Step 4800/6000 | Loss: 97.6256 | Task: task024_cosmosqa_answer_generation (extraction) | Time: 3087s
+  Step 4900/6000 | Loss: 95.6906 | Task: task085_unnatural_addsub_arithmetic (other) | Time: 3152s
+  Step 5000/6000 | Loss: 97.2022 | Task: task044_essential_terms_identifying_essential_words (generation) | Time: 3217s
+  Step 5100/6000 | Loss: 99.5901 | Task: task085_unnatural_addsub_arithmetic (other) | Time: 3282s
+  Step 5200/6000 | Loss: 96.3277 | Task: task111_asset_sentence_simplification (paraphrase) | Time: 3347s
+  Step 5300/6000 | Loss: 98.0484 | Task: task111_asset_sentence_simplification (paraphrase) | Time: 3411s
+  Step 5400/6000 | Loss: 98.2780 | Task: task025_cosmosqa_incorrect_answer_generation (reasoning) | Time: 3475s
+  Step 5500/6000 | Loss: 95.9407 | Task: task073_commonsenseqa_answer_generation (generation) | Time: 3539s
+  Step 5600/6000 | Loss: 97.8031 | Task: task074_squad1.1_question_generation (question_answering) | Time: 3604s
+  Step 5700/6000 | Loss: 97.1826 | Task: task026_drop_question_generation (generation) | Time: 3668s
+  Step 5800/6000 | Loss: 97.0745 | Task: task023_cosmosqa_question_generation (extraction) | Time: 3733s
+  Step 5900/6000 | Loss: 99.9473 | Task: task028_drop_answer_generation (other) | Time: 3797s
+  Step 6000/6000 | Loss: 96.7577 | Task: task083_babi_t1_single_supporting_fact_answer_generation (fact_checking) | Time: 3861s
+
+Training complete in 3861.1s (6000 steps)
+Saved model to outputs/phase2_lora_s2024/final
+
+======================================================================
+EVALUATION PHASE
+======================================================================
+Loading Super-NaturalInstructions dataset (both splits)...
+  train: 3082094 examples
+  test: 484006 examples
+  Combined: 3566100 examples
+
+=== Trained Tasks (validation): 41 tasks ===
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+  task001_quoref_question_generation: 26.99 (rouge_l)
+  task002_quoref_answer_generation: 61.50 (accuracy)
+  task073_commonsenseqa_answer_generation: 97.00 (accuracy)
+  task074_squad1.1_question_generation: 9.81 (rouge_l)
+  task075_squad1.1_answer_generation: 73.00 (accuracy)
+  task080_piqa_answer_generation: 9.44 (rouge_l)
+  task082_babi_t1_single_supporting_fact_question_generation: 52.00 (accuracy)
+  task083_babi_t1_single_supporting_fact_answer_generation: 97.49 (accuracy)
+  task043_essential_terms_answering_incomplete_questions: 94.00 (accuracy)
+  task044_essential_terms_identifying_essential_words: 47.50 (accuracy)
+  task047_miscellaneous_answering_science_questions: 100.00 (accuracy)
+  task061_ropes_answer_generation: 73.00 (accuracy)
+  task022_cosmosqa_passage_inappropriate_binary: 73.08 (accuracy)
+  task065_timetravel_consistent_sentence_classification: 91.50 (accuracy)
+  task066_timetravel_binary_consistency_classification: 96.00 (accuracy)
+  task069_abductivenli_classification: 91.00 (accuracy)
+  task070_abductivenli_incorrect_classification: 92.50 (accuracy)
+  task092_check_prime_classification: 94.00 (accuracy)
+  task108_contextualabusedetection_classification: 79.50 (accuracy)
+  task109_smsspamcollection_spamsmsdetection: 98.00 (accuracy)
+  task088_identify_typo_verification: 100.00 (accuracy)
+  task089_swap_words_verification: 53.50 (accuracy)
+  task023_cosmosqa_question_generation: 23.47 (rouge_l)
+  task024_cosmosqa_answer_generation: 6.64 (rouge_l)
+  task025_cosmosqa_incorrect_answer_generation: 32.31 (rouge_l)
+  task026_drop_question_generation: 15.60 (rouge_l)
+  task027_drop_answer_type_generation: 97.00 (accuracy)
+  task028_drop_answer_generation: 51.50 (accuracy)
+  task059_ropes_story_generation: 14.30 (rouge_l)
+  task060_ropes_question_generation: 17.60 (rouge_l)
+  task067_abductivenli_answer_generation: 5.58 (rouge_l)
+  task068_abductivenli_incorrect_answer_generation: 12.05 (rouge_l)
+  task103_facts2story_long_text_generation: 22.38 (rouge_l)
+  task105_story_cloze-rocstories_sentence_generation: 5.30 (rouge_l)
+  task110_logic2text_sentence_generation: 56.92 (rouge_l)
+  task045_miscellaneous_sentence_paraphrasing: 13.73 (rouge_l)
+  task111_asset_sentence_simplification: 19.67 (rouge_l)
+  task062_bigbench_repeat_copy_logic: 42.84 (rouge_l)
+  task063_first_i_elements: 62.00 (accuracy)
+  task085_unnatural_addsub_arithmetic: 3.50 (accuracy)
+  task046_miscellaneous_question_typing: 61.50 (accuracy)
+
+  Trained Tasks (validation) macro: 53.04 (over 41 tasks)
+
+Held-out tasks: 20
+Loading Super-NaturalInstructions dataset (both splits)...
+  train: 3082094 examples
+  test: 484006 examples
+  Combined: 3566100 examples
+
+=== Cold-Start (shared LoRA, no task-specific training): 20 tasks ===
+  task020_mctaco_span_based_question: 70.13 (accuracy)
+  task033_winogrande_answer_generation: 46.00 (accuracy)
+  task034_winogrande_question_modification_object: 13.26 (rouge_l)
+  task036_qasc_topic_word_to_generate_related_fact: 11.00 (accuracy)
+  task039_qasc_find_overlapping_words: 44.50 (accuracy)
+  task050_multirc_answerability: 68.00 (accuracy)
+  task102_commongen_sentence_generation: 20.79 (rouge_l)
+  task121_zest_text_modification: 11.51 (rouge_l)
+  task133_winowhy_reason_plausibility_detection: 65.00 (accuracy)
+  task1152_bard_analogical_reasoning_causation: 46.34 (accuracy)
+  task1342_amazon_us_reviews_title: 5.00 (accuracy)
+  task1344_glue_entailment_classification: 7.00 (accuracy)
+  task1345_glue_qqp_question_paraprashing: 9.23 (rouge_l)
+  task1356_xlsum_title_generation: 7.35 (rouge_l)
+  task1385_anli_r1_entailment: 10.10 (accuracy)
+  task1386_anli_r2_entailment: 7.04 (accuracy)
+  task1387_anli_r3_entailment: 14.00 (accuracy)
+  task1388_cb_entailment: 4.92 (accuracy)
+  task1394_meta_woz_task_classification: 0.00 (accuracy)
+  task1409_dart_text_generation: 23.30 (rouge_l)
+
+  Cold-Start (shared LoRA, no task-specific training) macro: 24.22 (over 20 tasks)
+
+--- Frozen baseline on held-out tasks ---
+
+=== Frozen Baseline (held-out): 20 tasks ===
+  task020_mctaco_span_based_question: 0.00 (accuracy)
+  task033_winogrande_answer_generation: 32.50 (accuracy)
+  task034_winogrande_question_modification_object: 20.40 (rouge_l)
+  task036_qasc_topic_word_to_generate_related_fact: 2.00 (accuracy)
+  task039_qasc_find_overlapping_words: 16.50 (accuracy)
+  task050_multirc_answerability: 0.00 (accuracy)
+  task102_commongen_sentence_generation: 8.72 (rouge_l)
+  task121_zest_text_modification: 38.55 (rouge_l)
+  task133_winowhy_reason_plausibility_detection: 54.00 (accuracy)
+  task1152_bard_analogical_reasoning_causation: 0.00 (accuracy)
+  task1342_amazon_us_reviews_title: 4.00 (accuracy)
+  task1344_glue_entailment_classification: 0.00 (accuracy)
+  task1345_glue_qqp_question_paraprashing: 35.84 (rouge_l)
+  task1356_xlsum_title_generation: 17.95 (rouge_l)
+  task1385_anli_r1_entailment: 2.53 (accuracy)
+  task1386_anli_r2_entailment: 5.53 (accuracy)
+  task1387_anli_r3_entailment: 10.00 (accuracy)
+  task1388_cb_entailment: 0.00 (accuracy)
+  task1394_meta_woz_task_classification: 0.00 (accuracy)
+  task1409_dart_text_generation: 44.53 (rouge_l)
+
+  Frozen Baseline (held-out) macro: 14.65 (over 20 tasks)
+
+======================================================================
+RESULTS SUMMARY
+======================================================================
+
+  Task                        Frozen     LoRA    Delta
+  task020_mctaco_span_based_question      0.0     70.1    +70.1
+  task033_winogrande_answer_generation     32.5     46.0    +13.5
+  task034_winogrande_question_modification_object     20.4     13.3     -7.1
+  task036_qasc_topic_word_to_generate_related_fact      2.0     11.0     +9.0
+  task039_qasc_find_overlapping_words     16.5     44.5    +28.0
+  task050_multirc_answerability      0.0     68.0    +68.0
+  task102_commongen_sentence_generation      8.7     20.8    +12.1
+  task1152_bard_analogical_reasoning_causation      0.0     46.3    +46.3
+  task121_zest_text_modification     38.5     11.5    -27.0
+  task133_winowhy_reason_plausibility_detection     54.0     65.0    +11.0
+  task1342_amazon_us_reviews_title      4.0      5.0     +1.0
+  task1344_glue_entailment_classification      0.0      7.0     +7.0
+  task1345_glue_qqp_question_paraprashing     35.8      9.2    -26.6
+  task1356_xlsum_title_generation     18.0      7.4    -10.6
+  task1385_anli_r1_entailment      2.5     10.1     +7.6
+  task1386_anli_r2_entailment      5.5      7.0     +1.5
+  task1387_anli_r3_entailment     10.0     14.0     +4.0
+  task1388_cb_entailment         0.0      4.9     +4.9
+  task1394_meta_woz_task_classification      0.0      0.0     +0.0
+  task1409_dart_text_generation     44.5     23.3    -21.2
+  MACRO                         14.7     24.2     +9.6
+
+Results written to outputs/phase2_lora_s2024/results.json
+
+=== RESULTS JSON ===
+{
+  "experiment": "shared_lora_sni41_coldstart",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "lora_rank": 8,
+  "trainable_params": 7053312,
+  "num_train_tasks": 41,
+  "num_holdout_tasks": 20,
+  "max_steps": 6000,
+  "trained_scores": {
+    "task001_quoref_question_generation": {
+      "rouge_l": 26.986642034612906
+    },
+    "task002_quoref_answer_generation": {
+      "accuracy": 61.5
+    },
+    "task073_commonsenseqa_answer_generation": {
+      "accuracy": 97.0
+    },
+    "task074_squad1.1_question_generation": {
+      "rouge_l": 9.809264904206927
+    },
+    "task075_squad1.1_answer_generation": {
+      "accuracy": 73.0
+    },
+    "task080_piqa_answer_generation": {
+      "rouge_l": 9.438714184486898
+    },
+    "task082_babi_t1_single_supporting_fact_question_generation": {
+      "accuracy": 52.0
+    },
+    "task083_babi_t1_single_supporting_fact_answer_generation": {
+      "accuracy": 97.48743718592965
+    },
+    "task043_essential_terms_answering_incomplete_questions": {
+      "accuracy": 94.0
+    },
+    "task044_essential_terms_identifying_essential_words": {
+      "accuracy": 47.5
+    },
+    "task047_miscellaneous_answering_science_questions": {
+      "accuracy": 100.0
+    },
+    "task061_ropes_answer_generation": {
+      "accuracy": 73.0
+    },
+    "task022_cosmosqa_passage_inappropriate_binary": {
+      "accuracy": 73.07692307692307
+    },
+    "task065_timetravel_consistent_sentence_classification": {
+      "accuracy": 91.5
+    },
+    "task066_timetravel_binary_consistency_classification": {
+      "accuracy": 96.0
+    },
+    "task069_abductivenli_classification": {
+      "accuracy": 91.0
+    },
+    "task070_abductivenli_incorrect_classification": {
+      "accuracy": 92.5
+    },
+    "task092_check_prime_classification": {
+      "accuracy": 94.0
+    },
+    "task108_contextualabusedetection_classification": {
+      "accuracy": 79.5
+    },
+    "task109_smsspamcollection_spamsmsdetection": {
+      "accuracy": 98.0
+    },
+    "task088_identify_typo_verification": {
+      "accuracy": 100.0
+    },
+    "task089_swap_words_verification": {
+      "accuracy": 53.5
+    },
+    "task023_cosmosqa_question_generation": {
+      "rouge_l": 23.467103544697594
+    },
+    "task024_cosmosqa_answer_generation": {
+      "rouge_l": 6.641653150271916
+    },
+    "task025_cosmosqa_incorrect_answer_generation": {
+      "rouge_l": 32.31411695872862
+    },
+    "task026_drop_question_generation": {
+      "rouge_l": 15.59540957389023
+    },
+    "task027_drop_answer_type_generation": {
+      "accuracy": 97.0
+    },
+    "task028_drop_answer_generation": {
+      "accuracy": 51.5
+    },
+    "task059_ropes_story_generation": {
+      "rouge_l": 14.304146949388748
+    },
+    "task060_ropes_question_generation": {
+      "rouge_l": 17.596448770189397
+    },
+    "task067_abductivenli_answer_generation": {
+      "rouge_l": 5.584791968454705
+    },
+    "task068_abductivenli_incorrect_answer_generation": {
+      "rouge_l": 12.0460597155841
+    },
+    "task103_facts2story_long_text_generation": {
+      "rouge_l": 22.38421226923853
+    },
+    "task105_story_cloze-rocstories_sentence_generation": {
+      "rouge_l": 5.299807003643493
+    },
+    "task110_logic2text_sentence_generation": {
+      "rouge_l": 56.923253253044706
+    },
+    "task045_miscellaneous_sentence_paraphrasing": {
+      "rouge_l": 13.72970372390205
+    },
+    "task111_asset_sentence_simplification": {
+      "rouge_l": 19.66575176549111
+    },
+    "task062_bigbench_repeat_copy_logic": {
+      "rouge_l": 42.84421460892049
+    },
+    "task063_first_i_elements": {
+      "accuracy": 62.0
+    },
+    "task085_unnatural_addsub_arithmetic": {
+      "accuracy": 3.5000000000000004
+    },
+    "task046_miscellaneous_question_typing": {
+      "accuracy": 61.5
+    },
+    "macro_avg": 53.04135743028306
+  },
+  "coldstart_scores": {
+    "task020_mctaco_span_based_question": {
+      "accuracy": 70.12987012987013
+    },
+    "task033_winogrande_answer_generation": {
+      "accuracy": 46.0
+    },
+    "task034_winogrande_question_modification_object": {
+      "rouge_l": 13.261284009120189
+    },
+    "task036_qasc_topic_word_to_generate_related_fact": {
+      "accuracy": 11.0
+    },
+    "task039_qasc_find_overlapping_words": {
+      "accuracy": 44.5
+    },
+    "task050_multirc_answerability": {
+      "accuracy": 68.0
+    },
+    "task102_commongen_sentence_generation": {
+      "rouge_l": 20.791735494951855
+    },
+    "task121_zest_text_modification": {
+      "rouge_l": 11.510007584605358
+    },
+    "task133_winowhy_reason_plausibility_detection": {
+      "accuracy": 65.0
+    },
+    "task1152_bard_analogical_reasoning_causation": {
+      "accuracy": 46.34146341463415
+    },
+    "task1342_amazon_us_reviews_title": {
+      "accuracy": 5.0
+    },
+    "task1344_glue_entailment_classification": {
+      "accuracy": 7.000000000000001
+    },
+    "task1345_glue_qqp_question_paraprashing": {
+      "rouge_l": 9.22806532019285
+    },
+    "task1356_xlsum_title_generation": {
+      "rouge_l": 7.3549949506514345
+    },
+    "task1385_anli_r1_entailment": {
+      "accuracy": 10.1010101010101
+    },
+    "task1386_anli_r2_entailment": {
+      "accuracy": 7.035175879396985
+    },
+    "task1387_anli_r3_entailment": {
+      "accuracy": 14.000000000000002
+    },
+    "task1388_cb_entailment": {
+      "accuracy": 4.918032786885246
+    },
+    "task1394_meta_woz_task_classification": {
+      "accuracy": 0.0
+    },
+    "task1409_dart_text_generation": {
+      "rouge_l": 23.295372329735912
+    },
+    "macro_avg": 24.22335060005271
+  },
+  "frozen_scores": {
+    "task020_mctaco_span_based_question": {
+      "accuracy": 0.0
+    },
+    "task033_winogrande_answer_generation": {
+      "accuracy": 32.5
+    },
+    "task034_winogrande_question_modification_object": {
+      "rouge_l": 20.399454063615234
+    },
+    "task036_qasc_topic_word_to_generate_related_fact": {
+      "accuracy": 2.0
+    },
+    "task039_qasc_find_overlapping_words": {
+      "accuracy": 16.5
+    },
+    "task050_multirc_answerability": {
+      "accuracy": 0.0
+    },
+    "task102_commongen_sentence_generation": {
+      "rouge_l": 8.715324750082308
+    },
+    "task121_zest_text_modification": {
+      "rouge_l": 38.549537811961684
+    },
+    "task133_winowhy_reason_plausibility_detection": {
+      "accuracy": 54.0
+    },
+    "task1152_bard_analogical_reasoning_causation": {
+      "accuracy": 0.0
+    },
+    "task1342_amazon_us_reviews_title": {
+      "accuracy": 4.0
+    },
+    "task1344_glue_entailment_classification": {
+      "accuracy": 0.0
+    },
+    "task1345_glue_qqp_question_paraprashing": {
+      "rouge_l": 35.83555533702885
+    },
+    "task1356_xlsum_title_generation": {
+      "rouge_l": 17.953515244468207
+    },
+    "task1385_anli_r1_entailment": {
+      "accuracy": 2.525252525252525
+    },
+    "task1386_anli_r2_entailment": {
+      "accuracy": 5.527638190954774
+    },
+    "task1387_anli_r3_entailment": {
+      "accuracy": 10.0
+    },
+    "task1388_cb_entailment": {
+      "accuracy": 0.0
+    },
+    "task1394_meta_woz_task_classification": {
+      "accuracy": 0.0
+    },
+    "task1409_dart_text_generation": {
+      "rouge_l": 44.53290919119517
+    },
+    "macro_avg": 14.65195935572794
+  },
+  "training_time_seconds": 3861.1300830841064
+}
+=== END RESULTS ===
+=== DONE ===

@@ -1,0 +1,19 @@
+{
+  "experiment": "phase2_matched_coldstart_lora_3seeds",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "lora_rank": 8,
+  "max_steps": 6000,
+  "num_train_tasks": 41,
+  "num_holdout_tasks": 20,
+  "eval_examples": 200,
+  "seeds": [42, 137, 2024],
+  "coldstart_macros": {
+    "seed_42": 23.85,
+    "seed_137": 24.03,
+    "seed_2024": 24.22,
+    "mean": 24.03,
+    "std": 0.19
+  },
+  "frozen_macro": 14.65,
+  "note": "All 3 seeds use identical task splits, evaluation protocol, and frozen baseline. Frozen is deterministic (same across seeds)."
+}
