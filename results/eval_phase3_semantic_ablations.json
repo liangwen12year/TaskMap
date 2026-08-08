@@ -1,0 +1,42 @@
+{
+  "experiment": "phase3_semantic_ablations_and_matched_lora",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "eval_examples": 500,
+  "seed": 42,
+  "max_steps": 6000,
+  "taskmap_reference": {
+    "macro_9task": 47.1,
+    "note": "TaskMap no-topo rho=0.75 unfrozen, from Phase 1"
+  },
+  "shuffled_descriptions": {
+    "sst2": 80.6, "agnews": 88.0, "boolq": 74.8,
+    "squad_f1": 58.3, "xsum_rl": 28.1,
+    "wmt14_bleu": 15.1, "wmt16_bleu": 9.7,
+    "gsm8k": 47.4, "svamp": 38.3,
+    "macro_9task": 48.9,
+    "note": "Descriptions randomly reassigned across tasks. Performance MATCHES or exceeds TaskMap (47.1), suggesting the mapper does not rely on description semantics for known tasks."
+  },
+  "task_id_conditioning": {
+    "sst2": 62.4, "agnews": 86.0, "boolq": 69.6,
+    "squad_f1": 55.7, "xsum_rl": 28.2,
+    "wmt14_bleu": 14.9, "wmt16_bleu": 10.3,
+    "gsm8k": 46.8, "svamp": 34.7,
+    "macro_9task": 45.4,
+    "note": "Descriptions replaced with random fixed vectors. Still performs well (45.4 vs TaskMap 47.1), confirming mapper largely operates through learned residuals for known tasks."
+  },
+  "lora_r40_parameter_matched": {
+    "sst2": 74.6, "agnews": 92.6, "boolq": 64.4,
+    "squad_f1": 4.8, "xsum_rl": 28.0,
+    "wmt14_bleu": 1.7, "wmt16_bleu": 1.9,
+    "gsm8k": 36.0, "svamp": 29.3,
+    "macro_9task": 37.0,
+    "params": "35.3M (matching TaskMap 35.7M)",
+    "note": "Shared LoRA at matched parameter budget performs WORSE than r=8 (39.3) and far below TaskMap (47.1). Extra LoRA capacity hurts multi-task training."
+  },
+  "summary": {
+    "descriptions_matter_for_known_tasks": "No: shuffled descriptions match TaskMap (48.9 vs 47.1)",
+    "descriptions_matter_for_cold_start": "Yes: this is where description semantics are essential (r=0 can't use residuals)",
+    "residuals_carry_known_task_signal": "Yes: task-ID conditioning (45.4) is close to full TaskMap (47.1)",
+    "parameter_matched_lora_loses": "Yes: LoRA r=40 (37.0) << TaskMap (47.1) at same capacity"
+  }
+}
