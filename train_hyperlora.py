@@ -116,7 +116,8 @@ class HyperLoRAHook:
         else:
             h_2d = h
 
-        f = self.factors
+        dtype = h_2d.dtype
+        f = {k: v.to(dtype) for k, v in self.factors.items()}
         delta_up = h_2d @ f["up_A"] @ f["up_B"]
         delta_gate = h_2d @ f["gate_A"] @ f["gate_B"]
 
@@ -128,7 +129,7 @@ class HyperLoRAHook:
             act_mod = F.silu(gate_proj + delta_gate) * (up_proj + delta_up)
             delta_act = act_mod - act_orig
 
-            down_orig = module.down_proj.weight
+            down_orig = module.down_proj.weight.to(dtype)
             delta_down = f["down_A"] @ f["down_B"]
             delta_out = delta_act @ (down_orig + delta_down).T - delta_act @ down_orig.T + act_orig @ delta_down.T
 

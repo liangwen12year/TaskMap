@@ -76,6 +76,8 @@ def parse_args():
                         help="Randomly reassign descriptions across tasks")
     parser.add_argument("--task_id_conditioning", action="store_true",
                         help="Replace description embeddings with random learned vectors")
+    parser.add_argument("--constant_description", action="store_true",
+                        help="Replace all descriptions with a single constant vector (residual-only test)")
     parser.add_argument("--save_checkpoint", action="store_true",
                         help="Save final checkpoint with coefficients for analysis")
     parser.add_argument("--dry_run", action="store_true")
@@ -161,6 +163,14 @@ def setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device,
         embed_dim = list(all_embeds.values())[0].shape[0]
         for tid in all_embeds:
             all_embeds[tid] = _torch.randn(embed_dim, generator=g)
+
+    if args.constant_description:
+        import torch as _torch
+        print("  CONSTANT DESCRIPTION: all tasks share the same embedding")
+        embed_dim = list(all_embeds.values())[0].shape[0]
+        constant = _torch.randn(embed_dim, generator=_torch.Generator().manual_seed(0))
+        for tid in all_embeds:
+            all_embeds[tid] = constant.clone()
 
     for tid, embed in all_embeds.items():
         taskmap.cache_description(tid, embed)
