@@ -170,6 +170,31 @@ def format_humaneval(example, split="train"):
     }
 
 
+def format_imdb(example, split="train"):
+    label_map = {0: "negative", 1: "positive"}
+    text = example["text"][:1000]
+    return {
+        "input": text,
+        "response": label_map.get(example["label"], "unknown"),
+    }
+
+
+def format_emotion(example, split="train"):
+    label_map = {0: "sadness", 1: "joy", 2: "love", 3: "anger", 4: "fear", 5: "surprise"}
+    return {
+        "input": example["text"],
+        "response": label_map.get(example["label"], "unknown"),
+    }
+
+
+def format_newsgroups(example, split="train"):
+    text = example["text"][:1000]
+    return {
+        "input": text,
+        "response": example.get("label_text", "unknown"),
+    }
+
+
 FORMAT_FNS = {
     "sst2": format_sst2,
     "agnews": format_agnews,
@@ -189,6 +214,9 @@ FORMAT_FNS = {
     "flores_enfr": format_flores_enfr,
     "asdiv": format_asdiv,
     "humaneval": format_humaneval,
+    "imdb": format_imdb,
+    "emotion": format_emotion,
+    "newsgroups": format_newsgroups,
 }
 
 

@@ -32,7 +32,7 @@ from torch.optim.lr_scheduler import CosineAnnealingLR, LinearLR, SequentialLR
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-from models.backbone import load_backbone, add_lora, count_parameters
+from models.backbone import load_backbone, add_lora, add_vera, count_parameters
 from data.config import KNOWN_TASKS
 from data.download import download_task
 from data.format import format_dataset, format_all_tasks
@@ -41,7 +41,7 @@ from data.sampler import build_dataloader
 
 def parse_args():
     parser = argparse.ArgumentParser(description="TaskMap Baseline Training")
-    parser.add_argument("--mode", choices=["frozen", "lora"], default="lora")
+    parser.add_argument("--mode", choices=["frozen", "lora", "vera"], default="lora")
     parser.add_argument("--backbone", type=str, default="Qwen/Qwen2.5-1.5B")
     parser.add_argument("--lora_rank", type=int, default=16)
     parser.add_argument("--lora_alpha", type=int, default=32)
@@ -115,6 +115,9 @@ def train(args):
     if args.mode == "lora":
         print(f"Adding LoRA (rank={args.lora_rank}, alpha={args.lora_alpha})")
         model = add_lora(model, rank=args.lora_rank, alpha=args.lora_alpha)
+    elif args.mode == "vera":
+        print(f"Adding VeRA (rank={args.lora_rank})")
+        model = add_vera(model, rank=args.lora_rank)
 
     model = model.to(device)
     trainable, total = count_parameters(model)

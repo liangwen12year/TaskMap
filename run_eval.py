@@ -36,7 +36,7 @@ from eval import evaluate_all, compute_negative_transfer
 
 def parse_args():
     parser = argparse.ArgumentParser(description="TaskMap Evaluation")
-    parser.add_argument("--mode", choices=["frozen", "lora", "taskmap"], default="frozen")
+    parser.add_argument("--mode", choices=["frozen", "lora", "vera", "taskmap"], default="frozen")
     parser.add_argument("--backbone", type=str, default="Qwen/Qwen2.5-0.5B")
     parser.add_argument("--checkpoint", type=str, default=None)
     parser.add_argument("--lora_rank", type=int, default=16)
@@ -55,13 +55,17 @@ def load_model(args):
     print(f"Loading backbone: {args.backbone}")
     model, tokenizer = load_backbone(args.backbone)
 
-    if args.mode == "lora":
+    if args.mode in ("lora", "vera"):
         if args.checkpoint:
             from peft import PeftModel
-            print(f"Loading LoRA from checkpoint: {args.checkpoint}")
+            print(f"Loading {args.mode.upper()} from checkpoint: {args.checkpoint}")
             model = PeftModel.from_pretrained(model, args.checkpoint)
         else:
-            model = add_lora(model, rank=args.lora_rank)
+            if args.mode == "lora":
+                model = add_lora(model, rank=args.lora_rank)
+            else:
+                from models.backbone import add_vera
+                model = add_vera(model, rank=args.lora_rank)
 
     model = model.to(device)
     model.eval()

@@ -162,6 +162,47 @@ KNOWN_TASKS = {
         "metric": "exact_answer",
     },
 
+    # ── Web-Oriented Tasks ──
+    "imdb": {
+        "family": "classification",
+        "descriptions": [
+            "Classify the movie review sentiment as positive or negative.",
+            "Determine whether this movie review expresses a positive or negative opinion.",
+            "Read the review and assign a sentiment label.",
+        ],
+        "dataset": "stanfordnlp/imdb",
+        "subset": None,
+        "split_map": {"train": "train", "validation": "test", "test": "test"},
+        "max_response_tokens": 16,
+        "metric": "accuracy",
+    },
+    "emotion": {
+        "family": "classification",
+        "descriptions": [
+            "Classify the emotion expressed in the text.",
+            "Determine the emotional tone of the given text.",
+            "Identify which emotion is conveyed by this text.",
+        ],
+        "dataset": "dair-ai/emotion",
+        "subset": None,
+        "split_map": {"train": "train", "validation": "validation", "test": "test"},
+        "max_response_tokens": 16,
+        "metric": "accuracy",
+    },
+    "newsgroups": {
+        "family": "classification",
+        "descriptions": [
+            "Classify the newsgroup post into its topic category.",
+            "Determine which topic category this post belongs to.",
+            "Identify the subject area of the given text.",
+        ],
+        "dataset": "SetFit/20_newsgroups",
+        "subset": None,
+        "split_map": {"train": "train", "validation": "test", "test": "test"},
+        "max_response_tokens": 32,
+        "metric": "accuracy",
+    },
+
     # ── Code Generation ──
     "apps_intro": {
         "family": "code_generation",

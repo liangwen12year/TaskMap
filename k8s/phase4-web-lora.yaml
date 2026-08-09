@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: phase4-web-lora
+  namespace: taskmap-training
+  labels:
+    experiment: phase4-missing-baselines
+spec:
+  restartPolicy: Never
+  nodeSelector:
+    kubernetes.io/hostname: pokprod-b93r38s1
+  containers:
+  - name: trainer
+    image: nvcr.io/nvidia/pytorch:24.07-py3
+    command: ["/bin/bash", "-c"]
+    securityContext:
+      runAsUser: 0
+    env:
+    - name: TASKMAP_EVAL_EXAMPLES
+      value: "500"
+    args:
+    - |
+      nvidia-smi | head -5 &&
+      pip install -q 'transformers>=4.40,<4.50' 'peft>=0.10,<0.15' 'accelerate>=0.30,<0.35' datasets rouge-score sacrebleu sentencepiece tqdm pyyaml &&
+      git clone https://github.com/liangwen12year/TaskMap.git /workspace/TaskMap &&
+      cd /workspace/TaskMap &&
+      echo "=== Shared LoRA r=8 with web tasks (9 original + 3 web) ===" &&
+      python -u train.py --mode lora --backbone Qwen/Qwen2.5-1.5B \
+        --lora_rank 8 --lora_alpha 16 --max_steps 6000 \
+        --microbatch_size 4 --gradient_accumulation_steps 8 \
+        --output_dir outputs/lora_web --seed 42 &&
+      echo "=== Eval ===" &&
+      python -u run_eval.py --mode lora --backbone Qwen/Qwen2.5-1.5B \
+        --checkpoint outputs/lora_web/final --lora_rank 8 \
+        --output_file outputs/eval_lora_web.json --max_examples 500 &&
+      echo "=== RESULTS ===" && cat outputs/eval_lora_web.json &&
+      echo "=== DONE ==="
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        memory: 80Gi
+        cpu: "16"
+      requests:
+        nvidia.com/gpu: 1
+        memory: 40Gi
+        cpu: "8"
+    volumeMounts:
+    - name: workspace
+      mountPath: /workspace
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: workspace
+    emptyDir:
+      sizeLimit: 100Gi
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 16Gi

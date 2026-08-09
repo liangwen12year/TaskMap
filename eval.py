@@ -113,6 +113,8 @@ CLASSIFICATION_LABELS = {
     "boolq": ["yes", "no"],
     "multirc": ["yes", "no"],
     "trec6": ["abbreviation", "entity", "description", "human", "location", "number"],
+    "imdb": ["positive", "negative"],
+    "emotion": ["sadness", "joy", "love", "anger", "fear", "surprise"],
 }
 
 

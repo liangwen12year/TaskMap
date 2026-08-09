@@ -59,6 +59,23 @@ def add_lora(model, rank: int = 16, alpha: int = 32,
     return model
 
 
+def add_vera(model, rank: int = 256, target_modules: list = None):
+    """Add VeRA adapters: fixed random bases with learned diagonal scaling."""
+    if target_modules is None:
+        target_modules = ["mlp.up_proj", "mlp.gate_proj", "mlp.down_proj"]
+    from peft import VeraConfig
+    config = VeraConfig(
+        task_type=TaskType.CAUSAL_LM,
+        r=rank,
+        target_modules=target_modules,
+        d_initial=0.1,
+        bias="none",
+    )
+    model = get_peft_model(model, config)
+    model.print_trainable_parameters()
+    return model
+
+
 def count_parameters(model):
     """Count trainable and total parameters."""
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
