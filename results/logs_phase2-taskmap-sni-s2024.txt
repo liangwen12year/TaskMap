@@ -1258,3 +1258,34 @@ Loaded 20 tasks with 5,687 total examples
   task036_qasc_topic_word_to_generate_related_fact: 0.00 (accuracy, family=generation)
   task039_qasc_find_overlapping_words: 31.50 (accuracy, family=generation)
   task050_multirc_answerability: 0.00 (accuracy, family=classification)
+  task102_commongen_sentence_generation: 24.15 (rouge_l, family=generation)
+  task121_zest_text_modification: 43.32 (rouge_l, family=extraction)
+  task133_winowhy_reason_plausibility_detection: 58.50 (accuracy, family=extraction)
+  task1152_bard_analogical_reasoning_causation: 36.59 (accuracy, family=extraction)
+  task1342_amazon_us_reviews_title: 3.50 (accuracy, family=summarization)
+  task1344_glue_entailment_classification: 0.00 (accuracy, family=nli)
+  task1345_glue_qqp_question_paraprashing: 29.17 (rouge_l, family=paraphrase)
+  task1356_xlsum_title_generation: 23.11 (rouge_l, family=summarization)
+  task1385_anli_r1_entailment: 3.03 (accuracy, family=classification)
+  task1386_anli_r2_entailment: 4.02 (accuracy, family=classification)
+  task1387_anli_r3_entailment: 8.00 (accuracy, family=classification)
+  task1388_cb_entailment: 0.00 (accuracy, family=classification)
+  task1394_meta_woz_task_classification: 0.00 (accuracy, family=classification)
+  task1409_dart_text_generation: 52.65 (rouge_l, family=generation)
+
+  Cold-start macro: 18.87 (over 20 tasks)
+
+=== Nearest-Task Coefficient Reuse (20 held-out tasks) ===
+  task020_mctaco_span_based_question: 74.03 (accuracy) [donor=task045_miscellaneous_sentence_paraphrasing, sim=0.811]
+  task033_winogrande_answer_generation: 39.50 (accuracy) [donor=task083_babi_t1_single_supporting_fact_answer_generation, sim=0.803]
+  task034_winogrande_question_modification_object: 34.59 (rouge_l) [donor=task045_miscellaneous_sentence_paraphrasing, sim=0.874]
+  task036_qasc_topic_word_to_generate_related_fact: 0.00 (accuracy) [donor=task082_babi_t1_single_supporting_fact_question_generation, sim=0.782]
+  task039_qasc_find_overlapping_words: 24.50 (accuracy) [donor=task089_swap_words_verification, sim=0.828]
+  task050_multirc_answerability: 33.50 (accuracy) [donor=task045_miscellaneous_sentence_paraphrasing, sim=0.873]
+  task102_commongen_sentence_generation: 11.82 (rouge_l) [donor=task001_quoref_question_generation, sim=0.881]
+  task121_zest_text_modification: 27.63 (rouge_l) [donor=task045_miscellaneous_sentence_paraphrasing, sim=0.887]
+  task133_winowhy_reason_plausibility_detection: 62.00 (accuracy) [donor=task066_timetravel_binary_consistency_classification, sim=0.775]
+  task1152_bard_analogical_reasoning_causation: 26.83 (accuracy) [donor=task063_first_i_elements, sim=0.836]
+  task1342_amazon_us_reviews_title: 3.00 (accuracy) [donor=task103_facts2story_long_text_generation, sim=0.700]
+  task1344_glue_entailment_classification: 5.50 (accuracy) [donor=task065_timetravel_consistent_sentence_classification, sim=0.865]
+  task1345_glue_qqp_question_paraprashing: 10.89 (rouge_l) [donor=task045_miscellaneous_sentence_paraphrasing, sim=0.863]

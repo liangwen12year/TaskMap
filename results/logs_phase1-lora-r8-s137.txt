@@ -131,3 +131,252 @@ Starting training for 6000 steps...
   Step 1900/6000 | Loss: 1.5368 | LR: 1.60e-04 | Task: agnews | Time: 1275s
   Step 2000/6000 | Loss: 1.5344 | LR: 1.56e-04 | Task: boolq | Time: 1343s
   Saved checkpoint to outputs/lora_r8_s137/checkpoint-2000
+  Step 2100/6000 | Loss: 1.5220 | LR: 1.51e-04 | Task: gsm8k | Time: 1411s
+  Step 2200/6000 | Loss: 1.5226 | LR: 1.46e-04 | Task: xsum | Time: 1477s
+  Step 2300/6000 | Loss: 1.5182 | LR: 1.41e-04 | Task: agnews | Time: 1545s
+  Step 2400/6000 | Loss: 1.5246 | LR: 1.36e-04 | Task: squad | Time: 1611s
+  Step 2500/6000 | Loss: 1.4813 | LR: 1.31e-04 | Task: sst2 | Time: 1676s
+  Step 2600/6000 | Loss: 1.4831 | LR: 1.26e-04 | Task: squad | Time: 1741s
+  Step 2700/6000 | Loss: 1.5261 | LR: 1.21e-04 | Task: squad | Time: 1810s
+  Step 2800/6000 | Loss: 1.5353 | LR: 1.16e-04 | Task: wmt14_ende | Time: 1877s
+  Step 2900/6000 | Loss: 1.5520 | LR: 1.10e-04 | Task: boolq | Time: 1946s
+  Step 3000/6000 | Loss: 1.5307 | LR: 1.05e-04 | Task: sst2 | Time: 2013s
+  Step 3100/6000 | Loss: 1.5118 | LR: 9.95e-05 | Task: squad | Time: 2078s
+  Step 3200/6000 | Loss: 1.5175 | LR: 9.41e-05 | Task: xsum | Time: 2146s
+  Step 3300/6000 | Loss: 1.5309 | LR: 8.87e-05 | Task: xsum | Time: 2213s
+  Step 3400/6000 | Loss: 1.4930 | LR: 8.33e-05 | Task: wmt16_enro | Time: 2281s
+  Step 3500/6000 | Loss: 1.5319 | LR: 7.80e-05 | Task: squad | Time: 2348s
+  Step 3600/6000 | Loss: 1.4874 | LR: 7.28e-05 | Task: squad | Time: 2414s
+  Step 3700/6000 | Loss: 1.4986 | LR: 6.77e-05 | Task: gsm8k | Time: 2482s
+  Step 3800/6000 | Loss: 1.5042 | LR: 6.26e-05 | Task: wmt16_enro | Time: 2550s
+  Step 3900/6000 | Loss: 1.4808 | LR: 5.77e-05 | Task: wmt16_enro | Time: 2615s
+  Step 4000/6000 | Loss: 1.5100 | LR: 5.28e-05 | Task: squad | Time: 2682s
+  Saved checkpoint to outputs/lora_r8_s137/checkpoint-4000
+  Step 4100/6000 | Loss: 1.5120 | LR: 4.81e-05 | Task: xsum | Time: 2751s
+  Step 4200/6000 | Loss: 1.5176 | LR: 4.36e-05 | Task: wmt16_enro | Time: 2821s
+  Step 4300/6000 | Loss: 1.4706 | LR: 3.92e-05 | Task: sst2 | Time: 2887s
+  Step 4400/6000 | Loss: 1.4927 | LR: 3.50e-05 | Task: wmt14_ende | Time: 2956s
+  Step 4500/6000 | Loss: 1.4994 | LR: 3.10e-05 | Task: sst2 | Time: 3023s
+  Step 4600/6000 | Loss: 1.4911 | LR: 2.72e-05 | Task: squad | Time: 3090s
+  Step 4700/6000 | Loss: 1.5322 | LR: 2.36e-05 | Task: wmt14_ende | Time: 3158s
+  Step 4800/6000 | Loss: 1.4699 | LR: 2.03e-05 | Task: wmt14_ende | Time: 3225s
+  Step 4900/6000 | Loss: 1.5188 | LR: 1.71e-05 | Task: sst2 | Time: 3295s
+  Step 5000/6000 | Loss: 1.4781 | LR: 1.42e-05 | Task: wmt14_ende | Time: 3362s
+  Step 5100/6000 | Loss: 1.5172 | LR: 1.16e-05 | Task: wmt16_enro | Time: 3430s
+  Step 5200/6000 | Loss: 1.4446 | LR: 9.18e-06 | Task: xsum | Time: 3495s
+  Step 5300/6000 | Loss: 1.5056 | LR: 7.05e-06 | Task: boolq | Time: 3564s
+  Step 5400/6000 | Loss: 1.4787 | LR: 5.20e-06 | Task: wmt16_enro | Time: 3630s
+  Step 5500/6000 | Loss: 1.4999 | LR: 3.62e-06 | Task: wmt14_ende | Time: 3698s
+  Step 5600/6000 | Loss: 1.5006 | LR: 2.32e-06 | Task: wmt16_enro | Time: 3765s
+  Step 5700/6000 | Loss: 1.4809 | LR: 1.31e-06 | Task: wmt16_enro | Time: 3831s
+  Step 5800/6000 | Loss: 1.4801 | LR: 5.82e-07 | Task: sst2 | Time: 3898s
+  Step 5900/6000 | Loss: 1.5102 | LR: 1.46e-07 | Task: wmt14_ende | Time: 3965s
+  Step 6000/6000 | Loss: 1.4582 | LR: 0.00e+00 | Task: xsum | Time: 4031s
+  Saved checkpoint to outputs/lora_r8_s137/checkpoint-6000
+
+Training complete in 4031.3s (6000 steps)
+Saved final model to outputs/lora_r8_s137/final
+
+Done. Run eval.py separately to evaluate.
+=== Eval ===
+Loading backbone: Qwen/Qwen2.5-1.5B
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading LoRA from checkpoint: outputs/lora_r8_s137/final
+Parameters: 0 trainable / 1,550,767,616 total
+
+Loading evaluation data...
+Downloading sst2 (stanfordnlp/sst2)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'stanfordnlp/sst2' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation', 'test']
+Downloading agnews (fancyzhx/ag_news)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'fancyzhx/ag_news' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'test']
+Downloading boolq (google/boolq)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'google/boolq' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation']
+Downloading squad (rajpurkar/squad)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'rajpurkar/squad' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation']
+Downloading xsum (EdinburghNLP/xsum)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'EdinburghNLP/xsum' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation', 'test']
+Downloading samsum (Samsung/samsum)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'Samsung/samsum' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  FAILED: Dataset 'Samsung/samsum' doesn't exist on the Hub or cannot be accessed.
+Downloading wmt14_ende (wmt14)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'wmt14' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation', 'test']
+Downloading wmt16_enro (wmt16)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'wmt16' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation', 'test']
+Downloading gsm8k (openai/gsm8k)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'openai/gsm8k' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'test']
+Downloading svamp (ChilleD/SVAMP)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'ChilleD/SVAMP' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'test']
+Downloading apps_intro (codeparrot/apps)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'codeparrot/apps' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  FAILED: Dataset scripts are no longer supported, but found apps.py
+  sst2/validation: 872 examples (deduped)
+  agnews/validation: 7600 examples (deduped)
+  boolq/validation: 3270 examples (deduped)
+  squad/validation: 10552 examples (deduped)
+  xsum/validation: 11327 examples (deduped)
+  wmt14_ende/validation: 2996 examples (deduped)
+  wmt16_enro/validation: 1999 examples (deduped)
+  gsm8k/validation: 1319 examples (deduped)
+  svamp/validation: 300 examples (deduped)
+Evaluating 9 tasks
+
+Running evaluation...
+  Evaluating sst2 (500 examples, metric=accuracy)...
+    sst2: {'accuracy': 82.19999999999999}
+  Evaluating agnews (500 examples, metric=accuracy)...
+    agnews: {'accuracy': 90.0}
+  Evaluating boolq (500 examples, metric=accuracy)...
+    boolq: {'accuracy': 64.60000000000001}
+  Evaluating squad (500 examples, metric=f1_em)...
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+    squad: {'f1': 17.605576806521164, 'em': 3.6}
+  Evaluating xsum (500 examples, metric=rouge_l)...
+    xsum: {'rouge_l': 28.08941711641686}
+  Evaluating wmt14_ende (500 examples, metric=sacrebleu_chrf)...
+WARNING:sacrebleu:That's 100 lines that end in a tokenized period ('.')
+WARNING:sacrebleu:It looks like you forgot to detokenize your test data, which may hurt your score.
+WARNING:sacrebleu:If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+    wmt14_ende: {'sacrebleu': 1.808891592985211, 'chrf': 24.334121499529974}
+  Evaluating wmt16_enro (500 examples, metric=sacrebleu_chrf)...
+WARNING:sacrebleu:That's 100 lines that end in a tokenized period ('.')
+WARNING:sacrebleu:It looks like you forgot to detokenize your test data, which may hurt your score.
+WARNING:sacrebleu:If you insist your data is detokenized, or don't care, you can suppress this message with the `force` parameter.
+    wmt16_enro: {'sacrebleu': 1.737327771577944, 'chrf': 24.203346790313137}
+  Evaluating gsm8k (500 examples, metric=exact_answer)...
+    gsm8k: {'exact_answer': 39.800000000000004}
+  Evaluating svamp (300 examples, metric=exact_answer)...
+    svamp: {'exact_answer': 49.0}
+
+  Macro average: 41.65
+
+Measuring efficiency...
+
+Results saved to outputs/eval_lora_r8_s137.json
+
+=== RESULTS JSON ===
+{
+  "mode": "lora",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "checkpoint": "outputs/lora_r8_s137/final",
+  "scores": {
+    "sst2": {
+      "accuracy": 82.19999999999999
+    },
+    "agnews": {
+      "accuracy": 90.0
+    },
+    "boolq": {
+      "accuracy": 64.60000000000001
+    },
+    "squad": {
+      "f1": 17.605576806521164,
+      "em": 3.6
+    },
+    "xsum": {
+      "rouge_l": 28.08941711641686
+    },
+    "wmt14_ende": {
+      "sacrebleu": 1.808891592985211,
+      "chrf": 24.334121499529974
+    },
+    "wmt16_enro": {
+      "sacrebleu": 1.737327771577944,
+      "chrf": 24.203346790313137
+    },
+    "gsm8k": {
+      "exact_answer": 39.800000000000004
+    },
+    "svamp": {
+      "exact_answer": 49.0
+    },
+    "macro_avg": 41.649023698611245,
+    "efficiency": {
+      "tokens_per_sec": 10379.012104569425,
+      "peak_gb": 3.217577472
+    },
+    "params": {
+      "trainable_M": 0.0,
+      "total_M": 1550.767616
+    }
+  }
+}
+=== END RESULTS ===
+=== RESULTS ===
+{
+  "mode": "lora",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "checkpoint": "outputs/lora_r8_s137/final",
+  "scores": {
+    "sst2": {
+      "accuracy": 82.19999999999999
+    },
+    "agnews": {
+      "accuracy": 90.0
+    },
+    "boolq": {
+      "accuracy": 64.60000000000001
+    },
+    "squad": {
+      "f1": 17.605576806521164,
+      "em": 3.6
+    },
+    "xsum": {
+      "rouge_l": 28.08941711641686
+    },
+    "wmt14_ende": {
+      "sacrebleu": 1.808891592985211,
+      "chrf": 24.334121499529974
+    },
+    "wmt16_enro": {
+      "sacrebleu": 1.737327771577944,
+      "chrf": 24.203346790313137
+    },
+    "gsm8k": {
+      "exact_answer": 39.800000000000004
+    },
+    "svamp": {
+      "exact_answer": 49.0
+    },
+    "macro_avg": 41.649023698611245,
+    "efficiency": {
+      "tokens_per_sec": 10379.012104569425,
+      "peak_gb": 3.217577472
+    },
+    "params": {
+      "trainable_M": 0.0,
+      "total_M": 1550.767616
+    }
+  }
+}=== DONE ===
