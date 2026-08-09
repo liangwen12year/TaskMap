@@ -1280,3 +1280,13 @@ Loaded 20 tasks with 5,687 total examples
 === Nearest-Task Coefficient Reuse (20 held-out tasks) ===
   task020_mctaco_span_based_question: 12.99 (accuracy) [donor=task045_miscellaneous_sentence_paraphrasing, sim=0.811]
   task033_winogrande_answer_generation: 32.50 (accuracy) [donor=task083_babi_t1_single_supporting_fact_answer_generation, sim=0.803]
+  task034_winogrande_question_modification_object: 31.21 (rouge_l) [donor=task045_miscellaneous_sentence_paraphrasing, sim=0.874]
+  task036_qasc_topic_word_to_generate_related_fact: 0.00 (accuracy) [donor=task082_babi_t1_single_supporting_fact_question_generation, sim=0.782]
+  task039_qasc_find_overlapping_words: 36.00 (accuracy) [donor=task089_swap_words_verification, sim=0.828]
+  task050_multirc_answerability: 5.50 (accuracy) [donor=task045_miscellaneous_sentence_paraphrasing, sim=0.873]
+  task102_commongen_sentence_generation: 8.80 (rouge_l) [donor=task001_quoref_question_generation, sim=0.881]
+  task121_zest_text_modification: 35.49 (rouge_l) [donor=task045_miscellaneous_sentence_paraphrasing, sim=0.887]
+  task133_winowhy_reason_plausibility_detection: 34.00 (accuracy) [donor=task066_timetravel_binary_consistency_classification, sim=0.775]
+  task1152_bard_analogical_reasoning_causation: 34.15 (accuracy) [donor=task063_first_i_elements, sim=0.836]
+  task1342_amazon_us_reviews_title: 4.50 (accuracy) [donor=task103_facts2story_long_text_generation, sim=0.700]
+  task1344_glue_entailment_classification: 0.00 (accuracy) [donor=task065_timetravel_consistent_sentence_classification, sim=0.865]
