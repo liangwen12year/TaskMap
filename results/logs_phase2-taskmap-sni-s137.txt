@@ -227,3 +227,126 @@ Starting scaled TaskMap training for 12000 steps...
   Step 8900/12000 | Total: 108.4804 | task=2.0330 | topology=0.0812 | balance=0.0061 | stability=1.0175 | alignment=0.8872 | Task: task002_quoref_answer_generation (generation) | Phase: temp=0.249 | Time: 129182s
   Step 9000/12000 | Total: 106.7270 | task=0.7787 | topology=0.0800 | balance=0.0063 | stability=1.8025 | alignment=1.0603 | Task: task075_squad1.1_answer_generation (question_answering) | Phase: temp=0.240 | Time: 130663s
   Step 9100/12000 | Total: 101.1162 | task=0.6294 | topology=0.0802 | balance=0.0062 | stability=7.4589 | alignment=1.1533 | Task: task045_miscellaneous_sentence_paraphrasing (paraphrase) | Phase: temp=0.231 | Time: 132148s
+  Step 9200/12000 | Total: 102.3565 | task=0.5016 | topology=0.0805 | balance=0.0066 | stability=2.8526 | alignment=1.3735 | Task: task063_first_i_elements (other) | Phase: temp=0.222 | Time: 133635s
+  Step 9300/12000 | Total: 107.3723 | task=1.1553 | topology=0.0801 | balance=0.0063 | stability=1.0487 | alignment=0.9282 | Task: task066_timetravel_binary_consistency_classification (generation) | Phase: temp=0.214 | Time: 135193s
+  Step 9400/12000 | Total: 101.5270 | task=2.5144 | topology=0.0811 | balance=0.0067 | stability=1.3652 | alignment=0.8647 | Task: task103_facts2story_long_text_generation (generation) | Phase: temp=0.206 | Time: 136690s
+  Step 9500/12000 | Total: 107.1600 | task=1.4763 | topology=0.0820 | balance=0.0065 | stability=1.1334 | alignment=1.0491 | Task: task074_squad1.1_question_generation (question_answering) | Phase: temp=0.199 | Time: 138189s
+  Step 9600/12000 | Total: 105.7289 | task=1.3117 | topology=0.0811 | balance=0.0073 | stability=3.2698 | alignment=1.0764 | Task: task069_abductivenli_classification (generation) | Phase: temp=0.191 | Time: 139685s
+  Step 9700/12000 | Total: 106.7322 | task=0.3208 | topology=0.0810 | balance=0.0072 | stability=5.9204 | alignment=1.1931 | Task: task082_babi_t1_single_supporting_fact_question_generation (generation) | Phase: temp=0.184 | Time: 141180s
+  Step 9800/12000 | Total: 98.9180 | task=1.4539 | topology=0.0813 | balance=0.0069 | stability=2.0041 | alignment=0.7994 | Task: task080_piqa_answer_generation (other) | Phase: temp=0.177 | Time: 142671s
+  Step 9900/12000 | Total: 102.9697 | task=1.1497 | topology=0.0814 | balance=0.0069 | stability=1.9019 | alignment=1.2625 | Task: task073_commonsenseqa_answer_generation (generation) | Phase: temp=0.170 | Time: 144170s
+  Step 10000/12000 | Total: 106.2435 | task=1.5485 | topology=0.0814 | balance=0.0076 | stability=1.5202 | alignment=1.2199 | Task: task085_unnatural_addsub_arithmetic (other) | Phase: temp=0.164 | Time: 145670s
+  Step 10100/12000 | Total: 107.1367 | task=0.6832 | topology=0.0822 | balance=0.0073 | stability=3.8497 | alignment=0.8910 | Task: task045_miscellaneous_sentence_paraphrasing (paraphrase) | Phase: temp=0.158 | Time: 147174s
+  Step 10200/12000 | Total: 104.2472 | task=0.3170 | topology=0.0818 | balance=0.0072 | stability=1.5676 | alignment=1.0882 | Task: task082_babi_t1_single_supporting_fact_question_generation (generation) | Phase: temp=0.152 | Time: 148679s
+  Step 10300/12000 | Total: 102.5061 | task=1.0018 | topology=0.0819 | balance=0.0075 | stability=1.4472 | alignment=0.8003 | Task: task028_drop_answer_generation (other) | Phase: temp=0.147 | Time: 150183s
+  Step 10400/12000 | Total: 105.1472 | task=1.1456 | topology=0.0807 | balance=0.0073 | stability=2.7024 | alignment=1.0691 | Task: task105_story_cloze-rocstories_sentence_generation (generation) | Phase: temp=0.141 | Time: 151690s
+  Step 10500/12000 | Total: 104.1136 | task=1.4993 | topology=0.0822 | balance=0.0070 | stability=0.5269 | alignment=1.1389 | Task: task074_squad1.1_question_generation (question_answering) | Phase: temp=0.136 | Time: 153197s
+  Step 10600/12000 | Total: 105.1099 | task=0.6343 | topology=0.0818 | balance=0.0073 | stability=2.2186 | alignment=0.9445 | Task: task045_miscellaneous_sentence_paraphrasing (paraphrase) | Phase: temp=0.132 | Time: 154690s
+  Step 10700/12000 | Total: 102.6388 | task=1.7556 | topology=0.0823 | balance=0.0076 | stability=2.4143 | alignment=0.9399 | Task: task002_quoref_answer_generation (generation) | Phase: temp=0.127 | Time: 156189s
+  Step 10800/12000 | Total: 101.9488 | task=1.3063 | topology=0.0816 | balance=0.0074 | stability=2.1676 | alignment=0.9645 | Task: task066_timetravel_binary_consistency_classification (generation) | Phase: temp=0.123 | Time: 157692s
+  Step 10900/12000 | Total: 103.1932 | task=1.6490 | topology=0.0831 | balance=0.0074 | stability=1.9279 | alignment=1.0157 | Task: task080_piqa_answer_generation (other) | Phase: temp=0.120 | Time: 159195s
+  Step 11000/12000 | Total: 105.6390 | task=0.3404 | topology=0.0820 | balance=0.0081 | stability=0.6269 | alignment=1.1049 | Task: task082_babi_t1_single_supporting_fact_question_generation (generation) | Phase: temp=0.116 | Time: 160693s
+  Step 11100/12000 | Total: 102.0580 | task=0.3167 | topology=0.0824 | balance=0.0074 | stability=1.3838 | alignment=0.9843 | Task: task060_ropes_question_generation (paraphrase) | Phase: temp=0.113 | Time: 162178s
+  Step 11200/12000 | Total: 106.7513 | task=1.3856 | topology=0.0813 | balance=0.0075 | stability=1.6984 | alignment=1.0050 | Task: task105_story_cloze-rocstories_sentence_generation (generation) | Phase: temp=0.110 | Time: 163679s
+  Step 11300/12000 | Total: 101.0190 | task=0.4484 | topology=0.1392 | balance=0.0154 | stability=2.9172 | alignment=0.6937 | Task: task044_essential_terms_identifying_essential_words (generation) | Phase: temp=0.108 | Time: 165169s
+  Step 11400/12000 | Total: 98.5973 | task=0.3999 | topology=0.1392 | balance=0.0153 | stability=2.2634 | alignment=0.8506 | Task: task111_asset_sentence_simplification (paraphrase) | Phase: temp=0.106 | Time: 166662s
+  Step 11500/12000 | Total: 102.0206 | task=0.3410 | topology=0.1392 | balance=0.0153 | stability=2.2976 | alignment=0.9011 | Task: task046_miscellaneous_question_typing (generation) | Phase: temp=0.104 | Time: 168146s
+  Step 11600/12000 | Total: 103.1616 | task=0.8527 | topology=0.1392 | balance=0.0153 | stability=1.7776 | alignment=1.0931 | Task: task108_contextualabusedetection_classification (other) | Phase: temp=0.103 | Time: 169641s
+  Step 11700/12000 | Total: 102.3999 | task=0.5202 | topology=0.1392 | balance=0.0153 | stability=13.5444 | alignment=0.8596 | Task: task047_miscellaneous_answering_science_questions (generation) | Phase: temp=0.101 | Time: 171119s
+  Step 11800/12000 | Total: 99.5571 | task=1.5786 | topology=0.1392 | balance=0.0154 | stability=2.3864 | alignment=0.7707 | Task: task024_cosmosqa_answer_generation (extraction) | Phase: temp=0.101 | Time: 172603s
+  Step 11900/12000 | Total: 101.1806 | task=2.2633 | topology=0.1392 | balance=0.0153 | stability=1.8180 | alignment=0.8690 | Task: task080_piqa_answer_generation (other) | Phase: temp=0.100 | Time: 174091s
+  Step 12000/12000 | Total: 102.0217 | task=2.3724 | topology=0.1392 | balance=0.0153 | stability=1.5828 | alignment=1.0118 | Task: task075_squad1.1_answer_generation (question_answering) | Phase: temp=0.100 | Time: 175586s
+  Saved checkpoint to outputs/phase2_taskmap_s137/checkpoint-12000
+
+Training complete in 175585.8s (12000 steps)
+Saved final model to outputs/phase2_taskmap_s137/final
+
+======================================================================
+EVALUATION PHASE
+======================================================================
+
+Loading SNI dataset (41 requested tasks, split=validation)...
+Loading Super-NaturalInstructions dataset (both splits)...
+  train: 3082094 examples
+  test: 484006 examples
+  Combined: 3566100 examples
+  Valid tasks: 41/41
+  task001_quoref_question_generation: 400 examples, family=question_answering, metric=rouge_l
+  task002_quoref_answer_generation: 400 examples, family=generation, metric=accuracy
+  task073_commonsenseqa_answer_generation: 244 examples, family=generation, metric=accuracy
+  task074_squad1.1_question_generation: 400 examples, family=question_answering, metric=rouge_l
+  task075_squad1.1_answer_generation: 400 examples, family=question_answering, metric=accuracy
+  task080_piqa_answer_generation: 400 examples, family=other, metric=rouge_l
+  task082_babi_t1_single_supporting_fact_question_generation: 400 examples, family=generation, metric=accuracy
+  task083_babi_t1_single_supporting_fact_answer_generation: 199 examples, family=fact_checking, metric=accuracy
+  task043_essential_terms_answering_incomplete_questions: 349 examples, family=generation, metric=accuracy
+  task044_essential_terms_identifying_essential_words: 400 examples, family=generation, metric=accuracy
+  task047_miscellaneous_answering_science_questions: 51 examples, family=generation, metric=accuracy
+  task061_ropes_answer_generation: 400 examples, family=extraction, metric=accuracy
+  task022_cosmosqa_passage_inappropriate_binary: 26 examples, family=other, metric=accuracy
+  task065_timetravel_consistent_sentence_classification: 400 examples, family=generation, metric=accuracy
+  task066_timetravel_binary_consistency_classification: 400 examples, family=generation, metric=accuracy
+  task069_abductivenli_classification: 400 examples, family=generation, metric=accuracy
+  task070_abductivenli_incorrect_classification: 400 examples, family=generation, metric=accuracy
+  task092_check_prime_classification: 400 examples, family=other, metric=accuracy
+  task108_contextualabusedetection_classification: 400 examples, family=other, metric=accuracy
+  task109_smsspamcollection_spamsmsdetection: 213 examples, family=classification, metric=accuracy
+  task088_identify_typo_verification: 400 examples, family=other, metric=accuracy
+  task089_swap_words_verification: 400 examples, family=other, metric=accuracy
+  task023_cosmosqa_question_generation: 400 examples, family=extraction, metric=rouge_l
+  task024_cosmosqa_answer_generation: 400 examples, family=extraction, metric=rouge_l
+  task025_cosmosqa_incorrect_answer_generation: 400 examples, family=reasoning, metric=rouge_l
+  task026_drop_question_generation: 400 examples, family=generation, metric=rouge_l
+  task027_drop_answer_type_generation: 400 examples, family=classification, metric=accuracy
+  task028_drop_answer_generation: 400 examples, family=other, metric=accuracy
+  task059_ropes_story_generation: 322 examples, family=extraction, metric=rouge_l
+  task060_ropes_question_generation: 400 examples, family=paraphrase, metric=rouge_l
+  task067_abductivenli_answer_generation: 400 examples, family=generation, metric=rouge_l
+  task068_abductivenli_incorrect_answer_generation: 400 examples, family=generation, metric=rouge_l
+  task103_facts2story_long_text_generation: 400 examples, family=generation, metric=rouge_l
+  task105_story_cloze-rocstories_sentence_generation: 400 examples, family=generation, metric=rouge_l
+  task110_logic2text_sentence_generation: 400 examples, family=generation, metric=rouge_l
+  task045_miscellaneous_sentence_paraphrasing: 348 examples, family=paraphrase, metric=rouge_l
+  task111_asset_sentence_simplification: 400 examples, family=paraphrase, metric=rouge_l
+  task062_bigbench_repeat_copy_logic: 6 examples, family=reasoning, metric=rouge_l
+  task063_first_i_elements: 400 examples, family=other, metric=accuracy
+  task085_unnatural_addsub_arithmetic: 400 examples, family=other, metric=accuracy
+  task046_miscellaneous_question_typing: 400 examples, family=generation, metric=accuracy
+
+Loaded 41 tasks with 14,558 total examples
+
+=== Trained Tasks (validation): 41 tasks ===
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+  task001_quoref_question_generation: 37.91 (rouge_l)
+  task002_quoref_answer_generation: 56.00 (accuracy)
+  task073_commonsenseqa_answer_generation: 78.00 (accuracy)
+  task074_squad1.1_question_generation: 25.78 (rouge_l)
+  task075_squad1.1_answer_generation: 73.00 (accuracy)
+  task080_piqa_answer_generation: 10.49 (rouge_l)
+  task082_babi_t1_single_supporting_fact_question_generation: 34.50 (accuracy)
+  task083_babi_t1_single_supporting_fact_answer_generation: 98.99 (accuracy)
+  task043_essential_terms_answering_incomplete_questions: 88.50 (accuracy)
+  task044_essential_terms_identifying_essential_words: 40.50 (accuracy)
+  task047_miscellaneous_answering_science_questions: 98.04 (accuracy)
+  task061_ropes_answer_generation: 67.50 (accuracy)
+  task022_cosmosqa_passage_inappropriate_binary: 80.77 (accuracy)
+  task065_timetravel_consistent_sentence_classification: 87.50 (accuracy)
+  task066_timetravel_binary_consistency_classification: 95.50 (accuracy)
+  task069_abductivenli_classification: 86.50 (accuracy)
+  task070_abductivenli_incorrect_classification: 89.00 (accuracy)
+  task092_check_prime_classification: 88.00 (accuracy)
+  task108_contextualabusedetection_classification: 75.50 (accuracy)
+  task109_smsspamcollection_spamsmsdetection: 98.50 (accuracy)
+  task088_identify_typo_verification: 99.50 (accuracy)
+  task089_swap_words_verification: 53.50 (accuracy)
+  task023_cosmosqa_question_generation: 10.80 (rouge_l)
+  task024_cosmosqa_answer_generation: 16.68 (rouge_l)
+  task025_cosmosqa_incorrect_answer_generation: 25.96 (rouge_l)
+  task026_drop_question_generation: 28.78 (rouge_l)
+  task027_drop_answer_type_generation: 98.00 (accuracy)
+  task028_drop_answer_generation: 41.00 (accuracy)
+  task059_ropes_story_generation: 12.91 (rouge_l)
+  task060_ropes_question_generation: 32.72 (rouge_l)
+  task067_abductivenli_answer_generation: 15.32 (rouge_l)
+  task068_abductivenli_incorrect_answer_generation: 19.99 (rouge_l)
