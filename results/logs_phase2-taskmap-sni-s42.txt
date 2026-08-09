@@ -351,3 +351,4 @@ Loaded 41 tasks with 14,558 total examples
   task068_abductivenli_incorrect_answer_generation: 47.63 (rouge_l)
   task103_facts2story_long_text_generation: 22.40 (rouge_l)
   task105_story_cloze-rocstories_sentence_generation: 22.99 (rouge_l)
+  task110_logic2text_sentence_generation: 70.34 (rouge_l)

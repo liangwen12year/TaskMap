@@ -350,3 +350,4 @@ Loaded 41 tasks with 14,558 total examples
   task060_ropes_question_generation: 32.72 (rouge_l)
   task067_abductivenli_answer_generation: 15.32 (rouge_l)
   task068_abductivenli_incorrect_answer_generation: 19.99 (rouge_l)
+  task103_facts2story_long_text_generation: 22.53 (rouge_l)

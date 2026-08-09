@@ -353,3 +353,908 @@ Loaded 41 tasks with 14,558 total examples
   task045_miscellaneous_sentence_paraphrasing: 18.06 (rouge_l)
   task111_asset_sentence_simplification: 41.11 (rouge_l)
   task062_bigbench_repeat_copy_logic: 9.86 (rouge_l)
+  task063_first_i_elements: 62.00 (accuracy)
+  task085_unnatural_addsub_arithmetic: 3.50 (accuracy)
+  task046_miscellaneous_question_typing: 47.50 (accuracy)
+
+  Trained Tasks (validation) macro average: 53.70 (over 41 tasks)
+
+=== Route Analysis ===
+============================================================
+Route Overlap Analysis
+============================================================
+
+Within-family average overlap:  0.622
+Between-family average overlap: 0.609
+Ratio (within/between):         1.02x
+
+Pairwise overlaps (averaged across layers):
+  task001_quoref_question_generation <-> task002_quoref_answer_generation: 0.648
+  task001_quoref_question_generation <-> task022_cosmosqa_passage_inappropriate_binary: 0.603
+  task001_quoref_question_generation <-> task023_cosmosqa_question_generation: 0.609
+  task001_quoref_question_generation <-> task024_cosmosqa_answer_generation: 0.601
+  task001_quoref_question_generation <-> task025_cosmosqa_incorrect_answer_generation: 0.594
+  task001_quoref_question_generation <-> task026_drop_question_generation: 0.590
+  task001_quoref_question_generation <-> task027_drop_answer_type_generation: 0.589
+  task001_quoref_question_generation <-> task028_drop_answer_generation: 0.594
+  task001_quoref_question_generation <-> task043_essential_terms_answering_incomplete_questions: 0.599
+  task001_quoref_question_generation <-> task044_essential_terms_identifying_essential_words: 0.574
+  task001_quoref_question_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.588
+  task001_quoref_question_generation <-> task046_miscellaneous_question_typing: 0.590
+  task001_quoref_question_generation <-> task047_miscellaneous_answering_science_questions: 0.594
+  task001_quoref_question_generation <-> task059_ropes_story_generation: 0.615
+  task001_quoref_question_generation <-> task060_ropes_question_generation: 0.586
+  task001_quoref_question_generation <-> task061_ropes_answer_generation: 0.587
+  task001_quoref_question_generation <-> task062_bigbench_repeat_copy_logic: 0.602
+  task001_quoref_question_generation <-> task063_first_i_elements: 0.604
+  task001_quoref_question_generation <-> task065_timetravel_consistent_sentence_classification: 0.596
+  task001_quoref_question_generation <-> task066_timetravel_binary_consistency_classification: 0.596
+  task001_quoref_question_generation <-> task067_abductivenli_answer_generation: 0.591
+  task001_quoref_question_generation <-> task068_abductivenli_incorrect_answer_generation: 0.600
+  task001_quoref_question_generation <-> task069_abductivenli_classification: 0.585
+  task001_quoref_question_generation <-> task070_abductivenli_incorrect_classification: 0.588
+  task001_quoref_question_generation <-> task073_commonsenseqa_answer_generation: 0.603
+  task001_quoref_question_generation <-> task074_squad1.1_question_generation: 0.593 [SAME FAMILY]
+  task001_quoref_question_generation <-> task075_squad1.1_answer_generation: 0.604 [SAME FAMILY]
+  task001_quoref_question_generation <-> task080_piqa_answer_generation: 0.590
+  task001_quoref_question_generation <-> task082_babi_t1_single_supporting_fact_question_generation: 0.609
+  task001_quoref_question_generation <-> task083_babi_t1_single_supporting_fact_answer_generation: 0.602
+  task001_quoref_question_generation <-> task085_unnatural_addsub_arithmetic: 0.603
+  task001_quoref_question_generation <-> task088_identify_typo_verification: 0.604
+  task001_quoref_question_generation <-> task089_swap_words_verification: 0.601
+  task001_quoref_question_generation <-> task092_check_prime_classification: 0.600
+  task001_quoref_question_generation <-> task103_facts2story_long_text_generation: 0.625
+  task001_quoref_question_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.607
+  task001_quoref_question_generation <-> task108_contextualabusedetection_classification: 0.605
+  task001_quoref_question_generation <-> task109_smsspamcollection_spamsmsdetection: 0.609
+  task001_quoref_question_generation <-> task110_logic2text_sentence_generation: 0.603
+  task001_quoref_question_generation <-> task111_asset_sentence_simplification: 0.601
+  task002_quoref_answer_generation <-> task022_cosmosqa_passage_inappropriate_binary: 0.577
+  task002_quoref_answer_generation <-> task023_cosmosqa_question_generation: 0.584
+  task002_quoref_answer_generation <-> task024_cosmosqa_answer_generation: 0.608
+  task002_quoref_answer_generation <-> task025_cosmosqa_incorrect_answer_generation: 0.597
+  task002_quoref_answer_generation <-> task026_drop_question_generation: 0.588 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task027_drop_answer_type_generation: 0.627
+  task002_quoref_answer_generation <-> task028_drop_answer_generation: 0.663
+  task002_quoref_answer_generation <-> task043_essential_terms_answering_incomplete_questions: 0.598 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task044_essential_terms_identifying_essential_words: 0.589 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.604
+  task002_quoref_answer_generation <-> task046_miscellaneous_question_typing: 0.586 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task047_miscellaneous_answering_science_questions: 0.603 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task059_ropes_story_generation: 0.597
+  task002_quoref_answer_generation <-> task060_ropes_question_generation: 0.594
+  task002_quoref_answer_generation <-> task061_ropes_answer_generation: 0.615
+  task002_quoref_answer_generation <-> task062_bigbench_repeat_copy_logic: 0.579
+  task002_quoref_answer_generation <-> task063_first_i_elements: 0.588
+  task002_quoref_answer_generation <-> task065_timetravel_consistent_sentence_classification: 0.592 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task066_timetravel_binary_consistency_classification: 0.590 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task067_abductivenli_answer_generation: 0.596 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task068_abductivenli_incorrect_answer_generation: 0.588 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task069_abductivenli_classification: 0.593 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task070_abductivenli_incorrect_classification: 0.590 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task073_commonsenseqa_answer_generation: 0.604 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task074_squad1.1_question_generation: 0.595
+  task002_quoref_answer_generation <-> task075_squad1.1_answer_generation: 0.624
+  task002_quoref_answer_generation <-> task080_piqa_answer_generation: 0.613
+  task002_quoref_answer_generation <-> task082_babi_t1_single_supporting_fact_question_generation: 0.583 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task083_babi_t1_single_supporting_fact_answer_generation: 0.591
+  task002_quoref_answer_generation <-> task085_unnatural_addsub_arithmetic: 0.612
+  task002_quoref_answer_generation <-> task088_identify_typo_verification: 0.588
+  task002_quoref_answer_generation <-> task089_swap_words_verification: 0.585
+  task002_quoref_answer_generation <-> task092_check_prime_classification: 0.607
+  task002_quoref_answer_generation <-> task103_facts2story_long_text_generation: 0.585 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.610 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task108_contextualabusedetection_classification: 0.594
+  task002_quoref_answer_generation <-> task109_smsspamcollection_spamsmsdetection: 0.590
+  task002_quoref_answer_generation <-> task110_logic2text_sentence_generation: 0.569 [SAME FAMILY]
+  task002_quoref_answer_generation <-> task111_asset_sentence_simplification: 0.582
+  task022_cosmosqa_passage_inappropriate_binary <-> task023_cosmosqa_question_generation: 0.655
+  task022_cosmosqa_passage_inappropriate_binary <-> task024_cosmosqa_answer_generation: 0.617
+  task022_cosmosqa_passage_inappropriate_binary <-> task025_cosmosqa_incorrect_answer_generation: 0.638
+  task022_cosmosqa_passage_inappropriate_binary <-> task026_drop_question_generation: 0.595
+  task022_cosmosqa_passage_inappropriate_binary <-> task027_drop_answer_type_generation: 0.587
+  task022_cosmosqa_passage_inappropriate_binary <-> task028_drop_answer_generation: 0.586 [SAME FAMILY]
+  task022_cosmosqa_passage_inappropriate_binary <-> task045_miscellaneous_sentence_paraphrasing: 0.631
+  task022_cosmosqa_passage_inappropriate_binary <-> task046_miscellaneous_question_typing: 0.604
+  task022_cosmosqa_passage_inappropriate_binary <-> task059_ropes_story_generation: 0.603
+  task022_cosmosqa_passage_inappropriate_binary <-> task060_ropes_question_generation: 0.596
+  task022_cosmosqa_passage_inappropriate_binary <-> task062_bigbench_repeat_copy_logic: 0.616
+  task022_cosmosqa_passage_inappropriate_binary <-> task063_first_i_elements: 0.625 [SAME FAMILY]
+  task022_cosmosqa_passage_inappropriate_binary <-> task065_timetravel_consistent_sentence_classification: 0.593
+  task022_cosmosqa_passage_inappropriate_binary <-> task066_timetravel_binary_consistency_classification: 0.595
+  task022_cosmosqa_passage_inappropriate_binary <-> task067_abductivenli_answer_generation: 0.583
+  task022_cosmosqa_passage_inappropriate_binary <-> task068_abductivenli_incorrect_answer_generation: 0.619
+  task022_cosmosqa_passage_inappropriate_binary <-> task069_abductivenli_classification: 0.602
+  task022_cosmosqa_passage_inappropriate_binary <-> task070_abductivenli_incorrect_classification: 0.598
+  task022_cosmosqa_passage_inappropriate_binary <-> task085_unnatural_addsub_arithmetic: 0.599 [SAME FAMILY]
+  task022_cosmosqa_passage_inappropriate_binary <-> task088_identify_typo_verification: 0.610 [SAME FAMILY]
+  task022_cosmosqa_passage_inappropriate_binary <-> task089_swap_words_verification: 0.609 [SAME FAMILY]
+  task022_cosmosqa_passage_inappropriate_binary <-> task092_check_prime_classification: 0.602 [SAME FAMILY]
+  task022_cosmosqa_passage_inappropriate_binary <-> task103_facts2story_long_text_generation: 0.610
+  task022_cosmosqa_passage_inappropriate_binary <-> task105_story_cloze-rocstories_sentence_generation: 0.576
+  task022_cosmosqa_passage_inappropriate_binary <-> task108_contextualabusedetection_classification: 0.676 [SAME FAMILY]
+  task022_cosmosqa_passage_inappropriate_binary <-> task109_smsspamcollection_spamsmsdetection: 0.629
+  task022_cosmosqa_passage_inappropriate_binary <-> task110_logic2text_sentence_generation: 0.597
+  task022_cosmosqa_passage_inappropriate_binary <-> task111_asset_sentence_simplification: 0.627
+  task023_cosmosqa_question_generation <-> task024_cosmosqa_answer_generation: 0.665 [SAME FAMILY]
+  task023_cosmosqa_question_generation <-> task025_cosmosqa_incorrect_answer_generation: 0.644
+  task023_cosmosqa_question_generation <-> task026_drop_question_generation: 0.617
+  task023_cosmosqa_question_generation <-> task027_drop_answer_type_generation: 0.614
+  task023_cosmosqa_question_generation <-> task028_drop_answer_generation: 0.619
+  task023_cosmosqa_question_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.627
+  task023_cosmosqa_question_generation <-> task046_miscellaneous_question_typing: 0.614
+  task023_cosmosqa_question_generation <-> task059_ropes_story_generation: 0.608 [SAME FAMILY]
+  task023_cosmosqa_question_generation <-> task060_ropes_question_generation: 0.591
+  task023_cosmosqa_question_generation <-> task062_bigbench_repeat_copy_logic: 0.618
+  task023_cosmosqa_question_generation <-> task063_first_i_elements: 0.619
+  task023_cosmosqa_question_generation <-> task067_abductivenli_answer_generation: 0.600
+  task023_cosmosqa_question_generation <-> task068_abductivenli_incorrect_answer_generation: 0.635
+  task023_cosmosqa_question_generation <-> task085_unnatural_addsub_arithmetic: 0.599
+  task023_cosmosqa_question_generation <-> task103_facts2story_long_text_generation: 0.622
+  task023_cosmosqa_question_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.596
+  task023_cosmosqa_question_generation <-> task110_logic2text_sentence_generation: 0.597
+  task023_cosmosqa_question_generation <-> task111_asset_sentence_simplification: 0.615
+  task024_cosmosqa_answer_generation <-> task025_cosmosqa_incorrect_answer_generation: 0.736
+  task024_cosmosqa_answer_generation <-> task026_drop_question_generation: 0.617
+  task024_cosmosqa_answer_generation <-> task027_drop_answer_type_generation: 0.607
+  task024_cosmosqa_answer_generation <-> task028_drop_answer_generation: 0.646
+  task024_cosmosqa_answer_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.629
+  task024_cosmosqa_answer_generation <-> task046_miscellaneous_question_typing: 0.629
+  task024_cosmosqa_answer_generation <-> task059_ropes_story_generation: 0.582 [SAME FAMILY]
+  task024_cosmosqa_answer_generation <-> task060_ropes_question_generation: 0.598
+  task024_cosmosqa_answer_generation <-> task062_bigbench_repeat_copy_logic: 0.610
+  task024_cosmosqa_answer_generation <-> task063_first_i_elements: 0.594
+  task024_cosmosqa_answer_generation <-> task067_abductivenli_answer_generation: 0.607
+  task024_cosmosqa_answer_generation <-> task068_abductivenli_incorrect_answer_generation: 0.612
+  task024_cosmosqa_answer_generation <-> task085_unnatural_addsub_arithmetic: 0.610
+  task024_cosmosqa_answer_generation <-> task103_facts2story_long_text_generation: 0.608
+  task024_cosmosqa_answer_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.625
+  task024_cosmosqa_answer_generation <-> task110_logic2text_sentence_generation: 0.614
+  task024_cosmosqa_answer_generation <-> task111_asset_sentence_simplification: 0.625
+  task025_cosmosqa_incorrect_answer_generation <-> task026_drop_question_generation: 0.593
+  task025_cosmosqa_incorrect_answer_generation <-> task027_drop_answer_type_generation: 0.608
+  task025_cosmosqa_incorrect_answer_generation <-> task028_drop_answer_generation: 0.615
+  task025_cosmosqa_incorrect_answer_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.613
+  task025_cosmosqa_incorrect_answer_generation <-> task046_miscellaneous_question_typing: 0.623
+  task025_cosmosqa_incorrect_answer_generation <-> task059_ropes_story_generation: 0.598
+  task025_cosmosqa_incorrect_answer_generation <-> task060_ropes_question_generation: 0.615
+  task025_cosmosqa_incorrect_answer_generation <-> task062_bigbench_repeat_copy_logic: 0.592 [SAME FAMILY]
+  task025_cosmosqa_incorrect_answer_generation <-> task063_first_i_elements: 0.597
+  task025_cosmosqa_incorrect_answer_generation <-> task067_abductivenli_answer_generation: 0.605
+  task025_cosmosqa_incorrect_answer_generation <-> task068_abductivenli_incorrect_answer_generation: 0.619
+  task025_cosmosqa_incorrect_answer_generation <-> task085_unnatural_addsub_arithmetic: 0.599
+  task025_cosmosqa_incorrect_answer_generation <-> task103_facts2story_long_text_generation: 0.589
+  task025_cosmosqa_incorrect_answer_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.607
+  task025_cosmosqa_incorrect_answer_generation <-> task110_logic2text_sentence_generation: 0.594
+  task025_cosmosqa_incorrect_answer_generation <-> task111_asset_sentence_simplification: 0.634
+  task026_drop_question_generation <-> task027_drop_answer_type_generation: 0.731
+  task026_drop_question_generation <-> task028_drop_answer_generation: 0.660
+  task026_drop_question_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.615
+  task026_drop_question_generation <-> task046_miscellaneous_question_typing: 0.606 [SAME FAMILY]
+  task026_drop_question_generation <-> task059_ropes_story_generation: 0.576
+  task026_drop_question_generation <-> task060_ropes_question_generation: 0.602
+  task026_drop_question_generation <-> task062_bigbench_repeat_copy_logic: 0.606
+  task026_drop_question_generation <-> task063_first_i_elements: 0.591
+  task026_drop_question_generation <-> task067_abductivenli_answer_generation: 0.616 [SAME FAMILY]
+  task026_drop_question_generation <-> task068_abductivenli_incorrect_answer_generation: 0.596 [SAME FAMILY]
+  task026_drop_question_generation <-> task085_unnatural_addsub_arithmetic: 0.613
+  task026_drop_question_generation <-> task103_facts2story_long_text_generation: 0.603 [SAME FAMILY]
+  task026_drop_question_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.626 [SAME FAMILY]
+  task026_drop_question_generation <-> task110_logic2text_sentence_generation: 0.611 [SAME FAMILY]
+  task026_drop_question_generation <-> task111_asset_sentence_simplification: 0.612
+  task027_drop_answer_type_generation <-> task028_drop_answer_generation: 0.736
+  task027_drop_answer_type_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.603
+  task027_drop_answer_type_generation <-> task046_miscellaneous_question_typing: 0.632
+  task027_drop_answer_type_generation <-> task059_ropes_story_generation: 0.576
+  task027_drop_answer_type_generation <-> task060_ropes_question_generation: 0.601
+  task027_drop_answer_type_generation <-> task062_bigbench_repeat_copy_logic: 0.595
+  task027_drop_answer_type_generation <-> task063_first_i_elements: 0.588
+  task027_drop_answer_type_generation <-> task067_abductivenli_answer_generation: 0.597
+  task027_drop_answer_type_generation <-> task068_abductivenli_incorrect_answer_generation: 0.583
+  task027_drop_answer_type_generation <-> task085_unnatural_addsub_arithmetic: 0.600
+  task027_drop_answer_type_generation <-> task103_facts2story_long_text_generation: 0.597
+  task027_drop_answer_type_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.596
+  task027_drop_answer_type_generation <-> task110_logic2text_sentence_generation: 0.584
+  task027_drop_answer_type_generation <-> task111_asset_sentence_simplification: 0.604
+  task028_drop_answer_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.615
+  task028_drop_answer_generation <-> task046_miscellaneous_question_typing: 0.616
+  task028_drop_answer_generation <-> task059_ropes_story_generation: 0.581
+  task028_drop_answer_generation <-> task060_ropes_question_generation: 0.593
+  task028_drop_answer_generation <-> task062_bigbench_repeat_copy_logic: 0.583
+  task028_drop_answer_generation <-> task063_first_i_elements: 0.590 [SAME FAMILY]
+  task028_drop_answer_generation <-> task067_abductivenli_answer_generation: 0.600
+  task028_drop_answer_generation <-> task068_abductivenli_incorrect_answer_generation: 0.581
+  task028_drop_answer_generation <-> task085_unnatural_addsub_arithmetic: 0.597 [SAME FAMILY]
+  task028_drop_answer_generation <-> task103_facts2story_long_text_generation: 0.602
+  task028_drop_answer_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.620
+  task028_drop_answer_generation <-> task110_logic2text_sentence_generation: 0.597
+  task028_drop_answer_generation <-> task111_asset_sentence_simplification: 0.592
+  task043_essential_terms_answering_incomplete_questions <-> task022_cosmosqa_passage_inappropriate_binary: 0.609
+  task043_essential_terms_answering_incomplete_questions <-> task023_cosmosqa_question_generation: 0.620
+  task043_essential_terms_answering_incomplete_questions <-> task024_cosmosqa_answer_generation: 0.610
+  task043_essential_terms_answering_incomplete_questions <-> task025_cosmosqa_incorrect_answer_generation: 0.618
+  task043_essential_terms_answering_incomplete_questions <-> task026_drop_question_generation: 0.608 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task027_drop_answer_type_generation: 0.605
+  task043_essential_terms_answering_incomplete_questions <-> task028_drop_answer_generation: 0.615
+  task043_essential_terms_answering_incomplete_questions <-> task044_essential_terms_identifying_essential_words: 0.674 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task045_miscellaneous_sentence_paraphrasing: 0.687
+  task043_essential_terms_answering_incomplete_questions <-> task046_miscellaneous_question_typing: 0.611 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task047_miscellaneous_answering_science_questions: 0.840 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task059_ropes_story_generation: 0.586
+  task043_essential_terms_answering_incomplete_questions <-> task060_ropes_question_generation: 0.588
+  task043_essential_terms_answering_incomplete_questions <-> task061_ropes_answer_generation: 0.575
+  task043_essential_terms_answering_incomplete_questions <-> task062_bigbench_repeat_copy_logic: 0.620
+  task043_essential_terms_answering_incomplete_questions <-> task063_first_i_elements: 0.592
+  task043_essential_terms_answering_incomplete_questions <-> task065_timetravel_consistent_sentence_classification: 0.596 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task066_timetravel_binary_consistency_classification: 0.602 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task067_abductivenli_answer_generation: 0.599 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task068_abductivenli_incorrect_answer_generation: 0.611 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task069_abductivenli_classification: 0.590 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task070_abductivenli_incorrect_classification: 0.593 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task085_unnatural_addsub_arithmetic: 0.631
+  task043_essential_terms_answering_incomplete_questions <-> task088_identify_typo_verification: 0.609
+  task043_essential_terms_answering_incomplete_questions <-> task089_swap_words_verification: 0.620
+  task043_essential_terms_answering_incomplete_questions <-> task092_check_prime_classification: 0.582
+  task043_essential_terms_answering_incomplete_questions <-> task103_facts2story_long_text_generation: 0.579 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task105_story_cloze-rocstories_sentence_generation: 0.597 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task108_contextualabusedetection_classification: 0.596
+  task043_essential_terms_answering_incomplete_questions <-> task109_smsspamcollection_spamsmsdetection: 0.610
+  task043_essential_terms_answering_incomplete_questions <-> task110_logic2text_sentence_generation: 0.615 [SAME FAMILY]
+  task043_essential_terms_answering_incomplete_questions <-> task111_asset_sentence_simplification: 0.614
+  task044_essential_terms_identifying_essential_words <-> task022_cosmosqa_passage_inappropriate_binary: 0.604
+  task044_essential_terms_identifying_essential_words <-> task023_cosmosqa_question_generation: 0.611
+  task044_essential_terms_identifying_essential_words <-> task024_cosmosqa_answer_generation: 0.633
+  task044_essential_terms_identifying_essential_words <-> task025_cosmosqa_incorrect_answer_generation: 0.634
+  task044_essential_terms_identifying_essential_words <-> task026_drop_question_generation: 0.619 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task027_drop_answer_type_generation: 0.619
+  task044_essential_terms_identifying_essential_words <-> task028_drop_answer_generation: 0.613
+  task044_essential_terms_identifying_essential_words <-> task045_miscellaneous_sentence_paraphrasing: 0.687
+  task044_essential_terms_identifying_essential_words <-> task046_miscellaneous_question_typing: 0.632 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task047_miscellaneous_answering_science_questions: 0.715 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task059_ropes_story_generation: 0.570
+  task044_essential_terms_identifying_essential_words <-> task060_ropes_question_generation: 0.596
+  task044_essential_terms_identifying_essential_words <-> task061_ropes_answer_generation: 0.586
+  task044_essential_terms_identifying_essential_words <-> task062_bigbench_repeat_copy_logic: 0.589
+  task044_essential_terms_identifying_essential_words <-> task063_first_i_elements: 0.589
+  task044_essential_terms_identifying_essential_words <-> task065_timetravel_consistent_sentence_classification: 0.613 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task066_timetravel_binary_consistency_classification: 0.613 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task067_abductivenli_answer_generation: 0.609 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task068_abductivenli_incorrect_answer_generation: 0.583 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task069_abductivenli_classification: 0.592 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task070_abductivenli_incorrect_classification: 0.603 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task085_unnatural_addsub_arithmetic: 0.621
+  task044_essential_terms_identifying_essential_words <-> task088_identify_typo_verification: 0.596
+  task044_essential_terms_identifying_essential_words <-> task089_swap_words_verification: 0.607
+  task044_essential_terms_identifying_essential_words <-> task092_check_prime_classification: 0.584
+  task044_essential_terms_identifying_essential_words <-> task103_facts2story_long_text_generation: 0.587 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task105_story_cloze-rocstories_sentence_generation: 0.607 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task108_contextualabusedetection_classification: 0.585
+  task044_essential_terms_identifying_essential_words <-> task109_smsspamcollection_spamsmsdetection: 0.598
+  task044_essential_terms_identifying_essential_words <-> task110_logic2text_sentence_generation: 0.602 [SAME FAMILY]
+  task044_essential_terms_identifying_essential_words <-> task111_asset_sentence_simplification: 0.599
+  task045_miscellaneous_sentence_paraphrasing <-> task046_miscellaneous_question_typing: 0.616
+  task045_miscellaneous_sentence_paraphrasing <-> task062_bigbench_repeat_copy_logic: 0.594
+  task045_miscellaneous_sentence_paraphrasing <-> task063_first_i_elements: 0.617
+  task045_miscellaneous_sentence_paraphrasing <-> task085_unnatural_addsub_arithmetic: 0.628
+  task045_miscellaneous_sentence_paraphrasing <-> task111_asset_sentence_simplification: 0.599 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task022_cosmosqa_passage_inappropriate_binary: 0.616
+  task047_miscellaneous_answering_science_questions <-> task023_cosmosqa_question_generation: 0.612
+  task047_miscellaneous_answering_science_questions <-> task024_cosmosqa_answer_generation: 0.613
+  task047_miscellaneous_answering_science_questions <-> task025_cosmosqa_incorrect_answer_generation: 0.631
+  task047_miscellaneous_answering_science_questions <-> task026_drop_question_generation: 0.612 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task027_drop_answer_type_generation: 0.608
+  task047_miscellaneous_answering_science_questions <-> task028_drop_answer_generation: 0.618
+  task047_miscellaneous_answering_science_questions <-> task045_miscellaneous_sentence_paraphrasing: 0.700
+  task047_miscellaneous_answering_science_questions <-> task046_miscellaneous_question_typing: 0.645 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task059_ropes_story_generation: 0.580
+  task047_miscellaneous_answering_science_questions <-> task060_ropes_question_generation: 0.585
+  task047_miscellaneous_answering_science_questions <-> task061_ropes_answer_generation: 0.578
+  task047_miscellaneous_answering_science_questions <-> task062_bigbench_repeat_copy_logic: 0.603
+  task047_miscellaneous_answering_science_questions <-> task063_first_i_elements: 0.591
+  task047_miscellaneous_answering_science_questions <-> task065_timetravel_consistent_sentence_classification: 0.597 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task066_timetravel_binary_consistency_classification: 0.598 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task067_abductivenli_answer_generation: 0.605 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task068_abductivenli_incorrect_answer_generation: 0.617 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task069_abductivenli_classification: 0.609 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task070_abductivenli_incorrect_classification: 0.614 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task085_unnatural_addsub_arithmetic: 0.648
+  task047_miscellaneous_answering_science_questions <-> task088_identify_typo_verification: 0.599
+  task047_miscellaneous_answering_science_questions <-> task089_swap_words_verification: 0.610
+  task047_miscellaneous_answering_science_questions <-> task092_check_prime_classification: 0.592
+  task047_miscellaneous_answering_science_questions <-> task103_facts2story_long_text_generation: 0.574 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task105_story_cloze-rocstories_sentence_generation: 0.596 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task108_contextualabusedetection_classification: 0.597
+  task047_miscellaneous_answering_science_questions <-> task109_smsspamcollection_spamsmsdetection: 0.600
+  task047_miscellaneous_answering_science_questions <-> task110_logic2text_sentence_generation: 0.598 [SAME FAMILY]
+  task047_miscellaneous_answering_science_questions <-> task111_asset_sentence_simplification: 0.600
+  task059_ropes_story_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.578
+  task059_ropes_story_generation <-> task046_miscellaneous_question_typing: 0.583
+  task059_ropes_story_generation <-> task060_ropes_question_generation: 0.674
+  task059_ropes_story_generation <-> task062_bigbench_repeat_copy_logic: 0.600
+  task059_ropes_story_generation <-> task063_first_i_elements: 0.625
+  task059_ropes_story_generation <-> task067_abductivenli_answer_generation: 0.578
+  task059_ropes_story_generation <-> task068_abductivenli_incorrect_answer_generation: 0.607
+  task059_ropes_story_generation <-> task085_unnatural_addsub_arithmetic: 0.587
+  task059_ropes_story_generation <-> task103_facts2story_long_text_generation: 0.649
+  task059_ropes_story_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.571
+  task059_ropes_story_generation <-> task110_logic2text_sentence_generation: 0.599
+  task059_ropes_story_generation <-> task111_asset_sentence_simplification: 0.586
+  task060_ropes_question_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.593 [SAME FAMILY]
+  task060_ropes_question_generation <-> task046_miscellaneous_question_typing: 0.591
+  task060_ropes_question_generation <-> task062_bigbench_repeat_copy_logic: 0.602
+  task060_ropes_question_generation <-> task063_first_i_elements: 0.597
+  task060_ropes_question_generation <-> task067_abductivenli_answer_generation: 0.602
+  task060_ropes_question_generation <-> task068_abductivenli_incorrect_answer_generation: 0.578
+  task060_ropes_question_generation <-> task085_unnatural_addsub_arithmetic: 0.604
+  task060_ropes_question_generation <-> task103_facts2story_long_text_generation: 0.588
+  task060_ropes_question_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.584
+  task060_ropes_question_generation <-> task110_logic2text_sentence_generation: 0.602
+  task060_ropes_question_generation <-> task111_asset_sentence_simplification: 0.587 [SAME FAMILY]
+  task061_ropes_answer_generation <-> task022_cosmosqa_passage_inappropriate_binary: 0.592
+  task061_ropes_answer_generation <-> task023_cosmosqa_question_generation: 0.581 [SAME FAMILY]
+  task061_ropes_answer_generation <-> task024_cosmosqa_answer_generation: 0.587 [SAME FAMILY]
+  task061_ropes_answer_generation <-> task025_cosmosqa_incorrect_answer_generation: 0.596
+  task061_ropes_answer_generation <-> task026_drop_question_generation: 0.588
+  task061_ropes_answer_generation <-> task027_drop_answer_type_generation: 0.606
+  task061_ropes_answer_generation <-> task028_drop_answer_generation: 0.598
+  task061_ropes_answer_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.578
+  task061_ropes_answer_generation <-> task046_miscellaneous_question_typing: 0.582
+  task061_ropes_answer_generation <-> task059_ropes_story_generation: 0.730 [SAME FAMILY]
+  task061_ropes_answer_generation <-> task060_ropes_question_generation: 0.874
+  task061_ropes_answer_generation <-> task062_bigbench_repeat_copy_logic: 0.589
+  task061_ropes_answer_generation <-> task063_first_i_elements: 0.589
+  task061_ropes_answer_generation <-> task065_timetravel_consistent_sentence_classification: 0.606
+  task061_ropes_answer_generation <-> task066_timetravel_binary_consistency_classification: 0.599
+  task061_ropes_answer_generation <-> task067_abductivenli_answer_generation: 0.593
+  task061_ropes_answer_generation <-> task068_abductivenli_incorrect_answer_generation: 0.577
+  task061_ropes_answer_generation <-> task069_abductivenli_classification: 0.575
+  task061_ropes_answer_generation <-> task070_abductivenli_incorrect_classification: 0.577
+  task061_ropes_answer_generation <-> task085_unnatural_addsub_arithmetic: 0.600
+  task061_ropes_answer_generation <-> task088_identify_typo_verification: 0.589
+  task061_ropes_answer_generation <-> task089_swap_words_verification: 0.568
+  task061_ropes_answer_generation <-> task092_check_prime_classification: 0.594
+  task061_ropes_answer_generation <-> task103_facts2story_long_text_generation: 0.593
+  task061_ropes_answer_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.582
+  task061_ropes_answer_generation <-> task108_contextualabusedetection_classification: 0.593
+  task061_ropes_answer_generation <-> task109_smsspamcollection_spamsmsdetection: 0.583
+  task061_ropes_answer_generation <-> task110_logic2text_sentence_generation: 0.592
+  task061_ropes_answer_generation <-> task111_asset_sentence_simplification: 0.579
+  task062_bigbench_repeat_copy_logic <-> task046_miscellaneous_question_typing: 0.588
+  task062_bigbench_repeat_copy_logic <-> task063_first_i_elements: 0.642
+  task062_bigbench_repeat_copy_logic <-> task085_unnatural_addsub_arithmetic: 0.638
+  task063_first_i_elements <-> task046_miscellaneous_question_typing: 0.629
+  task063_first_i_elements <-> task085_unnatural_addsub_arithmetic: 0.630 [SAME FAMILY]
+  task065_timetravel_consistent_sentence_classification <-> task023_cosmosqa_question_generation: 0.596
+  task065_timetravel_consistent_sentence_classification <-> task024_cosmosqa_answer_generation: 0.619
+  task065_timetravel_consistent_sentence_classification <-> task025_cosmosqa_incorrect_answer_generation: 0.600
+  task065_timetravel_consistent_sentence_classification <-> task026_drop_question_generation: 0.614 [SAME FAMILY]
+  task065_timetravel_consistent_sentence_classification <-> task027_drop_answer_type_generation: 0.596
+  task065_timetravel_consistent_sentence_classification <-> task028_drop_answer_generation: 0.615
+  task065_timetravel_consistent_sentence_classification <-> task045_miscellaneous_sentence_paraphrasing: 0.635
+  task065_timetravel_consistent_sentence_classification <-> task046_miscellaneous_question_typing: 0.621 [SAME FAMILY]
+  task065_timetravel_consistent_sentence_classification <-> task059_ropes_story_generation: 0.600
+  task065_timetravel_consistent_sentence_classification <-> task060_ropes_question_generation: 0.609
+  task065_timetravel_consistent_sentence_classification <-> task062_bigbench_repeat_copy_logic: 0.593
+  task065_timetravel_consistent_sentence_classification <-> task063_first_i_elements: 0.663
+  task065_timetravel_consistent_sentence_classification <-> task066_timetravel_binary_consistency_classification: 0.890 [SAME FAMILY]
+  task065_timetravel_consistent_sentence_classification <-> task067_abductivenli_answer_generation: 0.698 [SAME FAMILY]
+  task065_timetravel_consistent_sentence_classification <-> task068_abductivenli_incorrect_answer_generation: 0.613 [SAME FAMILY]
+  task065_timetravel_consistent_sentence_classification <-> task069_abductivenli_classification: 0.647 [SAME FAMILY]
+  task065_timetravel_consistent_sentence_classification <-> task070_abductivenli_incorrect_classification: 0.638 [SAME FAMILY]
+  task065_timetravel_consistent_sentence_classification <-> task085_unnatural_addsub_arithmetic: 0.652
+  task065_timetravel_consistent_sentence_classification <-> task088_identify_typo_verification: 0.614
+  task065_timetravel_consistent_sentence_classification <-> task089_swap_words_verification: 0.622
+  task065_timetravel_consistent_sentence_classification <-> task092_check_prime_classification: 0.631
+  task065_timetravel_consistent_sentence_classification <-> task103_facts2story_long_text_generation: 0.625 [SAME FAMILY]
+  task065_timetravel_consistent_sentence_classification <-> task105_story_cloze-rocstories_sentence_generation: 0.672 [SAME FAMILY]
+  task065_timetravel_consistent_sentence_classification <-> task108_contextualabusedetection_classification: 0.611
+  task065_timetravel_consistent_sentence_classification <-> task109_smsspamcollection_spamsmsdetection: 0.624
+  task065_timetravel_consistent_sentence_classification <-> task110_logic2text_sentence_generation: 0.620 [SAME FAMILY]
+  task065_timetravel_consistent_sentence_classification <-> task111_asset_sentence_simplification: 0.609
+  task066_timetravel_binary_consistency_classification <-> task023_cosmosqa_question_generation: 0.602
+  task066_timetravel_binary_consistency_classification <-> task024_cosmosqa_answer_generation: 0.616
+  task066_timetravel_binary_consistency_classification <-> task025_cosmosqa_incorrect_answer_generation: 0.606
+  task066_timetravel_binary_consistency_classification <-> task026_drop_question_generation: 0.611 [SAME FAMILY]
+  task066_timetravel_binary_consistency_classification <-> task027_drop_answer_type_generation: 0.596
+  task066_timetravel_binary_consistency_classification <-> task028_drop_answer_generation: 0.603
+  task066_timetravel_binary_consistency_classification <-> task045_miscellaneous_sentence_paraphrasing: 0.655
+  task066_timetravel_binary_consistency_classification <-> task046_miscellaneous_question_typing: 0.629 [SAME FAMILY]
+  task066_timetravel_binary_consistency_classification <-> task059_ropes_story_generation: 0.600
+  task066_timetravel_binary_consistency_classification <-> task060_ropes_question_generation: 0.607
+  task066_timetravel_binary_consistency_classification <-> task062_bigbench_repeat_copy_logic: 0.601
+  task066_timetravel_binary_consistency_classification <-> task063_first_i_elements: 0.656
+  task066_timetravel_binary_consistency_classification <-> task067_abductivenli_answer_generation: 0.675 [SAME FAMILY]
+  task066_timetravel_binary_consistency_classification <-> task068_abductivenli_incorrect_answer_generation: 0.598 [SAME FAMILY]
+  task066_timetravel_binary_consistency_classification <-> task069_abductivenli_classification: 0.624 [SAME FAMILY]
+  task066_timetravel_binary_consistency_classification <-> task070_abductivenli_incorrect_classification: 0.617 [SAME FAMILY]
+  task066_timetravel_binary_consistency_classification <-> task085_unnatural_addsub_arithmetic: 0.667
+  task066_timetravel_binary_consistency_classification <-> task088_identify_typo_verification: 0.618
+  task066_timetravel_binary_consistency_classification <-> task089_swap_words_verification: 0.618
+  task066_timetravel_binary_consistency_classification <-> task092_check_prime_classification: 0.629
+  task066_timetravel_binary_consistency_classification <-> task103_facts2story_long_text_generation: 0.619 [SAME FAMILY]
+  task066_timetravel_binary_consistency_classification <-> task105_story_cloze-rocstories_sentence_generation: 0.667 [SAME FAMILY]
+  task066_timetravel_binary_consistency_classification <-> task108_contextualabusedetection_classification: 0.617
+  task066_timetravel_binary_consistency_classification <-> task109_smsspamcollection_spamsmsdetection: 0.618
+  task066_timetravel_binary_consistency_classification <-> task110_logic2text_sentence_generation: 0.623 [SAME FAMILY]
+  task066_timetravel_binary_consistency_classification <-> task111_asset_sentence_simplification: 0.622
+  task067_abductivenli_answer_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.637
+  task067_abductivenli_answer_generation <-> task046_miscellaneous_question_typing: 0.595 [SAME FAMILY]
+  task067_abductivenli_answer_generation <-> task062_bigbench_repeat_copy_logic: 0.594
+  task067_abductivenli_answer_generation <-> task063_first_i_elements: 0.598
+  task067_abductivenli_answer_generation <-> task068_abductivenli_incorrect_answer_generation: 0.655 [SAME FAMILY]
+  task067_abductivenli_answer_generation <-> task085_unnatural_addsub_arithmetic: 0.613
+  task067_abductivenli_answer_generation <-> task103_facts2story_long_text_generation: 0.595 [SAME FAMILY]
+  task067_abductivenli_answer_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.710 [SAME FAMILY]
+  task067_abductivenli_answer_generation <-> task110_logic2text_sentence_generation: 0.590 [SAME FAMILY]
+  task067_abductivenli_answer_generation <-> task111_asset_sentence_simplification: 0.611
+  task068_abductivenli_incorrect_answer_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.616
+  task068_abductivenli_incorrect_answer_generation <-> task046_miscellaneous_question_typing: 0.601 [SAME FAMILY]
+  task068_abductivenli_incorrect_answer_generation <-> task062_bigbench_repeat_copy_logic: 0.602
+  task068_abductivenli_incorrect_answer_generation <-> task063_first_i_elements: 0.619
+  task068_abductivenli_incorrect_answer_generation <-> task085_unnatural_addsub_arithmetic: 0.594
+  task068_abductivenli_incorrect_answer_generation <-> task103_facts2story_long_text_generation: 0.594 [SAME FAMILY]
+  task068_abductivenli_incorrect_answer_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.618 [SAME FAMILY]
+  task068_abductivenli_incorrect_answer_generation <-> task110_logic2text_sentence_generation: 0.587 [SAME FAMILY]
+  task068_abductivenli_incorrect_answer_generation <-> task111_asset_sentence_simplification: 0.613
+  task069_abductivenli_classification <-> task023_cosmosqa_question_generation: 0.604
+  task069_abductivenli_classification <-> task024_cosmosqa_answer_generation: 0.613
+  task069_abductivenli_classification <-> task025_cosmosqa_incorrect_answer_generation: 0.618
+  task069_abductivenli_classification <-> task026_drop_question_generation: 0.592 [SAME FAMILY]
+  task069_abductivenli_classification <-> task027_drop_answer_type_generation: 0.583
+  task069_abductivenli_classification <-> task028_drop_answer_generation: 0.588
+  task069_abductivenli_classification <-> task045_miscellaneous_sentence_paraphrasing: 0.612
+  task069_abductivenli_classification <-> task046_miscellaneous_question_typing: 0.623 [SAME FAMILY]
+  task069_abductivenli_classification <-> task059_ropes_story_generation: 0.586
+  task069_abductivenli_classification <-> task060_ropes_question_generation: 0.580
+  task069_abductivenli_classification <-> task062_bigbench_repeat_copy_logic: 0.599
+  task069_abductivenli_classification <-> task063_first_i_elements: 0.644
+  task069_abductivenli_classification <-> task067_abductivenli_answer_generation: 0.700 [SAME FAMILY]
+  task069_abductivenli_classification <-> task068_abductivenli_incorrect_answer_generation: 0.735 [SAME FAMILY]
+  task069_abductivenli_classification <-> task070_abductivenli_incorrect_classification: 0.939 [SAME FAMILY]
+  task069_abductivenli_classification <-> task085_unnatural_addsub_arithmetic: 0.625
+  task069_abductivenli_classification <-> task088_identify_typo_verification: 0.612
+  task069_abductivenli_classification <-> task089_swap_words_verification: 0.610
+  task069_abductivenli_classification <-> task092_check_prime_classification: 0.631
+  task069_abductivenli_classification <-> task103_facts2story_long_text_generation: 0.605 [SAME FAMILY]
+  task069_abductivenli_classification <-> task105_story_cloze-rocstories_sentence_generation: 0.643 [SAME FAMILY]
+  task069_abductivenli_classification <-> task108_contextualabusedetection_classification: 0.610
+  task069_abductivenli_classification <-> task109_smsspamcollection_spamsmsdetection: 0.623
+  task069_abductivenli_classification <-> task110_logic2text_sentence_generation: 0.597 [SAME FAMILY]
+  task069_abductivenli_classification <-> task111_asset_sentence_simplification: 0.599
+  task070_abductivenli_incorrect_classification <-> task023_cosmosqa_question_generation: 0.609
+  task070_abductivenli_incorrect_classification <-> task024_cosmosqa_answer_generation: 0.618
+  task070_abductivenli_incorrect_classification <-> task025_cosmosqa_incorrect_answer_generation: 0.622
+  task070_abductivenli_incorrect_classification <-> task026_drop_question_generation: 0.593 [SAME FAMILY]
+  task070_abductivenli_incorrect_classification <-> task027_drop_answer_type_generation: 0.586
+  task070_abductivenli_incorrect_classification <-> task028_drop_answer_generation: 0.590
+  task070_abductivenli_incorrect_classification <-> task045_miscellaneous_sentence_paraphrasing: 0.615
+  task070_abductivenli_incorrect_classification <-> task046_miscellaneous_question_typing: 0.626 [SAME FAMILY]
+  task070_abductivenli_incorrect_classification <-> task059_ropes_story_generation: 0.580
+  task070_abductivenli_incorrect_classification <-> task060_ropes_question_generation: 0.584
+  task070_abductivenli_incorrect_classification <-> task062_bigbench_repeat_copy_logic: 0.595
+  task070_abductivenli_incorrect_classification <-> task063_first_i_elements: 0.632
+  task070_abductivenli_incorrect_classification <-> task067_abductivenli_answer_generation: 0.700 [SAME FAMILY]
+  task070_abductivenli_incorrect_classification <-> task068_abductivenli_incorrect_answer_generation: 0.725 [SAME FAMILY]
+  task070_abductivenli_incorrect_classification <-> task085_unnatural_addsub_arithmetic: 0.631
+  task070_abductivenli_incorrect_classification <-> task088_identify_typo_verification: 0.607
+  task070_abductivenli_incorrect_classification <-> task089_swap_words_verification: 0.606
+  task070_abductivenli_incorrect_classification <-> task092_check_prime_classification: 0.624
+  task070_abductivenli_incorrect_classification <-> task103_facts2story_long_text_generation: 0.600 [SAME FAMILY]
+  task070_abductivenli_incorrect_classification <-> task105_story_cloze-rocstories_sentence_generation: 0.647 [SAME FAMILY]
+  task070_abductivenli_incorrect_classification <-> task108_contextualabusedetection_classification: 0.606
+  task070_abductivenli_incorrect_classification <-> task109_smsspamcollection_spamsmsdetection: 0.619
+  task070_abductivenli_incorrect_classification <-> task110_logic2text_sentence_generation: 0.596 [SAME FAMILY]
+  task070_abductivenli_incorrect_classification <-> task111_asset_sentence_simplification: 0.596
+  task073_commonsenseqa_answer_generation <-> task022_cosmosqa_passage_inappropriate_binary: 0.635
+  task073_commonsenseqa_answer_generation <-> task023_cosmosqa_question_generation: 0.612
+  task073_commonsenseqa_answer_generation <-> task024_cosmosqa_answer_generation: 0.610
+  task073_commonsenseqa_answer_generation <-> task025_cosmosqa_incorrect_answer_generation: 0.607
+  task073_commonsenseqa_answer_generation <-> task026_drop_question_generation: 0.601 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task027_drop_answer_type_generation: 0.598
+  task073_commonsenseqa_answer_generation <-> task028_drop_answer_generation: 0.616
+  task073_commonsenseqa_answer_generation <-> task043_essential_terms_answering_incomplete_questions: 0.624 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task044_essential_terms_identifying_essential_words: 0.628 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.603
+  task073_commonsenseqa_answer_generation <-> task046_miscellaneous_question_typing: 0.617 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task047_miscellaneous_answering_science_questions: 0.644 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task059_ropes_story_generation: 0.578
+  task073_commonsenseqa_answer_generation <-> task060_ropes_question_generation: 0.583
+  task073_commonsenseqa_answer_generation <-> task061_ropes_answer_generation: 0.582
+  task073_commonsenseqa_answer_generation <-> task062_bigbench_repeat_copy_logic: 0.598
+  task073_commonsenseqa_answer_generation <-> task063_first_i_elements: 0.605
+  task073_commonsenseqa_answer_generation <-> task065_timetravel_consistent_sentence_classification: 0.604 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task066_timetravel_binary_consistency_classification: 0.602 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task067_abductivenli_answer_generation: 0.606 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task068_abductivenli_incorrect_answer_generation: 0.596 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task069_abductivenli_classification: 0.605 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task070_abductivenli_incorrect_classification: 0.607 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task074_squad1.1_question_generation: 0.606
+  task073_commonsenseqa_answer_generation <-> task075_squad1.1_answer_generation: 0.593
+  task073_commonsenseqa_answer_generation <-> task080_piqa_answer_generation: 0.583
+  task073_commonsenseqa_answer_generation <-> task082_babi_t1_single_supporting_fact_question_generation: 0.599 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task083_babi_t1_single_supporting_fact_answer_generation: 0.610
+  task073_commonsenseqa_answer_generation <-> task085_unnatural_addsub_arithmetic: 0.607
+  task073_commonsenseqa_answer_generation <-> task088_identify_typo_verification: 0.615
+  task073_commonsenseqa_answer_generation <-> task089_swap_words_verification: 0.608
+  task073_commonsenseqa_answer_generation <-> task092_check_prime_classification: 0.643
+  task073_commonsenseqa_answer_generation <-> task103_facts2story_long_text_generation: 0.582 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.593 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task108_contextualabusedetection_classification: 0.636
+  task073_commonsenseqa_answer_generation <-> task109_smsspamcollection_spamsmsdetection: 0.598
+  task073_commonsenseqa_answer_generation <-> task110_logic2text_sentence_generation: 0.593 [SAME FAMILY]
+  task073_commonsenseqa_answer_generation <-> task111_asset_sentence_simplification: 0.606
+  task074_squad1.1_question_generation <-> task022_cosmosqa_passage_inappropriate_binary: 0.631
+  task074_squad1.1_question_generation <-> task023_cosmosqa_question_generation: 0.619
+  task074_squad1.1_question_generation <-> task024_cosmosqa_answer_generation: 0.602
+  task074_squad1.1_question_generation <-> task025_cosmosqa_incorrect_answer_generation: 0.584
+  task074_squad1.1_question_generation <-> task026_drop_question_generation: 0.599
+  task074_squad1.1_question_generation <-> task027_drop_answer_type_generation: 0.608
+  task074_squad1.1_question_generation <-> task028_drop_answer_generation: 0.599
+  task074_squad1.1_question_generation <-> task043_essential_terms_answering_incomplete_questions: 0.600
+  task074_squad1.1_question_generation <-> task044_essential_terms_identifying_essential_words: 0.624
+  task074_squad1.1_question_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.634
+  task074_squad1.1_question_generation <-> task046_miscellaneous_question_typing: 0.590
+  task074_squad1.1_question_generation <-> task047_miscellaneous_answering_science_questions: 0.600
+  task074_squad1.1_question_generation <-> task059_ropes_story_generation: 0.600
+  task074_squad1.1_question_generation <-> task060_ropes_question_generation: 0.599
+  task074_squad1.1_question_generation <-> task061_ropes_answer_generation: 0.595
+  task074_squad1.1_question_generation <-> task062_bigbench_repeat_copy_logic: 0.605
+  task074_squad1.1_question_generation <-> task063_first_i_elements: 0.653
+  task074_squad1.1_question_generation <-> task065_timetravel_consistent_sentence_classification: 0.593
+  task074_squad1.1_question_generation <-> task066_timetravel_binary_consistency_classification: 0.596
+  task074_squad1.1_question_generation <-> task067_abductivenli_answer_generation: 0.596
+  task074_squad1.1_question_generation <-> task068_abductivenli_incorrect_answer_generation: 0.595
+  task074_squad1.1_question_generation <-> task069_abductivenli_classification: 0.598
+  task074_squad1.1_question_generation <-> task070_abductivenli_incorrect_classification: 0.601
+  task074_squad1.1_question_generation <-> task075_squad1.1_answer_generation: 0.656 [SAME FAMILY]
+  task074_squad1.1_question_generation <-> task080_piqa_answer_generation: 0.611
+  task074_squad1.1_question_generation <-> task082_babi_t1_single_supporting_fact_question_generation: 0.627
+  task074_squad1.1_question_generation <-> task083_babi_t1_single_supporting_fact_answer_generation: 0.625
+  task074_squad1.1_question_generation <-> task085_unnatural_addsub_arithmetic: 0.598
+  task074_squad1.1_question_generation <-> task088_identify_typo_verification: 0.608
+  task074_squad1.1_question_generation <-> task089_swap_words_verification: 0.597
+  task074_squad1.1_question_generation <-> task092_check_prime_classification: 0.591
+  task074_squad1.1_question_generation <-> task103_facts2story_long_text_generation: 0.632
+  task074_squad1.1_question_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.586
+  task074_squad1.1_question_generation <-> task108_contextualabusedetection_classification: 0.611
+  task074_squad1.1_question_generation <-> task109_smsspamcollection_spamsmsdetection: 0.617
+  task074_squad1.1_question_generation <-> task110_logic2text_sentence_generation: 0.596
+  task074_squad1.1_question_generation <-> task111_asset_sentence_simplification: 0.594
+  task075_squad1.1_answer_generation <-> task022_cosmosqa_passage_inappropriate_binary: 0.605
+  task075_squad1.1_answer_generation <-> task023_cosmosqa_question_generation: 0.597
+  task075_squad1.1_answer_generation <-> task024_cosmosqa_answer_generation: 0.611
+  task075_squad1.1_answer_generation <-> task025_cosmosqa_incorrect_answer_generation: 0.601
+  task075_squad1.1_answer_generation <-> task026_drop_question_generation: 0.606
+  task075_squad1.1_answer_generation <-> task027_drop_answer_type_generation: 0.617
+  task075_squad1.1_answer_generation <-> task028_drop_answer_generation: 0.641
+  task075_squad1.1_answer_generation <-> task043_essential_terms_answering_incomplete_questions: 0.577
+  task075_squad1.1_answer_generation <-> task044_essential_terms_identifying_essential_words: 0.619
+  task075_squad1.1_answer_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.601
+  task075_squad1.1_answer_generation <-> task046_miscellaneous_question_typing: 0.582
+  task075_squad1.1_answer_generation <-> task047_miscellaneous_answering_science_questions: 0.580
+  task075_squad1.1_answer_generation <-> task059_ropes_story_generation: 0.599
+  task075_squad1.1_answer_generation <-> task060_ropes_question_generation: 0.601
+  task075_squad1.1_answer_generation <-> task061_ropes_answer_generation: 0.601
+  task075_squad1.1_answer_generation <-> task062_bigbench_repeat_copy_logic: 0.607
+  task075_squad1.1_answer_generation <-> task063_first_i_elements: 0.599
+  task075_squad1.1_answer_generation <-> task065_timetravel_consistent_sentence_classification: 0.613
+  task075_squad1.1_answer_generation <-> task066_timetravel_binary_consistency_classification: 0.614
+  task075_squad1.1_answer_generation <-> task067_abductivenli_answer_generation: 0.606
+  task075_squad1.1_answer_generation <-> task068_abductivenli_incorrect_answer_generation: 0.588
+  task075_squad1.1_answer_generation <-> task069_abductivenli_classification: 0.596
+  task075_squad1.1_answer_generation <-> task070_abductivenli_incorrect_classification: 0.600
+  task075_squad1.1_answer_generation <-> task080_piqa_answer_generation: 0.656
+  task075_squad1.1_answer_generation <-> task082_babi_t1_single_supporting_fact_question_generation: 0.621
+  task075_squad1.1_answer_generation <-> task083_babi_t1_single_supporting_fact_answer_generation: 0.632
+  task075_squad1.1_answer_generation <-> task085_unnatural_addsub_arithmetic: 0.617
+  task075_squad1.1_answer_generation <-> task088_identify_typo_verification: 0.588
+  task075_squad1.1_answer_generation <-> task089_swap_words_verification: 0.582
+  task075_squad1.1_answer_generation <-> task092_check_prime_classification: 0.585
+  task075_squad1.1_answer_generation <-> task103_facts2story_long_text_generation: 0.615
+  task075_squad1.1_answer_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.619
+  task075_squad1.1_answer_generation <-> task108_contextualabusedetection_classification: 0.620
+  task075_squad1.1_answer_generation <-> task109_smsspamcollection_spamsmsdetection: 0.612
+  task075_squad1.1_answer_generation <-> task110_logic2text_sentence_generation: 0.594
+  task075_squad1.1_answer_generation <-> task111_asset_sentence_simplification: 0.583
+  task080_piqa_answer_generation <-> task022_cosmosqa_passage_inappropriate_binary: 0.650 [SAME FAMILY]
+  task080_piqa_answer_generation <-> task023_cosmosqa_question_generation: 0.624
+  task080_piqa_answer_generation <-> task024_cosmosqa_answer_generation: 0.625
+  task080_piqa_answer_generation <-> task025_cosmosqa_incorrect_answer_generation: 0.603
+  task080_piqa_answer_generation <-> task026_drop_question_generation: 0.615
+  task080_piqa_answer_generation <-> task027_drop_answer_type_generation: 0.598
+  task080_piqa_answer_generation <-> task028_drop_answer_generation: 0.607 [SAME FAMILY]
+  task080_piqa_answer_generation <-> task043_essential_terms_answering_incomplete_questions: 0.608
+  task080_piqa_answer_generation <-> task044_essential_terms_identifying_essential_words: 0.605
+  task080_piqa_answer_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.611
+  task080_piqa_answer_generation <-> task046_miscellaneous_question_typing: 0.598
+  task080_piqa_answer_generation <-> task047_miscellaneous_answering_science_questions: 0.601
+  task080_piqa_answer_generation <-> task059_ropes_story_generation: 0.597
+  task080_piqa_answer_generation <-> task060_ropes_question_generation: 0.597
+  task080_piqa_answer_generation <-> task061_ropes_answer_generation: 0.599
+  task080_piqa_answer_generation <-> task062_bigbench_repeat_copy_logic: 0.638
+  task080_piqa_answer_generation <-> task063_first_i_elements: 0.622 [SAME FAMILY]
+  task080_piqa_answer_generation <-> task065_timetravel_consistent_sentence_classification: 0.606
+  task080_piqa_answer_generation <-> task066_timetravel_binary_consistency_classification: 0.606
+  task080_piqa_answer_generation <-> task067_abductivenli_answer_generation: 0.615
+  task080_piqa_answer_generation <-> task068_abductivenli_incorrect_answer_generation: 0.618
+  task080_piqa_answer_generation <-> task069_abductivenli_classification: 0.597
+  task080_piqa_answer_generation <-> task070_abductivenli_incorrect_classification: 0.599
+  task080_piqa_answer_generation <-> task082_babi_t1_single_supporting_fact_question_generation: 0.612
+  task080_piqa_answer_generation <-> task083_babi_t1_single_supporting_fact_answer_generation: 0.610
+  task080_piqa_answer_generation <-> task085_unnatural_addsub_arithmetic: 0.605 [SAME FAMILY]
+  task080_piqa_answer_generation <-> task088_identify_typo_verification: 0.597 [SAME FAMILY]
+  task080_piqa_answer_generation <-> task089_swap_words_verification: 0.599 [SAME FAMILY]
+  task080_piqa_answer_generation <-> task092_check_prime_classification: 0.596 [SAME FAMILY]
+  task080_piqa_answer_generation <-> task103_facts2story_long_text_generation: 0.622
+  task080_piqa_answer_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.620
+  task080_piqa_answer_generation <-> task108_contextualabusedetection_classification: 0.618 [SAME FAMILY]
+  task080_piqa_answer_generation <-> task109_smsspamcollection_spamsmsdetection: 0.629
+  task080_piqa_answer_generation <-> task110_logic2text_sentence_generation: 0.616
+  task080_piqa_answer_generation <-> task111_asset_sentence_simplification: 0.599
+  task082_babi_t1_single_supporting_fact_question_generation <-> task022_cosmosqa_passage_inappropriate_binary: 0.595
+  task082_babi_t1_single_supporting_fact_question_generation <-> task023_cosmosqa_question_generation: 0.595
+  task082_babi_t1_single_supporting_fact_question_generation <-> task024_cosmosqa_answer_generation: 0.600
+  task082_babi_t1_single_supporting_fact_question_generation <-> task025_cosmosqa_incorrect_answer_generation: 0.575
+  task082_babi_t1_single_supporting_fact_question_generation <-> task026_drop_question_generation: 0.613 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task027_drop_answer_type_generation: 0.598
+  task082_babi_t1_single_supporting_fact_question_generation <-> task028_drop_answer_generation: 0.593
+  task082_babi_t1_single_supporting_fact_question_generation <-> task043_essential_terms_answering_incomplete_questions: 0.605 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task044_essential_terms_identifying_essential_words: 0.602 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.613
+  task082_babi_t1_single_supporting_fact_question_generation <-> task046_miscellaneous_question_typing: 0.610 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task047_miscellaneous_answering_science_questions: 0.599 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task059_ropes_story_generation: 0.588
+  task082_babi_t1_single_supporting_fact_question_generation <-> task060_ropes_question_generation: 0.593
+  task082_babi_t1_single_supporting_fact_question_generation <-> task061_ropes_answer_generation: 0.596
+  task082_babi_t1_single_supporting_fact_question_generation <-> task062_bigbench_repeat_copy_logic: 0.644
+  task082_babi_t1_single_supporting_fact_question_generation <-> task063_first_i_elements: 0.663
+  task082_babi_t1_single_supporting_fact_question_generation <-> task065_timetravel_consistent_sentence_classification: 0.630 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task066_timetravel_binary_consistency_classification: 0.638 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task067_abductivenli_answer_generation: 0.595 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task068_abductivenli_incorrect_answer_generation: 0.581 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task069_abductivenli_classification: 0.605 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task070_abductivenli_incorrect_classification: 0.606 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task083_babi_t1_single_supporting_fact_answer_generation: 0.939
+  task082_babi_t1_single_supporting_fact_question_generation <-> task085_unnatural_addsub_arithmetic: 0.659
+  task082_babi_t1_single_supporting_fact_question_generation <-> task088_identify_typo_verification: 0.638
+  task082_babi_t1_single_supporting_fact_question_generation <-> task089_swap_words_verification: 0.636
+  task082_babi_t1_single_supporting_fact_question_generation <-> task092_check_prime_classification: 0.654
+  task082_babi_t1_single_supporting_fact_question_generation <-> task103_facts2story_long_text_generation: 0.637 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.624 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task108_contextualabusedetection_classification: 0.606
+  task082_babi_t1_single_supporting_fact_question_generation <-> task109_smsspamcollection_spamsmsdetection: 0.621
+  task082_babi_t1_single_supporting_fact_question_generation <-> task110_logic2text_sentence_generation: 0.669 [SAME FAMILY]
+  task082_babi_t1_single_supporting_fact_question_generation <-> task111_asset_sentence_simplification: 0.591
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task022_cosmosqa_passage_inappropriate_binary: 0.596
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task023_cosmosqa_question_generation: 0.592
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task024_cosmosqa_answer_generation: 0.602
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task025_cosmosqa_incorrect_answer_generation: 0.583
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task026_drop_question_generation: 0.614
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task027_drop_answer_type_generation: 0.607
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task028_drop_answer_generation: 0.606
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task043_essential_terms_answering_incomplete_questions: 0.608
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task044_essential_terms_identifying_essential_words: 0.615
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.617
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task046_miscellaneous_question_typing: 0.611
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task047_miscellaneous_answering_science_questions: 0.610
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task059_ropes_story_generation: 0.590
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task060_ropes_question_generation: 0.597
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task061_ropes_answer_generation: 0.597
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task062_bigbench_repeat_copy_logic: 0.642
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task063_first_i_elements: 0.652
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task065_timetravel_consistent_sentence_classification: 0.628
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task066_timetravel_binary_consistency_classification: 0.632
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task067_abductivenli_answer_generation: 0.589
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task068_abductivenli_incorrect_answer_generation: 0.581
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task069_abductivenli_classification: 0.603
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task070_abductivenli_incorrect_classification: 0.606
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task085_unnatural_addsub_arithmetic: 0.661
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task088_identify_typo_verification: 0.634
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task089_swap_words_verification: 0.633
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task092_check_prime_classification: 0.651
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task103_facts2story_long_text_generation: 0.631
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.616
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task108_contextualabusedetection_classification: 0.602
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task109_smsspamcollection_spamsmsdetection: 0.617
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task110_logic2text_sentence_generation: 0.660
+  task083_babi_t1_single_supporting_fact_answer_generation <-> task111_asset_sentence_simplification: 0.592
+  task085_unnatural_addsub_arithmetic <-> task046_miscellaneous_question_typing: 0.666
+  task088_identify_typo_verification <-> task023_cosmosqa_question_generation: 0.582
+  task088_identify_typo_verification <-> task024_cosmosqa_answer_generation: 0.591
+  task088_identify_typo_verification <-> task025_cosmosqa_incorrect_answer_generation: 0.594
+  task088_identify_typo_verification <-> task026_drop_question_generation: 0.603
+  task088_identify_typo_verification <-> task027_drop_answer_type_generation: 0.585
+  task088_identify_typo_verification <-> task028_drop_answer_generation: 0.577 [SAME FAMILY]
+  task088_identify_typo_verification <-> task045_miscellaneous_sentence_paraphrasing: 0.603
+  task088_identify_typo_verification <-> task046_miscellaneous_question_typing: 0.608
+  task088_identify_typo_verification <-> task059_ropes_story_generation: 0.591
+  task088_identify_typo_verification <-> task060_ropes_question_generation: 0.592
+  task088_identify_typo_verification <-> task062_bigbench_repeat_copy_logic: 0.621
+  task088_identify_typo_verification <-> task063_first_i_elements: 0.684 [SAME FAMILY]
+  task088_identify_typo_verification <-> task067_abductivenli_answer_generation: 0.603
+  task088_identify_typo_verification <-> task068_abductivenli_incorrect_answer_generation: 0.618
+  task088_identify_typo_verification <-> task085_unnatural_addsub_arithmetic: 0.626 [SAME FAMILY]
+  task088_identify_typo_verification <-> task089_swap_words_verification: 0.833 [SAME FAMILY]
+  task088_identify_typo_verification <-> task103_facts2story_long_text_generation: 0.618
+  task088_identify_typo_verification <-> task105_story_cloze-rocstories_sentence_generation: 0.606
+  task088_identify_typo_verification <-> task110_logic2text_sentence_generation: 0.613
+  task088_identify_typo_verification <-> task111_asset_sentence_simplification: 0.626
+  task089_swap_words_verification <-> task023_cosmosqa_question_generation: 0.590
+  task089_swap_words_verification <-> task024_cosmosqa_answer_generation: 0.598
+  task089_swap_words_verification <-> task025_cosmosqa_incorrect_answer_generation: 0.593
+  task089_swap_words_verification <-> task026_drop_question_generation: 0.596
+  task089_swap_words_verification <-> task027_drop_answer_type_generation: 0.579
+  task089_swap_words_verification <-> task028_drop_answer_generation: 0.585 [SAME FAMILY]
+  task089_swap_words_verification <-> task045_miscellaneous_sentence_paraphrasing: 0.593
+  task089_swap_words_verification <-> task046_miscellaneous_question_typing: 0.614
+  task089_swap_words_verification <-> task059_ropes_story_generation: 0.579
+  task089_swap_words_verification <-> task060_ropes_question_generation: 0.578
+  task089_swap_words_verification <-> task062_bigbench_repeat_copy_logic: 0.631
+  task089_swap_words_verification <-> task063_first_i_elements: 0.679 [SAME FAMILY]
+  task089_swap_words_verification <-> task067_abductivenli_answer_generation: 0.607
+  task089_swap_words_verification <-> task068_abductivenli_incorrect_answer_generation: 0.608
+  task089_swap_words_verification <-> task085_unnatural_addsub_arithmetic: 0.648 [SAME FAMILY]
+  task089_swap_words_verification <-> task103_facts2story_long_text_generation: 0.603
+  task089_swap_words_verification <-> task105_story_cloze-rocstories_sentence_generation: 0.618
+  task089_swap_words_verification <-> task110_logic2text_sentence_generation: 0.616
+  task089_swap_words_verification <-> task111_asset_sentence_simplification: 0.635
+  task092_check_prime_classification <-> task023_cosmosqa_question_generation: 0.580
+  task092_check_prime_classification <-> task024_cosmosqa_answer_generation: 0.601
+  task092_check_prime_classification <-> task025_cosmosqa_incorrect_answer_generation: 0.585
+  task092_check_prime_classification <-> task026_drop_question_generation: 0.583
+  task092_check_prime_classification <-> task027_drop_answer_type_generation: 0.593
+  task092_check_prime_classification <-> task028_drop_answer_generation: 0.592 [SAME FAMILY]
+  task092_check_prime_classification <-> task045_miscellaneous_sentence_paraphrasing: 0.594
+  task092_check_prime_classification <-> task046_miscellaneous_question_typing: 0.624
+  task092_check_prime_classification <-> task059_ropes_story_generation: 0.601
+  task092_check_prime_classification <-> task060_ropes_question_generation: 0.587
+  task092_check_prime_classification <-> task062_bigbench_repeat_copy_logic: 0.598
+  task092_check_prime_classification <-> task063_first_i_elements: 0.693 [SAME FAMILY]
+  task092_check_prime_classification <-> task067_abductivenli_answer_generation: 0.596
+  task092_check_prime_classification <-> task068_abductivenli_incorrect_answer_generation: 0.607
+  task092_check_prime_classification <-> task085_unnatural_addsub_arithmetic: 0.628 [SAME FAMILY]
+  task092_check_prime_classification <-> task088_identify_typo_verification: 0.694 [SAME FAMILY]
+  task092_check_prime_classification <-> task089_swap_words_verification: 0.708 [SAME FAMILY]
+  task092_check_prime_classification <-> task103_facts2story_long_text_generation: 0.608
+  task092_check_prime_classification <-> task105_story_cloze-rocstories_sentence_generation: 0.597
+  task092_check_prime_classification <-> task108_contextualabusedetection_classification: 0.629 [SAME FAMILY]
+  task092_check_prime_classification <-> task109_smsspamcollection_spamsmsdetection: 0.614
+  task092_check_prime_classification <-> task110_logic2text_sentence_generation: 0.600
+  task092_check_prime_classification <-> task111_asset_sentence_simplification: 0.585
+  task103_facts2story_long_text_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.587
+  task103_facts2story_long_text_generation <-> task046_miscellaneous_question_typing: 0.589 [SAME FAMILY]
+  task103_facts2story_long_text_generation <-> task062_bigbench_repeat_copy_logic: 0.637
+  task103_facts2story_long_text_generation <-> task063_first_i_elements: 0.684
+  task103_facts2story_long_text_generation <-> task085_unnatural_addsub_arithmetic: 0.599
+  task103_facts2story_long_text_generation <-> task105_story_cloze-rocstories_sentence_generation: 0.615 [SAME FAMILY]
+  task103_facts2story_long_text_generation <-> task110_logic2text_sentence_generation: 0.667 [SAME FAMILY]
+  task103_facts2story_long_text_generation <-> task111_asset_sentence_simplification: 0.590
+  task105_story_cloze-rocstories_sentence_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.612
+  task105_story_cloze-rocstories_sentence_generation <-> task046_miscellaneous_question_typing: 0.596 [SAME FAMILY]
+  task105_story_cloze-rocstories_sentence_generation <-> task062_bigbench_repeat_copy_logic: 0.629
+  task105_story_cloze-rocstories_sentence_generation <-> task063_first_i_elements: 0.590
+  task105_story_cloze-rocstories_sentence_generation <-> task085_unnatural_addsub_arithmetic: 0.636
+  task105_story_cloze-rocstories_sentence_generation <-> task110_logic2text_sentence_generation: 0.659 [SAME FAMILY]
+  task105_story_cloze-rocstories_sentence_generation <-> task111_asset_sentence_simplification: 0.614
+  task108_contextualabusedetection_classification <-> task023_cosmosqa_question_generation: 0.599
+  task108_contextualabusedetection_classification <-> task024_cosmosqa_answer_generation: 0.599
+  task108_contextualabusedetection_classification <-> task025_cosmosqa_incorrect_answer_generation: 0.597
+  task108_contextualabusedetection_classification <-> task026_drop_question_generation: 0.607
+  task108_contextualabusedetection_classification <-> task027_drop_answer_type_generation: 0.596
+  task108_contextualabusedetection_classification <-> task028_drop_answer_generation: 0.579 [SAME FAMILY]
+  task108_contextualabusedetection_classification <-> task045_miscellaneous_sentence_paraphrasing: 0.598
+  task108_contextualabusedetection_classification <-> task046_miscellaneous_question_typing: 0.609
+  task108_contextualabusedetection_classification <-> task059_ropes_story_generation: 0.587
+  task108_contextualabusedetection_classification <-> task060_ropes_question_generation: 0.605
+  task108_contextualabusedetection_classification <-> task062_bigbench_repeat_copy_logic: 0.627
+  task108_contextualabusedetection_classification <-> task063_first_i_elements: 0.639 [SAME FAMILY]
+  task108_contextualabusedetection_classification <-> task067_abductivenli_answer_generation: 0.592
+  task108_contextualabusedetection_classification <-> task068_abductivenli_incorrect_answer_generation: 0.594
+  task108_contextualabusedetection_classification <-> task085_unnatural_addsub_arithmetic: 0.619 [SAME FAMILY]
+  task108_contextualabusedetection_classification <-> task088_identify_typo_verification: 0.640 [SAME FAMILY]
+  task108_contextualabusedetection_classification <-> task089_swap_words_verification: 0.617 [SAME FAMILY]
+  task108_contextualabusedetection_classification <-> task103_facts2story_long_text_generation: 0.621
+  task108_contextualabusedetection_classification <-> task105_story_cloze-rocstories_sentence_generation: 0.601
+  task108_contextualabusedetection_classification <-> task109_smsspamcollection_spamsmsdetection: 0.681
+  task108_contextualabusedetection_classification <-> task110_logic2text_sentence_generation: 0.615
+  task108_contextualabusedetection_classification <-> task111_asset_sentence_simplification: 0.608
+  task109_smsspamcollection_spamsmsdetection <-> task023_cosmosqa_question_generation: 0.623
+  task109_smsspamcollection_spamsmsdetection <-> task024_cosmosqa_answer_generation: 0.612
+  task109_smsspamcollection_spamsmsdetection <-> task025_cosmosqa_incorrect_answer_generation: 0.597
+  task109_smsspamcollection_spamsmsdetection <-> task026_drop_question_generation: 0.608
+  task109_smsspamcollection_spamsmsdetection <-> task027_drop_answer_type_generation: 0.602 [SAME FAMILY]
+  task109_smsspamcollection_spamsmsdetection <-> task028_drop_answer_generation: 0.595
+  task109_smsspamcollection_spamsmsdetection <-> task045_miscellaneous_sentence_paraphrasing: 0.603
+  task109_smsspamcollection_spamsmsdetection <-> task046_miscellaneous_question_typing: 0.605
+  task109_smsspamcollection_spamsmsdetection <-> task059_ropes_story_generation: 0.595
+  task109_smsspamcollection_spamsmsdetection <-> task060_ropes_question_generation: 0.598
+  task109_smsspamcollection_spamsmsdetection <-> task062_bigbench_repeat_copy_logic: 0.688
+  task109_smsspamcollection_spamsmsdetection <-> task063_first_i_elements: 0.689
+  task109_smsspamcollection_spamsmsdetection <-> task067_abductivenli_answer_generation: 0.607
+  task109_smsspamcollection_spamsmsdetection <-> task068_abductivenli_incorrect_answer_generation: 0.608
+  task109_smsspamcollection_spamsmsdetection <-> task085_unnatural_addsub_arithmetic: 0.611
+  task109_smsspamcollection_spamsmsdetection <-> task088_identify_typo_verification: 0.644
+  task109_smsspamcollection_spamsmsdetection <-> task089_swap_words_verification: 0.649
+  task109_smsspamcollection_spamsmsdetection <-> task103_facts2story_long_text_generation: 0.679
+  task109_smsspamcollection_spamsmsdetection <-> task105_story_cloze-rocstories_sentence_generation: 0.611
+  task109_smsspamcollection_spamsmsdetection <-> task110_logic2text_sentence_generation: 0.659
+  task109_smsspamcollection_spamsmsdetection <-> task111_asset_sentence_simplification: 0.614
+  task110_logic2text_sentence_generation <-> task045_miscellaneous_sentence_paraphrasing: 0.594
+  task110_logic2text_sentence_generation <-> task046_miscellaneous_question_typing: 0.601 [SAME FAMILY]
+  task110_logic2text_sentence_generation <-> task062_bigbench_repeat_copy_logic: 0.703
+  task110_logic2text_sentence_generation <-> task063_first_i_elements: 0.627
+  task110_logic2text_sentence_generation <-> task085_unnatural_addsub_arithmetic: 0.644
+  task110_logic2text_sentence_generation <-> task111_asset_sentence_simplification: 0.616
+  task111_asset_sentence_simplification <-> task046_miscellaneous_question_typing: 0.608
+  task111_asset_sentence_simplification <-> task062_bigbench_repeat_copy_logic: 0.622
+  task111_asset_sentence_simplification <-> task063_first_i_elements: 0.605
+  task111_asset_sentence_simplification <-> task085_unnatural_addsub_arithmetic: 0.619
+
+--- Per-layer within vs between family overlap ---
+  Layer  0: within=0.634  between=0.620  ratio=1.02x
+  Layer  1: within=0.647  between=0.621  ratio=1.04x
+  Layer  2: within=0.629  between=0.612  ratio=1.03x
+  Layer  3: within=0.619  between=0.606  ratio=1.02x
+  Layer  4: within=0.624  between=0.609  ratio=1.02x
+  Layer  5: within=0.618  between=0.613  ratio=1.01x
+  Layer  6: within=0.610  between=0.608  ratio=1.00x
+  Layer  7: within=0.634  between=0.611  ratio=1.04x
+  Layer  8: within=0.624  between=0.613  ratio=1.02x
+  Layer  9: within=0.629  between=0.606  ratio=1.04x
+  Layer 10: within=0.626  between=0.605  ratio=1.03x
+  Layer 11: within=0.620  between=0.600  ratio=1.03x
+  Layer 12: within=0.623  between=0.608  ratio=1.02x
+  Layer 13: within=0.625  between=0.612  ratio=1.02x
+  Layer 14: within=0.622  between=0.619  ratio=1.00x
+  Layer 15: within=0.621  between=0.605  ratio=1.03x
+  Layer 16: within=0.616  between=0.602  ratio=1.02x
+  Layer 17: within=0.615  between=0.601  ratio=1.02x
+  Layer 18: within=0.621  between=0.611  ratio=1.02x
+  Layer 19: within=0.631  between=0.610  ratio=1.03x
+  Layer 20: within=0.620  between=0.603  ratio=1.03x
+  Layer 21: within=0.627  between=0.615  ratio=1.02x
+  Layer 22: within=0.613  between=0.601  ratio=1.02x
+  Layer 23: within=0.611  between=0.609  ratio=1.00x
+  Layer 24: within=0.622  between=0.611  ratio=1.02x
+  Layer 25: within=0.610  between=0.604  ratio=1.01x
+  Layer 26: within=0.621  between=0.613  ratio=1.01x
+  Layer 27: within=0.615  between=0.605  ratio=1.02x
+
+Held-out task list: 20 tasks (removed 0 overlapping)
+
+Loading SNI dataset (20 requested tasks, split=validation)...
+Loading Super-NaturalInstructions dataset (both splits)...
+  train: 3082094 examples
+  test: 484006 examples
+  Combined: 3566100 examples
+  Valid tasks: 20/20
+  task020_mctaco_span_based_question: 77 examples, family=classification, metric=accuracy
+  task033_winogrande_answer_generation: 400 examples, family=other, metric=accuracy
+  task034_winogrande_question_modification_object: 400 examples, family=classification, metric=rouge_l
+  task036_qasc_topic_word_to_generate_related_fact: 400 examples, family=generation, metric=accuracy
+  task039_qasc_find_overlapping_words: 400 examples, family=generation, metric=accuracy
+  task050_multirc_answerability: 400 examples, family=classification, metric=accuracy
+  task102_commongen_sentence_generation: 400 examples, family=generation, metric=rouge_l
+  task121_zest_text_modification: 27 examples, family=extraction, metric=rouge_l
+  task133_winowhy_reason_plausibility_detection: 400 examples, family=extraction, metric=accuracy
+  task1152_bard_analogical_reasoning_causation: 41 examples, family=extraction, metric=accuracy
+  task1342_amazon_us_reviews_title: 400 examples, family=summarization, metric=accuracy
+  task1344_glue_entailment_classification: 400 examples, family=nli, metric=accuracy
+  task1345_glue_qqp_question_paraprashing: 400 examples, family=paraphrase, metric=rouge_l
+  task1356_xlsum_title_generation: 400 examples, family=summarization, metric=rouge_l
+  task1385_anli_r1_entailment: 198 examples, family=classification, metric=accuracy
+  task1386_anli_r2_entailment: 199 examples, family=classification, metric=accuracy
+  task1387_anli_r3_entailment: 239 examples, family=classification, metric=accuracy
+  task1388_cb_entailment: 61 examples, family=classification, metric=accuracy
+  task1394_meta_woz_task_classification: 45 examples, family=classification, metric=accuracy
+  task1409_dart_text_generation: 400 examples, family=generation, metric=rouge_l
+
+Loaded 20 tasks with 5,687 total examples
+
+=== Cold-Start Evaluation (20 held-out tasks) ===
+  task020_mctaco_span_based_question: 0.00 (accuracy, family=classification)
+  task033_winogrande_answer_generation: 50.00 (accuracy, family=other)
+  task034_winogrande_question_modification_object: 9.79 (rouge_l, family=classification)
+  task036_qasc_topic_word_to_generate_related_fact: 0.00 (accuracy, family=generation)
+  task039_qasc_find_overlapping_words: 31.50 (accuracy, family=generation)
+  task050_multirc_answerability: 0.00 (accuracy, family=classification)
