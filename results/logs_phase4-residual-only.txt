@@ -490,3 +490,103 @@ If the dataset is based on a loading script, please ask the dataset author to re
 Generating test split:   0%|          | 0/11490 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 11490/11490 [00:00<00:00, 123967.98 examples/s]
   Splits: ['train', 'validation', 'test']
   Evaluating cnn_dailymail (50 examples, metric=rouge_l)...
+    cnn_dailymail: {'rouge_l': 17.46360525645906} (family: summarization)
+Downloading flores_enfr (facebook/flores)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'facebook/flores' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+ERROR:datasets.load:`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'facebook/flores' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  FAILED: Dataset 'facebook/flores' is a gated dataset on the Hub. You must be authenticated to access it.
+  Skipping flores_enfr: dataset download failed
+Downloading asdiv (EleutherAI/asdiv)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'EleutherAI/asdiv' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+ERROR:datasets.load:`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'EleutherAI/asdiv' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating validation split:   0%|          | 0/2305 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 2305/2305 [00:00<00:00, 397413.19 examples/s]
+  Splits: ['validation']
+  Skipping asdiv: split 'test' not found
+Downloading humaneval (openai/openai_humaneval)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'openai/openai_humaneval' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+ERROR:datasets.load:`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'openai/openai_humaneval' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating test split:   0%|          | 0/164 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 164/164 [00:00<00:00, 67036.92 examples/s]
+  Splits: ['test']
+  Evaluating humaneval (50 examples, metric=pass_at_1)...
+  WARNING: pass@1 requires sandboxed execution. Returning 0.
+    humaneval: {'pass_at_1': 0.0} (family: code_generation)
+
+  Cold-start macro: 22.49
+
+=== RESULTS JSON ===
+{
+  "mode": "taskmap_75",
+  "scores": {
+    "sst2": {
+      "accuracy": 79.2
+    },
+    "agnews": {
+      "accuracy": 87.6
+    },
+    "boolq": {
+      "accuracy": 67.0
+    },
+    "squad": {
+      "f1": 76.40879555540451,
+      "em": 63.2
+    },
+    "xsum": {
+      "rouge_l": 27.35214630559334
+    },
+    "wmt14_ende": {
+      "sacrebleu": 14.983141210296685,
+      "chrf": 43.813963798568835
+    },
+    "wmt16_enro": {
+      "sacrebleu": 10.317454776777511,
+      "chrf": 38.65093361208907
+    },
+    "gsm8k": {
+      "exact_answer": 46.800000000000004
+    },
+    "svamp": {
+      "exact_answer": 42.333333333333336
+    },
+    "imdb": {
+      "accuracy": 24.8
+    },
+    "emotion": {
+      "accuracy": 42.6
+    },
+    "newsgroups": {
+      "accuracy": 58.8
+    },
+    "macro_avg": 48.18290593178378
+  },
+  "route_analysis": {
+    "within_family_overlap": 0.7434863910057489,
+    "between_family_overlap": 0.692621293076202,
+    "ratio": 1.0734385420113712
+  },
+  "cold_start": {
+    "multirc": {
+      "accuracy": 50.0
+    },
+    "cnn_dailymail": {
+      "rouge_l": 17.46360525645906
+    },
+    "humaneval": {
+      "pass_at_1": 0.0
+    },
+    "macro_avg": 22.487868418819687
+  }
+}
+=== END RESULTS ===
+=== DONE ===
