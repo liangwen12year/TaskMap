@@ -1,4 +1,4 @@
-Sun Aug  9 23:02:53 2026       
+Mon Aug 10 02:30:42 2026       
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 580.126.20             Driver Version: 580.126.20     CUDA Version: 13.0     |
 +-----------------------------------------+------------------------+----------------------+
@@ -34,38 +34,38 @@ Downloading sst2 (stanfordnlp/sst2)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'stanfordnlp/sst2' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
-Generating train split:   0%|          | 0/67349 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 67349/67349 [00:00<00:00, 2402610.97 examples/s]
-Generating validation split:   0%|          | 0/872 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 872/872 [00:00<00:00, 507976.82 examples/s]
-Generating test split:   0%|          | 0/1821 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1821/1821 [00:00<00:00, 822775.78 examples/s]
+Generating train split:   0%|          | 0/67349 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 67349/67349 [00:00<00:00, 2317593.33 examples/s]
+Generating validation split:   0%|          | 0/872 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 872/872 [00:00<00:00, 560182.74 examples/s]
+Generating test split:   0%|          | 0/1821 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1821/1821 [00:00<00:00, 781523.34 examples/s]
   Splits: ['train', 'validation', 'test']
 Downloading agnews (fancyzhx/ag_news)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'fancyzhx/ag_news' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
-Generating train split:   0%|          | 0/120000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 120000/120000 [00:00<00:00, 1500712.55 examples/s]
-Generating test split:   0%|          | 0/7600 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 7600/7600 [00:00<00:00, 1377201.69 examples/s]
+Generating train split:   0%|          | 0/120000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 120000/120000 [00:00<00:00, 1564459.92 examples/s]
+Generating test split:   0%|          | 0/7600 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 7600/7600 [00:00<00:00, 1154116.96 examples/s]
   Splits: ['train', 'test']
 Downloading boolq (google/boolq)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'google/boolq' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
-Generating train split:   0%|          | 0/9427 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 9427/9427 [00:00<00:00, 572193.33 examples/s]
-Generating validation split:   0%|          | 0/3270 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3270/3270 [00:00<00:00, 566891.55 examples/s]
+Generating train split:   0%|          | 0/9427 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 9427/9427 [00:00<00:00, 618107.27 examples/s]
+Generating validation split:   0%|          | 0/3270 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3270/3270 [00:00<00:00, 612731.15 examples/s]
   Splits: ['train', 'validation']
 Downloading squad (rajpurkar/squad)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'rajpurkar/squad' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
-Generating train split:   0%|          | 0/87599 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 87599/87599 [00:00<00:00, 1292242.46 examples/s]
-Generating validation split:   0%|          | 0/10570 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 10570/10570 [00:00<00:00, 1070244.14 examples/s]
+Generating train split:   0%|          | 0/87599 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 87599/87599 [00:00<00:00, 1332930.05 examples/s]
+Generating validation split:   0%|          | 0/10570 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 10570/10570 [00:00<00:00, 1205476.07 examples/s]
   Splits: ['train', 'validation']
 Downloading xsum (EdinburghNLP/xsum)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'EdinburghNLP/xsum' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
-Generating train split:   0%|          | 0/204045 [00:00<?, ? examples/s]Generating train split:   9%|▉         | 18000/204045 [00:00<00:01, 173112.88 examples/s]Generating train split:  20%|██        | 41000/204045 [00:00<00:00, 199352.27 examples/s]Generating train split:  31%|███▏      | 64000/204045 [00:00<00:00, 208787.09 examples/s]Generating train split:  43%|████▎     | 87000/204045 [00:00<00:00, 214268.32 examples/s]Generating train split:  54%|█████▍    | 110000/204045 [00:00<00:00, 216701.02 examples/s]Generating train split:  65%|██████▌   | 133000/204045 [00:00<00:00, 218943.68 examples/s]Generating train split:  76%|███████▋  | 156000/204045 [00:00<00:00, 218628.45 examples/s]Generating train split:  88%|████████▊ | 179000/204045 [00:00<00:00, 212042.57 examples/s]Generating train split: 100%|██████████| 204045/204045 [00:00<00:00, 216013.90 examples/s]
-Generating validation split:   0%|          | 0/11332 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 11332/11332 [00:00<00:00, 215077.91 examples/s]
-Generating test split:   0%|          | 0/11334 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 11334/11334 [00:00<00:00, 208385.90 examples/s]
+Generating train split:   0%|          | 0/204045 [00:00<?, ? examples/s]Generating train split:   9%|▉         | 19000/204045 [00:00<00:01, 180508.46 examples/s]Generating train split:  20%|█▉        | 40000/204045 [00:00<00:00, 194406.01 examples/s]Generating train split:  31%|███▏      | 64000/204045 [00:00<00:00, 209329.54 examples/s]Generating train split:  43%|████▎     | 87000/204045 [00:00<00:00, 212742.20 examples/s]Generating train split:  54%|█████▍    | 111000/204045 [00:00<00:00, 218284.86 examples/s]Generating train split:  66%|██████▌   | 134000/204045 [00:00<00:00, 219454.38 examples/s]Generating train split:  76%|███████▋  | 156000/204045 [00:00<00:00, 216227.90 examples/s]Generating train split:  88%|████████▊ | 179000/204045 [00:00<00:00, 211477.43 examples/s]Generating train split: 100%|██████████| 204045/204045 [00:00<00:00, 215954.70 examples/s]
+Generating validation split:   0%|          | 0/11332 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 11332/11332 [00:00<00:00, 222007.71 examples/s]
+Generating test split:   0%|          | 0/11334 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 11334/11334 [00:00<00:00, 202081.43 examples/s]
   Splits: ['train', 'validation', 'test']
 Downloading samsum (Samsung/samsum)...
 `trust_remote_code` is not supported anymore.
@@ -76,55 +76,55 @@ Downloading wmt14_ende (wmt14)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'wmt14' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
-Generating train split:   0%|          | 0/4508785 [00:00<?, ? examples/s]Generating train split:   3%|▎         | 118000/4508785 [00:00<00:03, 1169016.94 examples/s]Generating train split:   6%|▌         | 252000/4508785 [00:00<00:03, 1261298.23 examples/s]Generating train split:   9%|▊         | 387000/4508785 [00:00<00:03, 1299432.52 examples/s]Generating train split:  12%|█▏        | 531000/4508785 [00:00<00:03, 1316364.70 examples/s]Generating train split:  15%|█▌        | 682000/4508785 [00:00<00:02, 1380587.88 examples/s]Generating train split:  18%|█▊        | 821000/4508785 [00:00<00:02, 1378687.22 examples/s]Generating train split:  21%|██▏       | 967000/4508785 [00:00<00:02, 1380551.10 examples/s]Generating train split:  25%|██▍       | 1107000/4508785 [00:00<00:02, 1383241.04 examples/s]Generating train split:  28%|██▊       | 1262000/4508785 [00:00<00:02, 1398146.27 examples/s]Generating train split:  31%|███▏      | 1415000/4508785 [00:01<00:02, 1433664.63 examples/s]Generating train split:  36%|███▌      | 1614929/4508785 [00:01<00:02, 1390912.57 examples/s]Generating train split:  39%|███▉      | 1758929/4508785 [00:01<00:01, 1402708.80 examples/s]Generating train split:  42%|████▏     | 1902929/4508785 [00:01<00:01, 1412163.10 examples/s]Generating train split:  46%|████▌     | 2058929/4508785 [00:01<00:01, 1444644.70 examples/s]Generating train split:  49%|████▉     | 2226929/4508785 [00:01<00:01, 1510036.99 examples/s]Generating train split:  54%|█████▍    | 2454929/4508785 [00:01<00:01, 1482767.51 examples/s]Generating train split:  58%|█████▊    | 2617929/4508785 [00:01<00:01, 1517810.65 examples/s]Generating train split:  63%|██████▎   | 2843929/4508785 [00:01<00:01, 1508962.09 examples/s]Generating train split:  67%|██████▋   | 3000929/4508785 [00:02<00:00, 1521540.22 examples/s]Generating train split:  71%|███████   | 3200857/4508785 [00:02<00:00, 1449453.15 examples/s]Generating train split:  74%|███████▍  | 3358857/4508785 [00:02<00:00, 1481158.78 examples/s]Generating train split:  78%|███████▊  | 3511857/4508785 [00:02<00:00, 1491317.55 examples/s]Generating train split:  81%|████████▏ | 3666857/4508785 [00:02<00:00, 1503196.93 examples/s]Generating train split:  85%|████████▍ | 3818857/4508785 [00:02<00:00, 1506019.70 examples/s]Generating train split:  90%|████████▉ | 4042857/4508785 [00:02<00:00, 1498897.27 examples/s]Generating train split:  95%|█████████▍| 4267857/4508785 [00:02<00:00, 1494991.85 examples/s]Generating train split:  99%|█████████▉| 4472857/4508785 [00:03<00:00, 1450381.49 examples/s]Generating train split: 100%|██████████| 4508785/4508785 [00:03<00:00, 1442550.80 examples/s]
-Generating validation split:   0%|          | 0/3000 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3000/3000 [00:00<00:00, 701036.94 examples/s]
-Generating test split:   0%|          | 0/3003 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 3003/3003 [00:00<00:00, 955942.24 examples/s]
+Generating train split:   0%|          | 0/4508785 [00:00<?, ? examples/s]Generating train split:   3%|▎         | 120000/4508785 [00:00<00:03, 1186532.67 examples/s]Generating train split:   6%|▌         | 263000/4508785 [00:00<00:03, 1321607.80 examples/s]Generating train split:   9%|▉         | 404000/4508785 [00:00<00:03, 1359043.02 examples/s]Generating train split:  12%|█▏        | 544000/4508785 [00:00<00:02, 1371329.08 examples/s]Generating train split:  16%|█▌        | 708000/4508785 [00:00<00:02, 1465699.53 examples/s]Generating train split:  20%|██        | 918000/4508785 [00:00<00:02, 1432892.75 examples/s]Generating train split:  24%|██▍       | 1076000/4508785 [00:00<00:02, 1454685.35 examples/s]Generating train split:  28%|██▊       | 1242000/4508785 [00:00<00:02, 1511595.38 examples/s]Generating train split:  33%|███▎      | 1469000/4508785 [00:01<00:02, 1509774.70 examples/s]Generating train split:  37%|███▋      | 1680929/4508785 [00:01<00:01, 1452334.60 examples/s]Generating train split:  41%|████      | 1847929/4508785 [00:01<00:01, 1505639.43 examples/s]Generating train split:  44%|████▍     | 2004929/4508785 [00:01<00:01, 1521530.46 examples/s]Generating train split:  48%|████▊     | 2167929/4508785 [00:01<00:01, 1548774.84 examples/s]Generating train split:  52%|█████▏    | 2349929/4508785 [00:01<00:01, 1572636.49 examples/s]Generating train split:  57%|█████▋    | 2591929/4508785 [00:01<00:01, 1584358.70 examples/s]Generating train split:  63%|██████▎   | 2839929/4508785 [00:01<00:01, 1603451.88 examples/s]Generating train split:  67%|██████▋   | 3003929/4508785 [00:01<00:00, 1611071.23 examples/s]Generating train split:  71%|███████▏  | 3213857/4508785 [00:02<00:00, 1533345.62 examples/s]Generating train split:  75%|███████▍  | 3373857/4508785 [00:02<00:00, 1543452.06 examples/s]Generating train split:  79%|███████▊  | 3544857/4508785 [00:02<00:00, 1584564.58 examples/s]Generating train split:  82%|████████▏ | 3707857/4508785 [00:02<00:00, 1593234.80 examples/s]Generating train split:  86%|████████▌ | 3869857/4508785 [00:02<00:00, 1597507.22 examples/s]Generating train split:  91%|█████████▏| 4118857/4508785 [00:02<00:00, 1602165.59 examples/s]Generating train split:  96%|█████████▌| 4330857/4508785 [00:02<00:00, 1534370.40 examples/s]Generating train split: 100%|█████████▉| 4489857/4508785 [00:02<00:00, 1543656.39 examples/s]Generating train split: 100%|██████████| 4508785/4508785 [00:02<00:00, 1524553.32 examples/s]
+Generating validation split:   0%|          | 0/3000 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3000/3000 [00:00<00:00, 693579.10 examples/s]
+Generating test split:   0%|          | 0/3003 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 3003/3003 [00:00<00:00, 1036666.25 examples/s]
   Splits: ['train', 'validation', 'test']
 Downloading wmt16_enro (wmt16)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'wmt16' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
-Generating train split:   0%|          | 0/610320 [00:00<?, ? examples/s]Generating train split:  22%|██▏       | 132000/610320 [00:00<00:00, 1312432.00 examples/s]Generating train split:  46%|████▌     | 278000/610320 [00:00<00:00, 1390947.64 examples/s]Generating train split:  69%|██████▉   | 423000/610320 [00:00<00:00, 1416957.74 examples/s]Generating train split:  95%|█████████▌| 581000/610320 [00:00<00:00, 1475255.71 examples/s]Generating train split: 100%|██████████| 610320/610320 [00:00<00:00, 1448056.01 examples/s]
-Generating validation split:   0%|          | 0/1999 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 1999/1999 [00:00<00:00, 623933.15 examples/s]
-Generating test split:   0%|          | 0/1999 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1999/1999 [00:00<00:00, 729968.11 examples/s]
+Generating train split:   0%|          | 0/610320 [00:00<?, ? examples/s]Generating train split:  23%|██▎       | 141000/610320 [00:00<00:00, 1399451.16 examples/s]Generating train split:  48%|████▊     | 291000/610320 [00:00<00:00, 1452863.84 examples/s]Generating train split:  73%|███████▎  | 447000/610320 [00:00<00:00, 1499652.88 examples/s]Generating train split: 100%|██████████| 610320/610320 [00:00<00:00, 1537636.26 examples/s]
+Generating validation split:   0%|          | 0/1999 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 1999/1999 [00:00<00:00, 717659.31 examples/s]
+Generating test split:   0%|          | 0/1999 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1999/1999 [00:00<00:00, 827109.96 examples/s]
   Splits: ['train', 'validation', 'test']
 Downloading gsm8k (openai/gsm8k)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'openai/gsm8k' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
-Generating train split:   0%|          | 0/7473 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 7473/7473 [00:00<00:00, 712736.97 examples/s]
-Generating test split:   0%|          | 0/1319 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1319/1319 [00:00<00:00, 413412.57 examples/s]
+Generating train split:   0%|          | 0/7473 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 7473/7473 [00:00<00:00, 728964.92 examples/s]
+Generating test split:   0%|          | 0/1319 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1319/1319 [00:00<00:00, 548837.99 examples/s]
   Splits: ['train', 'test']
 Downloading svamp (ChilleD/SVAMP)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'ChilleD/SVAMP' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
-Generating train split:   0%|          | 0/700 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 700/700 [00:00<00:00, 233777.59 examples/s]
-Generating test split:   0%|          | 0/300 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 300/300 [00:00<00:00, 168852.82 examples/s]
+Generating train split:   0%|          | 0/700 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 700/700 [00:00<00:00, 199335.51 examples/s]
+Generating test split:   0%|          | 0/300 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 300/300 [00:00<00:00, 154619.22 examples/s]
   Splits: ['train', 'test']
 Downloading imdb (stanfordnlp/imdb)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'stanfordnlp/imdb' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
-Generating train split:   0%|          | 0/25000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 25000/25000 [00:00<00:00, 302668.25 examples/s]
-Generating test split:   0%|          | 0/25000 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 25000/25000 [00:00<00:00, 334773.00 examples/s]
-Generating unsupervised split:   0%|          | 0/50000 [00:00<?, ? examples/s]Generating unsupervised split:  68%|██████▊   | 34000/50000 [00:00<00:00, 330178.34 examples/s]Generating unsupervised split: 100%|██████████| 50000/50000 [00:00<00:00, 341269.46 examples/s]
+Generating train split:   0%|          | 0/25000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 25000/25000 [00:00<00:00, 334789.04 examples/s]
+Generating test split:   0%|          | 0/25000 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 25000/25000 [00:00<00:00, 364341.90 examples/s]
+Generating unsupervised split:   0%|          | 0/50000 [00:00<?, ? examples/s]Generating unsupervised split:  74%|███████▍  | 37000/50000 [00:00<00:00, 360955.59 examples/s]Generating unsupervised split: 100%|██████████| 50000/50000 [00:00<00:00, 370475.74 examples/s]
   Splits: ['train', 'test', 'unsupervised']
 Downloading emotion (dair-ai/emotion)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'dair-ai/emotion' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
-Generating train split:   0%|          | 0/16000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 16000/16000 [00:00<00:00, 1565951.79 examples/s]
-Generating validation split:   0%|          | 0/2000 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 2000/2000 [00:00<00:00, 1012261.13 examples/s]
-Generating test split:   0%|          | 0/2000 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 2000/2000 [00:00<00:00, 988989.39 examples/s]
+Generating train split:   0%|          | 0/16000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 16000/16000 [00:00<00:00, 1962075.37 examples/s]
+Generating validation split:   0%|          | 0/2000 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 2000/2000 [00:00<00:00, 1108870.85 examples/s]
+Generating test split:   0%|          | 0/2000 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 2000/2000 [00:00<00:00, 1144889.86 examples/s]
   Splits: ['train', 'validation', 'test']
 Downloading newsgroups (SetFit/20_newsgroups)...
 `trust_remote_code` is not supported anymore.
 Please check that the Hugging Face dataset 'SetFit/20_newsgroups' isn't based on a loading script and remove `trust_remote_code`.
 If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
 Repo card metadata block was not found. Setting CardData to empty.
-Generating train split:   0%|          | 0/11314 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 11314/11314 [00:00<00:00, 262889.00 examples/s]
-Generating test split:   0%|          | 0/7532 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 7532/7532 [00:00<00:00, 338122.89 examples/s]
+Generating train split:   0%|          | 0/11314 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 11314/11314 [00:00<00:00, 252701.75 examples/s]
+Generating test split:   0%|          | 0/7532 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 7532/7532 [00:00<00:00, 319257.60 examples/s]
   Splits: ['train', 'test']
   sst2/train: 40000 examples (deduped)
   agnews/train: 40000 examples (deduped)
@@ -141,35 +141,161 @@ Repo card metadata block was not found. Setting CardData to empty.
 Total training examples: 309,533
 
 Starting HyperLoRA training for 6000 steps...
-Traceback (most recent call last):
-  File "/workspace/TaskMap/train_hyperlora.py", line 342, in <module>
-    train_hyperlora(args)
-  File "/workspace/TaskMap/train_hyperlora.py", line 261, in train_hyperlora
-    outputs = backbone(**batch)
-  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1552, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1561, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
-    return func(*args, **kwargs)
-  File "/usr/local/lib/python3.10/dist-packages/transformers/models/qwen2/modeling_qwen2.py", line 856, in forward
-    outputs = self.model(
-  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1552, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1561, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/usr/local/lib/python3.10/dist-packages/transformers/models/qwen2/modeling_qwen2.py", line 579, in forward
-    layer_outputs = decoder_layer(
-  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1552, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1561, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/usr/local/lib/python3.10/dist-packages/transformers/models/qwen2/modeling_qwen2.py", line 276, in forward
-    hidden_states = self.mlp(hidden_states)
-  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1552, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1615, in _call_impl
-    hook_result = hook(self, args, result)
-  File "/workspace/TaskMap/train_hyperlora.py", line 134, in hook_fn
-    delta_out = delta_act @ (down_orig + delta_down).T - delta_act @ down_orig.T + act_orig @ delta_down.T
-RuntimeError: The size of tensor a (8960) must match the size of tensor b (1536) at non-singleton dimension 1
+  Step 1/6000 | Loss: 3.0714 | Task: wmt16_enro | Time: 1s
+  Step 100/6000 | Loss: 237.6682 | Task: wmt16_enro | Time: 76s
+  Step 200/6000 | Loss: 190.8758 | Task: sst2 | Time: 149s
+  Step 300/6000 | Loss: 188.1161 | Task: gsm8k | Time: 222s
+  Step 400/6000 | Loss: 181.9069 | Task: agnews | Time: 297s
+  Step 500/6000 | Loss: 186.2110 | Task: imdb | Time: 370s
+  Step 600/6000 | Loss: 183.3897 | Task: wmt14_ende | Time: 444s
+  Step 700/6000 | Loss: 183.9085 | Task: wmt16_enro | Time: 519s
+  Step 800/6000 | Loss: 178.2221 | Task: boolq | Time: 593s
+  Step 900/6000 | Loss: 182.7527 | Task: xsum | Time: 666s
+  Step 1000/6000 | Loss: 180.7999 | Task: sst2 | Time: 741s
+  Step 1100/6000 | Loss: 178.7433 | Task: wmt16_enro | Time: 815s
+  Step 1200/6000 | Loss: 177.8450 | Task: wmt16_enro | Time: 889s
+  Step 1300/6000 | Loss: 180.7461 | Task: wmt16_enro | Time: 963s
+  Step 1400/6000 | Loss: 181.0185 | Task: xsum | Time: 1037s
+  Step 1500/6000 | Loss: 180.5533 | Task: squad | Time: 1112s
+  Step 1600/6000 | Loss: 184.5214 | Task: newsgroups | Time: 1188s
+  Step 1700/6000 | Loss: 178.5078 | Task: agnews | Time: 1261s
+  Step 1800/6000 | Loss: 178.4174 | Task: squad | Time: 1336s
+  Step 1900/6000 | Loss: 178.1031 | Task: imdb | Time: 1410s
+  Step 2000/6000 | Loss: 181.1402 | Task: emotion | Time: 1485s
+  Step 2100/6000 | Loss: 180.1346 | Task: wmt14_ende | Time: 1559s
+  Step 2200/6000 | Loss: 179.0185 | Task: boolq | Time: 1633s
+  Step 2300/6000 | Loss: 179.7047 | Task: imdb | Time: 1710s
+  Step 2400/6000 | Loss: 179.0779 | Task: agnews | Time: 1786s
+  Step 2500/6000 | Loss: 178.1338 | Task: emotion | Time: 1861s
+  Step 2600/6000 | Loss: 177.1397 | Task: sst2 | Time: 1933s
+  Step 2700/6000 | Loss: 180.7804 | Task: squad | Time: 2007s
+  Step 2800/6000 | Loss: 175.5500 | Task: xsum | Time: 2081s
+  Step 2900/6000 | Loss: 180.6730 | Task: newsgroups | Time: 2155s
+  Step 3000/6000 | Loss: 177.6469 | Task: sst2 | Time: 2230s
+  Step 3100/6000 | Loss: 181.4335 | Task: wmt16_enro | Time: 2305s
+  Step 3200/6000 | Loss: 182.8366 | Task: emotion | Time: 2378s
+  Step 3300/6000 | Loss: 182.5512 | Task: xsum | Time: 2453s
+  Step 3400/6000 | Loss: 178.5581 | Task: boolq | Time: 2526s
+  Step 3500/6000 | Loss: 181.2868 | Task: xsum | Time: 2601s
+  Step 3600/6000 | Loss: 178.0166 | Task: svamp | Time: 2676s
+  Step 3700/6000 | Loss: 177.6394 | Task: newsgroups | Time: 2751s
+  Step 3800/6000 | Loss: 179.9504 | Task: squad | Time: 2826s
+  Step 3900/6000 | Loss: 179.0518 | Task: wmt14_ende | Time: 2900s
+  Step 4000/6000 | Loss: 180.8152 | Task: xsum | Time: 2974s
+  Step 4100/6000 | Loss: 180.6744 | Task: wmt14_ende | Time: 3049s
+  Step 4200/6000 | Loss: 181.5158 | Task: xsum | Time: 3121s
+  Step 4300/6000 | Loss: 178.4750 | Task: boolq | Time: 3195s
+  Step 4400/6000 | Loss: 175.1346 | Task: squad | Time: 3271s
+  Step 4500/6000 | Loss: 179.3295 | Task: sst2 | Time: 3346s
+  Step 4600/6000 | Loss: 174.8435 | Task: sst2 | Time: 3421s
+  Step 4700/6000 | Loss: 177.9501 | Task: xsum | Time: 3496s
+  Step 4800/6000 | Loss: 175.2603 | Task: sst2 | Time: 3569s
+  Step 4900/6000 | Loss: 176.8636 | Task: imdb | Time: 3645s
+  Step 5000/6000 | Loss: 178.8649 | Task: xsum | Time: 3720s
+  Step 5100/6000 | Loss: 180.4881 | Task: sst2 | Time: 3795s
+  Step 5200/6000 | Loss: 183.0479 | Task: newsgroups | Time: 3869s
+  Step 5300/6000 | Loss: 176.2669 | Task: xsum | Time: 3945s
+  Step 5400/6000 | Loss: 176.7422 | Task: wmt14_ende | Time: 4019s
+  Step 5500/6000 | Loss: 182.1382 | Task: wmt16_enro | Time: 4091s
+  Step 5600/6000 | Loss: 185.0899 | Task: squad | Time: 4164s
+  Step 5700/6000 | Loss: 179.9721 | Task: wmt16_enro | Time: 4241s
+  Step 5800/6000 | Loss: 179.6242 | Task: gsm8k | Time: 4316s
+  Step 5900/6000 | Loss: 179.2438 | Task: xsum | Time: 4391s
+  Step 6000/6000 | Loss: 179.0312 | Task: wmt14_ende | Time: 4467s
+
+Training complete in 4467.3s
+
+=== Evaluation ===
+  sst2/validation: 872 examples (deduped)
+  agnews/validation: 7600 examples (deduped)
+  boolq/validation: 3270 examples (deduped)
+  squad/validation: 10552 examples (deduped)
+  xsum/validation: 11327 examples (deduped)
+  wmt14_ende/validation: 2996 examples (deduped)
+  wmt16_enro/validation: 1999 examples (deduped)
+  gsm8k/validation: 1319 examples (deduped)
+  svamp/validation: 300 examples (deduped)
+  imdb/validation: 24797 examples (deduped)
+  emotion/validation: 2000 examples (deduped)
+  newsgroups/validation: 7334 examples (deduped)
+  Evaluating sst2 (500 examples, metric=accuracy)...
+    sst2: {'accuracy': 88.0}
+  Evaluating agnews (500 examples, metric=accuracy)...
+    agnews: {'accuracy': 86.2}
+  Evaluating boolq (500 examples, metric=accuracy)...
+    boolq: {'accuracy': 69.0}
+  Evaluating squad (500 examples, metric=f1_em)...
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+    squad: {'f1': 59.676639209451345, 'em': 48.0}
+  Evaluating xsum (500 examples, metric=rouge_l)...
+    xsum: {'rouge_l': 27.849612626582758}
+  Evaluating wmt14_ende (500 examples, metric=sacrebleu_chrf)...
+    wmt14_ende: {'sacrebleu': 9.099832512012442, 'chrf': 32.65627258460745}
+  Evaluating wmt16_enro (500 examples, metric=sacrebleu_chrf)...
+    wmt16_enro: {'sacrebleu': 4.87329736392632, 'chrf': 26.20699125206586}
+  Evaluating gsm8k (500 examples, metric=exact_answer)...
+    gsm8k: {'exact_answer': 33.2}
+  Evaluating svamp (300 examples, metric=exact_answer)...
+    svamp: {'exact_answer': 51.0}
+  Evaluating imdb (500 examples, metric=accuracy)...
+    imdb: {'accuracy': 13.200000000000001}
+  Evaluating emotion (500 examples, metric=accuracy)...
+    emotion: {'accuracy': 42.6}
+  Evaluating newsgroups (500 examples, metric=accuracy)...
+    newsgroups: {'accuracy': 58.4}
+
+  Macro: 45.26
+
+=== RESULTS JSON ===
+{
+  "mode": "hyperlora",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "rank": 8,
+  "trainable_params": 2888192,
+  "scores": {
+    "sst2": {
+      "accuracy": 88.0
+    },
+    "agnews": {
+      "accuracy": 86.2
+    },
+    "boolq": {
+      "accuracy": 69.0
+    },
+    "squad": {
+      "f1": 59.676639209451345,
+      "em": 48.0
+    },
+    "xsum": {
+      "rouge_l": 27.849612626582758
+    },
+    "wmt14_ende": {
+      "sacrebleu": 9.099832512012442,
+      "chrf": 32.65627258460745
+    },
+    "wmt16_enro": {
+      "sacrebleu": 4.87329736392632,
+      "chrf": 26.20699125206586
+    },
+    "gsm8k": {
+      "exact_answer": 33.2
+    },
+    "svamp": {
+      "exact_answer": 51.0
+    },
+    "imdb": {
+      "accuracy": 13.200000000000001
+    },
+    "emotion": {
+      "accuracy": 42.6
+    },
+    "newsgroups": {
+      "accuracy": 58.4
+    },
+    "macro_avg": 45.25828180933107
+  }
+}
+=== END RESULTS ===
+=== DONE ===
+=== DONE ===

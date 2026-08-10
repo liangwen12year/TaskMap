@@ -253,3 +253,105 @@ If the dataset is based on a loading script, please ask the dataset author to re
   Evaluating wmt16_enro (500 examples, metric=sacrebleu_chrf)...
     wmt16_enro: {'sacrebleu': 9.08910061179623, 'chrf': 37.31478878035504}
   Evaluating gsm8k (500 examples, metric=exact_answer)...
+    gsm8k: {'exact_answer': 48.8}
+  Evaluating svamp (300 examples, metric=exact_answer)...
+    svamp: {'exact_answer': 34.333333333333336}
+
+  Macro average: 50.49
+
+=== Route Analysis ===
+Within-family overlap:  0.591
+Between-family overlap: 0.590
+Ratio: 1.00x
+  agnews          <-> boolq          : 0.588
+  agnews          <-> gsm8k          : 0.587
+  agnews          <-> squad          : 0.582
+  agnews          <-> svamp          : 0.584
+  agnews          <-> wmt14_ende     : 0.596
+  agnews          <-> wmt16_enro     : 0.576
+  agnews          <-> xsum           : 0.595
+  boolq           <-> gsm8k          : 0.581
+  boolq           <-> squad          : 0.591 [SAME]
+  boolq           <-> svamp          : 0.593
+  boolq           <-> wmt14_ende     : 0.580
+  boolq           <-> wmt16_enro     : 0.592
+  boolq           <-> xsum           : 0.587
+  gsm8k           <-> svamp          : 0.589 [SAME]
+  squad           <-> gsm8k          : 0.583
+  squad           <-> svamp          : 0.588
+  squad           <-> wmt14_ende     : 0.584
+  squad           <-> wmt16_enro     : 0.591
+  squad           <-> xsum           : 0.589
+  sst2            <-> agnews         : 0.584 [SAME]
+  sst2            <-> boolq          : 0.605
+  sst2            <-> gsm8k          : 0.594
+  sst2            <-> squad          : 0.592
+  sst2            <-> svamp          : 0.589
+  sst2            <-> wmt14_ende     : 0.594
+  sst2            <-> wmt16_enro     : 0.588
+  sst2            <-> xsum           : 0.588
+  wmt14_ende      <-> gsm8k          : 0.615
+  wmt14_ende      <-> svamp          : 0.583
+  wmt14_ende      <-> wmt16_enro     : 0.597 [SAME]
+  wmt16_enro      <-> gsm8k          : 0.609
+  wmt16_enro      <-> svamp          : 0.583
+  xsum            <-> gsm8k          : 0.582
+  xsum            <-> svamp          : 0.599
+  xsum            <-> wmt14_ende     : 0.595
+  xsum            <-> wmt16_enro     : 0.595
+
+--- Selected blocks per task (layer 0) ---
+  sst2           : blocks [32, 10, 21, 20, 26, 2, 30, 63, 23, 36]...
+  agnews         : blocks [34, 31, 54, 55, 48, 62, 6, 63, 61, 38]...
+  boolq          : blocks [62, 21, 38, 37, 34, 59, 40, 29, 25, 64]...
+  squad          : blocks [48, 58, 45, 53, 69, 66, 16, 19, 12, 20]...
+  xsum           : blocks [62, 52, 46, 28, 56, 68, 39, 13, 60, 22]...
+  wmt14_ende     : blocks [20, 59, 6, 15, 12, 7, 58, 38, 47, 19]...
+  wmt16_enro     : blocks [37, 36, 26, 52, 57, 28, 56, 54, 43, 5]...
+  gsm8k          : blocks [62, 1, 15, 63, 28, 7, 36, 43, 61, 22]...
+  svamp          : blocks [10, 34, 20, 44, 62, 25, 55, 13, 15, 4]...
+
+=== RESULTS JSON ===
+{
+  "mode": "direct_block_lora",
+  "scores": {
+    "sst2": {
+      "accuracy": 90.60000000000001
+    },
+    "agnews": {
+      "accuracy": 86.0
+    },
+    "boolq": {
+      "accuracy": 71.0
+    },
+    "squad": {
+      "f1": 72.29711659772809,
+      "em": 59.0
+    },
+    "xsum": {
+      "rouge_l": 27.611139541989232
+    },
+    "wmt14_ende": {
+      "sacrebleu": 14.70448455304389,
+      "chrf": 43.41473612086168
+    },
+    "wmt16_enro": {
+      "sacrebleu": 9.08910061179623,
+      "chrf": 37.31478878035504
+    },
+    "gsm8k": {
+      "exact_answer": 48.8
+    },
+    "svamp": {
+      "exact_answer": 34.333333333333336
+    },
+    "macro_avg": 50.49279718198786
+  },
+  "route_analysis": {
+    "within_family_overlap": 0.590605378959099,
+    "between_family_overlap": 0.5902036014439923,
+    "ratio": 1.0006807439231542
+  }
+}
+=== END RESULTS ===
+=== DONE ===
