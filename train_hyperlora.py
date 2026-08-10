@@ -60,8 +60,8 @@ class HyperLoRAGenerator(nn.Module):
 
         a_up_size = model_dim * rank
         b_up_size = rank * ffn_dim
-        a_down_size = ffn_dim * rank
-        b_down_size = rank * model_dim
+        a_down_size = model_dim * rank
+        b_down_size = rank * ffn_dim
         total_per_layer = 2 * (a_up_size + b_up_size) + (a_down_size + b_down_size)
 
         self.proj_seeds = {}
@@ -83,8 +83,8 @@ class HyperLoRAGenerator(nn.Module):
             ("up_B", self.rank, self.ffn_dim),
             ("gate_A", self.model_dim, self.rank),
             ("gate_B", self.rank, self.ffn_dim),
-            ("down_A", self.ffn_dim, self.rank),
-            ("down_B", self.rank, self.model_dim),
+            ("down_A", self.model_dim, self.rank),
+            ("down_B", self.rank, self.ffn_dim),
         ]:
             size = out_d * in_d
             factors[name] = flat[offset:offset+size].view(out_d, in_d)
@@ -125,13 +125,12 @@ class HyperLoRAHook:
         gate_proj = module.gate_proj(h_2d) if hasattr(module, 'gate_proj') else None
 
         if up_proj is not None and gate_proj is not None:
-            act_orig = F.silu(gate_proj) * up_proj
             act_mod = F.silu(gate_proj + delta_gate) * (up_proj + delta_up)
+            act_orig = F.silu(gate_proj) * up_proj
             delta_act = act_mod - act_orig
 
-            down_orig = module.down_proj.weight.to(dtype)
             delta_down = f["down_A"] @ f["down_B"]
-            delta_out = delta_act @ (down_orig + delta_down).T - delta_act @ down_orig.T + act_orig @ delta_down.T
+            delta_out = delta_act @ module.down_proj.weight.to(dtype).T + act_orig @ delta_down.T
 
             if h.dim() == 3:
                 delta_out = delta_out.view(h.size(0), h.size(1), -1)
