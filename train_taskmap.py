@@ -78,6 +78,8 @@ def parse_args():
                         help="Replace description embeddings with random learned vectors")
     parser.add_argument("--constant_description", action="store_true",
                         help="Replace all descriptions with a single constant vector (residual-only test)")
+    parser.add_argument("--eval_paraphrases", action="store_true",
+                        help="Evaluate with all 3 description paraphrases after training")
     parser.add_argument("--save_checkpoint", action="store_true",
                         help="Save final checkpoint with coefficients for analysis")
     parser.add_argument("--dry_run", action="store_true")
@@ -523,6 +525,43 @@ def train_taskmap(args):
     else:
         print("  No cold-start tasks evaluated successfully")
 
+    # ── Paraphrase Robustness ──
+    paraphrase_scores = {}
+    if getattr(args, 'eval_paraphrases', False):
+        print("\n=== Paraphrase Robustness (3 descriptions per task) ===")
+        for desc_idx in range(3):
+            print(f"\n--- Paraphrase {desc_idx} ---")
+            for tid in task_ids:
+                meta = ALL_TASKS[tid]
+                if desc_idx >= len(meta["descriptions"]):
+                    continue
+                desc = meta["descriptions"][desc_idx]
+                embed = taskmap.task_code.compute_description_embedding(
+                    backbone_model, tokenizer, desc, device
+                )
+                taskmap.cache_description(tid, embed)
+
+            p_scores = {}
+            for tid, examples in eval_data.items():
+                if tid not in task_configs:
+                    continue
+                taskmap.clear_route_cache()
+                taskmap.compute_route(tid, device)
+                hook_manager.activate_for_task(tid, device)
+                scores = evaluate_task(
+                    backbone_model, tokenizer, tid, examples,
+                    task_configs[tid]["metric"], task_configs[tid]["max_response_tokens"], device
+                )
+                p_scores[tid] = list(scores.values())[0]
+
+            p_macro = np.mean(list(p_scores.values()))
+            p_scores["macro"] = p_macro
+            paraphrase_scores[f"desc_{desc_idx}"] = p_scores
+            print(f"  Macro (paraphrase {desc_idx}): {p_macro:.2f}")
+
+        macros = [paraphrase_scores[f"desc_{i}"]["macro"] for i in range(3)]
+        print(f"\n  Paraphrase variance: {np.mean(macros):.1f} ± {np.std(macros):.1f}")
+
     # Print results as JSON
     active_frac = cfg.get("active_fraction", 0.50)
     results = {
@@ -534,6 +573,7 @@ def train_taskmap(args):
             "ratio": float(within_avg / max(between_avg, 1e-8)),
         },
         "cold_start": cold_start_scores,
+        "paraphrase_scores": paraphrase_scores,
     }
     print("\n=== RESULTS JSON ===")
     print(json.dumps(results, indent=2, default=str))
