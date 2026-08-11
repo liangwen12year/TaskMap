@@ -324,3 +324,270 @@ If the dataset is based on a loading script, please ask the dataset author to re
   Evaluating gsm8k (500 examples, metric=exact_answer)...
     gsm8k: {'exact_answer': 42.199999999999996}
   Evaluating svamp (300 examples, metric=exact_answer)...
+    svamp: {'exact_answer': 41.0}
+  Evaluating imdb (500 examples, metric=accuracy)...
+    imdb: {'accuracy': 20.4}
+  Evaluating emotion (500 examples, metric=accuracy)...
+    emotion: {'accuracy': 49.8}
+  Evaluating newsgroups (500 examples, metric=accuracy)...
+    newsgroups: {'accuracy': 65.2}
+
+  Macro average: 46.57
+
+=== Route Analysis ===
+============================================================
+Route Overlap Analysis
+============================================================
+
+Within-family average overlap:  0.683
+Between-family average overlap: 0.595
+Ratio (within/between):         1.15x
+
+Pairwise overlaps (averaged across layers):
+  agnews          <-> boolq          : 0.585
+  agnews          <-> emotion        : 0.597 [SAME FAMILY]
+  agnews          <-> gsm8k          : 0.580
+  agnews          <-> imdb           : 0.620 [SAME FAMILY]
+  agnews          <-> newsgroups     : 0.595 [SAME FAMILY]
+  agnews          <-> squad          : 0.588
+  agnews          <-> svamp          : 0.588
+  agnews          <-> wmt14_ende     : 0.591
+  agnews          <-> wmt16_enro     : 0.583
+  agnews          <-> xsum           : 0.596
+  boolq           <-> emotion        : 0.610
+  boolq           <-> gsm8k          : 0.594
+  boolq           <-> imdb           : 0.611
+  boolq           <-> newsgroups     : 0.607
+  boolq           <-> squad          : 0.903 [SAME FAMILY]
+  boolq           <-> svamp          : 0.602
+  boolq           <-> wmt14_ende     : 0.598
+  boolq           <-> wmt16_enro     : 0.590
+  boolq           <-> xsum           : 0.604
+  emotion         <-> newsgroups     : 0.600 [SAME FAMILY]
+  gsm8k           <-> emotion        : 0.588
+  gsm8k           <-> imdb           : 0.602
+  gsm8k           <-> newsgroups     : 0.582
+  gsm8k           <-> svamp          : 0.891 [SAME FAMILY]
+  imdb            <-> emotion        : 0.621 [SAME FAMILY]
+  imdb            <-> newsgroups     : 0.628 [SAME FAMILY]
+  squad           <-> emotion        : 0.601
+  squad           <-> gsm8k          : 0.589
+  squad           <-> imdb           : 0.607
+  squad           <-> newsgroups     : 0.602
+  squad           <-> svamp          : 0.594
+  squad           <-> wmt14_ende     : 0.582
+  squad           <-> wmt16_enro     : 0.580
+  squad           <-> xsum           : 0.604
+  sst2            <-> agnews         : 0.866 [SAME FAMILY]
+  sst2            <-> boolq          : 0.581
+  sst2            <-> emotion        : 0.602 [SAME FAMILY]
+  sst2            <-> gsm8k          : 0.577
+  sst2            <-> imdb           : 0.598 [SAME FAMILY]
+  sst2            <-> newsgroups     : 0.586 [SAME FAMILY]
+  sst2            <-> squad          : 0.581
+  sst2            <-> svamp          : 0.593
+  sst2            <-> wmt14_ende     : 0.595
+  sst2            <-> wmt16_enro     : 0.580
+  sst2            <-> xsum           : 0.589
+  svamp           <-> emotion        : 0.604
+  svamp           <-> imdb           : 0.601
+  svamp           <-> newsgroups     : 0.588
+  wmt14_ende      <-> emotion        : 0.586
+  wmt14_ende      <-> gsm8k          : 0.599
+  wmt14_ende      <-> imdb           : 0.601
+  wmt14_ende      <-> newsgroups     : 0.601
+  wmt14_ende      <-> svamp          : 0.591
+  wmt14_ende      <-> wmt16_enro     : 0.779 [SAME FAMILY]
+  wmt16_enro      <-> emotion        : 0.594
+  wmt16_enro      <-> gsm8k          : 0.581
+  wmt16_enro      <-> imdb           : 0.581
+  wmt16_enro      <-> newsgroups     : 0.604
+  wmt16_enro      <-> svamp          : 0.585
+  xsum            <-> emotion        : 0.599
+  xsum            <-> gsm8k          : 0.614
+  xsum            <-> imdb           : 0.609
+  xsum            <-> newsgroups     : 0.603
+  xsum            <-> svamp          : 0.613
+  xsum            <-> wmt14_ende     : 0.608
+  xsum            <-> wmt16_enro     : 0.592
+
+--- Per-layer within vs between family overlap ---
+  Layer  0: within=0.740  between=0.594  ratio=1.25x
+  Layer  1: within=0.709  between=0.600  ratio=1.18x
+  Layer  2: within=0.661  between=0.610  ratio=1.08x
+  Layer  3: within=0.662  between=0.593  ratio=1.12x
+  Layer  4: within=0.661  between=0.594  ratio=1.11x
+  Layer  5: within=0.700  between=0.575  ratio=1.22x
+  Layer  6: within=0.654  between=0.595  ratio=1.10x
+  Layer  7: within=0.642  between=0.597  ratio=1.08x
+  Layer  8: within=0.692  between=0.597  ratio=1.16x
+  Layer  9: within=0.662  between=0.605  ratio=1.10x
+  Layer 10: within=0.682  between=0.585  ratio=1.17x
+  Layer 11: within=0.696  between=0.595  ratio=1.17x
+  Layer 12: within=0.680  between=0.591  ratio=1.15x
+  Layer 13: within=0.661  between=0.595  ratio=1.11x
+  Layer 14: within=0.686  between=0.611  ratio=1.12x
+  Layer 15: within=0.677  between=0.600  ratio=1.13x
+  Layer 16: within=0.669  between=0.576  ratio=1.16x
+  Layer 17: within=0.644  between=0.603  ratio=1.07x
+  Layer 18: within=0.684  between=0.594  ratio=1.15x
+  Layer 19: within=0.665  between=0.585  ratio=1.14x
+  Layer 20: within=0.680  between=0.593  ratio=1.15x
+  Layer 21: within=0.674  between=0.586  ratio=1.15x
+  Layer 22: within=0.714  between=0.588  ratio=1.21x
+  Layer 23: within=0.707  between=0.583  ratio=1.21x
+  Layer 24: within=0.690  between=0.594  ratio=1.16x
+  Layer 25: within=0.701  between=0.588  ratio=1.19x
+  Layer 26: within=0.722  between=0.595  ratio=1.21x
+  Layer 27: within=0.723  between=0.623  ratio=1.16x
+
+--- Selected blocks per task (layer 0) ---
+  sst2           : blocks [31, 25, 32, 47, 6, 34, 10, 63, 11, 14]...
+  agnews         : blocks [31, 32, 25, 47, 10, 6, 63, 11, 62, 14]...
+  boolq          : blocks [43, 20, 21, 53, 16, 2, 4, 69, 58, 67]...
+  squad          : blocks [43, 20, 21, 53, 16, 2, 60, 67, 69, 36]...
+  xsum           : blocks [18, 21, 56, 61, 36, 0, 39, 3, 54, 68]...
+  wmt14_ende     : blocks [3, 11, 46, 21, 32, 16, 36, 51, 1, 37]...
+  wmt16_enro     : blocks [21, 3, 46, 16, 32, 11, 36, 51, 20, 1]...
+  gsm8k          : blocks [3, 44, 18, 48, 26, 43, 25, 56, 17, 66]...
+  svamp          : blocks [3, 44, 18, 48, 25, 26, 43, 17, 56, 14]...
+  imdb           : blocks [21, 58, 39, 13, 20, 15, 18, 34, 57, 27]...
+  emotion        : blocks [58, 6, 25, 44, 62, 34, 38, 61, 13, 10]...
+  newsgroups     : blocks [48, 38, 55, 27, 43, 2, 14, 6, 28, 22]...
+
+=== Cold-Start Evaluation (description-only routing, r=0) ===
+Downloading trec6 (CogComp/trec)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'CogComp/trec' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+ERROR:datasets.load:`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'CogComp/trec' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  FAILED: Dataset scripts are no longer supported, but found trec.py
+  Skipping trec6: dataset download failed
+Downloading multirc (aps/super_glue)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'aps/super_glue' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+ERROR:datasets.load:`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'aps/super_glue' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/27243 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 27243/27243 [00:00<00:00, 867829.87 examples/s]
+Generating validation split:   0%|          | 0/4848 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 4848/4848 [00:00<00:00, 740279.08 examples/s]
+Generating test split:   0%|          | 0/9693 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 9693/9693 [00:00<00:00, 1007293.89 examples/s]
+  Splits: ['train', 'validation', 'test']
+  Evaluating multirc (50 examples, metric=accuracy)...
+    multirc: {'accuracy': 50.0} (family: question_answering)
+Downloading cnn_dailymail (abisee/cnn_dailymail)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'abisee/cnn_dailymail' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+ERROR:datasets.load:`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'abisee/cnn_dailymail' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/287113 [00:00<?, ? examples/s]Generating train split:   4%|▍         | 11000/287113 [00:00<00:02, 99745.85 examples/s]Generating train split:   9%|▉         | 26000/287113 [00:00<00:02, 116544.63 examples/s]Generating train split:  14%|█▎        | 39000/287113 [00:00<00:02, 116772.81 examples/s]Generating train split:  18%|█▊        | 52000/287113 [00:00<00:01, 119974.30 examples/s]Generating train split:  23%|██▎       | 65000/287113 [00:00<00:01, 120375.09 examples/s]Generating train split:  27%|██▋       | 78000/287113 [00:00<00:01, 121084.16 examples/s]Generating train split:  34%|███▎      | 96705/287113 [00:00<00:01, 112272.07 examples/s]Generating train split:  39%|███▊      | 110705/287113 [00:00<00:01, 116854.63 examples/s]Generating train split:  43%|████▎     | 123705/287113 [00:01<00:01, 118917.34 examples/s]Generating train split:  48%|████▊     | 136705/287113 [00:01<00:01, 119962.92 examples/s]Generating train split:  53%|█████▎    | 151705/287113 [00:01<00:01, 124797.56 examples/s]Generating train split:  57%|█████▋    | 164705/287113 [00:01<00:00, 126074.50 examples/s]Generating train split:  63%|██████▎   | 179705/287113 [00:01<00:00, 131048.20 examples/s]Generating train split:  70%|██████▉   | 200409/287113 [00:01<00:00, 130014.37 examples/s]Generating train split:  75%|███████▌  | 215409/287113 [00:01<00:00, 133039.92 examples/s]Generating train split:  80%|███████▉  | 229409/287113 [00:01<00:00, 129856.67 examples/s]Generating train split:  87%|████████▋ | 249409/287113 [00:02<00:00, 124763.64 examples/s]Generating train split:  93%|█████████▎| 266409/287113 [00:02<00:00, 119244.09 examples/s]Generating train split:  97%|█████████▋| 279409/287113 [00:02<00:00, 120518.73 examples/s]Generating train split: 100%|██████████| 287113/287113 [00:02<00:00, 122386.16 examples/s]
+Generating validation split:   0%|          | 0/13368 [00:00<?, ? examples/s]Generating validation split:  97%|█████████▋| 13000/13368 [00:00<00:00, 119053.60 examples/s]Generating validation split: 100%|██████████| 13368/13368 [00:00<00:00, 121053.01 examples/s]
+Generating test split:   0%|          | 0/11490 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 11490/11490 [00:00<00:00, 118430.17 examples/s]
+  Splits: ['train', 'validation', 'test']
+  Evaluating cnn_dailymail (50 examples, metric=rouge_l)...
+    cnn_dailymail: {'rouge_l': 20.982033023351903} (family: summarization)
+Downloading flores_enfr (facebook/flores)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'facebook/flores' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+ERROR:datasets.load:`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'facebook/flores' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  FAILED: Dataset 'facebook/flores' is a gated dataset on the Hub. You must be authenticated to access it.
+  Skipping flores_enfr: dataset download failed
+Downloading asdiv (EleutherAI/asdiv)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'EleutherAI/asdiv' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+ERROR:datasets.load:`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'EleutherAI/asdiv' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating validation split:   0%|          | 0/2305 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 2305/2305 [00:00<00:00, 357923.47 examples/s]
+  Splits: ['validation']
+  Skipping asdiv: split 'test' not found
+Downloading humaneval (openai/openai_humaneval)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'openai/openai_humaneval' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+ERROR:datasets.load:`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'openai/openai_humaneval' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating test split:   0%|          | 0/164 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 164/164 [00:00<00:00, 72859.43 examples/s]
+  Splits: ['test']
+  Evaluating humaneval (50 examples, metric=pass_at_1)...
+  WARNING: pass@1 requires sandboxed execution. Returning 0.
+    humaneval: {'pass_at_1': 0.0} (family: code_generation)
+
+  Cold-start macro: 23.66
+
+=== RESULTS JSON ===
+{
+  "mode": "taskmap_75",
+  "scores": {
+    "sst2": {
+      "accuracy": 60.0
+    },
+    "agnews": {
+      "accuracy": 88.8
+    },
+    "boolq": {
+      "accuracy": 69.6
+    },
+    "squad": {
+      "f1": 68.59906919587826,
+      "em": 52.2
+    },
+    "xsum": {
+      "rouge_l": 28.34572120021108
+    },
+    "wmt14_ende": {
+      "sacrebleu": 14.91135608024644,
+      "chrf": 43.99665505824003
+    },
+    "wmt16_enro": {
+      "sacrebleu": 9.977596494967907,
+      "chrf": 38.85778590430806
+    },
+    "gsm8k": {
+      "exact_answer": 42.199999999999996
+    },
+    "svamp": {
+      "exact_answer": 41.0
+    },
+    "imdb": {
+      "accuracy": 20.4
+    },
+    "emotion": {
+      "accuracy": 49.8
+    },
+    "newsgroups": {
+      "accuracy": 65.2
+    },
+    "macro_avg": 46.56947858094198
+  },
+  "route_analysis": {
+    "within_family_overlap": 0.6834763121282967,
+    "between_family_overlap": 0.5945138961922433,
+    "ratio": 1.1496389176196589
+  },
+  "cold_start": {
+    "multirc": {
+      "accuracy": 50.0
+    },
+    "cnn_dailymail": {
+      "rouge_l": 20.982033023351903
+    },
+    "humaneval": {
+      "pass_at_1": 0.0
+    },
+    "macro_avg": 23.660677674450636
+  },
+  "paraphrase_scores": {}
+}
+=== END RESULTS ===
+=== DONE ===

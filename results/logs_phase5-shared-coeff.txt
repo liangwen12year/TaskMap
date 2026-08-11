@@ -227,3 +227,66 @@ Training complete in 34797.5s
   Evaluating wmt16_enro (500 examples, metric=sacrebleu_chrf)...
     wmt16_enro: {'sacrebleu': 7.496688112819525, 'chrf': 34.16183798812078}
   Evaluating gsm8k (500 examples, metric=exact_answer)...
+    gsm8k: {'exact_answer': 34.4}
+  Evaluating svamp (300 examples, metric=exact_answer)...
+    svamp: {'exact_answer': 53.0}
+  Evaluating imdb (500 examples, metric=accuracy)...
+    imdb: {'accuracy': 8.799999999999999}
+  Evaluating emotion (500 examples, metric=accuracy)...
+    emotion: {'accuracy': 43.4}
+  Evaluating newsgroups (500 examples, metric=accuracy)...
+    newsgroups: {'accuracy': 35.199999999999996}
+
+  shared_coefficients macro: 39.05
+
+=== RESULTS JSON ===
+{
+  "mode": "ablation_shared_coefficients",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "active_fraction": 0.75,
+  "eval_examples": 500,
+  "scores": {
+    "sst2": {
+      "accuracy": 92.60000000000001
+    },
+    "agnews": {
+      "accuracy": 76.4
+    },
+    "boolq": {
+      "accuracy": 65.60000000000001
+    },
+    "squad": {
+      "f1": 15.591049071360963,
+      "em": 8.0
+    },
+    "xsum": {
+      "rouge_l": 23.645473721317455
+    },
+    "wmt14_ende": {
+      "sacrebleu": 12.43920004433071,
+      "chrf": 41.664799808386775
+    },
+    "wmt16_enro": {
+      "sacrebleu": 7.496688112819525,
+      "chrf": 34.16183798812078
+    },
+    "gsm8k": {
+      "exact_answer": 34.4
+    },
+    "svamp": {
+      "exact_answer": 53.0
+    },
+    "imdb": {
+      "accuracy": 8.799999999999999
+    },
+    "emotion": {
+      "accuracy": 43.4
+    },
+    "newsgroups": {
+      "accuracy": 35.199999999999996
+    },
+    "macro_avg_9task": 39.047700912485716
+  }
+}
+=== END RESULTS ===
+=== DONE ===
