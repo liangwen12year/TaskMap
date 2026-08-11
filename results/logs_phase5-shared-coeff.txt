@@ -168,3 +168,62 @@ Starting ablation 'shared_coefficients' for 6000 steps...
   Step 3200/6000 | Loss: 191.0199 | Task: emotion | Time: 18850s
   Step 3300/6000 | Loss: 190.0202 | Task: xsum | Time: 19434s
   Step 3400/6000 | Loss: 186.2779 | Task: boolq | Time: 20018s
+  Step 3500/6000 | Loss: 188.8683 | Task: xsum | Time: 20606s
+  Step 3600/6000 | Loss: 185.6504 | Task: svamp | Time: 21191s
+  Step 3700/6000 | Loss: 185.3589 | Task: newsgroups | Time: 21773s
+  Step 3800/6000 | Loss: 187.2640 | Task: squad | Time: 22345s
+  Step 3900/6000 | Loss: 186.6455 | Task: wmt14_ende | Time: 22913s
+  Step 4000/6000 | Loss: 188.4849 | Task: xsum | Time: 23482s
+  Step 4100/6000 | Loss: 188.3376 | Task: wmt14_ende | Time: 24053s
+  Step 4200/6000 | Loss: 188.9263 | Task: xsum | Time: 24622s
+  Step 4300/6000 | Loss: 186.0472 | Task: boolq | Time: 25190s
+  Step 4400/6000 | Loss: 182.0460 | Task: squad | Time: 25759s
+  Step 4500/6000 | Loss: 186.6460 | Task: sst2 | Time: 26326s
+  Step 4600/6000 | Loss: 181.8823 | Task: sst2 | Time: 26890s
+  Step 4700/6000 | Loss: 185.4500 | Task: xsum | Time: 27456s
+  Step 4800/6000 | Loss: 182.4162 | Task: sst2 | Time: 28022s
+  Step 4900/6000 | Loss: 184.4108 | Task: imdb | Time: 28588s
+  Step 5000/6000 | Loss: 186.1184 | Task: xsum | Time: 29155s
+  Step 5100/6000 | Loss: 187.8101 | Task: sst2 | Time: 29721s
+  Step 5200/6000 | Loss: 189.9448 | Task: newsgroups | Time: 30286s
+  Step 5300/6000 | Loss: 183.2540 | Task: xsum | Time: 30853s
+  Step 5400/6000 | Loss: 183.6755 | Task: wmt14_ende | Time: 31418s
+  Step 5500/6000 | Loss: 189.1550 | Task: wmt16_enro | Time: 31983s
+  Step 5600/6000 | Loss: 192.2284 | Task: squad | Time: 32545s
+  Step 5700/6000 | Loss: 186.8432 | Task: wmt16_enro | Time: 33106s
+  Step 5800/6000 | Loss: 186.5629 | Task: gsm8k | Time: 33668s
+  Step 5900/6000 | Loss: 186.3182 | Task: xsum | Time: 34234s
+  Step 6000/6000 | Loss: 185.5203 | Task: wmt14_ende | Time: 34797s
+
+Training complete in 34797.5s
+
+=== Evaluating shared_coefficients ===
+  sst2/validation: 872 examples (deduped)
+  agnews/validation: 7600 examples (deduped)
+  boolq/validation: 3270 examples (deduped)
+  squad/validation: 10552 examples (deduped)
+  xsum/validation: 11327 examples (deduped)
+  wmt14_ende/validation: 2996 examples (deduped)
+  wmt16_enro/validation: 1999 examples (deduped)
+  gsm8k/validation: 1319 examples (deduped)
+  svamp/validation: 300 examples (deduped)
+  imdb/validation: 24797 examples (deduped)
+  emotion/validation: 2000 examples (deduped)
+  newsgroups/validation: 7334 examples (deduped)
+  Evaluating sst2 (500 examples, metric=accuracy)...
+    sst2: {'accuracy': 92.60000000000001}
+  Evaluating agnews (500 examples, metric=accuracy)...
+    agnews: {'accuracy': 76.4}
+  Evaluating boolq (500 examples, metric=accuracy)...
+    boolq: {'accuracy': 65.60000000000001}
+  Evaluating squad (500 examples, metric=f1_em)...
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+    squad: {'f1': 15.591049071360963, 'em': 8.0}
+  Evaluating xsum (500 examples, metric=rouge_l)...
+    xsum: {'rouge_l': 23.645473721317455}
+  Evaluating wmt14_ende (500 examples, metric=sacrebleu_chrf)...
+    wmt14_ende: {'sacrebleu': 12.43920004433071, 'chrf': 41.664799808386775}
+  Evaluating wmt16_enro (500 examples, metric=sacrebleu_chrf)...
+    wmt16_enro: {'sacrebleu': 7.496688112819525, 'chrf': 34.16183798812078}
+  Evaluating gsm8k (500 examples, metric=exact_answer)...

@@ -196,3 +196,112 @@ Starting random-route training for 6000 steps...
   Step 4500/6000 | Loss: 173.4502 | Task: sst2 | Time: 19378s
   Step 4600/6000 | Loss: 169.2218 | Task: sst2 | Time: 19808s
   Step 4700/6000 | Loss: 172.6216 | Task: xsum | Time: 20240s
+  Step 4800/6000 | Loss: 169.5135 | Task: sst2 | Time: 20667s
+  Step 4900/6000 | Loss: 170.7432 | Task: imdb | Time: 21096s
+  Step 5000/6000 | Loss: 173.3980 | Task: xsum | Time: 21528s
+  Step 5100/6000 | Loss: 174.8993 | Task: sst2 | Time: 21960s
+  Step 5200/6000 | Loss: 177.6378 | Task: newsgroups | Time: 22394s
+  Step 5300/6000 | Loss: 170.7885 | Task: xsum | Time: 22825s
+  Step 5400/6000 | Loss: 171.0069 | Task: wmt14_ende | Time: 23257s
+  Step 5500/6000 | Loss: 176.4477 | Task: wmt16_enro | Time: 23690s
+  Step 5600/6000 | Loss: 179.7361 | Task: squad | Time: 24123s
+  Step 5700/6000 | Loss: 174.4873 | Task: wmt16_enro | Time: 24553s
+  Step 5800/6000 | Loss: 174.0381 | Task: gsm8k | Time: 24983s
+  Step 5900/6000 | Loss: 173.8605 | Task: xsum | Time: 25413s
+  Step 6000/6000 | Loss: 173.4540 | Task: wmt14_ende | Time: 25841s
+
+Training complete in 25841.4s (6000 steps)
+
+=== Random-Route Evaluation ===
+  sst2/validation: 872 examples (deduped)
+  agnews/validation: 7600 examples (deduped)
+  boolq/validation: 3270 examples (deduped)
+  squad/validation: 10552 examples (deduped)
+  xsum/validation: 11327 examples (deduped)
+  wmt14_ende/validation: 2996 examples (deduped)
+  wmt16_enro/validation: 1999 examples (deduped)
+  gsm8k/validation: 1319 examples (deduped)
+  svamp/validation: 300 examples (deduped)
+  imdb/validation: 24797 examples (deduped)
+  emotion/validation: 2000 examples (deduped)
+  newsgroups/validation: 7334 examples (deduped)
+  Evaluating sst2 (500 examples, metric=accuracy)...
+    sst2: {'accuracy': 61.199999999999996}
+  Evaluating agnews (500 examples, metric=accuracy)...
+    agnews: {'accuracy': 89.8}
+  Evaluating boolq (500 examples, metric=accuracy)...
+    boolq: {'accuracy': 69.19999999999999}
+  Evaluating squad (500 examples, metric=f1_em)...
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+    squad: {'f1': 67.8907191910381, 'em': 50.8}
+  Evaluating xsum (500 examples, metric=rouge_l)...
+    xsum: {'rouge_l': 27.93486214156732}
+  Evaluating wmt14_ende (500 examples, metric=sacrebleu_chrf)...
+    wmt14_ende: {'sacrebleu': 15.077354159020606, 'chrf': 44.26175694250835}
+  Evaluating wmt16_enro (500 examples, metric=sacrebleu_chrf)...
+    wmt16_enro: {'sacrebleu': 10.414597657921547, 'chrf': 39.27577099012613}
+  Evaluating gsm8k (500 examples, metric=exact_answer)...
+    gsm8k: {'exact_answer': 45.6}
+  Evaluating svamp (300 examples, metric=exact_answer)...
+    svamp: {'exact_answer': 56.333333333333336}
+  Evaluating imdb (500 examples, metric=accuracy)...
+    imdb: {'accuracy': 25.0}
+  Evaluating emotion (500 examples, metric=accuracy)...
+    emotion: {'accuracy': 52.800000000000004}
+  Evaluating newsgroups (500 examples, metric=accuracy)...
+    newsgroups: {'accuracy': 66.4}
+
+  Random-route macro (excl MBPP): 48.97
+
+=== RESULTS JSON ===
+{
+  "mode": "random_route",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "active_fraction": 0.75,
+  "eval_examples": 500,
+  "scores": {
+    "sst2": {
+      "accuracy": 61.199999999999996
+    },
+    "agnews": {
+      "accuracy": 89.8
+    },
+    "boolq": {
+      "accuracy": 69.19999999999999
+    },
+    "squad": {
+      "f1": 67.8907191910381,
+      "em": 50.8
+    },
+    "xsum": {
+      "rouge_l": 27.93486214156732
+    },
+    "wmt14_ende": {
+      "sacrebleu": 15.077354159020606,
+      "chrf": 44.26175694250835
+    },
+    "wmt16_enro": {
+      "sacrebleu": 10.414597657921547,
+      "chrf": 39.27577099012613
+    },
+    "gsm8k": {
+      "exact_answer": 45.6
+    },
+    "svamp": {
+      "exact_answer": 56.333333333333336
+    },
+    "imdb": {
+      "accuracy": 25.0
+    },
+    "emotion": {
+      "accuracy": 52.800000000000004
+    },
+    "newsgroups": {
+      "accuracy": 66.4
+    },
+    "macro_avg_9task": 48.97090554024007
+  }
+}
+=== END RESULTS ===
+=== DONE ===
