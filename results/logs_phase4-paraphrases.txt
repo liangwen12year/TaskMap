@@ -562,3 +562,126 @@ If the dataset is based on a loading script, please ask the dataset author to re
   Evaluating boolq (500 examples, metric=accuracy)...
   Evaluating squad (500 examples, metric=f1_em)...
   Evaluating xsum (500 examples, metric=rouge_l)...
+  Evaluating wmt14_ende (500 examples, metric=sacrebleu_chrf)...
+  Evaluating wmt16_enro (500 examples, metric=sacrebleu_chrf)...
+  Evaluating gsm8k (500 examples, metric=exact_answer)...
+  Evaluating svamp (300 examples, metric=exact_answer)...
+  Evaluating imdb (500 examples, metric=accuracy)...
+  Evaluating emotion (500 examples, metric=accuracy)...
+  Evaluating newsgroups (500 examples, metric=accuracy)...
+  Macro (paraphrase 2): 29.02
+
+  Paraphrase variance: 35.5 ± 7.6
+
+=== RESULTS JSON ===
+{
+  "mode": "taskmap_75",
+  "scores": {
+    "sst2": {
+      "accuracy": 57.4
+    },
+    "agnews": {
+      "accuracy": 87.4
+    },
+    "boolq": {
+      "accuracy": 69.6
+    },
+    "squad": {
+      "f1": 63.39323889546561,
+      "em": 46.0
+    },
+    "xsum": {
+      "rouge_l": 27.754664979836473
+    },
+    "wmt14_ende": {
+      "sacrebleu": 14.765971164924833,
+      "chrf": 43.75065629406321
+    },
+    "wmt16_enro": {
+      "sacrebleu": 10.479369583076029,
+      "chrf": 39.34432761795206
+    },
+    "gsm8k": {
+      "exact_answer": 44.2
+    },
+    "svamp": {
+      "exact_answer": 38.333333333333336
+    },
+    "imdb": {
+      "accuracy": 23.200000000000003
+    },
+    "emotion": {
+      "accuracy": 50.0
+    },
+    "newsgroups": {
+      "accuracy": 66.60000000000001
+    },
+    "macro_avg": 46.09388149638635
+  },
+  "route_analysis": {
+    "within_family_overlap": 0.6822015323389962,
+    "between_family_overlap": 0.5967587683356446,
+    "ratio": 1.1431780621198928
+  },
+  "cold_start": {
+    "multirc": {
+      "accuracy": 57.99999999999999
+    },
+    "cnn_dailymail": {
+      "rouge_l": 21.766459645649164
+    },
+    "humaneval": {
+      "pass_at_1": 0.0
+    },
+    "macro_avg": 26.58881988188305
+  },
+  "paraphrase_scores": {
+    "desc_0": {
+      "sst2": 57.4,
+      "agnews": 87.4,
+      "boolq": 69.6,
+      "squad": 63.39323889546561,
+      "xsum": 27.754664979836473,
+      "wmt14_ende": 14.765971164924833,
+      "wmt16_enro": 10.479369583076029,
+      "gsm8k": 44.2,
+      "svamp": 38.333333333333336,
+      "imdb": 23.200000000000003,
+      "emotion": 50.0,
+      "newsgroups": 66.60000000000001,
+      "macro": 46.09388149638635
+    },
+    "desc_1": {
+      "sst2": 56.00000000000001,
+      "agnews": 60.6,
+      "boolq": 68.0,
+      "squad": 18.526400887469247,
+      "xsum": 11.405537959973088,
+      "wmt14_ende": 3.294252075938019,
+      "wmt16_enro": 1.1628582037060449,
+      "gsm8k": 34.4,
+      "svamp": 39.666666666666664,
+      "imdb": 42.6,
+      "emotion": 40.2,
+      "newsgroups": 0.4,
+      "macro": 31.35464298281276
+    },
+    "desc_2": {
+      "sst2": 59.8,
+      "agnews": 52.2,
+      "boolq": 65.8,
+      "squad": 17.738455478530312,
+      "xsum": 19.50925677040245,
+      "wmt14_ende": 7.007865694803929,
+      "wmt16_enro": 1.6263704449595782,
+      "gsm8k": 31.2,
+      "svamp": 35.333333333333336,
+      "imdb": 10.4,
+      "emotion": 47.199999999999996,
+      "newsgroups": 0.4,
+      "macro": 29.01794014350246
+    }
+  }
+}
+=== END RESULTS ===
+=== DONE ===
