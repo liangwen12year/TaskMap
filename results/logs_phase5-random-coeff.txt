@@ -176,3 +176,58 @@ Generating fixed random coefficients...
   Evaluating emotion (500 examples, metric=accuracy)...
     emotion: {'accuracy': 15.4}
   Evaluating newsgroups (500 examples, metric=accuracy)...
+    newsgroups: {'accuracy': 0.0}
+
+  Random-coefficients macro (excl MBPP): 24.72
+
+=== RESULTS JSON ===
+{
+  "mode": "random_coefficients_learned_routing",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "active_fraction": 0.75,
+  "eval_examples": 500,
+  "scores": {
+    "sst2": {
+      "accuracy": 53.0
+    },
+    "agnews": {
+      "accuracy": 53.0
+    },
+    "boolq": {
+      "accuracy": 63.0
+    },
+    "squad": {
+      "f1": 38.143255693320576,
+      "em": 29.2
+    },
+    "xsum": {
+      "rouge_l": 10.556468632487706
+    },
+    "wmt14_ende": {
+      "sacrebleu": 0.37776520756033743,
+      "chrf": 17.596802513628454
+    },
+    "wmt16_enro": {
+      "sacrebleu": 0.6677606879843044,
+      "chrf": 19.908631828091785
+    },
+    "gsm8k": {
+      "exact_answer": 11.799999999999999
+    },
+    "svamp": {
+      "exact_answer": 50.66666666666667
+    },
+    "imdb": {
+      "accuracy": 0.0
+    },
+    "emotion": {
+      "accuracy": 15.4
+    },
+    "newsgroups": {
+      "accuracy": 0.0
+    },
+    "macro_avg_9task": 24.7176597406683
+  }
+}
+=== END RESULTS ===
+=== DONE ===
