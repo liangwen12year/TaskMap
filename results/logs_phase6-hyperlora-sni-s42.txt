@@ -1,0 +1,810 @@
+Fri Aug 14 13:04:21 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.126.20             Driver Version: 580.126.20     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+=== Installing dependencies ===
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c47a3430>: Failed to establish a new connection: [Errno -2] Name or service not known')': /transformers/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c47a3760>: Failed to establish a new connection: [Errno -2] Name or service not known')': /transformers/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c47a3c10>: Failed to establish a new connection: [Errno -2] Name or service not known')': /transformers/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c47a3dc0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /transformers/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c47a3fa0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /transformers/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c448c250>: Failed to establish a new connection: [Errno -2] Name or service not known')': /peft/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c448c6d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /peft/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c448c880>: Failed to establish a new connection: [Errno -2] Name or service not known')': /peft/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c448ca30>: Failed to establish a new connection: [Errno -2] Name or service not known')': /peft/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c448cbe0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /peft/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c44ca230>: Failed to establish a new connection: [Errno -2] Name or service not known')': /accelerate/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c44ca6b0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /accelerate/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c44ca860>: Failed to establish a new connection: [Errno -2] Name or service not known')': /accelerate/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c44caa10>: Failed to establish a new connection: [Errno -2] Name or service not known')': /accelerate/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c44cabc0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /accelerate/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c433cf10>: Failed to establish a new connection: [Errno -2] Name or service not known')': /datasets/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c433d390>: Failed to establish a new connection: [Errno -2] Name or service not known')': /datasets/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c433d540>: Failed to establish a new connection: [Errno -2] Name or service not known')': /datasets/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c433d6f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /datasets/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c433d8a0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /datasets/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c43ebee0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /rouge-score/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c43f8280>: Failed to establish a new connection: [Errno -2] Name or service not known')': /rouge-score/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c43f8250>: Failed to establish a new connection: [Errno -2] Name or service not known')': /rouge-score/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c4411f00>: Failed to establish a new connection: [Errno -2] Name or service not known')': /rouge-score/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c4411810>: Failed to establish a new connection: [Errno -2] Name or service not known')': /rouge-score/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c424efe0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sacrebleu/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c424f460>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sacrebleu/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c424f610>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sacrebleu/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c424f7c0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sacrebleu/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c424f970>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sacrebleu/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c4129870>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sentencepiece/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c4129c30>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sentencepiece/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c4129de0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sentencepiece/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c4129f90>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sentencepiece/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c412a140>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sentencepiece/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c42b34f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /huggingface-hub/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c42b3760>: Failed to establish a new connection: [Errno -2] Name or service not known')': /huggingface-hub/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c42b3910>: Failed to establish a new connection: [Errno -2] Name or service not known')': /huggingface-hub/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c42b3ac0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /huggingface-hub/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c42b3c70>: Failed to establish a new connection: [Errno -2] Name or service not known')': /huggingface-hub/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c4022f20>: Failed to establish a new connection: [Errno -2] Name or service not known')': /tokenizers/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c4023430>: Failed to establish a new connection: [Errno -2] Name or service not known')': /tokenizers/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c4023610>: Failed to establish a new connection: [Errno -2] Name or service not known')': /tokenizers/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c40237f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /tokenizers/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c40239d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /tokenizers/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c311ead0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /safetensors/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c311ef50>: Failed to establish a new connection: [Errno -2] Name or service not known')': /safetensors/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c311f100>: Failed to establish a new connection: [Errno -2] Name or service not known')': /safetensors/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c311f2b0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /safetensors/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c311f460>: Failed to establish a new connection: [Errno -2] Name or service not known')': /safetensors/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3138f40>: Failed to establish a new connection: [Errno -2] Name or service not known')': /pyarrow/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c31393c0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /pyarrow/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3139570>: Failed to establish a new connection: [Errno -2] Name or service not known')': /pyarrow/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3139720>: Failed to establish a new connection: [Errno -2] Name or service not known')': /pyarrow/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c31398d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /pyarrow/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c313abc0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /dill/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c313b040>: Failed to establish a new connection: [Errno -2] Name or service not known')': /dill/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c313b1f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /dill/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c313b3a0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /dill/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c313b550>: Failed to establish a new connection: [Errno -2] Name or service not known')': /dill/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c37e0b80>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpx/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c37e1000>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpx/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c37e11b0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpx/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c37e1360>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpx/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c37e1510>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpx/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c37da410>: Failed to establish a new connection: [Errno -2] Name or service not known')': /xxhash/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c37da8f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /xxhash/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c37daad0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /xxhash/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c37dacb0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /xxhash/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c37dae90>: Failed to establish a new connection: [Errno -2] Name or service not known')': /xxhash/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3ac02b0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /multiprocess/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3ac0790>: Failed to establish a new connection: [Errno -2] Name or service not known')': /multiprocess/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3ac0940>: Failed to establish a new connection: [Errno -2] Name or service not known')': /multiprocess/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3ac0af0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /multiprocess/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3ac0ca0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /multiprocess/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3bae410>: Failed to establish a new connection: [Errno -2] Name or service not known')': /nltk/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3bae890>: Failed to establish a new connection: [Errno -2] Name or service not known')': /nltk/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3baea40>: Failed to establish a new connection: [Errno -2] Name or service not known')': /nltk/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3baebf0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /nltk/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3baeda0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /nltk/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c36f21d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /portalocker/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c36f2650>: Failed to establish a new connection: [Errno -2] Name or service not known')': /portalocker/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c36f2800>: Failed to establish a new connection: [Errno -2] Name or service not known')': /portalocker/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c36f29b0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /portalocker/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c36f2b60>: Failed to establish a new connection: [Errno -2] Name or service not known')': /portalocker/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3703550>: Failed to establish a new connection: [Errno -2] Name or service not known')': /colorama/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3703910>: Failed to establish a new connection: [Errno -2] Name or service not known')': /colorama/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3703ac0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /colorama/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3703c70>: Failed to establish a new connection: [Errno -2] Name or service not known')': /colorama/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3703e20>: Failed to establish a new connection: [Errno -2] Name or service not known')': /colorama/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c3767f70>: Failed to establish a new connection: [Errno -2] Name or service not known')': /lxml/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c1f58370>: Failed to establish a new connection: [Errno -2] Name or service not known')': /lxml/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c1f58520>: Failed to establish a new connection: [Errno -2] Name or service not known')': /lxml/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c1f586d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /lxml/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c1f58880>: Failed to establish a new connection: [Errno -2] Name or service not known')': /lxml/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2e1dcc0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /anyio/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2e1e140>: Failed to establish a new connection: [Errno -2] Name or service not known')': /anyio/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2e1e2f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /anyio/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2e1e4a0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /anyio/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2e1e650>: Failed to establish a new connection: [Errno -2] Name or service not known')': /anyio/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2bf3220>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpcore/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2bf36a0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpcore/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2bf3850>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpcore/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2bf3a00>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpcore/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2bf3bb0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpcore/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2c182b0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /h11/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2c18640>: Failed to establish a new connection: [Errno -2] Name or service not known')': /h11/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2c187f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /h11/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2c189a0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /h11/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c2c18b50>: Failed to establish a new connection: [Errno -2] Name or service not known')': /h11/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c1879540>: Failed to establish a new connection: [Errno -2] Name or service not known')': /hf-xet/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c1879990>: Failed to establish a new connection: [Errno -2] Name or service not known')': /hf-xet/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c1879b70>: Failed to establish a new connection: [Errno -2] Name or service not known')': /hf-xet/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c1879d50>: Failed to establish a new connection: [Errno -2] Name or service not known')': /hf-xet/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f18c1879f30>: Failed to establish a new connection: [Errno -2] Name or service not known')': /hf-xet/
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+cudf 24.4.0 requires pyarrow<15.0.0a0,>=14.0.1, but you have pyarrow 25.0.1 which is incompatible.
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 24.1.2 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip
+=== Cloning TaskMap ===
+Cloning into '/workspace/TaskMap'...
+=== Starting HyperLoRA SNI training (seed 42) ===
+Loading backbone: Qwen/Qwen2.5-1.5B
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Architecture: 28 layers, d=1536, d_ff=8960
+HyperLoRA generator: 2,888,192 trainable parameters
+
+Loading SNI dataset (41 requested tasks, split=train)...
+Loading Super-NaturalInstructions dataset (both splits)...
+Downloading data:   0%|          | 0/757 [00:00<?, ?files/s]Downloading data:   0%|          | 1/757 [00:00<07:56,  1.59files/s]Downloading data:   0%|          | 2/757 [00:01<10:08,  1.24files/s]Downloading data:   0%|          | 3/757 [00:01<07:20,  1.71files/s]Downloading data:   1%|          | 4/757 [00:02<07:30,  1.67files/s]Downloading data:   1%|          | 5/757 [00:03<07:34,  1.65files/s]Downloading data:   1%|          | 6/757 [00:03<06:47,  1.84files/s]Downloading data:   1%|          | 7/757 [00:04<07:58,  1.57files/s]Downloading data:   1%|          | 8/757 [00:04<07:44,  1.61files/s]Downloading data:   1%|          | 9/757 [00:05<08:10,  1.52files/s]Downloading data:   1%|▏         | 10/757 [00:06<06:54,  1.80files/s]Downloading data:   1%|▏         | 11/757 [00:06<06:05,  2.04files/s]Downloading data:   2%|▏         | 12/757 [00:06<05:13,  2.38files/s]Downloading data:   2%|▏         | 13/757 [00:06<04:42,  2.63files/s]Downloading data:   2%|▏         | 14/757 [00:07<04:17,  2.89files/s]Downloading data:   2%|▏         | 15/757 [00:07<04:28,  2.77files/s]Downloading data:   2%|▏         | 16/757 [00:07<04:33,  2.71files/s]Downloading data:   2%|▏         | 17/757 [00:08<05:33,  2.22files/s]Downloading data:   2%|▏         | 18/757 [00:08<04:42,  2.62files/s]Downloading data:   3%|▎         | 19/757 [00:09<04:48,  2.56files/s]Downloading data:   3%|▎         | 20/757 [00:09<05:08,  2.39files/s]Downloading data:   3%|▎         | 21/757 [00:10<05:15,  2.34files/s]Downloading data:   3%|▎         | 22/757 [00:10<05:10,  2.36files/s]Downloading data:   3%|▎         | 23/757 [00:11<05:15,  2.32files/s]Downloading data:   3%|▎         | 24/757 [00:11<05:11,  2.36files/s]Downloading data:   3%|▎         | 25/757 [00:11<05:02,  2.42files/s]Downloading data:   3%|▎         | 26/757 [00:12<05:03,  2.41files/s]Downloading data:   4%|▎         | 27/757 [00:12<04:16,  2.85files/s]Downloading data:   4%|▎         | 28/757 [00:12<04:16,  2.84files/s]Downloading data:   4%|▍         | 29/757 [00:13<03:46,  3.22files/s]Downloading data:   4%|▍         | 30/757 [00:13<04:42,  2.57files/s]Downloading data:   4%|▍         | 31/757 [00:14<05:10,  2.34files/s]Downloading data:   4%|▍         | 32/757 [00:14<04:57,  2.44files/s]Downloading data:   4%|▍         | 33/757 [00:14<04:59,  2.42files/s]Downloading data:   4%|▍         | 34/757 [00:15<04:52,  2.47files/s]Downloading data:   5%|▍         | 35/757 [00:15<04:14,  2.84files/s]Downloading data:   5%|▍         | 36/757 [00:15<04:09,  2.89files/s]Downloading data:   5%|▍         | 37/757 [00:16<04:20,  2.76files/s]Downloading data:   5%|▌         | 38/757 [00:16<04:33,  2.63files/s]Downloading data:   5%|▌         | 39/757 [00:16<04:22,  2.73files/s]Downloading data:   5%|▌         | 40/757 [00:17<03:59,  2.99files/s]Downloading data:   5%|▌         | 41/757 [00:17<03:48,  3.14files/s]Downloading data:   6%|▌         | 42/757 [00:17<03:37,  3.29files/s]Downloading data:   6%|▌         | 43/757 [00:18<03:31,  3.37files/s]Downloading data:   6%|▌         | 44/757 [00:18<03:35,  3.31files/s]Downloading data:   6%|▌         | 45/757 [00:18<03:33,  3.33files/s]Downloading data:   6%|▌         | 46/757 [00:19<03:50,  3.08files/s]Downloading data:   6%|▌         | 47/757 [00:19<03:48,  3.11files/s]Downloading data:   6%|▋         | 48/757 [00:19<03:33,  3.32files/s]Downloading data:   6%|▋         | 49/757 [00:20<04:04,  2.90files/s]Downloading data:   7%|▋         | 50/757 [00:20<03:36,  3.27files/s]Downloading data:   7%|▋         | 51/757 [00:20<03:25,  3.43files/s]Downloading data:   7%|▋         | 52/757 [00:20<03:35,  3.27files/s]Downloading data:   7%|▋         | 53/757 [00:21<03:39,  3.21files/s]Downloading data:   7%|▋         | 54/757 [00:21<03:18,  3.55files/s]Downloading data:   7%|▋         | 55/757 [00:21<03:07,  3.75files/s]Downloading data:   7%|▋         | 56/757 [00:21<03:04,  3.80files/s]Downloading data:   8%|▊         | 57/757 [00:22<05:03,  2.31files/s]Downloading data:   8%|▊         | 58/757 [00:23<04:33,  2.55files/s]Downloading data:   8%|▊         | 59/757 [00:23<04:45,  2.44files/s]Downloading data:   8%|▊         | 60/757 [00:23<04:20,  2.67files/s]Downloading data:   8%|▊         | 61/757 [00:23<03:42,  3.12files/s]Downloading data:   8%|▊         | 62/757 [00:24<03:20,  3.47files/s]Downloading data:   8%|▊         | 63/757 [00:24<03:04,  3.77files/s]Downloading data:   8%|▊         | 64/757 [00:24<03:20,  3.46files/s]Downloading data:   9%|▊         | 65/757 [00:24<03:07,  3.69files/s]Downloading data:   9%|▊         | 66/757 [00:25<03:32,  3.26files/s]Downloading data:   9%|▉         | 67/757 [00:25<03:24,  3.37files/s]Downloading data:   9%|▉         | 68/757 [00:25<03:29,  3.29files/s]Downloading data:   9%|▉         | 69/757 [00:26<03:07,  3.66files/s]Downloading data:   9%|▉         | 70/757 [00:26<03:30,  3.26files/s]Downloading data:   9%|▉         | 71/757 [00:26<03:03,  3.74files/s]Downloading data:  10%|▉         | 72/757 [00:26<02:45,  4.13files/s]Downloading data:  10%|▉         | 73/757 [00:27<02:30,  4.56files/s]Downloading data:  10%|▉         | 74/757 [00:27<02:24,  4.71files/s]Downloading data:  10%|▉         | 75/757 [00:27<02:52,  3.95files/s]Downloading data:  10%|█         | 76/757 [00:27<02:47,  4.08files/s]Downloading data:  10%|█         | 77/757 [00:28<02:35,  4.37files/s]Downloading data:  10%|█         | 78/757 [00:28<03:00,  3.77files/s]Downloading data:  10%|█         | 79/757 [00:28<03:48,  2.97files/s]Downloading data:  11%|█         | 80/757 [00:29<04:08,  2.72files/s]Downloading data:  11%|█         | 81/757 [00:29<03:54,  2.89files/s]Downloading data:  11%|█         | 82/757 [00:29<03:28,  3.24files/s]Downloading data:  11%|█         | 83/757 [00:30<03:05,  3.63files/s]Downloading data:  11%|█         | 84/757 [00:30<02:44,  4.09files/s]Downloading data:  11%|█         | 85/757 [00:30<02:32,  4.41files/s]Downloading data:  11%|█▏        | 86/757 [00:30<02:34,  4.35files/s]Downloading data:  11%|█▏        | 87/757 [00:30<02:29,  4.49files/s]Downloading data:  12%|█▏        | 88/757 [00:31<02:25,  4.60files/s]Downloading data:  12%|█▏        | 89/757 [00:31<02:24,  4.61files/s]Downloading data:  12%|█▏        | 90/757 [00:31<02:30,  4.45files/s]Downloading data:  12%|█▏        | 91/757 [00:31<02:59,  3.72files/s]Downloading data:  12%|█▏        | 92/757 [00:32<03:40,  3.01files/s]Downloading data:  12%|█▏        | 93/757 [00:32<03:55,  2.83files/s]Downloading data:  12%|█▏        | 94/757 [00:33<04:07,  2.68files/s]Downloading data:  13%|█▎        | 95/757 [00:33<04:26,  2.48files/s]Downloading data:  13%|█▎        | 96/757 [00:33<04:05,  2.69files/s]Downloading data:  13%|█▎        | 97/757 [00:34<03:57,  2.78files/s]Downloading data:  13%|█▎        | 98/757 [00:34<04:06,  2.68files/s]Downloading data:  13%|█▎        | 99/757 [00:34<03:46,  2.91files/s]Downloading data:  13%|█▎        | 100/757 [00:35<03:35,  3.05files/s]Downloading data:  13%|█▎        | 101/757 [00:35<03:36,  3.03files/s]Downloading data:  13%|█▎        | 102/757 [00:35<03:39,  2.99files/s]Downloading data:  14%|█▎        | 103/757 [00:36<03:30,  3.11files/s]Downloading data:  14%|█▎        | 104/757 [00:36<03:12,  3.39files/s]Downloading data:  14%|█▍        | 105/757 [00:36<02:55,  3.72files/s]Downloading data:  14%|█▍        | 106/757 [00:36<02:49,  3.84files/s]Downloading data:  14%|█▍        | 107/757 [00:37<02:52,  3.76files/s]Downloading data:  14%|█▍        | 108/757 [00:37<03:13,  3.36files/s]Downloading data:  14%|█▍        | 109/757 [00:37<03:21,  3.21files/s]Downloading data:  15%|█▍        | 110/757 [00:38<03:26,  3.14files/s]Downloading data:  15%|█▍        | 111/757 [00:38<02:55,  3.67files/s]Downloading data:  15%|█▍        | 112/757 [00:38<02:38,  4.08files/s]Downloading data:  15%|█▍        | 113/757 [00:38<02:48,  3.83files/s]Downloading data:  15%|█▌        | 114/757 [00:39<02:50,  3.77files/s]Downloading data:  15%|█▌        | 115/757 [00:39<02:57,  3.63files/s]Downloading data:  15%|█▌        | 116/757 [00:39<03:11,  3.35files/s]Downloading data:  15%|█▌        | 117/757 [00:40<03:16,  3.26files/s]Downloading data:  16%|█▌        | 118/757 [00:40<03:13,  3.30files/s]Downloading data:  16%|█▌        | 119/757 [00:40<03:32,  3.01files/s]Downloading data:  16%|█▌        | 120/757 [00:41<03:44,  2.84files/s]Downloading data:  16%|█▌        | 121/757 [00:41<03:20,  3.18files/s]Downloading data:  16%|█▌        | 122/757 [00:41<03:35,  2.95files/s]Downloading data:  16%|█▌        | 123/757 [00:42<03:33,  2.97files/s]Downloading data:  16%|█▋        | 124/757 [00:42<03:41,  2.85files/s]Downloading data:  17%|█▋        | 125/757 [00:42<03:33,  2.97files/s]Downloading data:  17%|█▋        | 126/757 [00:43<03:17,  3.19files/s]Downloading data:  17%|█▋        | 127/757 [00:43<04:46,  2.20files/s]Downloading data:  17%|█▋        | 128/757 [00:45<07:44,  1.36files/s]Downloading data:  17%|█▋        | 129/757 [00:45<06:35,  1.59files/s]Downloading data:  17%|█▋        | 130/757 [00:46<05:46,  1.81files/s]Downloading data:  17%|█▋        | 131/757 [00:46<04:56,  2.11files/s]Downloading data:  17%|█▋        | 132/757 [00:46<04:54,  2.12files/s]Downloading data:  18%|█▊        | 133/757 [00:48<09:18,  1.12files/s]Downloading data:  18%|█▊        | 134/757 [00:49<07:46,  1.34files/s]Downloading data:  18%|█▊        | 135/757 [00:49<06:07,  1.69files/s]Downloading data:  18%|█▊        | 136/757 [00:49<05:16,  1.96files/s]Downloading data:  18%|█▊        | 137/757 [00:50<04:45,  2.17files/s]Downloading data:  18%|█▊        | 138/757 [00:50<04:37,  2.23files/s]Downloading data:  18%|█▊        | 139/757 [00:50<03:53,  2.64files/s]Downloading data:  18%|█▊        | 140/757 [00:51<03:48,  2.70files/s]Downloading data:  19%|█▊        | 141/757 [00:51<03:52,  2.65files/s]Downloading data:  19%|█▉        | 142/757 [00:51<03:18,  3.10files/s]Downloading data:  19%|█▉        | 143/757 [00:51<02:53,  3.53files/s]Downloading data:  19%|█▉        | 144/757 [00:51<02:36,  3.92files/s]Downloading data:  19%|█▉        | 145/757 [00:52<02:22,  4.29files/s]Downloading data:  19%|█▉        | 146/757 [00:52<02:09,  4.71files/s]Downloading data:  19%|█▉        | 147/757 [00:52<02:07,  4.79files/s]Downloading data:  20%|█▉        | 148/757 [00:52<02:35,  3.91files/s]Downloading data:  20%|█▉        | 149/757 [00:53<02:24,  4.21files/s]Downloading data:  20%|█▉        | 150/757 [00:53<03:02,  3.33files/s]Downloading data:  20%|█▉        | 151/757 [00:53<02:37,  3.85files/s]Downloading data:  20%|██        | 152/757 [00:54<02:51,  3.53files/s]Downloading data:  20%|██        | 153/757 [00:54<02:35,  3.89files/s]Downloading data:  20%|██        | 154/757 [00:54<02:59,  3.36files/s]Downloading data:  20%|██        | 155/757 [00:54<02:53,  3.46files/s]Downloading data:  21%|██        | 156/757 [00:55<03:03,  3.28files/s]Downloading data:  21%|██        | 157/757 [00:55<02:44,  3.64files/s]Downloading data:  21%|██        | 158/757 [00:55<02:31,  3.95files/s]Downloading data:  21%|██        | 159/757 [00:55<02:18,  4.32files/s]Downloading data:  21%|██        | 160/757 [00:56<02:24,  4.13files/s]Downloading data:  21%|██▏       | 161/757 [00:56<02:52,  3.45files/s]Downloading data:  21%|██▏       | 162/757 [00:56<02:38,  3.75files/s]Downloading data:  22%|██▏       | 163/757 [00:56<02:40,  3.71files/s]Downloading data:  22%|██▏       | 164/757 [00:57<02:34,  3.84files/s]Downloading data:  22%|██▏       | 165/757 [00:57<02:29,  3.96files/s]Downloading data:  22%|██▏       | 166/757 [00:57<02:42,  3.63files/s]Downloading data:  22%|██▏       | 167/757 [00:58<02:38,  3.71files/s]Downloading data:  22%|██▏       | 168/757 [00:58<02:26,  4.01files/s]Downloading data:  22%|██▏       | 169/757 [00:58<02:22,  4.12files/s]Downloading data:  22%|██▏       | 170/757 [00:58<02:29,  3.93files/s]Downloading data:  23%|██▎       | 171/757 [00:59<03:37,  2.70files/s]Downloading data:  23%|██▎       | 172/757 [00:59<03:35,  2.72files/s]Downloading data:  23%|██▎       | 173/757 [00:59<03:04,  3.16files/s]Downloading data:  23%|██▎       | 174/757 [01:01<05:36,  1.73files/s]Downloading data:  23%|██▎       | 175/757 [01:01<05:38,  1.72files/s]Downloading data:  23%|██▎       | 176/757 [01:01<04:31,  2.14files/s]Downloading data:  23%|██▎       | 177/757 [01:02<03:41,  2.62files/s]Downloading data:  24%|██▎       | 178/757 [01:02<03:11,  3.02files/s]Downloading data:  24%|██▎       | 179/757 [01:02<03:04,  3.14files/s]Downloading data:  24%|██▍       | 180/757 [01:02<02:55,  3.30files/s]Downloading data:  24%|██▍       | 181/757 [01:03<02:39,  3.60files/s]Downloading data:  24%|██▍       | 182/757 [01:03<02:28,  3.88files/s]Downloading data:  24%|██▍       | 183/757 [01:03<02:23,  4.01files/s]Downloading data:  24%|██▍       | 184/757 [01:03<02:14,  4.26files/s]Downloading data:  24%|██▍       | 185/757 [01:03<02:17,  4.16files/s]Downloading data:  25%|██▍       | 186/757 [01:04<02:08,  4.46files/s]Downloading data:  25%|██▍       | 187/757 [01:04<02:05,  4.53files/s]Downloading data:  25%|██▍       | 188/757 [01:04<02:05,  4.54files/s]Downloading data:  25%|██▍       | 189/757 [01:04<02:03,  4.61files/s]Downloading data:  25%|██▌       | 190/757 [01:05<01:58,  4.79files/s]Downloading data:  25%|██▌       | 191/757 [01:05<01:54,  4.93files/s]Downloading data:  25%|██▌       | 192/757 [01:05<01:54,  4.92files/s]Downloading data:  25%|██▌       | 193/757 [01:05<01:57,  4.78files/s]Downloading data:  26%|██▌       | 194/757 [01:05<02:00,  4.66files/s]Downloading data:  26%|██▌       | 195/757 [01:06<02:28,  3.78files/s]Downloading data:  26%|██▌       | 196/757 [01:06<02:29,  3.76files/s]Downloading data:  26%|██▌       | 197/757 [01:06<02:36,  3.57files/s]Downloading data:  26%|██▌       | 198/757 [01:07<02:36,  3.57files/s]Downloading data:  26%|██▋       | 199/757 [01:07<02:31,  3.69files/s]Downloading data:  26%|██▋       | 200/757 [01:07<02:37,  3.54files/s]Downloading data:  27%|██▋       | 201/757 [01:07<02:43,  3.40files/s]Downloading data:  27%|██▋       | 202/757 [01:08<02:36,  3.55files/s]Downloading data:  27%|██▋       | 203/757 [01:08<02:32,  3.62files/s]Downloading data:  27%|██▋       | 204/757 [01:08<02:14,  4.12files/s]Downloading data:  27%|██▋       | 205/757 [01:08<02:02,  4.50files/s]Downloading data:  27%|██▋       | 206/757 [01:09<01:57,  4.68files/s]Downloading data:  27%|██▋       | 207/757 [01:09<01:47,  5.13files/s]Downloading data:  27%|██▋       | 208/757 [01:09<01:48,  5.04files/s]Downloading data:  28%|██▊       | 209/757 [01:09<01:51,  4.91files/s]Downloading data:  28%|██▊       | 210/757 [01:09<02:09,  4.22files/s]Downloading data:  28%|██▊       | 211/757 [01:10<02:16,  4.00files/s]Downloading data:  28%|██▊       | 212/757 [01:10<02:27,  3.70files/s]Downloading data:  28%|██▊       | 213/757 [01:10<02:26,  3.71files/s]Downloading data:  28%|██▊       | 214/757 [01:11<02:33,  3.53files/s]Downloading data:  28%|██▊       | 215/757 [01:11<02:30,  3.61files/s]Downloading data:  29%|██▊       | 216/757 [01:11<02:30,  3.59files/s]Downloading data:  29%|██▊       | 217/757 [01:11<02:23,  3.75files/s]Downloading data:  29%|██▉       | 218/757 [01:12<02:19,  3.85files/s]Downloading data:  29%|██▉       | 219/757 [01:12<02:02,  4.37files/s]Downloading data:  29%|██▉       | 220/757 [01:12<01:49,  4.91files/s]Downloading data:  29%|██▉       | 221/757 [01:12<01:56,  4.60files/s]Downloading data:  29%|██▉       | 222/757 [01:13<02:27,  3.62files/s]Downloading data:  29%|██▉       | 223/757 [01:13<02:17,  3.90files/s]Downloading data:  30%|██▉       | 224/757 [01:13<02:03,  4.31files/s]Downloading data:  30%|██▉       | 225/757 [01:13<01:57,  4.54files/s]Downloading data:  30%|██▉       | 226/757 [01:14<02:29,  3.54files/s]Downloading data:  30%|██▉       | 227/757 [01:14<02:21,  3.75files/s]Downloading data:  30%|███       | 228/757 [01:14<02:49,  3.12files/s]Downloading data:  30%|███       | 229/757 [01:14<02:25,  3.63files/s]Downloading data:  30%|███       | 230/757 [01:15<02:12,  3.99files/s]Downloading data:  31%|███       | 231/757 [01:15<02:01,  4.33files/s]Downloading data:  31%|███       | 232/757 [01:15<01:56,  4.51files/s]Downloading data:  31%|███       | 233/757 [01:15<01:45,  4.98files/s]Downloading data:  31%|███       | 234/757 [01:15<01:37,  5.36files/s]Downloading data:  31%|███       | 235/757 [01:15<01:32,  5.62files/s]Downloading data:  31%|███       | 236/757 [01:16<01:29,  5.82files/s]Downloading data:  31%|███▏      | 237/757 [01:16<01:31,  5.70files/s]Downloading data:  31%|███▏      | 238/757 [01:16<01:30,  5.74files/s]Downloading data:  32%|███▏      | 239/757 [01:16<01:32,  5.62files/s]Downloading data:  32%|███▏      | 240/757 [01:16<01:48,  4.78files/s]Downloading data:  32%|███▏      | 241/757 [01:17<01:38,  5.23files/s]Downloading data:  32%|███▏      | 242/757 [01:17<02:08,  4.01files/s]Downloading data:  32%|███▏      | 243/757 [01:17<02:00,  4.27files/s]Downloading data:  32%|███▏      | 244/757 [01:17<02:01,  4.24files/s]Downloading data:  32%|███▏      | 245/757 [01:18<02:07,  4.00files/s]Downloading data:  32%|███▏      | 246/757 [01:18<02:36,  3.28files/s]Downloading data:  33%|███▎      | 247/757 [01:18<02:27,  3.45files/s]Downloading data:  33%|███▎      | 248/757 [01:19<02:19,  3.66files/s]Downloading data:  33%|███▎      | 249/757 [01:19<02:06,  4.02files/s]Downloading data:  33%|███▎      | 250/757 [01:19<01:53,  4.45files/s]Downloading data:  33%|███▎      | 251/757 [01:19<02:11,  3.85files/s]Downloading data:  33%|███▎      | 252/757 [01:20<02:15,  3.73files/s]Downloading data:  33%|███▎      | 253/757 [01:20<02:00,  4.18files/s]Downloading data:  34%|███▎      | 254/757 [01:20<02:11,  3.82files/s]Downloading data:  34%|███▎      | 255/757 [01:20<02:08,  3.90files/s]Downloading data:  34%|███▍      | 256/757 [01:21<02:00,  4.15files/s]Downloading data:  34%|███▍      | 257/757 [01:21<01:54,  4.37files/s]Downloading data:  34%|███▍      | 258/757 [01:21<01:43,  4.82files/s]Downloading data:  34%|███▍      | 259/757 [01:21<01:57,  4.25files/s]Downloading data:  34%|███▍      | 260/757 [01:21<01:50,  4.48files/s]Downloading data:  34%|███▍      | 261/757 [01:22<02:16,  3.62files/s]Downloading data:  35%|███▍      | 262/757 [01:22<02:52,  2.87files/s]Downloading data:  35%|███▍      | 263/757 [01:23<03:04,  2.67files/s]Downloading data:  35%|███▍      | 264/757 [01:23<02:53,  2.84files/s]Downloading data:  35%|███▌      | 265/757 [01:23<02:34,  3.19files/s]Downloading data:  35%|███▌      | 266/757 [01:23<02:12,  3.71files/s]Downloading data:  35%|███▌      | 267/757 [01:24<02:27,  3.31files/s]Downloading data:  35%|███▌      | 268/757 [01:24<02:24,  3.38files/s]Downloading data:  36%|███▌      | 269/757 [01:25<03:05,  2.64files/s]Downloading data:  36%|███▌      | 270/757 [01:25<02:45,  2.95files/s]Downloading data:  36%|███▌      | 271/757 [01:25<02:36,  3.12files/s]Downloading data:  36%|███▌      | 272/757 [01:25<02:22,  3.41files/s]Downloading data:  36%|███▌      | 273/757 [01:26<02:05,  3.85files/s]Downloading data:  36%|███▌      | 274/757 [01:26<01:52,  4.30files/s]Downloading data:  36%|███▋      | 275/757 [01:26<01:47,  4.50files/s]Downloading data:  36%|███▋      | 276/757 [01:26<01:39,  4.82files/s]Downloading data:  37%|███▋      | 277/757 [01:26<01:34,  5.07files/s]Downloading data:  37%|███▋      | 278/757 [01:27<01:46,  4.51files/s]Downloading data:  37%|███▋      | 279/757 [01:27<01:42,  4.68files/s]Downloading data:  37%|███▋      | 280/757 [01:27<01:42,  4.65files/s]Downloading data:  37%|███▋      | 281/757 [01:27<01:44,  4.55files/s]Downloading data:  37%|███▋      | 282/757 [01:28<02:12,  3.60files/s]Downloading data:  37%|███▋      | 283/757 [01:28<03:17,  2.40files/s]Downloading data:  38%|███▊      | 284/757 [01:29<02:40,  2.94files/s]Downloading data:  38%|███▊      | 285/757 [01:29<02:22,  3.32files/s]Downloading data:  38%|███▊      | 286/757 [01:29<02:04,  3.79files/s]Downloading data:  38%|███▊      | 287/757 [01:29<02:04,  3.79files/s]Downloading data:  38%|███▊      | 288/757 [01:29<01:55,  4.08files/s]Downloading data:  38%|███▊      | 289/757 [01:30<01:52,  4.16files/s]Downloading data:  38%|███▊      | 290/757 [01:30<01:44,  4.47files/s]Downloading data:  38%|███▊      | 291/757 [01:30<01:38,  4.73files/s]Downloading data:  39%|███▊      | 292/757 [01:30<01:39,  4.65files/s]Downloading data:  39%|███▊      | 293/757 [01:30<01:39,  4.67files/s]Downloading data:  39%|███▉      | 294/757 [01:31<01:42,  4.51files/s]Downloading data:  39%|███▉      | 295/757 [01:31<01:37,  4.74files/s]Downloading data:  39%|███▉      | 296/757 [01:31<01:52,  4.09files/s]Downloading data:  39%|███▉      | 297/757 [01:31<01:44,  4.38files/s]Downloading data:  39%|███▉      | 298/757 [01:32<01:43,  4.42files/s]Downloading data:  39%|███▉      | 299/757 [01:32<01:40,  4.58files/s]Downloading data:  40%|███▉      | 300/757 [01:32<01:37,  4.66files/s]Downloading data:  40%|███▉      | 301/757 [01:32<01:39,  4.60files/s]Downloading data:  40%|███▉      | 302/757 [01:32<01:30,  5.03files/s]Downloading data:  40%|████      | 303/757 [01:33<01:28,  5.14files/s]Downloading data:  40%|████      | 304/757 [01:33<01:28,  5.10files/s]Downloading data:  40%|████      | 305/757 [01:33<01:29,  5.03files/s]Downloading data:  40%|████      | 306/757 [01:33<01:27,  5.14files/s]Downloading data:  41%|████      | 307/757 [01:33<01:32,  4.89files/s]Downloading data:  41%|████      | 308/757 [01:34<01:36,  4.66files/s]Downloading data:  41%|████      | 309/757 [01:34<01:32,  4.83files/s]Downloading data:  41%|████      | 310/757 [01:34<01:50,  4.05files/s]Downloading data:  41%|████      | 311/757 [01:34<01:46,  4.20files/s]Downloading data:  41%|████      | 312/757 [01:35<01:57,  3.78files/s]Downloading data:  41%|████▏     | 313/757 [01:35<01:51,  3.98files/s]Downloading data:  41%|████▏     | 314/757 [01:35<01:45,  4.20files/s]Downloading data:  42%|████▏     | 315/757 [01:36<02:02,  3.62files/s]Downloading data:  42%|████▏     | 316/757 [01:36<01:57,  3.76files/s]Downloading data:  42%|████▏     | 317/757 [01:36<02:31,  2.90files/s]Downloading data:  42%|████▏     | 318/757 [01:36<02:09,  3.38files/s]Downloading data:  42%|████▏     | 319/757 [01:37<01:51,  3.91files/s]Downloading data:  42%|████▏     | 320/757 [01:37<01:43,  4.23files/s]Downloading data:  42%|████▏     | 321/757 [01:37<01:37,  4.47files/s]Downloading data:  43%|████▎     | 322/757 [01:37<01:42,  4.26files/s]Downloading data:  43%|████▎     | 323/757 [01:38<01:45,  4.10files/s]Downloading data:  43%|████▎     | 324/757 [01:38<01:49,  3.96files/s]Downloading data:  43%|████▎     | 325/757 [01:38<01:58,  3.65files/s]Downloading data:  43%|████▎     | 326/757 [01:38<01:49,  3.95files/s]Downloading data:  43%|████▎     | 327/757 [01:38<01:36,  4.44files/s]Downloading data:  43%|████▎     | 328/757 [01:39<01:28,  4.83files/s]Downloading data:  43%|████▎     | 329/757 [01:39<01:25,  5.01files/s]Downloading data:  44%|████▎     | 330/757 [01:40<02:43,  2.61files/s]Downloading data:  44%|████▎     | 331/757 [01:40<02:44,  2.59files/s]Downloading data:  44%|████▍     | 332/757 [01:40<02:28,  2.87files/s]Downloading data:  44%|████▍     | 333/757 [01:40<02:04,  3.40files/s]Downloading data:  44%|████▍     | 334/757 [01:41<01:54,  3.69files/s]Downloading data:  44%|████▍     | 335/757 [01:41<01:42,  4.10files/s]Downloading data:  44%|████▍     | 336/757 [01:41<01:34,  4.44files/s]Downloading data:  45%|████▍     | 337/757 [01:41<01:43,  4.06files/s]Downloading data:  45%|████▍     | 338/757 [01:42<01:54,  3.66files/s]Downloading data:  45%|████▍     | 339/757 [01:42<01:45,  3.95files/s]Downloading data:  45%|████▍     | 340/757 [01:42<01:35,  4.35files/s]Downloading data:  45%|████▌     | 341/757 [01:42<01:40,  4.15files/s]Downloading data:  45%|████▌     | 342/757 [01:43<02:06,  3.27files/s]Downloading data:  45%|████▌     | 343/757 [01:43<02:43,  2.54files/s]Downloading data:  45%|████▌     | 344/757 [01:44<02:54,  2.36files/s]Downloading data:  46%|████▌     | 345/757 [01:44<02:28,  2.78files/s]Downloading data:  46%|████▌     | 346/757 [01:44<02:16,  3.01files/s]Downloading data:  46%|████▌     | 347/757 [01:45<02:05,  3.27files/s]Downloading data:  46%|████▌     | 348/757 [01:45<02:05,  3.27files/s]Downloading data:  46%|████▌     | 349/757 [01:45<02:28,  2.75files/s]Downloading data:  46%|████▌     | 350/757 [01:46<02:08,  3.18files/s]Downloading data:  46%|████▋     | 351/757 [01:46<01:49,  3.71files/s]Downloading data:  46%|████▋     | 352/757 [01:47<03:15,  2.07files/s]Downloading data:  47%|████▋     | 353/757 [01:47<02:51,  2.35files/s]Downloading data:  47%|████▋     | 354/757 [01:48<03:25,  1.96files/s]Downloading data:  47%|████▋     | 355/757 [01:49<05:45,  1.16files/s]Downloading data:  47%|████▋     | 356/757 [01:50<04:36,  1.45files/s]Downloading data:  47%|████▋     | 357/757 [01:50<04:17,  1.55files/s]Downloading data:  47%|████▋     | 358/757 [01:51<04:50,  1.37files/s]Downloading data:  47%|████▋     | 359/757 [01:51<03:56,  1.68files/s]Downloading data:  48%|████▊     | 360/757 [01:52<03:20,  1.98files/s]Downloading data:  48%|████▊     | 361/757 [01:52<02:43,  2.42files/s]Downloading data:  48%|████▊     | 362/757 [01:52<02:18,  2.85files/s]Downloading data:  48%|████▊     | 363/757 [01:52<02:05,  3.13files/s]Downloading data:  48%|████▊     | 364/757 [01:53<01:55,  3.40files/s]Downloading data:  48%|████▊     | 365/757 [01:53<01:51,  3.50files/s]Downloading data:  48%|████▊     | 366/757 [01:53<01:40,  3.91files/s]Downloading data:  48%|████▊     | 367/757 [01:53<01:35,  4.08files/s]Downloading data:  49%|████▊     | 368/757 [01:54<01:41,  3.84files/s]Downloading data:  49%|████▊     | 369/757 [01:54<01:36,  4.02files/s]Downloading data:  49%|████▉     | 370/757 [01:54<01:27,  4.41files/s]Downloading data:  49%|████▉     | 371/757 [01:54<01:23,  4.65files/s]Downloading data:  49%|████▉     | 372/757 [01:54<01:29,  4.29files/s]Downloading data:  49%|████▉     | 373/757 [01:55<01:32,  4.15files/s]Downloading data:  49%|████▉     | 374/757 [01:55<01:34,  4.07files/s]Downloading data:  50%|████▉     | 375/757 [01:55<01:26,  4.40files/s]Downloading data:  50%|████▉     | 376/757 [01:56<02:00,  3.16files/s]Downloading data:  50%|████▉     | 377/757 [01:57<03:08,  2.02files/s]Downloading data:  50%|████▉     | 378/757 [01:57<02:38,  2.39files/s]Downloading data:  50%|█████     | 379/757 [01:57<02:23,  2.63files/s]Downloading data:  50%|█████     | 380/757 [01:58<02:31,  2.48files/s]Downloading data:  50%|█████     | 381/757 [01:58<03:05,  2.02files/s]Downloading data:  50%|█████     | 382/757 [01:58<02:30,  2.49files/s]Downloading data:  51%|█████     | 383/757 [01:59<02:08,  2.91files/s]Downloading data:  51%|█████     | 384/757 [01:59<01:50,  3.39files/s]Downloading data:  51%|█████     | 385/757 [01:59<01:41,  3.66files/s]Downloading data:  51%|█████     | 386/757 [01:59<01:33,  3.96files/s]Downloading data:  51%|█████     | 387/757 [02:00<01:28,  4.18files/s]Downloading data:  51%|█████▏    | 388/757 [02:00<01:41,  3.65files/s]Downloading data:  51%|█████▏    | 389/757 [02:00<01:45,  3.50files/s]Downloading data:  52%|█████▏    | 390/757 [02:01<01:57,  3.12files/s]Downloading data:  52%|█████▏    | 391/757 [02:01<02:28,  2.46files/s]Downloading data:  52%|█████▏    | 392/757 [02:02<02:30,  2.43files/s]Downloading data:  52%|█████▏    | 393/757 [02:02<02:24,  2.52files/s]Downloading data:  52%|█████▏    | 394/757 [02:03<03:15,  1.86files/s]Downloading data:  52%|█████▏    | 395/757 [02:03<02:49,  2.13files/s]Downloading data:  52%|█████▏    | 396/757 [02:03<02:30,  2.41files/s]Downloading data:  52%|█████▏    | 397/757 [02:04<02:07,  2.83files/s]Downloading data:  53%|█████▎    | 398/757 [02:04<01:52,  3.20files/s]Downloading data:  53%|█████▎    | 399/757 [02:04<01:57,  3.05files/s]Downloading data:  53%|█████▎    | 400/757 [02:04<01:48,  3.28files/s]Downloading data:  53%|█████▎    | 401/757 [02:05<01:38,  3.61files/s]Downloading data:  53%|█████▎    | 402/757 [02:05<01:47,  3.30files/s]Downloading data:  53%|█████▎    | 403/757 [02:05<01:52,  3.14files/s]Downloading data:  53%|█████▎    | 404/757 [02:06<01:46,  3.33files/s]Downloading data:  54%|█████▎    | 405/757 [02:06<02:01,  2.89files/s]Downloading data:  54%|█████▎    | 406/757 [02:07<02:07,  2.74files/s]Downloading data:  54%|█████▍    | 407/757 [02:07<02:44,  2.13files/s]Downloading data:  54%|█████▍    | 408/757 [02:07<02:20,  2.48files/s]Downloading data:  54%|█████▍    | 409/757 [02:08<02:06,  2.75files/s]Downloading data:  54%|█████▍    | 410/757 [02:08<01:53,  3.05files/s]Downloading data:  54%|█████▍    | 411/757 [02:09<02:10,  2.65files/s]Downloading data:  54%|█████▍    | 412/757 [02:09<03:01,  1.90files/s]Downloading data:  55%|█████▍    | 413/757 [02:10<02:33,  2.25files/s]Downloading data:  55%|█████▍    | 414/757 [02:10<02:49,  2.03files/s]Downloading data:  55%|█████▍    | 415/757 [02:10<02:21,  2.42files/s]Downloading data:  55%|█████▍    | 416/757 [02:11<02:01,  2.81files/s]Downloading data:  55%|█████▌    | 417/757 [02:11<01:46,  3.19files/s]Downloading data:  55%|█████▌    | 418/757 [02:11<01:50,  3.07files/s]Downloading data:  55%|█████▌    | 419/757 [02:12<01:43,  3.28files/s]Downloading data:  55%|█████▌    | 420/757 [02:12<01:31,  3.70files/s]Downloading data:  56%|█████▌    | 421/757 [02:12<01:42,  3.28files/s]Downloading data:  56%|█████▌    | 422/757 [02:12<01:43,  3.23files/s]Downloading data:  56%|█████▌    | 423/757 [02:13<01:30,  3.69files/s]Downloading data:  56%|█████▌    | 424/757 [02:13<01:50,  3.01files/s]Downloading data:  56%|█████▌    | 425/757 [02:13<01:51,  2.98files/s]Downloading data:  56%|█████▋    | 426/757 [02:14<01:58,  2.80files/s]Downloading data:  56%|█████▋    | 427/757 [02:14<01:43,  3.19files/s]Downloading data:  57%|█████▋    | 428/757 [02:15<02:03,  2.67files/s]Downloading data:  57%|█████▋    | 429/757 [02:15<01:43,  3.17files/s]Downloading data:  57%|█████▋    | 430/757 [02:15<01:49,  2.98files/s]Downloading data:  57%|█████▋    | 431/757 [02:16<02:07,  2.56files/s]Downloading data:  57%|█████▋    | 432/757 [02:16<01:47,  3.03files/s]Downloading data:  57%|█████▋    | 433/757 [02:16<01:49,  2.97files/s]Downloading data:  57%|█████▋    | 434/757 [02:16<01:37,  3.30files/s]Downloading data:  57%|█████▋    | 435/757 [02:17<01:29,  3.60files/s]Downloading data:  58%|█████▊    | 436/757 [02:17<01:30,  3.55files/s]Downloading data:  58%|█████▊    | 437/757 [02:17<01:30,  3.53files/s]Downloading data:  58%|█████▊    | 438/757 [02:18<01:35,  3.36files/s]Downloading data:  58%|█████▊    | 439/757 [02:18<01:28,  3.60files/s]Downloading data:  58%|█████▊    | 440/757 [02:18<01:28,  3.57files/s]Downloading data:  58%|█████▊    | 441/757 [02:18<01:20,  3.92files/s]Downloading data:  58%|█████▊    | 442/757 [02:18<01:20,  3.93files/s]Downloading data:  59%|█████▊    | 443/757 [02:19<01:13,  4.27files/s]Downloading data:  59%|█████▊    | 444/757 [02:19<01:09,  4.51files/s]Downloading data:  59%|█████▉    | 445/757 [02:19<01:09,  4.46files/s]Downloading data:  59%|█████▉    | 446/757 [02:19<01:18,  3.97files/s]Downloading data:  59%|█████▉    | 447/757 [02:20<01:20,  3.83files/s]Downloading data:  59%|█████▉    | 448/757 [02:20<01:16,  4.02files/s]Downloading data:  59%|█████▉    | 449/757 [02:20<01:17,  3.99files/s]Downloading data:  59%|█████▉    | 450/757 [02:20<01:14,  4.15files/s]Downloading data:  60%|█████▉    | 451/757 [02:21<01:13,  4.14files/s]Downloading data:  60%|█████▉    | 452/757 [02:21<01:10,  4.33files/s]Downloading data:  60%|█████▉    | 453/757 [02:21<01:11,  4.25files/s]Downloading data:  60%|█████▉    | 454/757 [02:21<01:10,  4.27files/s]Downloading data:  60%|██████    | 455/757 [02:22<01:11,  4.21files/s]Downloading data:  60%|██████    | 456/757 [02:22<01:10,  4.27files/s]Downloading data:  60%|██████    | 457/757 [02:22<01:16,  3.92files/s]Downloading data:  61%|██████    | 458/757 [02:22<01:15,  3.99files/s]Downloading data:  61%|██████    | 459/757 [02:23<01:22,  3.61files/s]Downloading data:  61%|██████    | 460/757 [02:23<01:15,  3.95files/s]Downloading data:  61%|██████    | 461/757 [02:23<01:06,  4.42files/s]Downloading data:  61%|██████    | 462/757 [02:23<01:03,  4.62files/s]Downloading data:  61%|██████    | 463/757 [02:23<01:04,  4.53files/s]Downloading data:  61%|██████▏   | 464/757 [02:24<01:08,  4.26files/s]Downloading data:  61%|██████▏   | 465/757 [02:24<01:13,  3.97files/s]Downloading data:  62%|██████▏   | 466/757 [02:24<01:20,  3.61files/s]Downloading data:  62%|██████▏   | 467/757 [02:25<01:15,  3.86files/s]Downloading data:  62%|██████▏   | 468/757 [02:25<01:34,  3.06files/s]Downloading data:  62%|██████▏   | 469/757 [02:25<01:30,  3.18files/s]Downloading data:  62%|██████▏   | 470/757 [02:26<01:21,  3.51files/s]Downloading data:  62%|██████▏   | 471/757 [02:26<01:43,  2.77files/s]Downloading data:  62%|██████▏   | 472/757 [02:26<01:37,  2.92files/s]Downloading data:  62%|██████▏   | 473/757 [02:27<01:21,  3.47files/s]Downloading data:  63%|██████▎   | 474/757 [02:27<01:18,  3.59files/s]Downloading data:  63%|██████▎   | 475/757 [02:27<01:20,  3.52files/s]Downloading data:  63%|██████▎   | 476/757 [02:28<01:37,  2.88files/s]Downloading data:  63%|██████▎   | 477/757 [02:28<01:25,  3.26files/s]Downloading data:  63%|██████▎   | 478/757 [02:28<01:17,  3.60files/s]Downloading data:  63%|██████▎   | 479/757 [02:28<01:15,  3.68files/s]Downloading data:  63%|██████▎   | 480/757 [02:29<01:14,  3.69files/s]Downloading data:  64%|██████▎   | 481/757 [02:29<01:11,  3.88files/s]Downloading data:  64%|██████▎   | 482/757 [02:30<01:57,  2.34files/s]Downloading data:  64%|██████▍   | 483/757 [02:30<01:49,  2.49files/s]Downloading data:  64%|██████▍   | 484/757 [02:30<01:40,  2.72files/s]Downloading data:  64%|██████▍   | 485/757 [02:30<01:30,  3.00files/s]Downloading data:  64%|██████▍   | 486/757 [02:31<01:45,  2.57files/s]Downloading data:  64%|██████▍   | 487/757 [02:31<01:30,  2.99files/s]Downloading data:  64%|██████▍   | 488/757 [02:31<01:21,  3.32files/s]Downloading data:  65%|██████▍   | 489/757 [02:32<01:14,  3.61files/s]Downloading data:  65%|██████▍   | 490/757 [02:32<01:06,  4.01files/s]Downloading data:  65%|██████▍   | 491/757 [02:32<01:07,  3.93files/s]Downloading data:  65%|██████▍   | 492/757 [02:32<01:01,  4.29files/s]Downloading data:  65%|██████▌   | 493/757 [02:32<00:56,  4.70files/s]Downloading data:  65%|██████▌   | 494/757 [02:33<00:56,  4.64files/s]Downloading data:  65%|██████▌   | 495/757 [02:33<00:57,  4.59files/s]Downloading data:  66%|██████▌   | 496/757 [02:33<01:12,  3.60files/s]Downloading data:  66%|██████▌   | 497/757 [02:34<01:07,  3.85files/s]Downloading data:  66%|██████▌   | 498/757 [02:34<01:31,  2.84files/s]Downloading data:  66%|██████▌   | 499/757 [02:34<01:32,  2.77files/s]Downloading data:  66%|██████▌   | 500/757 [02:35<01:38,  2.61files/s]Downloading data:  66%|██████▌   | 501/757 [02:35<01:24,  3.03files/s]Downloading data:  66%|██████▋   | 502/757 [02:35<01:15,  3.37files/s]Downloading data:  66%|██████▋   | 503/757 [02:36<01:18,  3.25files/s]Downloading data:  67%|██████▋   | 504/757 [02:36<01:13,  3.43files/s]Downloading data:  67%|██████▋   | 505/757 [02:36<01:09,  3.63files/s]Downloading data:  67%|██████▋   | 506/757 [02:36<01:03,  3.98files/s]Downloading data:  67%|██████▋   | 507/757 [02:37<00:58,  4.27files/s]Downloading data:  67%|██████▋   | 508/757 [02:37<00:55,  4.52files/s]Downloading data:  67%|██████▋   | 509/757 [02:37<00:50,  4.89files/s]Downloading data:  67%|██████▋   | 510/757 [02:37<00:52,  4.70files/s]Downloading data:  68%|██████▊   | 511/757 [02:38<01:04,  3.84files/s]Downloading data:  68%|██████▊   | 512/757 [02:38<01:02,  3.93files/s]Downloading data:  68%|██████▊   | 513/757 [02:38<00:59,  4.12files/s]Downloading data:  68%|██████▊   | 514/757 [02:38<01:00,  4.00files/s]Downloading data:  68%|██████▊   | 515/757 [02:39<01:07,  3.59files/s]Downloading data:  68%|██████▊   | 516/757 [02:39<01:00,  3.96files/s]Downloading data:  68%|██████▊   | 517/757 [02:39<01:02,  3.85files/s]Downloading data:  68%|██████▊   | 518/757 [02:39<01:00,  3.98files/s]Downloading data:  69%|██████▊   | 519/757 [02:40<01:07,  3.50files/s]Downloading data:  69%|██████▊   | 520/757 [02:40<01:04,  3.70files/s]Downloading data:  69%|██████▉   | 521/757 [02:40<01:05,  3.58files/s]Downloading data:  69%|██████▉   | 522/757 [02:40<00:58,  4.02files/s]Downloading data:  69%|██████▉   | 523/757 [02:41<00:51,  4.57files/s]Downloading data:  69%|██████▉   | 524/757 [02:41<00:47,  4.93files/s]Downloading data:  69%|██████▉   | 525/757 [02:41<00:50,  4.61files/s]Downloading data:  69%|██████▉   | 526/757 [02:41<00:59,  3.87files/s]Downloading data:  70%|██████▉   | 527/757 [02:42<00:58,  3.95files/s]Downloading data:  70%|██████▉   | 528/757 [02:42<00:59,  3.83files/s]Downloading data:  70%|██████▉   | 529/757 [02:42<01:11,  3.17files/s]Downloading data:  70%|███████   | 530/757 [02:43<01:07,  3.35files/s]Downloading data:  70%|███████   | 531/757 [02:43<01:11,  3.17files/s]Downloading data:  70%|███████   | 532/757 [02:43<01:00,  3.70files/s]Downloading data:  70%|███████   | 533/757 [02:43<00:55,  4.04files/s]Downloading data:  71%|███████   | 534/757 [02:43<00:55,  4.04files/s]Downloading data:  71%|███████   | 535/757 [02:44<00:52,  4.24files/s]Downloading data:  71%|███████   | 536/757 [02:44<00:47,  4.65files/s]Downloading data:  71%|███████   | 537/757 [02:44<00:45,  4.82files/s]Downloading data:  71%|███████   | 538/757 [02:44<00:42,  5.16files/s]Downloading data:  71%|███████   | 539/757 [02:44<00:44,  4.95files/s]Downloading data:  71%|███████▏  | 540/757 [02:45<00:52,  4.13files/s]Downloading data:  71%|███████▏  | 541/757 [02:45<00:52,  4.11files/s]Downloading data:  72%|███████▏  | 542/757 [02:45<00:57,  3.76files/s]Downloading data:  72%|███████▏  | 543/757 [02:46<00:58,  3.64files/s]Downloading data:  72%|███████▏  | 544/757 [02:46<01:10,  3.03files/s]Downloading data:  72%|███████▏  | 545/757 [02:46<01:04,  3.27files/s]Downloading data:  72%|███████▏  | 546/757 [02:47<01:10,  2.98files/s]Downloading data:  72%|███████▏  | 547/757 [02:47<01:04,  3.25files/s]Downloading data:  72%|███████▏  | 548/757 [02:47<00:58,  3.57files/s]Downloading data:  73%|███████▎  | 549/757 [02:47<00:56,  3.68files/s]Downloading data:  73%|███████▎  | 550/757 [02:48<00:56,  3.66files/s]Downloading data:  73%|███████▎  | 551/757 [02:48<01:05,  3.13files/s]Downloading data:  73%|███████▎  | 552/757 [02:49<01:08,  2.98files/s]Downloading data:  73%|███████▎  | 553/757 [02:49<01:00,  3.37files/s]Downloading data:  73%|███████▎  | 554/757 [02:49<00:57,  3.51files/s]Downloading data:  73%|███████▎  | 555/757 [02:49<01:00,  3.36files/s]Downloading data:  73%|███████▎  | 556/757 [02:50<01:02,  3.22files/s]Downloading data:  74%|███████▎  | 557/757 [02:50<01:12,  2.75files/s]Downloading data:  74%|███████▎  | 558/757 [02:50<01:08,  2.91files/s]Downloading data:  74%|███████▍  | 559/757 [02:51<01:08,  2.89files/s]Downloading data:  74%|███████▍  | 560/757 [02:51<01:03,  3.10files/s]Downloading data:  74%|███████▍  | 561/757 [02:51<01:06,  2.95files/s]Downloading data:  74%|███████▍  | 562/757 [02:52<01:07,  2.89files/s]Downloading data:  74%|███████▍  | 563/757 [02:52<01:09,  2.81files/s]Downloading data:  75%|███████▍  | 564/757 [02:52<01:04,  3.01files/s]Downloading data:  75%|███████▍  | 565/757 [02:54<02:04,  1.54files/s]Downloading data:  75%|███████▍  | 566/757 [02:55<02:13,  1.43files/s]Downloading data:  75%|███████▍  | 567/757 [02:55<02:08,  1.48files/s]Downloading data:  75%|███████▌  | 568/757 [02:56<01:44,  1.82files/s]Downloading data:  75%|███████▌  | 569/757 [02:56<01:29,  2.11files/s]Downloading data:  75%|███████▌  | 570/757 [02:56<01:15,  2.47files/s]Downloading data:  75%|███████▌  | 571/757 [02:56<01:04,  2.89files/s]Downloading data:  76%|███████▌  | 572/757 [02:56<00:57,  3.23files/s]Downloading data:  76%|███████▌  | 573/757 [02:57<00:50,  3.67files/s]Downloading data:  76%|███████▌  | 574/757 [02:57<00:46,  3.96files/s]Downloading data:  76%|███████▌  | 575/757 [02:57<00:58,  3.12files/s]Downloading data:  76%|███████▌  | 576/757 [02:58<00:51,  3.49files/s]Downloading data:  76%|███████▌  | 577/757 [02:58<00:46,  3.84files/s]Downloading data:  76%|███████▋  | 578/757 [02:58<00:55,  3.25files/s]Downloading data:  76%|███████▋  | 579/757 [02:58<00:52,  3.36files/s]Downloading data:  77%|███████▋  | 580/757 [02:59<00:49,  3.58files/s]Downloading data:  77%|███████▋  | 581/757 [02:59<00:44,  3.93files/s]Downloading data:  77%|███████▋  | 582/757 [02:59<00:39,  4.40files/s]Downloading data:  77%|███████▋  | 583/757 [02:59<00:37,  4.66files/s]Downloading data:  77%|███████▋  | 584/757 [02:59<00:34,  5.06files/s]Downloading data:  77%|███████▋  | 585/757 [03:00<00:32,  5.26files/s]Downloading data:  77%|███████▋  | 586/757 [03:00<00:34,  4.98files/s]Downloading data:  78%|███████▊  | 587/757 [03:00<00:35,  4.78files/s]Downloading data:  78%|███████▊  | 588/757 [03:00<00:38,  4.35files/s]Downloading data:  78%|███████▊  | 589/757 [03:01<00:38,  4.31files/s]Downloading data:  78%|███████▊  | 590/757 [03:01<00:40,  4.14files/s]Downloading data:  78%|███████▊  | 591/757 [03:01<00:38,  4.26files/s]Downloading data:  78%|███████▊  | 592/757 [03:01<00:46,  3.58files/s]Downloading data:  78%|███████▊  | 593/757 [03:02<00:39,  4.10files/s]Downloading data:  78%|███████▊  | 594/757 [03:02<00:59,  2.76files/s]Downloading data:  79%|███████▊  | 595/757 [03:03<00:57,  2.80files/s]Downloading data:  79%|███████▊  | 596/757 [03:03<00:52,  3.09files/s]Downloading data:  79%|███████▉  | 597/757 [03:03<00:46,  3.43files/s]Downloading data:  79%|███████▉  | 598/757 [03:03<00:41,  3.82files/s]Downloading data:  79%|███████▉  | 599/757 [03:04<00:47,  3.35files/s]Downloading data:  79%|███████▉  | 600/757 [03:04<00:43,  3.64files/s]Downloading data:  79%|███████▉  | 601/757 [03:04<00:44,  3.48files/s]Downloading data:  80%|███████▉  | 602/757 [03:04<00:40,  3.82files/s]Downloading data:  80%|███████▉  | 603/757 [03:05<00:38,  4.05files/s]Downloading data:  80%|███████▉  | 604/757 [03:05<00:38,  4.01files/s]Downloading data:  80%|███████▉  | 605/757 [03:05<00:35,  4.27files/s]Downloading data:  80%|████████  | 606/757 [03:05<00:33,  4.51files/s]Downloading data:  80%|████████  | 607/757 [03:05<00:31,  4.73files/s]Downloading data:  80%|████████  | 608/757 [03:06<00:30,  4.93files/s]Downloading data:  80%|████████  | 609/757 [03:06<00:30,  4.78files/s]Downloading data:  81%|████████  | 610/757 [03:06<00:31,  4.66files/s]Downloading data:  81%|████████  | 611/757 [03:06<00:29,  5.01files/s]Downloading data:  81%|████████  | 612/757 [03:06<00:31,  4.64files/s]Downloading data:  81%|████████  | 613/757 [03:07<00:29,  4.82files/s]Downloading data:  81%|████████  | 614/757 [03:07<00:29,  4.82files/s]Downloading data:  81%|████████  | 615/757 [03:07<00:28,  5.00files/s]Downloading data:  81%|████████▏ | 616/757 [03:07<00:30,  4.67files/s]Downloading data:  82%|████████▏ | 617/757 [03:07<00:27,  5.01files/s]Downloading data:  82%|████████▏ | 618/757 [03:08<00:26,  5.31files/s]Downloading data:  82%|████████▏ | 619/757 [03:08<00:26,  5.28files/s]Downloading data:  82%|████████▏ | 620/757 [03:08<00:26,  5.21files/s]Downloading data:  82%|████████▏ | 621/757 [03:08<00:27,  4.87files/s]Downloading data:  82%|████████▏ | 622/757 [03:08<00:27,  4.89files/s]Downloading data:  82%|████████▏ | 623/757 [03:09<00:26,  5.06files/s]Downloading data:  82%|████████▏ | 624/757 [03:09<00:25,  5.27files/s]Downloading data:  83%|████████▎ | 625/757 [03:09<00:24,  5.37files/s]Downloading data:  83%|████████▎ | 626/757 [03:09<00:28,  4.64files/s]Downloading data:  83%|████████▎ | 627/757 [03:09<00:26,  4.94files/s]Downloading data:  83%|████████▎ | 628/757 [03:10<00:25,  5.14files/s]Downloading data:  83%|████████▎ | 629/757 [03:10<00:24,  5.22files/s]Downloading data:  83%|████████▎ | 630/757 [03:10<00:24,  5.18files/s]Downloading data:  83%|████████▎ | 631/757 [03:10<00:23,  5.36files/s]Downloading data:  83%|████████▎ | 632/757 [03:10<00:23,  5.23files/s]Downloading data:  84%|████████▎ | 633/757 [03:11<00:25,  4.80files/s]Downloading data:  84%|████████▍ | 634/757 [03:11<00:24,  5.11files/s]Downloading data:  84%|████████▍ | 635/757 [03:11<00:23,  5.21files/s]Downloading data:  84%|████████▍ | 636/757 [03:11<00:23,  5.07files/s]Downloading data:  84%|████████▍ | 637/757 [03:11<00:23,  5.14files/s]Downloading data:  84%|████████▍ | 638/757 [03:12<00:23,  5.06files/s]Downloading data:  84%|████████▍ | 639/757 [03:12<00:23,  5.03files/s]Downloading data:  85%|████████▍ | 640/757 [03:12<00:21,  5.33files/s]Downloading data:  85%|████████▍ | 641/757 [03:12<00:22,  5.25files/s]Downloading data:  85%|████████▍ | 642/757 [03:12<00:20,  5.60files/s]Downloading data:  85%|████████▍ | 643/757 [03:12<00:19,  5.84files/s]Downloading data:  85%|████████▌ | 644/757 [03:13<00:19,  5.73files/s]Downloading data:  85%|████████▌ | 645/757 [03:13<00:19,  5.74files/s]Downloading data:  85%|████████▌ | 646/757 [03:13<00:19,  5.70files/s]Downloading data:  85%|████████▌ | 647/757 [03:13<00:19,  5.75files/s]Downloading data:  86%|████████▌ | 648/757 [03:13<00:19,  5.69files/s]Downloading data:  86%|████████▌ | 649/757 [03:13<00:18,  5.69files/s]Downloading data:  86%|████████▌ | 650/757 [03:14<00:18,  5.82files/s]Downloading data:  86%|████████▌ | 651/757 [03:14<00:17,  5.95files/s]Downloading data:  86%|████████▌ | 652/757 [03:14<00:23,  4.55files/s]Downloading data:  86%|████████▋ | 653/757 [03:14<00:24,  4.19files/s]Downloading data:  86%|████████▋ | 654/757 [03:15<00:22,  4.51files/s]Downloading data:  87%|████████▋ | 655/757 [03:15<00:20,  4.97files/s]Downloading data:  87%|████████▋ | 656/757 [03:15<00:19,  5.27files/s]Downloading data:  87%|████████▋ | 657/757 [03:15<00:18,  5.50files/s]Downloading data:  87%|████████▋ | 658/757 [03:15<00:18,  5.36files/s]Downloading data:  87%|████████▋ | 659/757 [03:15<00:17,  5.57files/s]Downloading data:  87%|████████▋ | 660/757 [03:16<00:17,  5.48files/s]Downloading data:  87%|████████▋ | 661/757 [03:16<00:17,  5.53files/s]Downloading data:  87%|████████▋ | 662/757 [03:16<00:16,  5.67files/s]Downloading data:  88%|████████▊ | 663/757 [03:16<00:19,  4.74files/s]Downloading data:  88%|████████▊ | 664/757 [03:16<00:18,  5.08files/s]Downloading data:  88%|████████▊ | 665/757 [03:17<00:17,  5.28files/s]Downloading data:  88%|████████▊ | 666/757 [03:17<00:16,  5.62files/s]Downloading data:  88%|████████▊ | 667/757 [03:17<00:16,  5.49files/s]Downloading data:  88%|████████▊ | 668/757 [03:17<00:17,  5.04files/s]Downloading data:  88%|████████▊ | 669/757 [03:17<00:19,  4.58files/s]Downloading data:  89%|████████▊ | 670/757 [03:18<00:18,  4.66files/s]Downloading data:  89%|████████▊ | 671/757 [03:18<00:17,  4.94files/s]Downloading data:  89%|████████▉ | 672/757 [03:18<00:17,  4.97files/s]Downloading data:  89%|████████▉ | 673/757 [03:18<00:16,  5.04files/s]Downloading data:  89%|████████▉ | 674/757 [03:18<00:18,  4.59files/s]Downloading data:  89%|████████▉ | 675/757 [03:19<00:19,  4.18files/s]Downloading data:  89%|████████▉ | 676/757 [03:19<00:17,  4.52files/s]Downloading data:  89%|████████▉ | 677/757 [03:19<00:16,  4.93files/s]Downloading data:  90%|████████▉ | 678/757 [03:19<00:15,  5.17files/s]Downloading data:  90%|████████▉ | 679/757 [03:19<00:13,  5.69files/s]Downloading data:  90%|████████▉ | 680/757 [03:20<00:13,  5.60files/s]Downloading data:  90%|████████▉ | 681/757 [03:20<00:15,  4.87files/s]Downloading data:  90%|█████████ | 682/757 [03:20<00:17,  4.29files/s]Downloading data:  90%|█████████ | 683/757 [03:20<00:17,  4.18files/s]Downloading data:  90%|█████████ | 684/757 [03:21<00:16,  4.30files/s]Downloading data:  90%|█████████ | 684/757 [03:21<00:21,  3.40files/s]
+  train: rate limited, retrying in 60s (attempt 1/5)
+  train: rate limited, retrying in 120s (attempt 2/5)
+  train: rate limited, retrying in 240s (attempt 3/5)
+Downloading data:   0%|          | 0/757 [00:00<?, ?files/s]Downloading data:  88%|████████▊ | 667/757 [00:00<00:00, 6667.10files/s]Downloading data:  88%|████████▊ | 667/757 [00:12<00:00, 6667.10files/s]Downloading data:  96%|█████████▋| 730/757 [00:12<00:00, 41.76files/s]  Downloading data:  97%|█████████▋| 731/757 [00:12<00:00, 40.61files/s]Downloading data: 100%|██████████| 757/757 [00:18<00:00, 40.49files/s]
+Downloading data:   0%|          | 0/119 [00:00<?, ?files/s]Downloading data:   1%|          | 1/119 [00:00<00:17,  6.75files/s]Downloading data:   2%|▏         | 2/119 [00:00<00:51,  2.29files/s]Downloading data:   3%|▎         | 3/119 [00:00<00:36,  3.19files/s]Downloading data:  18%|█▊        | 21/119 [00:01<00:03, 31.13files/s]Downloading data:  23%|██▎       | 27/119 [00:01<00:05, 18.02files/s]Downloading data:  45%|████▌     | 54/119 [00:01<00:01, 44.21files/s]Downloading data:  53%|█████▎    | 63/119 [00:02<00:01, 37.92files/s]Downloading data:  59%|█████▉    | 70/119 [00:02<00:01, 40.83files/s]Downloading data:  65%|██████▍   | 77/119 [00:02<00:01, 34.03files/s]Downloading data:  70%|██████▉   | 83/119 [00:03<00:01, 24.07files/s]Downloading data:  96%|█████████▌| 114/119 [00:03<00:00, 54.97files/s]Downloading data: 100%|██████████| 119/119 [00:03<00:00, 34.70files/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 13993 examples [00:00, 116437.71 examples/s]Generating train split: 29451 examples [00:00, 132333.50 examples/s]Generating train split: 65266 examples [00:00, 207355.52 examples/s]Generating train split: 89380 examples [00:00, 189061.89 examples/s]Generating train split: 113438 examples [00:00, 184065.55 examples/s]Generating train split: 137584 examples [00:00, 182182.18 examples/s]Generating train split: 160603 examples [00:00, 191000.93 examples/s]Generating train split: 191711 examples [00:01, 181152.86 examples/s]Generating train split: 245813 examples [00:01, 257471.07 examples/s]Generating train split: 295310 examples [00:01, 301866.71 examples/s]Generating train split: 342896 examples [00:01, 298632.47 examples/s]Generating train split: 409187 examples [00:01, 382066.76 examples/s]Generating train split: 460003 examples [00:01, 387569.07 examples/s]Generating train split: 501827 examples [00:01, 369242.96 examples/s]Generating train split: 561816 examples [00:01, 364167.04 examples/s]Generating train split: 607399 examples [00:02, 378710.35 examples/s]Generating train split: 657591 examples [00:02, 397360.27 examples/s]Generating train split: 724525 examples [00:02, 448568.52 examples/s]Generating train split: 772865 examples [00:02, 436725.58 examples/s]Generating train split: 820952 examples [00:02, 260414.24 examples/s]Generating train split: 866515 examples [00:02, 292453.82 examples/s]Generating train split: 928980 examples [00:03, 357590.58 examples/s]Generating train split: 990596 examples [00:03, 357011.33 examples/s]Generating train split: 1056955 examples [00:03, 410744.61 examples/s]Generating train split: 1114405 examples [00:03, 437863.41 examples/s]Generating train split: 1169302 examples [00:03, 433852.22 examples/s]Generating train split: 1241119 examples [00:03, 501229.29 examples/s]Generating train split: 1307091 examples [00:03, 495152.43 examples/s]Generating train split: 1370826 examples [00:04, 393189.67 examples/s]Generating train split: 1417208 examples [00:04, 229355.78 examples/s]Generating train split: 1452306 examples [00:04, 163530.83 examples/s]Generating train split: 1518126 examples [00:05, 215326.88 examples/s]Generating train split: 1576539 examples [00:05, 222267.22 examples/s]Generating train split: 1624985 examples [00:05, 232310.89 examples/s]Generating train split: 1659046 examples [00:05, 243921.76 examples/s]Generating train split: 1700705 examples [00:05, 270932.46 examples/s]Generating train split: 1758090 examples [00:05, 264917.18 examples/s]Generating train split: 1808531 examples [00:06, 300367.74 examples/s]Generating train split: 1846030 examples [00:06, 269619.30 examples/s]Generating train split: 1899750 examples [00:06, 281987.42 examples/s]Generating train split: 1945618 examples [00:06, 295597.76 examples/s]Generating train split: 2008063 examples [00:06, 342195.39 examples/s]Generating train split: 2073675 examples [00:06, 406483.24 examples/s]Generating train split: 2143015 examples [00:06, 452514.97 examples/s]Generating train split: 2199034 examples [00:07, 458404.97 examples/s]Generating train split: 2254593 examples [00:07, 350926.46 examples/s]Generating train split: 2306404 examples [00:07, 289001.38 examples/s]Generating train split: 2370835 examples [00:07, 346983.74 examples/s]Generating train split: 2428456 examples [00:07, 383123.65 examples/s]Generating train split: 2503690 examples [00:07, 447838.18 examples/s]Generating train split: 2571256 examples [00:08, 482831.64 examples/s]Generating train split: 2637389 examples [00:08, 448760.47 examples/s]Generating train split: 2722019 examples [00:08, 381672.04 examples/s]Generating train split: 2785449 examples [00:08, 416876.48 examples/s]Generating train split: 2845574 examples [00:08, 403818.53 examples/s]Generating train split: 2916561 examples [00:08, 441451.65 examples/s]Generating train split: 2970763 examples [00:09, 406436.84 examples/s]Generating train split: 3038642 examples [00:09, 451970.44 examples/s]Generating train split: 3082094 examples [00:09, 334077.03 examples/s]
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 41227 examples [00:00, 319104.48 examples/s]Generating test split: 105615 examples [00:00, 391565.19 examples/s]Generating test split: 155951 examples [00:00, 397467.68 examples/s]Generating test split: 203390 examples [00:00, 413102.15 examples/s]Generating test split: 257636 examples [00:00, 432081.20 examples/s]Generating test split: 313599 examples [00:00, 403815.27 examples/s]Generating test split: 360345 examples [00:00, 363620.88 examples/s]Generating test split: 403154 examples [00:01, 353964.49 examples/s]Generating test split: 452637 examples [00:01, 382444.99 examples/s]Generating test split: 484006 examples [00:01, 389063.49 examples/s]
+  train: 3082094 examples
+  test: 484006 examples
+  Combined: 3566100 examples
+  Valid tasks: 41/41
+  task001_quoref_question_generation: 1600 examples, metric=rouge_l
+  task002_quoref_answer_generation: 1600 examples, metric=accuracy
+  task073_commonsenseqa_answer_generation: 975 examples, metric=accuracy
+  task074_squad1.1_question_generation: 1600 examples, metric=rouge_l
+  task075_squad1.1_answer_generation: 1600 examples, metric=accuracy
+  task080_piqa_answer_generation: 1600 examples, metric=rouge_l
+  task082_babi_t1_single_supporting_fact_question_generation: 1600 examples, metric=accuracy
+  task083_babi_t1_single_supporting_fact_answer_generation: 793 examples, metric=accuracy
+  task043_essential_terms_answering_incomplete_questions: 1393 examples, metric=accuracy
+  task044_essential_terms_identifying_essential_words: 1599 examples, metric=accuracy
+  task047_miscellaneous_answering_science_questions: 200 examples, metric=accuracy
+  task061_ropes_answer_generation: 1600 examples, metric=accuracy
+  task022_cosmosqa_passage_inappropriate_binary: 103 examples, metric=accuracy
+  task065_timetravel_consistent_sentence_classification: 1600 examples, metric=accuracy
+  task066_timetravel_binary_consistency_classification: 1600 examples, metric=accuracy
+  task069_abductivenli_classification: 1600 examples, metric=accuracy
+  task070_abductivenli_incorrect_classification: 1600 examples, metric=accuracy
+  task092_check_prime_classification: 1600 examples, metric=accuracy
+  task108_contextualabusedetection_classification: 1600 examples, metric=accuracy
+  task109_smsspamcollection_spamsmsdetection: 852 examples, metric=accuracy
+  task088_identify_typo_verification: 1600 examples, metric=accuracy
+  task089_swap_words_verification: 1600 examples, metric=accuracy
+  task023_cosmosqa_question_generation: 1600 examples, metric=rouge_l
+  task024_cosmosqa_answer_generation: 1600 examples, metric=rouge_l
+  task025_cosmosqa_incorrect_answer_generation: 1600 examples, metric=rouge_l
+  task026_drop_question_generation: 1600 examples, metric=rouge_l
+  task027_drop_answer_type_generation: 1600 examples, metric=accuracy
+  task028_drop_answer_generation: 1600 examples, metric=accuracy
+  task059_ropes_story_generation: 1286 examples, metric=rouge_l
+  task060_ropes_question_generation: 1600 examples, metric=rouge_l
+  task067_abductivenli_answer_generation: 1600 examples, metric=rouge_l
+  task068_abductivenli_incorrect_answer_generation: 1600 examples, metric=rouge_l
+  task103_facts2story_long_text_generation: 1600 examples, metric=rouge_l
+  task105_story_cloze-rocstories_sentence_generation: 1600 examples, metric=rouge_l
+  task110_logic2text_sentence_generation: 1600 examples, metric=rouge_l
+  task045_miscellaneous_sentence_paraphrasing: 1390 examples, metric=rouge_l
+  task111_asset_sentence_simplification: 1600 examples, metric=rouge_l
+  task062_bigbench_repeat_copy_logic: 23 examples, metric=rouge_l
+  task063_first_i_elements: 1600 examples, metric=accuracy
+  task085_unnatural_addsub_arithmetic: 1600 examples, metric=accuracy
+  task046_miscellaneous_question_typing: 1600 examples, metric=accuracy
+
+Loaded 41 tasks with 58,214 total examples
+
+Training tasks: 41
+Total training examples: 58,214
+Computing description embeddings for 41 tasks...
+  task001_quoref_question_generation: norm=36.690
+  task002_quoref_answer_generation: norm=36.106
+  task073_commonsenseqa_answer_generation: norm=36.058
+  task074_squad1.1_question_generation: norm=36.848
+  task075_squad1.1_answer_generation: norm=35.896
+  task080_piqa_answer_generation: norm=35.998
+  task082_babi_t1_single_supporting_fact_question_generation: norm=36.262
+  task083_babi_t1_single_supporting_fact_answer_generation: norm=36.415
+  task043_essential_terms_answering_incomplete_questions: norm=36.006
+  task044_essential_terms_identifying_essential_words: norm=36.062
+  task047_miscellaneous_answering_science_questions: norm=35.658
+  task061_ropes_answer_generation: norm=36.027
+  task022_cosmosqa_passage_inappropriate_binary: norm=35.354
+  task065_timetravel_consistent_sentence_classification: norm=36.597
+  task066_timetravel_binary_consistency_classification: norm=36.558
+  task069_abductivenli_classification: norm=36.233
+  task070_abductivenli_incorrect_classification: norm=35.739
+  task092_check_prime_classification: norm=36.751
+  task108_contextualabusedetection_classification: norm=35.907
+  task109_smsspamcollection_spamsmsdetection: norm=36.630
+  task088_identify_typo_verification: norm=37.072
+  task089_swap_words_verification: norm=36.349
+  task023_cosmosqa_question_generation: norm=35.738
+  task024_cosmosqa_answer_generation: norm=35.468
+  task025_cosmosqa_incorrect_answer_generation: norm=35.780
+  task026_drop_question_generation: norm=34.785
+  task027_drop_answer_type_generation: norm=35.282
+  task028_drop_answer_generation: norm=35.710
+  task059_ropes_story_generation: norm=36.598
+  task060_ropes_question_generation: norm=36.027
+  task067_abductivenli_answer_generation: norm=36.018
+  task068_abductivenli_incorrect_answer_generation: norm=36.523
+  task103_facts2story_long_text_generation: norm=37.274
+  task105_story_cloze-rocstories_sentence_generation: norm=35.904
+  task110_logic2text_sentence_generation: norm=36.332
+  task045_miscellaneous_sentence_paraphrasing: norm=36.705
+  task111_asset_sentence_simplification: norm=34.876
+  task062_bigbench_repeat_copy_logic: norm=35.779
+  task063_first_i_elements: norm=37.400
+  task085_unnatural_addsub_arithmetic: norm=35.194
+  task046_miscellaneous_question_typing: norm=36.316
+
+Starting HyperLoRA SNI training for 12000 steps...
+  Tasks: 41
+  Rank: 8
+  Step 1/12000 | Loss: 1.9284 | Task: task028_drop_answer_generation (other) | Time: 1s
+  Step 100/12000 | Loss: 205.0312 | Task: task075_squad1.1_answer_generation (other) | Time: 79s
+  Step 200/12000 | Loss: 161.7959 | Task: task023_cosmosqa_question_generation (question_answering) | Time: 154s
+  Step 300/12000 | Loss: 151.3627 | Task: task046_miscellaneous_question_typing (other) | Time: 230s
+  Step 400/12000 | Loss: 147.7869 | Task: task073_commonsenseqa_answer_generation (other) | Time: 304s
+  Step 500/12000 | Loss: 142.7776 | Task: task082_babi_t1_single_supporting_fact_question_generation (question_answering) | Time: 381s
+  Step 600/12000 | Loss: 145.2906 | Task: task068_abductivenli_incorrect_answer_generation (other) | Time: 458s
+  Step 700/12000 | Loss: 140.7403 | Task: task063_first_i_elements (other) | Time: 534s
+  Step 800/12000 | Loss: 138.6329 | Task: task063_first_i_elements (other) | Time: 608s
+  Step 900/12000 | Loss: 137.0671 | Task: task073_commonsenseqa_answer_generation (other) | Time: 683s
+  Step 1000/12000 | Loss: 135.5531 | Task: task068_abductivenli_incorrect_answer_generation (other) | Time: 758s
+  Step 1100/12000 | Loss: 138.7923 | Task: task045_miscellaneous_sentence_paraphrasing (paraphrase) | Time: 833s
+  Step 1200/12000 | Loss: 141.6332 | Task: task109_smsspamcollection_spamsmsdetection (other) | Time: 908s
+  Step 1300/12000 | Loss: 134.4168 | Task: task080_piqa_answer_generation (other) | Time: 982s
+  Step 1400/12000 | Loss: 132.9785 | Task: task092_check_prime_classification (other) | Time: 1057s
+  Step 1500/12000 | Loss: 131.9808 | Task: task067_abductivenli_answer_generation (other) | Time: 1133s
+  Step 1600/12000 | Loss: 132.0095 | Task: task103_facts2story_long_text_generation (other) | Time: 1207s
+  Step 1700/12000 | Loss: 132.6439 | Task: task074_squad1.1_question_generation (question_answering) | Time: 1282s
+  Step 1800/12000 | Loss: 132.8193 | Task: task059_ropes_story_generation (other) | Time: 1356s
+  Step 1900/12000 | Loss: 130.8260 | Task: task069_abductivenli_classification (other) | Time: 1431s
+  Step 2000/12000 | Loss: 131.2465 | Task: task069_abductivenli_classification (other) | Time: 1506s
+  Step 2100/12000 | Loss: 131.7333 | Task: task074_squad1.1_question_generation (question_answering) | Time: 1581s
+  Step 2200/12000 | Loss: 131.1416 | Task: task060_ropes_question_generation (question_answering) | Time: 1656s
+  Step 2300/12000 | Loss: 127.6964 | Task: task068_abductivenli_incorrect_answer_generation (other) | Time: 1731s
+  Step 2400/12000 | Loss: 131.3395 | Task: task088_identify_typo_verification (other) | Time: 1807s
+  Step 2500/12000 | Loss: 135.1399 | Task: task103_facts2story_long_text_generation (other) | Time: 1883s
+  Step 2600/12000 | Loss: 129.8443 | Task: task092_check_prime_classification (other) | Time: 1958s
+  Step 2700/12000 | Loss: 128.2189 | Task: task027_drop_answer_type_generation (other) | Time: 2033s
+  Step 2800/12000 | Loss: 134.6205 | Task: task069_abductivenli_classification (other) | Time: 2108s
+  Step 2900/12000 | Loss: 128.6793 | Task: task046_miscellaneous_question_typing (other) | Time: 2182s
+  Step 3000/12000 | Loss: 129.1126 | Task: task067_abductivenli_answer_generation (other) | Time: 2256s
+  Step 3100/12000 | Loss: 135.4625 | Task: task065_timetravel_consistent_sentence_classification (other) | Time: 2331s
+  Step 3200/12000 | Loss: 130.8533 | Task: task023_cosmosqa_question_generation (question_answering) | Time: 2406s
+  Step 3300/12000 | Loss: 130.9755 | Task: task082_babi_t1_single_supporting_fact_question_generation (question_answering) | Time: 2480s
+  Step 3400/12000 | Loss: 129.6487 | Task: task024_cosmosqa_answer_generation (other) | Time: 2555s
+  Step 3500/12000 | Loss: 127.0834 | Task: task074_squad1.1_question_generation (question_answering) | Time: 2630s
+  Step 3600/12000 | Loss: 129.7832 | Task: task075_squad1.1_answer_generation (other) | Time: 2705s
+  Step 3700/12000 | Loss: 130.5682 | Task: task080_piqa_answer_generation (other) | Time: 2780s
+  Step 3800/12000 | Loss: 124.8040 | Task: task089_swap_words_verification (other) | Time: 2854s
+  Step 3900/12000 | Loss: 127.1471 | Task: task001_quoref_question_generation (question_answering) | Time: 2929s
+  Step 4000/12000 | Loss: 131.3396 | Task: task067_abductivenli_answer_generation (other) | Time: 3004s
+  Step 4100/12000 | Loss: 124.0559 | Task: task047_miscellaneous_answering_science_questions (other) | Time: 3079s
+  Step 4200/12000 | Loss: 133.5394 | Task: task061_ropes_answer_generation (other) | Time: 3157s
+  Step 4300/12000 | Loss: 129.3650 | Task: task082_babi_t1_single_supporting_fact_question_generation (question_answering) | Time: 3234s
+  Step 4400/12000 | Loss: 124.8772 | Task: task027_drop_answer_type_generation (other) | Time: 3309s
+  Step 4500/12000 | Loss: 129.9809 | Task: task001_quoref_question_generation (question_answering) | Time: 3384s
+  Step 4600/12000 | Loss: 126.6185 | Task: task080_piqa_answer_generation (other) | Time: 3459s
+  Step 4700/12000 | Loss: 126.8576 | Task: task080_piqa_answer_generation (other) | Time: 3532s
+  Step 4800/12000 | Loss: 126.9952 | Task: task103_facts2story_long_text_generation (other) | Time: 3608s
+  Step 4900/12000 | Loss: 127.6901 | Task: task046_miscellaneous_question_typing (other) | Time: 3682s
+  Step 5000/12000 | Loss: 124.1347 | Task: task065_timetravel_consistent_sentence_classification (other) | Time: 3757s
+  Step 5100/12000 | Loss: 127.1055 | Task: task105_story_cloze-rocstories_sentence_generation (other) | Time: 3831s
+  Step 5200/12000 | Loss: 125.5185 | Task: task092_check_prime_classification (other) | Time: 3906s
+  Step 5300/12000 | Loss: 134.3114 | Task: task066_timetravel_binary_consistency_classification (other) | Time: 3982s
+  Step 5400/12000 | Loss: 119.1794 | Task: task111_asset_sentence_simplification (other) | Time: 4057s
+  Step 5500/12000 | Loss: 128.9444 | Task: task110_logic2text_sentence_generation (other) | Time: 4132s
+  Step 5600/12000 | Loss: 123.4575 | Task: task088_identify_typo_verification (other) | Time: 4206s
+  Step 5700/12000 | Loss: 122.5019 | Task: task046_miscellaneous_question_typing (other) | Time: 4280s
+  Step 5800/12000 | Loss: 126.7436 | Task: task067_abductivenli_answer_generation (other) | Time: 4354s
+  Step 5900/12000 | Loss: 120.8491 | Task: task067_abductivenli_answer_generation (other) | Time: 4428s
+  Step 6000/12000 | Loss: 122.0526 | Task: task082_babi_t1_single_supporting_fact_question_generation (question_answering) | Time: 4501s
+  Step 6100/12000 | Loss: 126.8909 | Task: task069_abductivenli_classification (other) | Time: 4576s
+  Step 6200/12000 | Loss: 126.5952 | Task: task070_abductivenli_incorrect_classification (other) | Time: 4650s
+  Step 6300/12000 | Loss: 130.8501 | Task: task073_commonsenseqa_answer_generation (other) | Time: 4725s
+  Step 6400/12000 | Loss: 123.9291 | Task: task088_identify_typo_verification (other) | Time: 4800s
+  Step 6500/12000 | Loss: 130.6780 | Task: task085_unnatural_addsub_arithmetic (other) | Time: 4875s
+  Step 6600/12000 | Loss: 126.2942 | Task: task089_swap_words_verification (other) | Time: 4950s
+  Step 6700/12000 | Loss: 130.0010 | Task: task105_story_cloze-rocstories_sentence_generation (other) | Time: 5025s
+  Step 6800/12000 | Loss: 120.5633 | Task: task026_drop_question_generation (question_answering) | Time: 5100s
+  Step 6900/12000 | Loss: 123.3409 | Task: task061_ropes_answer_generation (other) | Time: 5175s
+  Step 7000/12000 | Loss: 123.8172 | Task: task068_abductivenli_incorrect_answer_generation (other) | Time: 5250s
+  Step 7100/12000 | Loss: 127.4162 | Task: task085_unnatural_addsub_arithmetic (other) | Time: 5326s
+  Step 7200/12000 | Loss: 125.9835 | Task: task043_essential_terms_answering_incomplete_questions (other) | Time: 5401s
+  Step 7300/12000 | Loss: 126.8657 | Task: task089_swap_words_verification (other) | Time: 5477s
+  Step 7400/12000 | Loss: 127.8491 | Task: task109_smsspamcollection_spamsmsdetection (other) | Time: 5552s
+  Step 7500/12000 | Loss: 123.1405 | Task: task002_quoref_answer_generation (other) | Time: 5628s
+  Step 7600/12000 | Loss: 125.6775 | Task: task023_cosmosqa_question_generation (question_answering) | Time: 5702s
+  Step 7700/12000 | Loss: 123.2474 | Task: task082_babi_t1_single_supporting_fact_question_generation (question_answering) | Time: 5777s
+  Step 7800/12000 | Loss: 125.4845 | Task: task069_abductivenli_classification (other) | Time: 5853s
+  Step 7900/12000 | Loss: 125.6936 | Task: task024_cosmosqa_answer_generation (other) | Time: 5928s
+  Step 8000/12000 | Loss: 121.3924 | Task: task025_cosmosqa_incorrect_answer_generation (other) | Time: 6004s
+  Step 8100/12000 | Loss: 122.3363 | Task: task108_contextualabusedetection_classification (other) | Time: 6079s
+  Step 8200/12000 | Loss: 122.9348 | Task: task028_drop_answer_generation (other) | Time: 6154s
+  Step 8300/12000 | Loss: 122.3473 | Task: task105_story_cloze-rocstories_sentence_generation (other) | Time: 6229s
+  Step 8400/12000 | Loss: 121.6271 | Task: task002_quoref_answer_generation (other) | Time: 6304s
+  Step 8500/12000 | Loss: 121.0575 | Task: task068_abductivenli_incorrect_answer_generation (other) | Time: 6378s
+  Step 8600/12000 | Loss: 122.4623 | Task: task025_cosmosqa_incorrect_answer_generation (other) | Time: 6454s
+  Step 8700/12000 | Loss: 118.0737 | Task: task062_bigbench_repeat_copy_logic (other) | Time: 6529s
+  Step 8800/12000 | Loss: 120.5785 | Task: task069_abductivenli_classification (other) | Time: 6605s
+  Step 8900/12000 | Loss: 125.6518 | Task: task061_ropes_answer_generation (other) | Time: 6680s
+  Step 9000/12000 | Loss: 126.6181 | Task: task043_essential_terms_answering_incomplete_questions (other) | Time: 6754s
+  Step 9100/12000 | Loss: 122.8148 | Task: task044_essential_terms_identifying_essential_words (other) | Time: 6828s
+  Step 9200/12000 | Loss: 121.5370 | Task: task060_ropes_question_generation (question_answering) | Time: 6903s
+  Step 9300/12000 | Loss: 122.4489 | Task: task068_abductivenli_incorrect_answer_generation (other) | Time: 6977s
+  Step 9400/12000 | Loss: 120.3303 | Task: task109_smsspamcollection_spamsmsdetection (other) | Time: 7052s
+  Step 9500/12000 | Loss: 121.7042 | Task: task074_squad1.1_question_generation (question_answering) | Time: 7125s
+  Step 9600/12000 | Loss: 121.3648 | Task: task085_unnatural_addsub_arithmetic (other) | Time: 7200s
+  Step 9700/12000 | Loss: 121.6480 | Task: task074_squad1.1_question_generation (question_answering) | Time: 7274s
+  Step 9800/12000 | Loss: 121.7329 | Task: task066_timetravel_binary_consistency_classification (other) | Time: 7350s
+  Step 9900/12000 | Loss: 130.7661 | Task: task001_quoref_question_generation (question_answering) | Time: 7427s
+  Step 10000/12000 | Loss: 122.0655 | Task: task028_drop_answer_generation (other) | Time: 7501s
+  Step 10100/12000 | Loss: 124.1899 | Task: task025_cosmosqa_incorrect_answer_generation (other) | Time: 7576s
+  Step 10200/12000 | Loss: 117.9882 | Task: task073_commonsenseqa_answer_generation (other) | Time: 7650s
+  Step 10300/12000 | Loss: 127.8908 | Task: task045_miscellaneous_sentence_paraphrasing (paraphrase) | Time: 7726s
+  Step 10400/12000 | Loss: 126.7599 | Task: task067_abductivenli_answer_generation (other) | Time: 7802s
+  Step 10500/12000 | Loss: 119.1669 | Task: task063_first_i_elements (other) | Time: 7877s
+  Step 10600/12000 | Loss: 123.7910 | Task: task066_timetravel_binary_consistency_classification (other) | Time: 7952s
+  Step 10700/12000 | Loss: 121.8883 | Task: task067_abductivenli_answer_generation (other) | Time: 8027s
+  Step 10800/12000 | Loss: 123.5755 | Task: task109_smsspamcollection_spamsmsdetection (other) | Time: 8102s
+  Step 10900/12000 | Loss: 121.4201 | Task: task062_bigbench_repeat_copy_logic (other) | Time: 8177s
+  Step 11000/12000 | Loss: 124.4319 | Task: task089_swap_words_verification (other) | Time: 8252s
+  Step 11100/12000 | Loss: 123.3080 | Task: task070_abductivenli_incorrect_classification (other) | Time: 8326s
+  Step 11200/12000 | Loss: 123.1226 | Task: task024_cosmosqa_answer_generation (other) | Time: 8401s
+  Step 11300/12000 | Loss: 125.4804 | Task: task002_quoref_answer_generation (other) | Time: 8476s
+  Step 11400/12000 | Loss: 121.7189 | Task: task105_story_cloze-rocstories_sentence_generation (other) | Time: 8550s
+  Step 11500/12000 | Loss: 120.1488 | Task: task080_piqa_answer_generation (other) | Time: 8625s
+  Step 11600/12000 | Loss: 120.1105 | Task: task088_identify_typo_verification (other) | Time: 8702s
+  Step 11700/12000 | Loss: 120.0230 | Task: task068_abductivenli_incorrect_answer_generation (other) | Time: 8778s
+  Step 11800/12000 | Loss: 124.9188 | Task: task043_essential_terms_answering_incomplete_questions (other) | Time: 8854s
+  Step 11900/12000 | Loss: 119.2107 | Task: task045_miscellaneous_sentence_paraphrasing (paraphrase) | Time: 8928s
+  Step 12000/12000 | Loss: 116.3398 | Task: task068_abductivenli_incorrect_answer_generation (other) | Time: 9003s
+
+Training complete in 9002.8s (12000 steps)
+
+======================================================================
+EVALUATION PHASE
+======================================================================
+
+Loading SNI dataset (41 requested tasks, split=validation)...
+Loading Super-NaturalInstructions dataset (both splits)...
+  train: 3082094 examples
+  test: 484006 examples
+  Combined: 3566100 examples
+  Valid tasks: 41/41
+  task001_quoref_question_generation: 400 examples, metric=rouge_l
+  task002_quoref_answer_generation: 400 examples, metric=accuracy
+  task073_commonsenseqa_answer_generation: 244 examples, metric=accuracy
+  task074_squad1.1_question_generation: 400 examples, metric=rouge_l
+  task075_squad1.1_answer_generation: 400 examples, metric=accuracy
+  task080_piqa_answer_generation: 400 examples, metric=rouge_l
+  task082_babi_t1_single_supporting_fact_question_generation: 400 examples, metric=accuracy
+  task083_babi_t1_single_supporting_fact_answer_generation: 199 examples, metric=accuracy
+  task043_essential_terms_answering_incomplete_questions: 349 examples, metric=accuracy
+  task044_essential_terms_identifying_essential_words: 400 examples, metric=accuracy
+  task047_miscellaneous_answering_science_questions: 51 examples, metric=accuracy
+  task061_ropes_answer_generation: 400 examples, metric=accuracy
+  task022_cosmosqa_passage_inappropriate_binary: 26 examples, metric=accuracy
+  task065_timetravel_consistent_sentence_classification: 400 examples, metric=accuracy
+  task066_timetravel_binary_consistency_classification: 400 examples, metric=accuracy
+  task069_abductivenli_classification: 400 examples, metric=accuracy
+  task070_abductivenli_incorrect_classification: 400 examples, metric=accuracy
+  task092_check_prime_classification: 400 examples, metric=accuracy
+  task108_contextualabusedetection_classification: 400 examples, metric=accuracy
+  task109_smsspamcollection_spamsmsdetection: 213 examples, metric=accuracy
+  task088_identify_typo_verification: 400 examples, metric=accuracy
+  task089_swap_words_verification: 400 examples, metric=accuracy
+  task023_cosmosqa_question_generation: 400 examples, metric=rouge_l
+  task024_cosmosqa_answer_generation: 400 examples, metric=rouge_l
+  task025_cosmosqa_incorrect_answer_generation: 400 examples, metric=rouge_l
+  task026_drop_question_generation: 400 examples, metric=rouge_l
+  task027_drop_answer_type_generation: 400 examples, metric=accuracy
+  task028_drop_answer_generation: 400 examples, metric=accuracy
+  task059_ropes_story_generation: 322 examples, metric=rouge_l
+  task060_ropes_question_generation: 400 examples, metric=rouge_l
+  task067_abductivenli_answer_generation: 400 examples, metric=rouge_l
+  task068_abductivenli_incorrect_answer_generation: 400 examples, metric=rouge_l
+  task103_facts2story_long_text_generation: 400 examples, metric=rouge_l
+  task105_story_cloze-rocstories_sentence_generation: 400 examples, metric=rouge_l
+  task110_logic2text_sentence_generation: 400 examples, metric=rouge_l
+  task045_miscellaneous_sentence_paraphrasing: 348 examples, metric=rouge_l
+  task111_asset_sentence_simplification: 400 examples, metric=rouge_l
+  task062_bigbench_repeat_copy_logic: 6 examples, metric=rouge_l
+  task063_first_i_elements: 400 examples, metric=accuracy
+  task085_unnatural_addsub_arithmetic: 400 examples, metric=accuracy
+  task046_miscellaneous_question_typing: 400 examples, metric=accuracy
+
+Loaded 41 tasks with 14,558 total examples
+
+=== Trained Tasks (validation): 41 tasks ===
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+  task001_quoref_question_generation: 37.91 (rouge_l)
+  task002_quoref_answer_generation: 51.50 (accuracy)
+  task073_commonsenseqa_answer_generation: 93.50 (accuracy)
+  task074_squad1.1_question_generation: 24.70 (rouge_l)
+  task075_squad1.1_answer_generation: 71.50 (accuracy)
+  task080_piqa_answer_generation: 9.38 (rouge_l)
+  task082_babi_t1_single_supporting_fact_question_generation: 34.50 (accuracy)
+  task083_babi_t1_single_supporting_fact_answer_generation: 97.99 (accuracy)
+  task043_essential_terms_answering_incomplete_questions: 77.50 (accuracy)
+  task044_essential_terms_identifying_essential_words: 38.50 (accuracy)
+  task047_miscellaneous_answering_science_questions: 86.27 (accuracy)
+  task061_ropes_answer_generation: 61.50 (accuracy)
+  task022_cosmosqa_passage_inappropriate_binary: 76.92 (accuracy)
+  task065_timetravel_consistent_sentence_classification: 84.50 (accuracy)
+  task066_timetravel_binary_consistency_classification: 96.50 (accuracy)
+  task069_abductivenli_classification: 84.50 (accuracy)
+  task070_abductivenli_incorrect_classification: 89.00 (accuracy)
+  task092_check_prime_classification: 86.50 (accuracy)
+  task108_contextualabusedetection_classification: 76.00 (accuracy)
+  task109_smsspamcollection_spamsmsdetection: 98.50 (accuracy)
+  task088_identify_typo_verification: 99.50 (accuracy)
+  task089_swap_words_verification: 45.50 (accuracy)
+  task023_cosmosqa_question_generation: 15.17 (rouge_l)
+  task024_cosmosqa_answer_generation: 11.57 (rouge_l)
+  task025_cosmosqa_incorrect_answer_generation: 37.12 (rouge_l)
+  task026_drop_question_generation: 29.46 (rouge_l)
+  task027_drop_answer_type_generation: 97.00 (accuracy)
+  task028_drop_answer_generation: 40.50 (accuracy)
+  task059_ropes_story_generation: 11.81 (rouge_l)
+  task060_ropes_question_generation: 38.26 (rouge_l)
+  task067_abductivenli_answer_generation: 18.50 (rouge_l)
+  task068_abductivenli_incorrect_answer_generation: 56.90 (rouge_l)
+  task103_facts2story_long_text_generation: 22.92 (rouge_l)
+  task105_story_cloze-rocstories_sentence_generation: 23.32 (rouge_l)
+  task110_logic2text_sentence_generation: 86.83 (rouge_l)
+  task045_miscellaneous_sentence_paraphrasing: 50.72 (rouge_l)
+  task111_asset_sentence_simplification: 71.42 (rouge_l)
+  task062_bigbench_repeat_copy_logic: 23.47 (rouge_l)
+  task063_first_i_elements: 62.00 (accuracy)
+  task085_unnatural_addsub_arithmetic: 0.50 (accuracy)
+  task046_miscellaneous_question_typing: 44.00 (accuracy)
+
+  Trained Tasks (validation) macro average: 55.21 (over 41 tasks)
+
+Held-out task list: 20 tasks
+
+Loading SNI dataset (20 requested tasks, split=validation)...
+Loading Super-NaturalInstructions dataset (both splits)...
+  train: 3082094 examples
+  test: 484006 examples
+  Combined: 3566100 examples
+  Valid tasks: 20/20
+  task020_mctaco_span_based_question: 77 examples, metric=accuracy
+  task033_winogrande_answer_generation: 400 examples, metric=accuracy
+  task034_winogrande_question_modification_object: 400 examples, metric=rouge_l
+  task036_qasc_topic_word_to_generate_related_fact: 400 examples, metric=accuracy
+  task039_qasc_find_overlapping_words: 400 examples, metric=accuracy
+  task050_multirc_answerability: 400 examples, metric=accuracy
+  task102_commongen_sentence_generation: 400 examples, metric=rouge_l
+  task121_zest_text_modification: 27 examples, metric=rouge_l
+  task133_winowhy_reason_plausibility_detection: 400 examples, metric=accuracy
+  task1152_bard_analogical_reasoning_causation: 41 examples, metric=accuracy
+  task1342_amazon_us_reviews_title: 400 examples, metric=accuracy
+  task1344_glue_entailment_classification: 400 examples, metric=accuracy
+  task1345_glue_qqp_question_paraprashing: 400 examples, metric=rouge_l
+  task1356_xlsum_title_generation: 400 examples, metric=rouge_l
+  task1385_anli_r1_entailment: 198 examples, metric=accuracy
+  task1386_anli_r2_entailment: 199 examples, metric=accuracy
+  task1387_anli_r3_entailment: 239 examples, metric=accuracy
+  task1388_cb_entailment: 61 examples, metric=accuracy
+  task1394_meta_woz_task_classification: 45 examples, metric=accuracy
+  task1409_dart_text_generation: 400 examples, metric=rouge_l
+
+Loaded 20 tasks with 5,687 total examples
+
+Computing cold-start description embeddings for 20 held-out tasks...
+  task020_mctaco_span_based_question: norm=36.017
+  task033_winogrande_answer_generation: norm=35.546
+  task034_winogrande_question_modification_object: norm=36.267
+  task036_qasc_topic_word_to_generate_related_fact: norm=36.552
+  task039_qasc_find_overlapping_words: norm=36.139
+  task050_multirc_answerability: norm=36.285
+  task102_commongen_sentence_generation: norm=37.093
+  task121_zest_text_modification: norm=36.671
+  task133_winowhy_reason_plausibility_detection: norm=35.135
+  task1152_bard_analogical_reasoning_causation: norm=36.523
+  task1342_amazon_us_reviews_title: norm=36.291
+  task1344_glue_entailment_classification: norm=36.219
+  task1345_glue_qqp_question_paraprashing: norm=36.439
+  task1356_xlsum_title_generation: norm=36.236
+  task1385_anli_r1_entailment: norm=35.572
+  task1386_anli_r2_entailment: norm=35.572
+  task1387_anli_r3_entailment: norm=35.572
+  task1388_cb_entailment: norm=35.572
+  task1394_meta_woz_task_classification: norm=36.772
+  task1409_dart_text_generation: norm=36.205
+
+=== Cold-Start (held-out tasks): 20 tasks ===
+  task020_mctaco_span_based_question: 1.30 (accuracy)
+  task033_winogrande_answer_generation: 46.00 (accuracy)
+  task034_winogrande_question_modification_object: 10.48 (rouge_l)
+  task036_qasc_topic_word_to_generate_related_fact: 0.00 (accuracy)
+  task039_qasc_find_overlapping_words: 36.00 (accuracy)
+  task050_multirc_answerability: 0.00 (accuracy)
+  task102_commongen_sentence_generation: 34.88 (rouge_l)
+  task121_zest_text_modification: 43.62 (rouge_l)
+  task133_winowhy_reason_plausibility_detection: 56.00 (accuracy)
+  task1152_bard_analogical_reasoning_causation: 34.15 (accuracy)
+  task1342_amazon_us_reviews_title: 4.00 (accuracy)
+  task1344_glue_entailment_classification: 0.50 (accuracy)
+  task1345_glue_qqp_question_paraprashing: 37.50 (rouge_l)
+  task1356_xlsum_title_generation: 23.12 (rouge_l)
+  task1385_anli_r1_entailment: 23.23 (accuracy)
+  task1386_anli_r2_entailment: 23.62 (accuracy)
+  task1387_anli_r3_entailment: 26.50 (accuracy)
+  task1388_cb_entailment: 0.00 (accuracy)
+  task1394_meta_woz_task_classification: 0.00 (accuracy)
+  task1409_dart_text_generation: 53.59 (rouge_l)
+
+  Cold-Start (held-out tasks) macro average: 22.72 (over 20 tasks)
+
+======================================================================
+RESULTS SUMMARY
+======================================================================
+
+  Trained tasks macro: 55.21
+  Cold-start macro:   22.72
+
+Trained tasks - per family:
+  other               : 59.79 (n=34)
+  paraphrase          : 50.72 (n=1)
+  question_answering  : 30.00 (n=6)
+
+Cold-start tasks - per family:
+  other               : 22.07 (n=18)
+  reasoning           : 34.15 (n=1)
+  summarization       : 23.12 (n=1)
+
+Results written to outputs/hyperlora_sni_s42/results.json
+
+=== RESULTS JSON ===
+{
+  "experiment": "hyperlora_sni",
+  "backbone": "Qwen/Qwen2.5-1.5B",
+  "rank": 8,
+  "trainable_params": 2888192,
+  "num_train_tasks": 41,
+  "num_holdout_tasks": 20,
+  "max_steps": 12000,
+  "seed": 42,
+  "trained_scores": {
+    "task001_quoref_question_generation": {
+      "rouge_l": 37.91023293705457
+    },
+    "task002_quoref_answer_generation": {
+      "accuracy": 51.5
+    },
+    "task073_commonsenseqa_answer_generation": {
+      "accuracy": 93.5
+    },
+    "task074_squad1.1_question_generation": {
+      "rouge_l": 24.703098323882536
+    },
+    "task075_squad1.1_answer_generation": {
+      "accuracy": 71.5
+    },
+    "task080_piqa_answer_generation": {
+      "rouge_l": 9.377615098205684
+    },
+    "task082_babi_t1_single_supporting_fact_question_generation": {
+      "accuracy": 34.5
+    },
+    "task083_babi_t1_single_supporting_fact_answer_generation": {
+      "accuracy": 97.98994974874373
+    },
+    "task043_essential_terms_answering_incomplete_questions": {
+      "accuracy": 77.5
+    },
+    "task044_essential_terms_identifying_essential_words": {
+      "accuracy": 38.5
+    },
+    "task047_miscellaneous_answering_science_questions": {
+      "accuracy": 86.27450980392157
+    },
+    "task061_ropes_answer_generation": {
+      "accuracy": 61.5
+    },
+    "task022_cosmosqa_passage_inappropriate_binary": {
+      "accuracy": 76.92307692307693
+    },
+    "task065_timetravel_consistent_sentence_classification": {
+      "accuracy": 84.5
+    },
+    "task066_timetravel_binary_consistency_classification": {
+      "accuracy": 96.5
+    },
+    "task069_abductivenli_classification": {
+      "accuracy": 84.5
+    },
+    "task070_abductivenli_incorrect_classification": {
+      "accuracy": 89.0
+    },
+    "task092_check_prime_classification": {
+      "accuracy": 86.5
+    },
+    "task108_contextualabusedetection_classification": {
+      "accuracy": 76.0
+    },
+    "task109_smsspamcollection_spamsmsdetection": {
+      "accuracy": 98.5
+    },
+    "task088_identify_typo_verification": {
+      "accuracy": 99.5
+    },
+    "task089_swap_words_verification": {
+      "accuracy": 45.5
+    },
+    "task023_cosmosqa_question_generation": {
+      "rouge_l": 15.170611327916053
+    },
+    "task024_cosmosqa_answer_generation": {
+      "rouge_l": 11.56856272952732
+    },
+    "task025_cosmosqa_incorrect_answer_generation": {
+      "rouge_l": 37.12256012601255
+    },
+    "task026_drop_question_generation": {
+      "rouge_l": 29.464294363161898
+    },
+    "task027_drop_answer_type_generation": {
+      "accuracy": 97.0
+    },
+    "task028_drop_answer_generation": {
+      "accuracy": 40.5
+    },
+    "task059_ropes_story_generation": {
+      "rouge_l": 11.81190931983448
+    },
+    "task060_ropes_question_generation": {
+      "rouge_l": 38.25514728982311
+    },
+    "task067_abductivenli_answer_generation": {
+      "rouge_l": 18.50362373705292
+    },
+    "task068_abductivenli_incorrect_answer_generation": {
+      "rouge_l": 56.899557009224566
+    },
+    "task103_facts2story_long_text_generation": {
+      "rouge_l": 22.92238882978448
+    },
+    "task105_story_cloze-rocstories_sentence_generation": {
+      "rouge_l": 23.32436750985513
+    },
+    "task110_logic2text_sentence_generation": {
+      "rouge_l": 86.82773953756629
+    },
+    "task045_miscellaneous_sentence_paraphrasing": {
+      "rouge_l": 50.72378330193792
+    },
+    "task111_asset_sentence_simplification": {
+      "rouge_l": 71.41992887298328
+    },
+    "task062_bigbench_repeat_copy_logic": {
+      "rouge_l": 23.46757277501829
+    },
+    "task063_first_i_elements": {
+      "accuracy": 62.0
+    },
+    "task085_unnatural_addsub_arithmetic": {
+      "accuracy": 0.5
+    },
+    "task046_miscellaneous_question_typing": {
+      "accuracy": 44.0
+    },
+    "macro_avg": 55.211232428404465
+  },
+  "cold_start_scores": {
+    "task020_mctaco_span_based_question": {
+      "accuracy": 1.2987012987012987
+    },
+    "task033_winogrande_answer_generation": {
+      "accuracy": 46.0
+    },
+    "task034_winogrande_question_modification_object": {
+      "rouge_l": 10.477228328197597
+    },
+    "task036_qasc_topic_word_to_generate_related_fact": {
+      "accuracy": 0.0
+    },
+    "task039_qasc_find_overlapping_words": {
+      "accuracy": 36.0
+    },
+    "task050_multirc_answerability": {
+      "accuracy": 0.0
+    },
+    "task102_commongen_sentence_generation": {
+      "rouge_l": 34.883065457099256
+    },
+    "task121_zest_text_modification": {
+      "rouge_l": 43.61815502695403
+    },
+    "task133_winowhy_reason_plausibility_detection": {
+      "accuracy": 56.00000000000001
+    },
+    "task1152_bard_analogical_reasoning_causation": {
+      "accuracy": 34.146341463414636
+    },
+    "task1342_amazon_us_reviews_title": {
+      "accuracy": 4.0
+    },
+    "task1344_glue_entailment_classification": {
+      "accuracy": 0.5
+    },
+    "task1345_glue_qqp_question_paraprashing": {
+      "rouge_l": 37.50152538334784
+    },
+    "task1356_xlsum_title_generation": {
+      "rouge_l": 23.11866824834224
+    },
+    "task1385_anli_r1_entailment": {
+      "accuracy": 23.232323232323232
+    },
+    "task1386_anli_r2_entailment": {
+      "accuracy": 23.618090452261306
+    },
+    "task1387_anli_r3_entailment": {
+      "accuracy": 26.5
+    },
+    "task1388_cb_entailment": {
+      "accuracy": 0.0
+    },
+    "task1394_meta_woz_task_classification": {
+      "accuracy": 0.0
+    },
+    "task1409_dart_text_generation": {
+      "rouge_l": 53.58549506575402
+    },
+    "macro_avg": 22.72397969781977
+  },
+  "task_ids": [
+    "task001_quoref_question_generation",
+    "task002_quoref_answer_generation",
+    "task073_commonsenseqa_answer_generation",
+    "task074_squad1.1_question_generation",
+    "task075_squad1.1_answer_generation",
+    "task080_piqa_answer_generation",
+    "task082_babi_t1_single_supporting_fact_question_generation",
+    "task083_babi_t1_single_supporting_fact_answer_generation",
+    "task043_essential_terms_answering_incomplete_questions",
+    "task044_essential_terms_identifying_essential_words",
+    "task047_miscellaneous_answering_science_questions",
+    "task061_ropes_answer_generation",
+    "task022_cosmosqa_passage_inappropriate_binary",
+    "task065_timetravel_consistent_sentence_classification",
+    "task066_timetravel_binary_consistency_classification",
+    "task069_abductivenli_classification",
+    "task070_abductivenli_incorrect_classification",
+    "task092_check_prime_classification",
+    "task108_contextualabusedetection_classification",
+    "task109_smsspamcollection_spamsmsdetection",
+    "task088_identify_typo_verification",
+    "task089_swap_words_verification",
+    "task023_cosmosqa_question_generation",
+    "task024_cosmosqa_answer_generation",
+    "task025_cosmosqa_incorrect_answer_generation",
+    "task026_drop_question_generation",
+    "task027_drop_answer_type_generation",
+    "task028_drop_answer_generation",
+    "task059_ropes_story_generation",
+    "task060_ropes_question_generation",
+    "task067_abductivenli_answer_generation",
+    "task068_abductivenli_incorrect_answer_generation",
+    "task103_facts2story_long_text_generation",
+    "task105_story_cloze-rocstories_sentence_generation",
+    "task110_logic2text_sentence_generation",
+    "task045_miscellaneous_sentence_paraphrasing",
+    "task111_asset_sentence_simplification",
+    "task062_bigbench_repeat_copy_logic",
+    "task063_first_i_elements",
+    "task085_unnatural_addsub_arithmetic",
+    "task046_miscellaneous_question_typing"
+  ],
+  "training_time_seconds": 9002.787189722061
+}
+=== END RESULTS ===
+=== DONE ===
+=== Copying results ===
+=== DONE ===

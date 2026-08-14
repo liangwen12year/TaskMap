@@ -1,0 +1,435 @@
+Fri Aug 14 13:04:23 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.126.20             Driver Version: 580.126.20     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+=== Installing dependencies ===
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dfc32b0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /transformers/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dfc35e0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /transformers/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dfc38e0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /transformers/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dfc3a90>: Failed to establish a new connection: [Errno -2] Name or service not known')': /transformers/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dfc3c70>: Failed to establish a new connection: [Errno -2] Name or service not known')': /transformers/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520df07e80>: Failed to establish a new connection: [Errno -2] Name or service not known')': /peft/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dd3c1c0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /peft/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dd3c370>: Failed to establish a new connection: [Errno -2] Name or service not known')': /peft/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dd3c520>: Failed to establish a new connection: [Errno -2] Name or service not known')': /peft/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dd3c6d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /peft/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dda1ed0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /accelerate/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dda21d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /accelerate/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dda2380>: Failed to establish a new connection: [Errno -2] Name or service not known')': /accelerate/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dda2530>: Failed to establish a new connection: [Errno -2] Name or service not known')': /accelerate/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dda26e0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /accelerate/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520de18c40>: Failed to establish a new connection: [Errno -2] Name or service not known')': /datasets/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520de18f40>: Failed to establish a new connection: [Errno -2] Name or service not known')': /datasets/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520de190f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /datasets/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520de192a0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /datasets/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520de19450>: Failed to establish a new connection: [Errno -2] Name or service not known')': /datasets/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dcc39d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /rouge-score/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dcc3e50>: Failed to establish a new connection: [Errno -2] Name or service not known')': /rouge-score/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dcc3ac0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /rouge-score/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dcd3a60>: Failed to establish a new connection: [Errno -2] Name or service not known')': /rouge-score/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520dce9e10>: Failed to establish a new connection: [Errno -2] Name or service not known')': /rouge-score/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520db26b60>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sacrebleu/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520db26e60>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sacrebleu/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520db27010>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sacrebleu/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520db271c0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sacrebleu/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520db27370>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sacrebleu/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520da05450>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sentencepiece/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520da05690>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sentencepiece/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520da05840>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sentencepiece/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520da059f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sentencepiece/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520da05ba0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /sentencepiece/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520db88040>: Failed to establish a new connection: [Errno -2] Name or service not known')': /huggingface-hub/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520db8b3a0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /huggingface-hub/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520db8b550>: Failed to establish a new connection: [Errno -2] Name or service not known')': /huggingface-hub/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520db8b700>: Failed to establish a new connection: [Errno -2] Name or service not known')': /huggingface-hub/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520db8b8b0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /huggingface-hub/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d8f6a10>: Failed to establish a new connection: [Errno -2] Name or service not known')': /tokenizers/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d8f6da0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /tokenizers/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d8f6f80>: Failed to establish a new connection: [Errno -2] Name or service not known')': /tokenizers/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d8f7160>: Failed to establish a new connection: [Errno -2] Name or service not known')': /tokenizers/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d8f7340>: Failed to establish a new connection: [Errno -2] Name or service not known')': /tokenizers/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d75e5f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /safetensors/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d75e8f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /safetensors/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d75eaa0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /safetensors/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d75ec50>: Failed to establish a new connection: [Errno -2] Name or service not known')': /safetensors/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d75ee00>: Failed to establish a new connection: [Errno -2] Name or service not known')': /safetensors/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca28b20>: Failed to establish a new connection: [Errno -2] Name or service not known')': /pyarrow/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca28e20>: Failed to establish a new connection: [Errno -2] Name or service not known')': /pyarrow/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca28fd0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /pyarrow/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca29180>: Failed to establish a new connection: [Errno -2] Name or service not known')': /pyarrow/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca29330>: Failed to establish a new connection: [Errno -2] Name or service not known')': /pyarrow/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca2a7a0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /dill/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca2aaa0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /dill/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca2ac50>: Failed to establish a new connection: [Errno -2] Name or service not known')': /dill/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca2ae00>: Failed to establish a new connection: [Errno -2] Name or service not known')': /dill/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca2afb0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /dill/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca80760>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpx/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca80a60>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpx/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca80c10>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpx/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca80dc0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpx/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520ca80f70>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpx/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d116050>: Failed to establish a new connection: [Errno -2] Name or service not known')': /xxhash/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d1163b0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /xxhash/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d116590>: Failed to establish a new connection: [Errno -2] Name or service not known')': /xxhash/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d116770>: Failed to establish a new connection: [Errno -2] Name or service not known')': /xxhash/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d116950>: Failed to establish a new connection: [Errno -2] Name or service not known')': /xxhash/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d03beb0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /multiprocess/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d478250>: Failed to establish a new connection: [Errno -2] Name or service not known')': /multiprocess/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d478400>: Failed to establish a new connection: [Errno -2] Name or service not known')': /multiprocess/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d4785b0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /multiprocess/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d478760>: Failed to establish a new connection: [Errno -2] Name or service not known')': /multiprocess/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520cfaa020>: Failed to establish a new connection: [Errno -2] Name or service not known')': /nltk/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520cfaa320>: Failed to establish a new connection: [Errno -2] Name or service not known')': /nltk/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520cfaa4d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /nltk/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520cfaa680>: Failed to establish a new connection: [Errno -2] Name or service not known')': /nltk/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520cfaa830>: Failed to establish a new connection: [Errno -2] Name or service not known')': /nltk/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d2fdd20>: Failed to establish a new connection: [Errno -2] Name or service not known')': /portalocker/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d2fe020>: Failed to establish a new connection: [Errno -2] Name or service not known')': /portalocker/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d2fe1d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /portalocker/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d2fe380>: Failed to establish a new connection: [Errno -2] Name or service not known')': /portalocker/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d2fe530>: Failed to establish a new connection: [Errno -2] Name or service not known')': /portalocker/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d356e30>: Failed to establish a new connection: [Errno -2] Name or service not known')': /colorama/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d3572e0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /colorama/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d357490>: Failed to establish a new connection: [Errno -2] Name or service not known')': /colorama/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d357640>: Failed to establish a new connection: [Errno -2] Name or service not known')': /colorama/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520d3577f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /colorama/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520b703ac0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /lxml/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520b703d00>: Failed to establish a new connection: [Errno -2] Name or service not known')': /lxml/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520b703eb0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /lxml/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520b703f70>: Failed to establish a new connection: [Errno -2] Name or service not known')': /lxml/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c724250>: Failed to establish a new connection: [Errno -2] Name or service not known')': /lxml/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c5b9810>: Failed to establish a new connection: [Errno -2] Name or service not known')': /anyio/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c5b9b10>: Failed to establish a new connection: [Errno -2] Name or service not known')': /anyio/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c5b9cc0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /anyio/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c5b9e70>: Failed to establish a new connection: [Errno -2] Name or service not known')': /anyio/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c5ba020>: Failed to establish a new connection: [Errno -2] Name or service not known')': /anyio/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c662d70>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpcore/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c663070>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpcore/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c663220>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpcore/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c6633d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpcore/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c663580>: Failed to establish a new connection: [Errno -2] Name or service not known')': /httpcore/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c4d5390>: Failed to establish a new connection: [Errno -2] Name or service not known')': /h11/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c4d7d00>: Failed to establish a new connection: [Errno -2] Name or service not known')': /h11/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c4e4220>: Failed to establish a new connection: [Errno -2] Name or service not known')': /h11/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c4e43d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /h11/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520c4e4580>: Failed to establish a new connection: [Errno -2] Name or service not known')': /h11/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520bbccfa0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /hf-xet/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520bbcd330>: Failed to establish a new connection: [Errno -2] Name or service not known')': /hf-xet/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520bbcd510>: Failed to establish a new connection: [Errno -2] Name or service not known')': /hf-xet/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520bbcd6f0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /hf-xet/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f520bbcd8d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /hf-xet/
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+cudf 24.4.0 requires pyarrow<15.0.0a0,>=14.0.1, but you have pyarrow 25.0.1 which is incompatible.
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+[notice] A new release of pip is available: 24.1.2 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip
+=== Cloning TaskMap ===
+Cloning into '/workspace/TaskMap'...
+=== Starting contextual desc + residual dropout training ===
+Loading frozen backbone: Qwen/Qwen2.5-1.5B
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+
+Loading training data...
+Downloading sst2 (stanfordnlp/sst2)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'stanfordnlp/sst2' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/67349 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 67349/67349 [00:00<00:00, 2340598.73 examples/s]
+Generating validation split:   0%|          | 0/872 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 872/872 [00:00<00:00, 464790.07 examples/s]
+Generating test split:   0%|          | 0/1821 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1821/1821 [00:00<00:00, 862154.60 examples/s]
+  Splits: ['train', 'validation', 'test']
+Downloading agnews (fancyzhx/ag_news)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'fancyzhx/ag_news' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/120000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 120000/120000 [00:00<00:00, 1567324.49 examples/s]
+Generating test split:   0%|          | 0/7600 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 7600/7600 [00:00<00:00, 1487827.79 examples/s]
+  Splits: ['train', 'test']
+Downloading boolq (google/boolq)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'google/boolq' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/9427 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 9427/9427 [00:00<00:00, 535775.60 examples/s]
+Generating validation split:   0%|          | 0/3270 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3270/3270 [00:00<00:00, 545646.65 examples/s]
+  Splits: ['train', 'validation']
+Downloading squad (rajpurkar/squad)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'rajpurkar/squad' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/87599 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 87599/87599 [00:00<00:00, 1229645.47 examples/s]
+Generating validation split:   0%|          | 0/10570 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 10570/10570 [00:00<00:00, 922064.71 examples/s]
+  Splits: ['train', 'validation']
+Downloading xsum (EdinburghNLP/xsum)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'EdinburghNLP/xsum' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/204045 [00:00<?, ? examples/s]Generating train split:   9%|▉         | 18000/204045 [00:00<00:01, 171751.06 examples/s]Generating train split:  19%|█▉        | 39000/204045 [00:00<00:00, 192066.91 examples/s]Generating train split:  30%|███       | 62000/204045 [00:00<00:00, 207026.08 examples/s]Generating train split:  42%|████▏     | 85000/204045 [00:00<00:00, 213148.76 examples/s]Generating train split:  53%|█████▎    | 108000/204045 [00:00<00:00, 216279.24 examples/s]Generating train split:  64%|██████▍   | 131000/204045 [00:00<00:00, 218703.53 examples/s]Generating train split:  75%|███████▌  | 154000/204045 [00:00<00:00, 220323.62 examples/s]Generating train split:  87%|████████▋ | 177000/204045 [00:00<00:00, 222864.37 examples/s]Generating train split:  98%|█████████▊| 200000/204045 [00:00<00:00, 224038.79 examples/s]Generating train split: 100%|██████████| 204045/204045 [00:00<00:00, 217106.69 examples/s]
+Generating validation split:   0%|          | 0/11332 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 11332/11332 [00:00<00:00, 223879.55 examples/s]
+Generating test split:   0%|          | 0/11334 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 11334/11334 [00:00<00:00, 206017.11 examples/s]
+  Splits: ['train', 'validation', 'test']
+Downloading samsum (Samsung/samsum)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'Samsung/samsum' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  FAILED: Dataset 'Samsung/samsum' doesn't exist on the Hub or cannot be accessed.
+Downloading wmt14_ende (wmt14)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'wmt14' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/4508785 [00:00<?, ? examples/s]Generating train split:   3%|▎         | 124000/4508785 [00:00<00:03, 1227475.62 examples/s]Generating train split:   6%|▌         | 267000/4508785 [00:00<00:03, 1340849.73 examples/s]Generating train split:   9%|▉         | 411000/4508785 [00:00<00:02, 1381804.87 examples/s]Generating train split:  12%|█▏        | 554000/4508785 [00:00<00:02, 1398172.81 examples/s]Generating train split:  16%|█▌        | 710000/4508785 [00:00<00:02, 1417739.96 examples/s]Generating train split:  19%|█▉        | 874000/4508785 [00:00<00:02, 1489687.46 examples/s]Generating train split:  24%|██▍       | 1091000/4508785 [00:00<00:02, 1468662.14 examples/s]Generating train split:  28%|██▊       | 1260000/4508785 [00:00<00:02, 1528728.45 examples/s]Generating train split:  33%|███▎      | 1487000/4508785 [00:01<00:01, 1518074.25 examples/s]Generating train split:  38%|███▊      | 1697929/4508785 [00:01<00:01, 1474903.86 examples/s]Generating train split:  41%|████▏     | 1862929/4508785 [00:01<00:01, 1496775.54 examples/s]Generating train split:  45%|████▌     | 2037929/4508785 [00:01<00:01, 1561016.21 examples/s]Generating train split:  49%|████▉     | 2200929/4508785 [00:01<00:01, 1578280.26 examples/s]Generating train split:  54%|█████▍    | 2448929/4508785 [00:01<00:01, 1603348.73 examples/s]Generating train split:  59%|█████▉    | 2673929/4508785 [00:01<00:01, 1564720.17 examples/s]Generating train split:  63%|██████▎   | 2845929/4508785 [00:01<00:01, 1599624.39 examples/s]Generating train split:  69%|██████▊   | 3088857/4508785 [00:02<00:00, 1580874.95 examples/s]Generating train split:  74%|███████▍  | 3332857/4508785 [00:02<00:00, 1590983.24 examples/s]Generating train split:  78%|███████▊  | 3495857/4508785 [00:02<00:00, 1597614.99 examples/s]Generating train split:  83%|████████▎ | 3742857/4508785 [00:02<00:00, 1611590.34 examples/s]Generating train split:  88%|████████▊ | 3967857/4508785 [00:02<00:00, 1573439.10 examples/s]Generating train split:  92%|█████████▏| 4129857/4508785 [00:02<00:00, 1566206.76 examples/s]Generating train split:  95%|█████████▌| 4303857/4508785 [00:02<00:00, 1605917.63 examples/s]Generating train split: 100%|██████████| 4508785/4508785 [00:02<00:00, 1553680.55 examples/s]Generating train split: 100%|██████████| 4508785/4508785 [00:02<00:00, 1538103.76 examples/s]
+Generating validation split:   0%|          | 0/3000 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3000/3000 [00:00<00:00, 814164.48 examples/s]
+Generating test split:   0%|          | 0/3003 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 3003/3003 [00:00<00:00, 988424.62 examples/s]
+  Splits: ['train', 'validation', 'test']
+Downloading wmt16_enro (wmt16)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'wmt16' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/610320 [00:00<?, ? examples/s]Generating train split:  24%|██▍       | 147000/610320 [00:00<00:00, 1459703.47 examples/s]Generating train split:  50%|█████     | 307000/610320 [00:00<00:00, 1538726.33 examples/s]Generating train split:  76%|███████▋  | 466000/610320 [00:00<00:00, 1557849.08 examples/s]Generating train split: 100%|██████████| 610320/610320 [00:00<00:00, 1586275.29 examples/s]
+Generating validation split:   0%|          | 0/1999 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 1999/1999 [00:00<00:00, 691326.99 examples/s]
+Generating test split:   0%|          | 0/1999 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1999/1999 [00:00<00:00, 828335.67 examples/s]
+  Splits: ['train', 'validation', 'test']
+Downloading gsm8k (openai/gsm8k)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'openai/gsm8k' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/7473 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 7473/7473 [00:00<00:00, 824821.29 examples/s]
+Generating test split:   0%|          | 0/1319 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1319/1319 [00:00<00:00, 511254.69 examples/s]
+  Splits: ['train', 'test']
+Downloading svamp (ChilleD/SVAMP)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'ChilleD/SVAMP' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/700 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 700/700 [00:00<00:00, 291705.20 examples/s]
+Generating test split:   0%|          | 0/300 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 300/300 [00:00<00:00, 194060.95 examples/s]
+  Splits: ['train', 'test']
+Downloading imdb (stanfordnlp/imdb)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'stanfordnlp/imdb' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/25000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 25000/25000 [00:00<00:00, 323069.20 examples/s]
+Generating test split:   0%|          | 0/25000 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 25000/25000 [00:00<00:00, 362380.17 examples/s]
+Generating unsupervised split:   0%|          | 0/50000 [00:00<?, ? examples/s]Generating unsupervised split:  74%|███████▍  | 37000/50000 [00:00<00:00, 362273.44 examples/s]Generating unsupervised split: 100%|██████████| 50000/50000 [00:00<00:00, 372451.59 examples/s]
+  Splits: ['train', 'test', 'unsupervised']
+Downloading emotion (dair-ai/emotion)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'dair-ai/emotion' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Generating train split:   0%|          | 0/16000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 16000/16000 [00:00<00:00, 1526554.54 examples/s]
+Generating validation split:   0%|          | 0/2000 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 2000/2000 [00:00<00:00, 1047397.68 examples/s]
+Generating test split:   0%|          | 0/2000 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 2000/2000 [00:00<00:00, 1133289.38 examples/s]
+  Splits: ['train', 'validation', 'test']
+Downloading newsgroups (SetFit/20_newsgroups)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'SetFit/20_newsgroups' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Repo card metadata block was not found. Setting CardData to empty.
+Generating train split:   0%|          | 0/11314 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 11314/11314 [00:00<00:00, 237997.67 examples/s]
+Generating test split:   0%|          | 0/7532 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 7532/7532 [00:00<00:00, 340770.80 examples/s]
+  Splits: ['train', 'test']
+Downloading apps_intro (codeparrot/apps)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'codeparrot/apps' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  FAILED: Dataset scripts are no longer supported, but found apps.py
+  sst2/train: 40000 examples (deduped)
+  agnews/train: 40000 examples (deduped)
+  boolq/train: 9427 examples (deduped)
+  squad/train: 40000 examples (deduped)
+  xsum/train: 40000 examples (deduped)
+  wmt14_ende/train: 40000 examples (deduped)
+  wmt16_enro/train: 40000 examples (deduped)
+  gsm8k/train: 7473 examples (deduped)
+  svamp/train: 700 examples (deduped)
+  imdb/train: 24901 examples (deduped)
+  emotion/train: 15999 examples (deduped)
+  newsgroups/train: 11033 examples (deduped)
+Tasks loaded: ['sst2', 'agnews', 'boolq', 'squad', 'xsum', 'wmt14_ende', 'wmt16_enro', 'gsm8k', 'svamp', 'imdb', 'emotion', 'newsgroups']
+Total training examples: 309,533
+  Mapper: TRAINABLE
+Computing description embeddings (contextual (hidden-state))...
+  sst2: 'Classify the text into the requested category....' -> embed norm=39.192
+  agnews: 'Classify the text into the requested category....' -> embed norm=39.192
+  boolq: 'Answer a question using the provided information....' -> embed norm=39.192
+  squad: 'Answer a question using the provided information....' -> embed norm=39.192
+  xsum: 'Write a faithful, concise summary of the source....' -> embed norm=39.192
+  wmt14_ende: 'Translate the source sentence into the target lang...' -> embed norm=39.192
+  wmt16_enro: 'Translate the source sentence into the target lang...' -> embed norm=39.192
+  gsm8k: 'Solve the mathematical word problem and give the f...' -> embed norm=39.192
+  svamp: 'Solve the mathematical word problem and give the f...' -> embed norm=39.192
+  imdb: 'Classify the movie review sentiment as positive or...' -> embed norm=39.192
+  emotion: 'Classify the emotion expressed in the text....' -> embed norm=39.192
+  newsgroups: 'Classify the newsgroup post into its topic categor...' -> embed norm=39.192
+Installed TaskMap hooks on 28 MLP layers
+
+TaskMap parameter summary: {'trainable (codes + projectors)': 35756392, 'frozen mapper': 34369384, 'frozen bases (bytes)': 313098240, 'frozen bases (MB)': 313.09824}
+  Mapper params in optimizer: 34,369,384
+
+Starting TaskMap training for 6000 steps...
+  Warmup: 180 steps (dense), then Gumbel anneal
+  Active fraction: 0.75 (52/70 blocks)
+  Residual dropout: 0.50
+  Step 1/6000 | Total: 3.0742 | task=2.5830 | budget=0.0625 | stability=0.0702 | alignment=1.0141 | Task: wmt16_enro | Phase: warmup | Time: 6s
+  Step 100/6000 | Total: 238.5550 | task=1.4445 | budget=0.0625 | stability=0.3418 | alignment=1.1214 | Task: wmt16_enro | Phase: warmup | Time: 556s
+  Step 200/6000 | Total: 187.1493 | task=0.2707 | topology=0.0686 | balance=0.0075 | stability=0.2685 | alignment=0.8130 | Task: sst2 | Phase: temp=1.000 | Time: 1116s
+  Step 300/6000 | Total: 185.8878 | task=0.3085 | topology=0.0685 | balance=0.0067 | stability=1.0653 | alignment=1.1106 | Task: gsm8k | Phase: temp=0.999 | Time: 1646s
+  Step 400/6000 | Total: 179.0686 | task=1.9604 | topology=0.0689 | balance=0.0067 | stability=1.6559 | alignment=0.9407 | Task: agnews | Phase: temp=0.997 | Time: 2176s
+  Step 500/6000 | Total: 183.8380 | task=2.3198 | topology=0.0688 | balance=0.0064 | stability=0.4774 | alignment=0.8960 | Task: imdb | Phase: temp=0.993 | Time: 2703s
+  Step 600/6000 | Total: 180.3881 | task=1.6480 | topology=0.0696 | balance=0.0065 | stability=0.2999 | alignment=0.8668 | Task: wmt14_ende | Phase: temp=0.988 | Time: 3223s
+  Step 700/6000 | Total: 180.9534 | task=1.6528 | topology=0.0690 | balance=0.0062 | stability=0.2569 | alignment=1.0371 | Task: wmt16_enro | Phase: temp=0.982 | Time: 3742s
+  Step 800/6000 | Total: 175.4908 | task=1.8114 | topology=0.0689 | balance=0.0067 | stability=1.0064 | alignment=0.7125 | Task: boolq | Phase: temp=0.975 | Time: 4265s
+  Step 900/6000 | Total: 180.0830 | task=2.2265 | topology=0.0692 | balance=0.0061 | stability=0.9256 | alignment=1.0924 | Task: xsum | Phase: temp=0.966 | Time: 4793s
+  Step 1000/6000 | Total: 177.4825 | task=1.0851 | topology=0.0694 | balance=0.0061 | stability=0.2072 | alignment=0.8889 | Task: sst2 | Phase: temp=0.957 | Time: 5321s
+  Step 1100/6000 | Total: 175.4742 | task=1.5895 | topology=0.0694 | balance=0.0062 | stability=0.6116 | alignment=1.0045 | Task: wmt16_enro | Phase: temp=0.946 | Time: 5842s
+  Step 1200/6000 | Total: 174.4099 | task=1.6252 | topology=0.0691 | balance=0.0062 | stability=0.9552 | alignment=0.8348 | Task: wmt16_enro | Phase: temp=0.933 | Time: 6361s
+  Step 1300/6000 | Total: 177.4476 | task=1.4831 | topology=0.0698 | balance=0.0064 | stability=0.9382 | alignment=0.7567 | Task: wmt16_enro | Phase: temp=0.920 | Time: 6885s
+  Step 1400/6000 | Total: 177.6902 | task=2.3154 | topology=0.0695 | balance=0.0063 | stability=0.2330 | alignment=0.9612 | Task: xsum | Phase: temp=0.906 | Time: 7404s
+  Step 1500/6000 | Total: 177.3734 | task=1.7549 | topology=0.0699 | balance=0.0067 | stability=0.4989 | alignment=0.9696 | Task: squad | Phase: temp=0.891 | Time: 7923s
+  Step 1600/6000 | Total: 181.4197 | task=2.1977 | topology=0.0697 | balance=0.0069 | stability=0.4643 | alignment=1.0341 | Task: newsgroups | Phase: temp=0.874 | Time: 8446s
+  Step 1700/6000 | Total: 175.3294 | task=2.5100 | topology=0.0705 | balance=0.0068 | stability=2.0646 | alignment=1.2272 | Task: agnews | Phase: temp=0.857 | Time: 8972s
+  Step 1800/6000 | Total: 175.1053 | task=1.7480 | topology=0.0693 | balance=0.0071 | stability=1.0671 | alignment=1.2125 | Task: squad | Phase: temp=0.839 | Time: 9496s
+  Step 1900/6000 | Total: 174.6302 | task=2.9828 | topology=0.0703 | balance=0.0077 | stability=0.4974 | alignment=0.8956 | Task: imdb | Phase: temp=0.820 | Time: 10021s
+  Step 2000/6000 | Total: 177.5088 | task=1.4139 | topology=0.0702 | balance=0.0080 | stability=0.5292 | alignment=0.9000 | Task: emotion | Phase: temp=0.800 | Time: 10543s
+  Saved checkpoint to outputs/taskmap_no_topology/checkpoint-2000
+  Step 2100/6000 | Total: 176.5956 | task=1.2922 | topology=0.0718 | balance=0.0072 | stability=0.6892 | alignment=1.0186 | Task: wmt14_ende | Phase: temp=0.779 | Time: 11069s
+  Step 2200/6000 | Total: 174.9769 | task=1.5358 | topology=0.0711 | balance=0.0076 | stability=0.2003 | alignment=1.1158 | Task: boolq | Phase: temp=0.758 | Time: 11592s
+  Step 2300/6000 | Total: 176.1363 | task=2.9079 | topology=0.0720 | balance=0.0080 | stability=0.4712 | alignment=1.1191 | Task: imdb | Phase: temp=0.736 | Time: 12113s
+  Step 2400/6000 | Total: 175.4693 | task=2.2735 | topology=0.0719 | balance=0.0083 | stability=0.8773 | alignment=0.7711 | Task: agnews | Phase: temp=0.714 | Time: 12634s
+  Step 2500/6000 | Total: 174.6812 | task=1.9282 | topology=0.0729 | balance=0.0077 | stability=1.8605 | alignment=0.9607 | Task: emotion | Phase: temp=0.691 | Time: 13153s
+  Step 2600/6000 | Total: 173.4505 | task=1.4395 | topology=0.0725 | balance=0.0087 | stability=0.6606 | alignment=0.9898 | Task: sst2 | Phase: temp=0.668 | Time: 13675s
+  Step 2700/6000 | Total: 177.0311 | task=1.5963 | topology=0.0730 | balance=0.0090 | stability=1.2053 | alignment=1.0636 | Task: squad | Phase: temp=0.644 | Time: 14200s
+  Step 2800/6000 | Total: 172.2087 | task=2.3611 | topology=0.0732 | balance=0.0094 | stability=1.1660 | alignment=1.1476 | Task: xsum | Phase: temp=0.620 | Time: 14717s
+  Step 2900/6000 | Total: 176.9542 | task=2.7338 | topology=0.0739 | balance=0.0093 | stability=2.6139 | alignment=1.0655 | Task: newsgroups | Phase: temp=0.596 | Time: 15240s
+  Step 3000/6000 | Total: 173.9361 | task=1.5158 | topology=0.0746 | balance=0.0102 | stability=0.4811 | alignment=0.6369 | Task: sst2 | Phase: temp=0.572 | Time: 15754s
+  Step 3100/6000 | Total: 177.6608 | task=1.6898 | topology=0.0751 | balance=0.0105 | stability=1.2306 | alignment=0.7432 | Task: wmt16_enro | Phase: temp=0.548 | Time: 16258s
+  Step 3200/6000 | Total: 179.1558 | task=2.1792 | topology=0.0756 | balance=0.0103 | stability=1.2878 | alignment=0.8680 | Task: emotion | Phase: temp=0.523 | Time: 16763s
+  Step 3300/6000 | Total: 178.9307 | task=2.2210 | topology=0.0756 | balance=0.0111 | stability=0.4459 | alignment=0.6823 | Task: xsum | Phase: temp=0.499 | Time: 17270s
+  Step 3400/6000 | Total: 174.5578 | task=1.4618 | topology=0.0757 | balance=0.0115 | stability=0.3318 | alignment=1.0236 | Task: boolq | Phase: temp=0.475 | Time: 17772s
+  Step 3500/6000 | Total: 177.5805 | task=2.3235 | topology=0.0755 | balance=0.0122 | stability=1.2075 | alignment=0.8379 | Task: xsum | Phase: temp=0.451 | Time: 18277s
+  Step 3600/6000 | Total: 174.0307 | task=0.4794 | topology=0.0748 | balance=0.0118 | stability=0.9150 | alignment=0.9321 | Task: svamp | Phase: temp=0.428 | Time: 18782s
+  Step 3700/6000 | Total: 173.2680 | task=2.5787 | topology=0.0775 | balance=0.0128 | stability=0.7207 | alignment=1.1208 | Task: newsgroups | Phase: temp=0.404 | Time: 19284s
+  Step 3800/6000 | Total: 176.0530 | task=2.0696 | topology=0.0785 | balance=0.0137 | stability=0.6789 | alignment=0.7863 | Task: squad | Phase: temp=0.382 | Time: 19789s
+  Step 3900/6000 | Total: 174.8384 | task=1.6323 | topology=0.0778 | balance=0.0136 | stability=0.9630 | alignment=1.0108 | Task: wmt14_ende | Phase: temp=0.359 | Time: 20294s
+  Step 4000/6000 | Total: 176.8109 | task=1.9430 | topology=0.0772 | balance=0.0138 | stability=1.6887 | alignment=1.1221 | Task: xsum | Phase: temp=0.338 | Time: 20801s
+  Saved checkpoint to outputs/taskmap_no_topology/checkpoint-4000
+  Step 4100/6000 | Total: 176.5748 | task=1.6592 | topology=0.0778 | balance=0.0146 | stability=0.4914 | alignment=0.9763 | Task: wmt14_ende | Phase: temp=0.317 | Time: 21303s
+  Step 4200/6000 | Total: 177.4680 | task=2.1727 | topology=0.0779 | balance=0.0155 | stability=0.2856 | alignment=0.5016 | Task: xsum | Phase: temp=0.296 | Time: 21809s
+  Step 4300/6000 | Total: 174.8935 | task=1.2379 | topology=0.0786 | balance=0.0164 | stability=0.8684 | alignment=1.0179 | Task: boolq | Phase: temp=0.277 | Time: 22312s
+  Step 4400/6000 | Total: 171.4407 | task=1.7013 | topology=0.0783 | balance=0.0173 | stability=0.4469 | alignment=1.0643 | Task: squad | Phase: temp=0.258 | Time: 22816s
+  Step 4500/6000 | Total: 174.9947 | task=2.6690 | topology=0.0771 | balance=0.0185 | stability=0.9305 | alignment=0.5797 | Task: sst2 | Phase: temp=0.240 | Time: 23318s
+  Step 4600/6000 | Total: 170.6008 | task=1.6765 | topology=0.0796 | balance=0.0174 | stability=2.8372 | alignment=0.9107 | Task: sst2 | Phase: temp=0.222 | Time: 23820s
+  Step 4700/6000 | Total: 174.1720 | task=2.1475 | topology=0.0806 | balance=0.0180 | stability=0.2277 | alignment=1.2128 | Task: xsum | Phase: temp=0.206 | Time: 24321s
+  Step 4800/6000 | Total: 170.9018 | task=2.1754 | topology=0.0798 | balance=0.0183 | stability=0.4829 | alignment=1.2784 | Task: sst2 | Phase: temp=0.191 | Time: 24825s
+  Step 4900/6000 | Total: 172.4720 | task=2.2385 | topology=0.0780 | balance=0.0206 | stability=0.4168 | alignment=1.1446 | Task: imdb | Phase: temp=0.177 | Time: 25328s
+  Step 5000/6000 | Total: 174.8797 | task=2.1899 | topology=0.0787 | balance=0.0197 | stability=1.3972 | alignment=1.0276 | Task: xsum | Phase: temp=0.164 | Time: 25830s
+  Step 5100/6000 | Total: 176.2762 | task=1.5338 | topology=0.0802 | balance=0.0216 | stability=0.7710 | alignment=1.0901 | Task: sst2 | Phase: temp=0.152 | Time: 26333s
+  Step 5200/6000 | Total: 179.1017 | task=2.4978 | topology=0.0818 | balance=0.0209 | stability=3.2888 | alignment=0.9709 | Task: newsgroups | Phase: temp=0.141 | Time: 26833s
+  Step 5300/6000 | Total: 172.1077 | task=2.4309 | topology=0.0799 | balance=0.0205 | stability=0.7076 | alignment=0.8426 | Task: xsum | Phase: temp=0.132 | Time: 27333s
+  Step 5400/6000 | Total: 172.6672 | task=1.7260 | topology=0.0780 | balance=0.0215 | stability=0.3194 | alignment=0.9707 | Task: wmt14_ende | Phase: temp=0.123 | Time: 27835s
+  Step 5500/6000 | Total: 177.9613 | task=1.3755 | topology=0.0787 | balance=0.0222 | stability=1.3114 | alignment=0.7677 | Task: wmt16_enro | Phase: temp=0.116 | Time: 28336s
+  Step 5600/6000 | Total: 181.2748 | task=1.8584 | topology=0.0812 | balance=0.0214 | stability=0.6502 | alignment=0.6753 | Task: squad | Phase: temp=0.110 | Time: 28836s
+  Step 5700/6000 | Total: 175.9691 | task=1.2065 | topology=0.1370 | balance=0.0438 | stability=1.2519 | alignment=0.9692 | Task: wmt16_enro | Phase: temp=0.106 | Time: 29341s
+  Step 5800/6000 | Total: 175.4642 | task=0.2369 | topology=0.1347 | balance=0.0420 | stability=1.1218 | alignment=0.7930 | Task: gsm8k | Phase: temp=0.103 | Time: 29844s
+  Step 5900/6000 | Total: 175.2924 | task=2.0325 | topology=0.1359 | balance=0.0433 | stability=1.4546 | alignment=0.7785 | Task: xsum | Phase: temp=0.101 | Time: 30347s
+  Step 6000/6000 | Total: 174.8482 | task=1.2964 | topology=0.1355 | balance=0.0382 | stability=0.7945 | alignment=0.6887 | Task: wmt14_ende | Phase: temp=0.100 | Time: 30850s
+  Saved checkpoint to outputs/taskmap_no_topology/checkpoint-6000
+
+Training complete in 30849.9s (6000 steps)
+Saved final model to outputs/taskmap_no_topology/final
+
+=== Starting TaskMap Evaluation ===
+Downloading sst2 (stanfordnlp/sst2)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'stanfordnlp/sst2' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation', 'test']
+Downloading agnews (fancyzhx/ag_news)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'fancyzhx/ag_news' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'test']
+Downloading boolq (google/boolq)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'google/boolq' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation']
+Downloading squad (rajpurkar/squad)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'rajpurkar/squad' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation']
+Downloading xsum (EdinburghNLP/xsum)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'EdinburghNLP/xsum' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation', 'test']
+Downloading samsum (Samsung/samsum)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'Samsung/samsum' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  FAILED: Dataset 'Samsung/samsum' doesn't exist on the Hub or cannot be accessed.
+Downloading wmt14_ende (wmt14)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'wmt14' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation', 'test']
+Downloading wmt16_enro (wmt16)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'wmt16' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation', 'test']
+Downloading gsm8k (openai/gsm8k)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'openai/gsm8k' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'test']
+Downloading svamp (ChilleD/SVAMP)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'ChilleD/SVAMP' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'test']
+Downloading imdb (stanfordnlp/imdb)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'stanfordnlp/imdb' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'test', 'unsupervised']
+Downloading emotion (dair-ai/emotion)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'dair-ai/emotion' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: ['train', 'validation', 'test']
+Downloading newsgroups (SetFit/20_newsgroups)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'SetFit/20_newsgroups' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Repo card metadata block was not found. Setting CardData to empty.
+  Splits: ['train', 'test']
+Downloading apps_intro (codeparrot/apps)...
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'codeparrot/apps' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  FAILED: Dataset scripts are no longer supported, but found apps.py
+  sst2/validation: 872 examples (deduped)
+  agnews/validation: 7600 examples (deduped)
+  boolq/validation: 3270 examples (deduped)
+  squad/validation: 10552 examples (deduped)
+  xsum/validation: 11327 examples (deduped)
+  wmt14_ende/validation: 2996 examples (deduped)
+  wmt16_enro/validation: 1999 examples (deduped)
+  gsm8k/validation: 1319 examples (deduped)
+  svamp/validation: 300 examples (deduped)
+  imdb/validation: 24797 examples (deduped)
+  emotion/validation: 2000 examples (deduped)
+  newsgroups/validation: 7334 examples (deduped)
+  Evaluating sst2 (500 examples, metric=accuracy)...
+    sst2: {'accuracy': 54.6}
+  Evaluating agnews (500 examples, metric=accuracy)...
+    agnews: {'accuracy': 88.6}
+  Evaluating boolq (500 examples, metric=accuracy)...
+    boolq: {'accuracy': 70.8}
+  Evaluating squad (500 examples, metric=f1_em)...
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+    squad: {'f1': 69.13945002839921, 'em': 53.4}
+  Evaluating xsum (500 examples, metric=rouge_l)...
