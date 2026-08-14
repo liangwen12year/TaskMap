@@ -88,6 +88,24 @@ class TaskCodeModule(nn.Module):
         self.description_cache[task_id] = embedding.detach()
 
     @torch.no_grad()
+    def compute_contextual_embedding(self, backbone_model, tokenizer,
+                                      description: str, device: str = "cpu"):
+        """
+        Compute e_t using frozen LLM hidden states instead of raw input
+        embeddings.  Mean-pools the last hidden layer over the sequence and
+        applies LayerNorm.  Requires a full forward pass through the backbone.
+        """
+        tokens = tokenizer(description, return_tensors="pt", truncation=True,
+                           max_length=128).to(device)
+        outputs = backbone_model(**tokens, output_hidden_states=True)
+        # Use last hidden state, mean-pooled over sequence
+        hidden = outputs.hidden_states[-1]  # (1, seq_len, d)
+        mask = tokens["attention_mask"].unsqueeze(-1).float()
+        mean_hidden = (hidden * mask).sum(dim=1) / mask.sum(dim=1)  # (1, d)
+        e_t = F.layer_norm(mean_hidden.squeeze(0), [mean_hidden.size(-1)])
+        return e_t
+
+    @torch.no_grad()
     def compute_description_embedding(self, backbone_model, tokenizer,
                                        description: str, device: str = "cpu"):
         """

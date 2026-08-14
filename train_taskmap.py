@@ -16,6 +16,7 @@ Usage:
 import os
 import sys
 import time
+import random
 import argparse
 import yaml
 import torch
@@ -82,6 +83,10 @@ def parse_args():
                         help="Evaluate with all 3 description paraphrases after training")
     parser.add_argument("--save_checkpoint", action="store_true",
                         help="Save final checkpoint with coefficients for analysis")
+    parser.add_argument("--contextual_desc", action="store_true",
+                        help="Use contextual (hidden-state) embeddings instead of input embeddings")
+    parser.add_argument("--residual_dropout", type=float, default=0.0,
+                        help="Probability of zeroing out residual codes r_{t,l} during training")
     parser.add_argument("--dry_run", action="store_true")
     return parser.parse_args()
 
@@ -111,7 +116,8 @@ def load_config(args):
 
 def setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device,
                   unfreeze_mapper: bool = False,
-                  shared_projector: bool = False, global_code: bool = False):
+                  shared_projector: bool = False, global_code: bool = False,
+                  contextual_desc: bool = False):
     """Initialize TaskMap components."""
     tm_config = TaskMapConfig.from_backbone(
         cfg["backbone"],
@@ -137,14 +143,20 @@ def setup_taskmap(cfg, backbone_model, tokenizer, task_ids, device,
     taskmap.register_tasks(task_ids)
 
     # Compute and cache description embeddings for all tasks
-    print("Computing description embeddings...")
+    embed_mode = "contextual (hidden-state)" if contextual_desc else "input embeddings"
+    print(f"Computing description embeddings ({embed_mode})...")
     all_embeds = {}
     for tid in task_ids:
         meta = KNOWN_TASKS[tid]
         description = meta["descriptions"][0]
-        embed = taskmap.task_code.compute_description_embedding(
-            backbone_model, tokenizer, description, device
-        )
+        if contextual_desc:
+            embed = taskmap.task_code.compute_contextual_embedding(
+                backbone_model, tokenizer, description, device
+            )
+        else:
+            embed = taskmap.task_code.compute_description_embedding(
+                backbone_model, tokenizer, description, device
+            )
         all_embeds[tid] = embed
         print(f"  {tid}: '{description[:50]}...' -> embed norm={embed.norm():.3f}")
 
@@ -218,10 +230,12 @@ def train_taskmap(args):
     unfreeze_mapper = args.unfreeze_mapper if hasattr(args, 'unfreeze_mapper') else False
     shared_proj = args.shared_projector if hasattr(args, 'shared_projector') else False
     global_code_flag = args.global_code if hasattr(args, 'global_code') else False
+    contextual_flag = getattr(args, 'contextual_desc', False)
     taskmap, tm_config, hook_manager = setup_taskmap(
         cfg, backbone_model, tokenizer, task_ids, device,
         unfreeze_mapper=unfreeze_mapper,
         shared_projector=shared_proj, global_code=global_code_flag,
+        contextual_desc=contextual_flag,
     )
     summary = taskmap.parameter_summary()
     print(f"\nTaskMap parameter summary: {summary}")
@@ -297,9 +311,13 @@ def train_taskmap(args):
     max_seq = cfg.get("max_seq_length", 2048)
     microbatch_size = cfg.get("microbatch_size", 4)
 
+    residual_dropout = getattr(args, 'residual_dropout', 0.0)
+
     print(f"\nStarting TaskMap training for {max_steps} steps...")
     print(f"  Warmup: {warmup_steps} steps (dense), then Gumbel anneal")
     print(f"  Active fraction: {tm_config.active_fraction} ({taskmap.router.k}/{tm_config.num_blocks} blocks)")
+    if residual_dropout > 0:
+        print(f"  Residual dropout: {residual_dropout:.2f}")
 
     global_step = 0
     accum_loss = 0.0
@@ -310,6 +328,15 @@ def train_taskmap(args):
                                   max_steps * grad_accum, args.seed)
 
     for step_idx, (task_id, examples) in enumerate(dataloader):
+        # ── Residual dropout: temporarily zero out r_{t,l} ──
+        saved_residuals = {}
+        if residual_dropout > 0 and random.random() < residual_dropout:
+            safe_tid = taskmap.task_code._sanitize_key(task_id)
+            for name, param in taskmap.task_code.residuals.items():
+                if name.startswith(safe_tid + "_"):
+                    saved_residuals[name] = param.data.clone()
+                    param.data.zero_()
+
         # ── Compute route fresh each microbatch (no caching) ──
         # Must recompute to get fresh graph nodes for backward
         taskmap.clear_route_cache()
@@ -334,6 +361,11 @@ def train_taskmap(args):
         scaled_loss = total_loss / grad_accum
         scaled_loss.backward()
         accum_loss += scaled_loss.item()
+
+        # ── Restore residuals after backward if they were dropped ──
+        if saved_residuals:
+            for name, saved_data in saved_residuals.items():
+                taskmap.task_code.residuals[name].data.copy_(saved_data)
 
         if (step_idx + 1) % grad_accum == 0:
             torch.nn.utils.clip_grad_norm_(
@@ -536,9 +568,14 @@ def train_taskmap(args):
                 if desc_idx >= len(meta["descriptions"]):
                     continue
                 desc = meta["descriptions"][desc_idx]
-                embed = taskmap.task_code.compute_description_embedding(
-                    backbone_model, tokenizer, desc, device
-                )
+                if contextual_flag:
+                    embed = taskmap.task_code.compute_contextual_embedding(
+                        backbone_model, tokenizer, desc, device
+                    )
+                else:
+                    embed = taskmap.task_code.compute_description_embedding(
+                        backbone_model, tokenizer, desc, device
+                    )
                 taskmap.cache_description(tid, embed)
 
             p_scores = {}
