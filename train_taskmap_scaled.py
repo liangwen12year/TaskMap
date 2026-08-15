@@ -50,6 +50,8 @@ from losses import TaskMapLossComputer
 from train import tokenize_batch, set_seed
 from eval import METRIC_FNS, generate_predictions, accuracy, rouge_l
 
+_USE_CONTEXTUAL = False
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -181,6 +183,10 @@ def parse_args():
     parser.add_argument("--save_every", type=int, default=3000)
 
     # Debug
+    parser.add_argument("--contextual_desc", action="store_true",
+                        help="Use contextual (hidden-state) embeddings instead of input embeddings")
+    parser.add_argument("--residual_dropout", type=float, default=0.0,
+                        help="Probability of zeroing out residual codes during training")
     parser.add_argument("--dry_run", action="store_true")
     return parser.parse_args()
 
@@ -280,7 +286,7 @@ def load_sni_data(task_list, split, max_per_task, cache_dir=None):
 def setup_taskmap_scaled(cfg, backbone_model, tokenizer, task_ids,
                          task_definitions, device,
                          unfreeze_mapper=False, shared_projector=False,
-                         global_code=False):
+                         global_code=False, contextual_desc=False):
     """Initialize TaskMap for scaled SNI experiment."""
     tm_config = TaskMapConfig.from_backbone(
         cfg["backbone"],
@@ -310,14 +316,24 @@ def setup_taskmap_scaled(cfg, backbone_model, tokenizer, task_ids,
     taskmap.register_tasks(task_ids)
 
     # Compute description embeddings from SNI definitions
-    print(f"Computing description embeddings for {len(task_ids)} tasks...")
+    embed_mode = "contextual (hidden-state)" if contextual_desc else "input embeddings"
+    print(f"Computing description embeddings ({embed_mode}) for {len(task_ids)} tasks...")
     for tid in task_ids:
         definition = task_definitions.get(tid, f"Complete the following task: {tid}")
-        # Truncate long definitions for embedding
         desc = definition[:200] if definition else f"Complete the following task: {tid}"
-        embed = taskmap.task_code.compute_description_embedding(
-            backbone_model, tokenizer, desc, device
-        )
+        if contextual_desc:
+            embed = taskmap.task_code.compute_contextual_embedding(
+                backbone_model, tokenizer, desc, device
+            )
+        else:
+            if _USE_CONTEXTUAL:
+                embed = taskmap.task_code.compute_contextual_embedding(
+                    backbone_model, tokenizer, desc, device
+                )
+            else:
+                embed = taskmap.task_code.compute_description_embedding(
+                    backbone_model, tokenizer, desc, device
+                )
         taskmap.cache_description(tid, embed)
         if len(task_ids) <= 60:  # print individual tasks for manageable counts
             print(f"  {tid}: '{desc[:50]}...' -> norm={embed.norm():.3f}")
@@ -438,9 +454,14 @@ def evaluate_nearest_reuse(backbone_model, tokenizer, taskmap, hook_manager,
         desc = holdout_definitions.get(tid, f"Complete the following task: {tid}")
         desc = desc[:200]
         try:
-            embed = taskmap.task_code.compute_description_embedding(
-                backbone_model, tokenizer, desc, device
-            )
+            if _USE_CONTEXTUAL:
+                embed = taskmap.task_code.compute_contextual_embedding(
+                    backbone_model, tokenizer, desc, device
+                )
+            else:
+                embed = taskmap.task_code.compute_description_embedding(
+                    backbone_model, tokenizer, desc, device
+                )
         except Exception as e:
             print(f"  Skipping {tid}: embedding failed: {e}")
             continue
@@ -522,9 +543,14 @@ def evaluate_coldstart_sni(backbone_model, tokenizer, taskmap, hook_manager,
         desc = holdout_definitions.get(tid, f"Complete the following task: {tid}")
         desc = desc[:200]
         try:
-            embed = taskmap.task_code.compute_description_embedding(
-                backbone_model, tokenizer, desc, device
-            )
+            if _USE_CONTEXTUAL:
+                embed = taskmap.task_code.compute_contextual_embedding(
+                    backbone_model, tokenizer, desc, device
+                )
+            else:
+                embed = taskmap.task_code.compute_description_embedding(
+                    backbone_model, tokenizer, desc, device
+                )
             taskmap.cache_description(tid, embed)
         except Exception as e:
             print(f"  Skipping {tid}: embedding failed: {e}")
@@ -578,6 +604,9 @@ def evaluate_coldstart_sni(backbone_model, tokenizer, taskmap, hook_manager,
 # ---------------------------------------------------------------------------
 
 def train_taskmap_scaled(args):
+    global _USE_CONTEXTUAL
+    _USE_CONTEXTUAL = getattr(args, 'contextual_desc', False)
+
     cfg = load_config(args)
     set_seed(args.seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -625,6 +654,7 @@ def train_taskmap_scaled(args):
         unfreeze_mapper=args.unfreeze_mapper,
         shared_projector=args.shared_projector,
         global_code=args.global_code,
+        contextual_desc=args.contextual_desc,
     )
     summary = taskmap.parameter_summary()
     print(f"\nTaskMap parameter summary: {summary}")
@@ -704,7 +734,20 @@ def train_taskmap_scaled(args):
     dataloader = build_dataloader(train_data, microbatch_size,
                                   max_steps * grad_accum, args.seed)
 
+    import random as _rng
+
     for step_idx, (task_id, examples) in enumerate(dataloader):
+        # ── Residual dropout: force mapper to use descriptions ──
+        residual_backup = None
+        if args.residual_dropout > 0 and _rng.random() < args.residual_dropout:
+            safe_tid = taskmap.task_code._sanitize_key(task_id)
+            residual_backup = {}
+            for l in range(tm_config.num_layers):
+                key = f"{safe_tid}_layer{l}"
+                if key in taskmap.task_code.residuals:
+                    residual_backup[key] = taskmap.task_code.residuals[key].data.clone()
+                    taskmap.task_code.residuals[key].data.zero_()
+
         # ── Compute route fresh each microbatch ──
         taskmap.clear_route_cache()
         routes = taskmap.compute_route(task_id, device)
@@ -724,6 +767,11 @@ def train_taskmap_scaled(args):
         total_loss, loss_dict = loss_computer.compute(
             task_loss, taskmap, task_id, all_route_masks, is_warmup
         )
+
+        # Restore residuals if dropped
+        if residual_backup is not None:
+            for key, val in residual_backup.items():
+                taskmap.task_code.residuals[key].data.copy_(val)
 
         scaled_loss = total_loss / grad_accum
         scaled_loss.backward()
