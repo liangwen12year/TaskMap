@@ -467,3 +467,6 @@ Loaded 41 tasks with 14,558 total examples
   task027_drop_answer_type_generation: 98.00 (accuracy)
   task028_drop_answer_generation: 42.00 (accuracy)
   task059_ropes_story_generation: 11.75 (rouge_l)
+  task060_ropes_question_generation: 36.14 (rouge_l)
+  task067_abductivenli_answer_generation: 8.50 (rouge_l)
+  task068_abductivenli_incorrect_answer_generation: 12.71 (rouge_l)

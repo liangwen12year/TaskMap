@@ -362,3 +362,75 @@ Starting scaled TaskMap training for 12000 steps...
   Step 11300/12000 | Total: 93.2801 | task=1.6315 | topology=0.5039 | balance=0.0000 | stability=1.3857 | alignment=1.0468 | Task: task027_drop_answer_type_generation (classification) | Phase: temp=0.108 | Time: 157962s
   Step 11400/12000 | Total: 94.5725 | task=0.8266 | topology=0.5039 | balance=0.0000 | stability=0.7953 | alignment=0.8436 | Task: task059_ropes_story_generation (extraction) | Phase: temp=0.106 | Time: 159384s
   Step 11500/12000 | Total: 96.0516 | task=0.7885 | topology=0.5039 | balance=0.0000 | stability=1.5575 | alignment=0.9982 | Task: task044_essential_terms_identifying_essential_words (generation) | Phase: temp=0.104 | Time: 160808s
+  Step 11600/12000 | Total: 95.3571 | task=0.7578 | topology=0.5039 | balance=0.0000 | stability=3.5382 | alignment=1.0447 | Task: task028_drop_answer_generation (other) | Phase: temp=0.103 | Time: 162231s
+  Step 11700/12000 | Total: 94.3373 | task=2.0818 | topology=0.5039 | balance=0.0000 | stability=1.4510 | alignment=0.8905 | Task: task080_piqa_answer_generation (other) | Phase: temp=0.101 | Time: 163655s
+  Step 11800/12000 | Total: 93.0985 | task=2.0242 | topology=0.5039 | balance=0.0000 | stability=2.6758 | alignment=0.9727 | Task: task024_cosmosqa_answer_generation (extraction) | Phase: temp=0.101 | Time: 165072s
+  Step 11900/12000 | Total: 94.8937 | task=1.2789 | topology=0.5039 | balance=0.0000 | stability=2.1111 | alignment=1.0968 | Task: task085_unnatural_addsub_arithmetic (other) | Phase: temp=0.100 | Time: 166493s
+  Step 12000/12000 | Total: 93.5974 | task=2.1186 | topology=0.5039 | balance=0.0000 | stability=1.4922 | alignment=0.8937 | Task: task023_cosmosqa_question_generation (extraction) | Phase: temp=0.100 | Time: 167916s
+  Saved checkpoint to outputs/phase6_simplified_s2024/checkpoint-12000
+
+Training complete in 167916.1s (12000 steps)
+Saved final model to outputs/phase6_simplified_s2024/final
+
+======================================================================
+EVALUATION PHASE
+======================================================================
+
+Loading SNI dataset (41 requested tasks, split=validation)...
+Loading Super-NaturalInstructions dataset (both splits)...
+  train: 3082094 examples
+  test: 484006 examples
+  Combined: 3566100 examples
+  Valid tasks: 41/41
+  task001_quoref_question_generation: 400 examples, family=question_answering, metric=rouge_l
+  task002_quoref_answer_generation: 400 examples, family=generation, metric=accuracy
+  task073_commonsenseqa_answer_generation: 244 examples, family=generation, metric=accuracy
+  task074_squad1.1_question_generation: 400 examples, family=question_answering, metric=rouge_l
+  task075_squad1.1_answer_generation: 400 examples, family=question_answering, metric=accuracy
+  task080_piqa_answer_generation: 400 examples, family=other, metric=rouge_l
+  task082_babi_t1_single_supporting_fact_question_generation: 400 examples, family=generation, metric=accuracy
+  task083_babi_t1_single_supporting_fact_answer_generation: 199 examples, family=fact_checking, metric=accuracy
+  task043_essential_terms_answering_incomplete_questions: 349 examples, family=generation, metric=accuracy
+  task044_essential_terms_identifying_essential_words: 400 examples, family=generation, metric=accuracy
+  task047_miscellaneous_answering_science_questions: 51 examples, family=generation, metric=accuracy
+  task061_ropes_answer_generation: 400 examples, family=extraction, metric=accuracy
+  task022_cosmosqa_passage_inappropriate_binary: 26 examples, family=other, metric=accuracy
+  task065_timetravel_consistent_sentence_classification: 400 examples, family=generation, metric=accuracy
+  task066_timetravel_binary_consistency_classification: 400 examples, family=generation, metric=accuracy
+  task069_abductivenli_classification: 400 examples, family=generation, metric=accuracy
+  task070_abductivenli_incorrect_classification: 400 examples, family=generation, metric=accuracy
+  task092_check_prime_classification: 400 examples, family=other, metric=accuracy
+  task108_contextualabusedetection_classification: 400 examples, family=other, metric=accuracy
+  task109_smsspamcollection_spamsmsdetection: 213 examples, family=classification, metric=accuracy
+  task088_identify_typo_verification: 400 examples, family=other, metric=accuracy
+  task089_swap_words_verification: 400 examples, family=other, metric=accuracy
+  task023_cosmosqa_question_generation: 400 examples, family=extraction, metric=rouge_l
+  task024_cosmosqa_answer_generation: 400 examples, family=extraction, metric=rouge_l
+  task025_cosmosqa_incorrect_answer_generation: 400 examples, family=reasoning, metric=rouge_l
+  task026_drop_question_generation: 400 examples, family=generation, metric=rouge_l
+  task027_drop_answer_type_generation: 400 examples, family=classification, metric=accuracy
+  task028_drop_answer_generation: 400 examples, family=other, metric=accuracy
+  task059_ropes_story_generation: 322 examples, family=extraction, metric=rouge_l
+  task060_ropes_question_generation: 400 examples, family=paraphrase, metric=rouge_l
+  task067_abductivenli_answer_generation: 400 examples, family=generation, metric=rouge_l
+  task068_abductivenli_incorrect_answer_generation: 400 examples, family=generation, metric=rouge_l
+  task103_facts2story_long_text_generation: 400 examples, family=generation, metric=rouge_l
+  task105_story_cloze-rocstories_sentence_generation: 400 examples, family=generation, metric=rouge_l
+  task110_logic2text_sentence_generation: 400 examples, family=generation, metric=rouge_l
+  task045_miscellaneous_sentence_paraphrasing: 348 examples, family=paraphrase, metric=rouge_l
+  task111_asset_sentence_simplification: 400 examples, family=paraphrase, metric=rouge_l
+  task062_bigbench_repeat_copy_logic: 6 examples, family=reasoning, metric=rouge_l
+  task063_first_i_elements: 400 examples, family=other, metric=accuracy
+  task085_unnatural_addsub_arithmetic: 400 examples, family=other, metric=accuracy
+  task046_miscellaneous_question_typing: 400 examples, family=generation, metric=accuracy
+
+Loaded 41 tasks with 14,558 total examples
+
+=== Trained Tasks (validation): 41 tasks ===
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+  task001_quoref_question_generation: 37.45 (rouge_l)
+  task002_quoref_answer_generation: 57.00 (accuracy)
+  task073_commonsenseqa_answer_generation: 89.50 (accuracy)
+  task074_squad1.1_question_generation: 27.52 (rouge_l)
+  task075_squad1.1_answer_generation: 73.00 (accuracy)
