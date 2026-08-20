@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: phase7-trecdl-diagnostic-s42
+  name: phase7-trecdl-taskmap-s42
   namespace: taskmap-training
   labels:
     experiment: phase7-trecdl
+    method: taskmap
     seed: "42"
 spec:
   restartPolicy: Never
@@ -36,43 +37,20 @@ spec:
       echo "=== Cloning TaskMap ===" &&
       git clone https://github.com/liangwen12year/TaskMap.git /workspace/TaskMap &&
       cd /workspace/TaskMap &&
-
-      echo "============================================" &&
-      echo "=== Phase 7: TREC-DL 2019 Diagnostic s42 ===" &&
-      echo "============================================" &&
-
-      echo "=== 1/4: Frozen baseline TREC-DL ===" &&
-      python -u eval_trecdl.py \
+      echo "=== Phase 7: TaskMap + TREC-DL (seed 42) ===" &&
+      python -u train_taskmap_scaled.py \
         --backbone Qwen/Qwen2.5-1.5B \
-        --output_dir outputs/trecdl &&
-
-      echo "=== 2/4: Training Shared LoRA on 41 SNI tasks ===" &&
-      python -u train_lora_sni41.py \
-        --backbone Qwen/Qwen2.5-1.5B \
-        --max_steps 6000 \
-        --seed 42 \
-        --max_per_task 2000 \
-        --max_eval_examples 200 \
-        --output_dir outputs/lora_sni_s42 \
-        --eval_trecdl &&
-
-      echo "=== 3/4: Training HyperLoRA on 41 SNI tasks ===" &&
-      python -u train_hyperlora_sni.py \
-        --backbone Qwen/Qwen2.5-1.5B \
+        --config configs/taskmap_no_topology.yaml \
+        --active_fraction 1.0 \
+        --unfreeze_mapper \
         --max_steps 12000 \
-        --rank 8 \
         --seed 42 \
         --max_per_task 2000 \
         --max_eval_examples 200 \
-        --output_dir outputs/hyperlora_sni_s42 \
+        --output_dir outputs/taskmap_sni_s42 \
         --eval_trecdl &&
-
-      echo "=== ALL RESULTS ===" &&
-      cat outputs/trecdl/trecdl_frozen_s42.json &&
-      echo "---" &&
-      cat outputs/trecdl/trecdl_lora_s42.json 2>/dev/null &&
-      echo "---" &&
-      cat outputs/trecdl/trecdl_hyperlora_s42.json 2>/dev/null &&
+      echo "=== TREC-DL RESULTS ===" &&
+      cat outputs/trecdl/trecdl_taskmap_s42.json 2>/dev/null &&
       echo "=== DONE ==="
     resources:
       limits:
