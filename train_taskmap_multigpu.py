@@ -74,6 +74,8 @@ def parse_args():
     parser.add_argument("--global_code", action="store_true")
     parser.add_argument("--sni_cache_dir", type=str, default=None)
     parser.add_argument("--dry_run", action="store_true")
+    parser.add_argument("--eval_trecdl", action="store_true",
+                        help="Run TREC-DL 2019 reranking after training")
     parser.add_argument("--use_sni", action="store_true", default=True,
                         help="Use SNI tasks (default). Set --no_sni for original 10 tasks")
     parser.add_argument("--no_sni", dest="use_sni", action="store_false")
@@ -476,3 +478,74 @@ def train_multigpu(args):
 if __name__ == "__main__":
     args = parse_args()
     train_multigpu(args)
+
+    # TREC-DL eval runs on rank 0 only, after DDP cleanup
+    rank = int(os.environ.get("RANK", os.environ.get("LOCAL_RANK", 0)))
+    if args.eval_trecdl and rank == 0:
+        try:
+            from eval_trecdl import (
+                load_candidates, load_qrels, score_pairs,
+                evaluate_rankings, eval_bm25_baseline, TASK_DESC,
+            )
+            from models.backbone import load_backbone
+            from models.task_code import compute_description_embedding
+            from models.ffn_hooks import FFNHookManager
+
+            print("\n=== TREC-DL 2019 Reranking (TaskMap cold-start) ===")
+            # Reload model on single GPU for eval
+            backbone, tokenizer = load_backbone(args.backbone)
+            device = "cuda:0"
+            backbone = backbone.to(device)
+
+            # Reload TaskMap state
+            import yaml
+            with open(args.config) as f:
+                cfg = yaml.safe_load(f)
+            from types import SimpleNamespace
+            from models.taskmap_model import TaskMapModel
+            tm_config = SimpleNamespace(
+                num_layers=backbone.config.num_hidden_layers,
+                hidden_dim=backbone.config.hidden_size,
+                ffn_dim=backbone.config.intermediate_size,
+                block_size=cfg.get("block_size", 128),
+                num_blocks=backbone.config.intermediate_size // cfg.get("block_size", 128),
+                active_fraction=args.active_fraction,
+                rank=cfg.get("rank", 8),
+                code_dim=cfg.get("code_dim", 32),
+                mapper_hidden=cfg.get("mapper_hidden", 512),
+            )
+            taskmap = TaskMapModel(tm_config, backbone)
+            ckpt_path = os.path.join(args.output_dir, "taskmap_state.pt")
+            if os.path.exists(ckpt_path):
+                state = torch.load(ckpt_path, map_location=device)
+                taskmap.load_state_dict(state["model_state_dict"])
+            taskmap = taskmap.to(device)
+
+            embed = compute_description_embedding(
+                backbone, tokenizer, TASK_DESC[:200], device
+            )
+            taskmap.cache_description("trecdl_search", embed)
+            taskmap.clear_route_cache()
+            taskmap.compute_route("trecdl_search", device)
+            hook_manager = FFNHookManager(backbone, taskmap)
+            hook_manager.activate_for_task("trecdl_search", device)
+
+            candidates = load_candidates()
+            qrels = load_qrels()
+            bm25_res = eval_bm25_baseline(candidates, qrels)
+            print(f"  BM25: nDCG@10={bm25_res['ndcg@10']:.4f}")
+            rankings = score_pairs(backbone, tokenizer, candidates, device)
+            trecdl_res = evaluate_rankings(rankings, qrels)
+            print(f"  TaskMap: nDCG@10={trecdl_res['ndcg@10']:.4f}  "
+                  f"MRR@10={trecdl_res['mrr@10']:.4f}  "
+                  f"MAP@100={trecdl_res['map@100']:.4f}")
+            hook_manager.remove_all()
+
+            import json as _json
+            os.makedirs("outputs/trecdl", exist_ok=True)
+            with open(f"outputs/trecdl/trecdl_taskmap_s{args.seed}.json", "w") as f:
+                _json.dump({"method": "taskmap", "seed": args.seed,
+                            "bm25": bm25_res, "taskmap": trecdl_res}, f, indent=2)
+        except Exception as e:
+            print(f"TREC-DL eval failed: {e}")
+            import traceback; traceback.print_exc()
