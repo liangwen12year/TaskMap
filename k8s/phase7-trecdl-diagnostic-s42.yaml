@@ -1,0 +1,125 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: phase7-trecdl-diagnostic-s42
+  namespace: taskmap-training
+  labels:
+    experiment: phase7-trecdl
+    seed: "42"
+spec:
+  restartPolicy: Never
+  nodeSelector:
+    kubernetes.io/hostname: pokprod-b93r38s1
+  containers:
+  - name: trainer
+    image: nvcr.io/nvidia/pytorch:24.07-py3
+    command: ["/bin/bash", "-c"]
+    securityContext:
+      runAsUser: 0
+    args:
+    - |
+      nvidia-smi | head -5 &&
+      echo "=== Installing dependencies ===" &&
+      pip install -q \
+        'transformers>=4.40,<4.50' \
+        'peft>=0.10,<0.15' \
+        'accelerate>=0.30,<0.35' \
+        datasets \
+        rouge-score \
+        sacrebleu \
+        sentencepiece \
+        tqdm \
+        pyyaml \
+        scikit-learn \
+        scipy \
+        pytrec-eval-terrier &&
+      echo "=== Cloning TaskMap ===" &&
+      git clone https://github.com/liangwen12year/TaskMap.git /workspace/TaskMap &&
+      cd /workspace/TaskMap &&
+
+      echo "============================================" &&
+      echo "=== Phase 7: TREC-DL 2019 Diagnostic s42 ===" &&
+      echo "============================================" &&
+
+      echo "=== 1/4: Frozen baseline TREC-DL ===" &&
+      python -u eval_trecdl.py \
+        --backbone Qwen/Qwen2.5-1.5B \
+        --output_dir outputs/trecdl &&
+
+      echo "=== 2/4: Training Shared LoRA on 41 SNI tasks ===" &&
+      python -u train_lora_sni41.py \
+        --backbone Qwen/Qwen2.5-1.5B \
+        --max_steps 6000 \
+        --seed 42 \
+        --max_per_task 2000 \
+        --max_eval_examples 200 \
+        --output_dir outputs/lora_sni_s42 \
+        --eval_trecdl &&
+
+      echo "=== 3/4: Training HyperLoRA on 41 SNI tasks ===" &&
+      python -u train_hyperlora_sni.py \
+        --backbone Qwen/Qwen2.5-1.5B \
+        --max_steps 12000 \
+        --rank 8 \
+        --seed 42 \
+        --max_per_task 2000 \
+        --max_eval_examples 200 \
+        --output_dir outputs/hyperlora_sni_s42 \
+        --eval_trecdl &&
+
+      echo "=== 4/4: Training Simplified TaskMap on 41 SNI tasks ===" &&
+      python -u train_taskmap_scaled.py \
+        --backbone Qwen/Qwen2.5-1.5B \
+        --config configs/taskmap_no_topology.yaml \
+        --active_fraction 1.0 \
+        --unfreeze_mapper \
+        --max_steps 12000 \
+        --seed 42 \
+        --max_per_task 2000 \
+        --max_eval_examples 200 \
+        --output_dir outputs/taskmap_sni_s42 \
+        --eval_trecdl &&
+
+      echo "=== ALL RESULTS ===" &&
+      cat outputs/trecdl/trecdl_frozen_s42.json &&
+      echo "---" &&
+      cat outputs/trecdl/trecdl_lora_s42.json 2>/dev/null &&
+      echo "---" &&
+      cat outputs/trecdl/trecdl_hyperlora_s42.json 2>/dev/null &&
+      echo "---" &&
+      cat outputs/trecdl/trecdl_taskmap_s42.json 2>/dev/null &&
+      echo "=== DONE ==="
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        memory: 80Gi
+        cpu: "16"
+      requests:
+        nvidia.com/gpu: 1
+        memory: 48Gi
+        cpu: "8"
+    volumeMounts:
+    - name: workspace
+      mountPath: /workspace
+    - name: shm
+      mountPath: /dev/shm
+    - name: hf-cache
+      mountPath: /root/.cache/huggingface
+    env:
+    - name: HF_HOME
+      value: /root/.cache/huggingface
+    - name: TOKENIZERS_PARALLELISM
+      value: "false"
+    - name: HF_TOKEN
+      value: "SET_YOUR_HF_TOKEN_HERE"
+  volumes:
+  - name: workspace
+    emptyDir:
+      sizeLimit: 150Gi
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 16Gi
+  - name: hf-cache
+    emptyDir:
+      sizeLimit: 50Gi

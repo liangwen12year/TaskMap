@@ -204,6 +204,8 @@ def parse_args():
                         help="Cache directory for SNI dataset")
     parser.add_argument("--output_dir", type=str, default="outputs/hyperlora_sni")
     parser.add_argument("--dry_run", action="store_true")
+    parser.add_argument("--eval_trecdl", action="store_true",
+                        help="Run TREC-DL 2019 reranking after training")
     return parser.parse_args()
 
 
@@ -475,6 +477,53 @@ def train_hyperlora_sni(args):
     print("\n=== RESULTS JSON ===")
     print(json.dumps(results, indent=2, default=str))
     print("=== END RESULTS ===")
+
+    # ── TREC-DL 2019 reranking (optional) ──
+    if args.eval_trecdl:
+        try:
+            from eval_trecdl import (
+                load_candidates, load_qrels, score_pairs,
+                evaluate_rankings, eval_bm25_baseline, TASK_DESC,
+            )
+            print("\n=== TREC-DL 2019 Reranking (HyperLoRA cold-start) ===")
+            candidates = load_candidates()
+            qrels = load_qrels()
+
+            # Activate HyperLoRA factors for the search task description
+            search_embed = task_code.compute_description_embedding(
+                backbone, tokenizer, TASK_DESC[:200], device
+            )
+            for l in range(num_layers):
+                factors = generator(search_embed, l)
+                hooks[l].set_factors(factors)
+
+            # Score and evaluate
+            bm25_res = eval_bm25_baseline(candidates, qrels)
+            print(f"  BM25: nDCG@10={bm25_res['ndcg@10']:.4f}")
+            rankings = score_pairs(backbone, tokenizer, candidates, device)
+            trecdl_res = evaluate_rankings(rankings, qrels)
+            print(f"  HyperLoRA: nDCG@10={trecdl_res['ndcg@10']:.4f}  "
+                  f"MRR@10={trecdl_res['mrr@10']:.4f}  "
+                  f"MAP@100={trecdl_res['map@100']:.4f}")
+
+            # Clean up
+            for hook in hooks:
+                hook.set_factors(None)
+
+            trecdl_out = {
+                "method": "hyperlora", "seed": args.seed,
+                "bm25": bm25_res, "hyperlora": trecdl_res,
+            }
+            trecdl_path = os.path.join("outputs/trecdl",
+                                       f"trecdl_hyperlora_s{args.seed}.json")
+            os.makedirs("outputs/trecdl", exist_ok=True)
+            with open(trecdl_path, "w") as f:
+                json.dump(trecdl_out, f, indent=2)
+            print(f"  Saved to {trecdl_path}")
+        except Exception as e:
+            print(f"  TREC-DL eval failed: {e}")
+            import traceback; traceback.print_exc()
+
     print("=== DONE ===")
 
 

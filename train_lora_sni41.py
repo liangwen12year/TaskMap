@@ -61,6 +61,8 @@ def parse_args():
     parser.add_argument("--output_dir", type=str, default="outputs/lora_sni41")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--dry_run", action="store_true")
+    parser.add_argument("--eval_trecdl", action="store_true",
+                        help="Run TREC-DL 2019 reranking after training")
     return parser.parse_args()
 
 
@@ -331,4 +333,16 @@ def train_lora_sni41(args):
 
 if __name__ == "__main__":
     args = parse_args()
-    train_lora_sni41(args)
+    model, tokenizer = train_lora_sni41(args)
+
+    if args.eval_trecdl:
+        try:
+            from eval_trecdl import eval_trecdl_with_model
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+            eval_trecdl_with_model(
+                model, tokenizer, device, "outputs/trecdl",
+                method_name="lora", seed=args.seed,
+            )
+        except Exception as e:
+            print(f"TREC-DL eval failed: {e}")
+            import traceback; traceback.print_exc()

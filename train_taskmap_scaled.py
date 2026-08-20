@@ -188,6 +188,8 @@ def parse_args():
     parser.add_argument("--residual_dropout", type=float, default=0.0,
                         help="Probability of zeroing out residual codes during training")
     parser.add_argument("--dry_run", action="store_true")
+    parser.add_argument("--eval_trecdl", action="store_true",
+                        help="Run TREC-DL 2019 reranking after training")
     return parser.parse_args()
 
 
@@ -1018,4 +1020,53 @@ def train_taskmap_scaled(args):
 
 if __name__ == "__main__":
     args = parse_args()
-    train_taskmap_scaled(args)
+    taskmap, backbone_model, tokenizer = train_taskmap_scaled(args)
+
+    if args.eval_trecdl:
+        try:
+            from eval_trecdl import (
+                load_candidates, load_qrels, score_pairs,
+                evaluate_rankings, eval_bm25_baseline, TASK_DESC,
+            )
+            from models.task_code import compute_description_embedding
+            from models.ffn_hooks import FFNHookManager
+
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+            print("\n=== TREC-DL 2019 Reranking (TaskMap cold-start) ===")
+
+            candidates = load_candidates()
+            qrels = load_qrels()
+
+            # Register search description as cold-start task
+            embed = compute_description_embedding(
+                backbone_model, tokenizer, TASK_DESC[:200], device
+            )
+            taskmap.cache_description("trecdl_search", embed)
+            taskmap.clear_route_cache()
+            taskmap.compute_route("trecdl_search", device)
+
+            hook_manager = FFNHookManager(backbone_model, taskmap)
+            hook_manager.activate_for_task("trecdl_search", device)
+
+            bm25_res = eval_bm25_baseline(candidates, qrels)
+            print(f"  BM25: nDCG@10={bm25_res['ndcg@10']:.4f}")
+            rankings = score_pairs(backbone_model, tokenizer, candidates, device)
+            trecdl_res = evaluate_rankings(rankings, qrels)
+            print(f"  TaskMap: nDCG@10={trecdl_res['ndcg@10']:.4f}  "
+                  f"MRR@10={trecdl_res['mrr@10']:.4f}  "
+                  f"MAP@100={trecdl_res['map@100']:.4f}")
+
+            hook_manager.remove_all()
+
+            trecdl_out = {
+                "method": "taskmap", "seed": args.seed,
+                "bm25": bm25_res, "taskmap": trecdl_res,
+            }
+            os.makedirs("outputs/trecdl", exist_ok=True)
+            trecdl_path = f"outputs/trecdl/trecdl_taskmap_s{args.seed}.json"
+            with open(trecdl_path, "w") as f:
+                json.dump(trecdl_out, f, indent=2)
+            print(f"  Saved to {trecdl_path}")
+        except Exception as e:
+            print(f"TREC-DL eval failed: {e}")
+            import traceback; traceback.print_exc()
