@@ -289,7 +289,21 @@ removing sparsity or changing the routing policy does not.
 
 ### 6. Coefficient-Space Analysis — Paper Figure 4
 
-Train TaskMap with checkpoint saving enabled, then run:
+Figure 4 uses 12 tasks (the 9 evaluation tasks plus SAMSum, APPS, and MBPP). Train a separate checkpoint with all 12 tasks:
+
+```bash
+python train_taskmap.py \
+  --config configs/taskmap_no_topology.yaml \
+  --backbone Qwen/Qwen2.5-1.5B \
+  --active_fraction 0.75 \
+  --unfreeze_mapper \
+  --max_steps 6000 \
+  --seed 42 \
+  --figure4_tasks \
+  --save_checkpoint
+```
+
+Then extract coefficients and run PCA:
 
 ```bash
 python extract_coefficients.py

@@ -90,6 +90,8 @@ def parse_args():
     parser.add_argument("--dry_run", action="store_true")
     parser.add_argument("--paper_tasks", action="store_true",
                         help="Use only the 9 evaluation tasks from the paper (Table 2)")
+    parser.add_argument("--figure4_tasks", action="store_true",
+                        help="Use the 12 tasks shown in paper Figure 4")
     return parser.parse_args()
 
 
@@ -216,10 +218,14 @@ def train_taskmap(args):
 
     # ── Load data ──
     print("\nLoading training data...")
-    if args.paper_tasks:
+    if args.figure4_tasks:
+        from data.config import PAPER_FIGURE4_TASKS
+        task_filter = set(PAPER_FIGURE4_TASKS)
+        print(f"  Using Figure 4 task set (12 tasks): {PAPER_FIGURE4_TASKS}")
+    elif args.paper_tasks:
         from data.config import PAPER_EVAL_TASKS
         task_filter = set(PAPER_EVAL_TASKS)
-        print(f"  Using paper task set: {PAPER_EVAL_TASKS}")
+        print(f"  Using paper eval task set (9 tasks): {PAPER_EVAL_TASKS}")
     else:
         task_filter = None
     datasets = {}

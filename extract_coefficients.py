@@ -20,7 +20,21 @@ tm_config = TaskMapConfig.from_backbone(cfg.get('backbone', 'Qwen/Qwen2.5-1.5B')
     code_dim=cfg.get('code_dim', 32), rank=cfg.get('rank', 8), mapper_hidden=cfg.get('mapper_hidden', 512))
 taskmap = TaskMapModel(tm_config, num_tasks=len(task_ids), freeze_mapper=False)
 taskmap.register_tasks(task_ids)
-taskmap.task_code.load_state_dict(ckpt['task_code_state'], strict=False)
+loaded_keys = taskmap.task_code.load_state_dict(ckpt['task_code_state'], strict=False)
+if loaded_keys.missing_keys:
+    missing_tasks = set()
+    for k in loaded_keys.missing_keys:
+        if 'residuals.' in k:
+            parts = k.split('.')
+            for p in parts:
+                if '_layer' in p:
+                    tid = p.rsplit('_layer', 1)[0]
+                    missing_tasks.add(tid)
+    if missing_tasks:
+        raise RuntimeError(
+            f"Checkpoint is missing trained residuals for tasks: {missing_tasks}. "
+            f"Train with --figure4_tasks to include all 12 Figure 4 tasks."
+        )
 if 'mapper_state' in ckpt:
     taskmap.mapper_bank.load_state_dict(ckpt['mapper_state'], strict=False)
 taskmap = taskmap.to(device)
