@@ -58,6 +58,8 @@ def parse_args():
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--dry_run", action="store_true", help="Run 2 steps for testing")
     parser.add_argument("--config", type=str, default=None, help="YAML config file")
+    parser.add_argument("--paper_tasks", action="store_true",
+                        help="Use only the 9 evaluation tasks from the paper")
     return parser.parse_args()
 
 
@@ -129,8 +131,16 @@ def train(args):
 
     # ── Load data ──
     print("\nLoading training data...")
+    if args.paper_tasks:
+        from data.config import PAPER_EVAL_TASKS
+        task_filter = set(PAPER_EVAL_TASKS)
+        print(f"  Using paper task set: {PAPER_EVAL_TASKS}")
+    else:
+        task_filter = None
     datasets = {}
     for task_id, meta in KNOWN_TASKS.items():
+        if task_filter and task_id not in task_filter:
+            continue
         ds = download_task(task_id, meta)
         if ds is not None:
             datasets[task_id] = ds

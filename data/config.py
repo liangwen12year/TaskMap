@@ -217,6 +217,19 @@ KNOWN_TASKS = {
         "max_response_tokens": 384,
         "metric": "pass_at_1",
     },
+    "mbpp": {
+        "family": "code_generation",
+        "descriptions": [
+            "Write a correct Python function satisfying the specification.",
+            "Implement the described function in Python.",
+            "Generate Python code that solves the given programming problem.",
+        ],
+        "dataset": "google-research-datasets/mbpp",
+        "subset": None,
+        "split_map": {"train": "train", "validation": "validation", "test": "test"},
+        "max_response_tokens": 384,
+        "metric": "pass_at_1",
+    },
 }
 
 COLD_START_TASKS = {
@@ -309,7 +322,7 @@ PAPER_EVAL_TASKS = [
 PAPER_FIGURE4_TASKS = [
     "sst2", "agnews", "boolq", "squad", "xsum", "samsum",
     "wmt14_ende", "wmt16_enro", "gsm8k", "svamp",
-    "apps_intro",
+    "apps_intro", "mbpp",
 ]
 
 MAX_EXAMPLES_PER_TASK = 40_000

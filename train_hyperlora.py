@@ -156,6 +156,8 @@ def parse_args():
     parser.add_argument("--max_seq_length", type=int, default=2048)
     parser.add_argument("--output_dir", type=str, default="outputs/hyperlora")
     parser.add_argument("--dry_run", action="store_true")
+    parser.add_argument("--paper_tasks", action="store_true",
+                        help="Use only the 9 evaluation tasks from the paper")
     return parser.parse_args()
 
 
@@ -192,8 +194,12 @@ def train_hyperlora(args):
         num_layers=1, embed_dim=embed_dim, code_dim=embed_dim, num_tasks=0
     )
 
-    task_ids = [t for t in KNOWN_TASKS.keys()
-                if KNOWN_TASKS[t]["metric"] != "pass_at_1"]
+    if args.paper_tasks:
+        from data.config import PAPER_EVAL_TASKS
+        task_ids = [t for t in PAPER_EVAL_TASKS if t in KNOWN_TASKS]
+    else:
+        task_ids = [t for t in KNOWN_TASKS.keys()
+                    if KNOWN_TASKS[t]["metric"] != "pass_at_1"]
 
     print(f"Computing description embeddings for {len(task_ids)} tasks...")
     task_embeds = {}

@@ -43,6 +43,8 @@ def parse_args():
     parser.add_argument("--max_eval_examples", type=int, default=500)
     parser.add_argument("--output_dir", type=str, default="outputs/per_task_lora")
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--paper_tasks", action="store_true",
+                        help="Use only the 9 evaluation tasks from the paper")
     return parser.parse_args()
 
 
@@ -52,8 +54,15 @@ def train_per_task_lora(args):
     os.makedirs(args.output_dir, exist_ok=True)
 
     print(f"Loading backbone: {args.backbone}")
+    if args.paper_tasks:
+        from data.config import PAPER_EVAL_TASKS
+        task_filter = set(PAPER_EVAL_TASKS)
+    else:
+        task_filter = None
     datasets = {}
     for tid, meta in KNOWN_TASKS.items():
+        if task_filter and tid not in task_filter:
+            continue
         ds = download_task(tid, meta)
         if ds is not None:
             datasets[tid] = ds

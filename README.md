@@ -104,6 +104,7 @@ python train_taskmap.py \
   --unfreeze_mapper \
   --max_steps 6000 \
   --seed 42 \
+  --paper_tasks \
   --save_checkpoint
 ```
 
@@ -120,6 +121,7 @@ python train.py \
   --lora_rank 8 \
   --max_steps 6000 \
   --seed 42 \
+  --paper_tasks \
   --output_dir outputs/lora_r8_seed42
 ```
 
@@ -132,6 +134,7 @@ python train.py \
   --lora_rank 40 \
   --max_steps 6000 \
   --seed 42 \
+  --paper_tasks \
   --output_dir outputs/lora_r40_seed42
 ```
 
@@ -144,6 +147,7 @@ python train.py \
   --lora_rank 256 \
   --max_steps 6000 \
   --seed 42 \
+  --paper_tasks \
   --output_dir outputs/vera_r256_seed42
 ```
 
@@ -153,7 +157,8 @@ Direct optimization:
 python train_direct_block_lora.py \
   --backbone Qwen/Qwen2.5-1.5B \
   --max_steps 6000 \
-  --seed 42
+  --seed 42 \
+  --paper_tasks
 ```
 
 Full-Factor Hypernetwork:
@@ -162,7 +167,8 @@ Full-Factor Hypernetwork:
 python train_hyperlora.py \
   --backbone Qwen/Qwen2.5-1.5B \
   --max_steps 6000 \
-  --seed 42
+  --seed 42 \
+  --paper_tasks
 ```
 
 Per-task LoRA is implemented in:
@@ -324,7 +330,7 @@ Shared LoRA attains the highest mean. Task-conditioned generation gives a more c
 
 ## Evaluation Protocol
 
-- **Classification:** normalized log-likelihood over the allowed output labels.
+- **Classification:** first-token log-probability over the allowed labels.
 - **Question answering:** F1.
 - **Summarization:** ROUGE-L.
 - **Translation:** sacreBLEU.
