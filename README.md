@@ -4,7 +4,9 @@ Code for the anonymous submission:
 
 **TaskMap: Task-Conditioned LLM Adaptation in a Shared Orthogonal Basis**
 
-TaskMap is a parameter-efficient adaptation method for heterogeneous language-model tasks. It represents task-specific feed-forward-network (FFN) updates using compact coefficient vectors in shared fixed orthogonal bases. A task-conditioned mapper generates block-specific coefficients, while the frozen backbone remains unchanged.
+TaskMap is a parameter-efficient adaptation method for heterogeneous language-model tasks. It represents task-specific feed-forward-network (FFN) updates using compact coefficient vectors in shared fixed orthogonal bases. A task-conditioned mapper generates block-specific coefficients, while the frozen backbone remains unchanged. An optional router can select a subset of blocks to receive task-specific residual updates.
+
+Our ablations show that the main benefit comes from the task-conditioned coefficient values rather than the routing decisions themselves: destroying or sharing the coefficients substantially degrades performance, whereas applying residual updates to all blocks or randomizing the routing does not.
 
 A key property of the representation is that, for a fixed layer, block, and projection,
 
@@ -31,7 +33,7 @@ Experiments use **Qwen2.5-1.5B** across classification, question answering, summ
 ## Main Findings
 
 - **Representation:** shared fixed orthogonal bases provide a common low-dimensional coordinate system for task adaptations.
-- **Mechanism:** block-specific coefficient values, rather than learned routing or sparsity, drive most of TaskMap's gains.
+- **Mechanism:** task-conditioned, block-specific coefficient values are the main source of TaskMap's gains; learned routing and sparsity are not necessary for the observed accuracy improvements.
 - **Generalization:** task descriptions support zero-shot coefficient generation for unseen tasks, but robustness to description wording remains a primary limitation.
 
 ## Repository Structure
@@ -42,7 +44,7 @@ TaskMap/
 │   ├── taskmap_model.py        # Main TaskMap model
 │   ├── task_code.py            # Description embeddings + learned residual task codes
 │   ├── mapper.py               # Task-conditioned mapper
-│   ├── router.py               # Top-k block routing
+│   ├── router.py               # Optional top-k block routing
 │   ├── block_residuals.py      # Fixed-basis low-rank residuals
 │   ├── ffn_hooks.py            # Additive FFN residual injection
 │   ├── baselines.py            # Additional baseline modules
@@ -261,6 +263,23 @@ python train_taskmap.py \
   --no_residual \
   --seed 42
 ```
+
+### What Matters in TaskMap?
+
+Ablations show that TaskMap's performance is primarily driven by
+task-conditioned block-specific coefficient values rather than sparse routing.
+
+| Variant | Change from TaskMap |
+|---|---:|
+| Random coefficients | -15.8 |
+| Shared coefficient per layer | -4.8 |
+| Without balance loss | +0.0 |
+| All blocks (`rho = 1.0`) | +0.4 |
+| Random routing | +2.2 |
+
+These results indicate that coefficient specialization is the key mechanism:
+destroying or sharing coefficients substantially hurts performance, whereas
+removing sparsity or changing the routing policy does not.
 
 ### 6. Coefficient-Space Analysis — Paper Figure 4
 
