@@ -122,8 +122,9 @@ CLASSIFICATION_LABELS = {
 def classify_by_likelihood(model, tokenizer, examples: list, task_id: str,
                            device: str = "cuda") -> list:
     """
-    Classify by scoring each valid label's log-likelihood given the prompt.
-    Returns the label with highest likelihood for each example.
+    Classify by comparing the first-token log-probability of each allowed label.
+    For each example, the label whose first token has the highest log-probability
+    at the prompt's final position is selected.
     """
     labels = CLASSIFICATION_LABELS.get(task_id)
     if labels is None:

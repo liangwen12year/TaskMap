@@ -88,6 +88,8 @@ def parse_args():
     parser.add_argument("--residual_dropout", type=float, default=0.0,
                         help="Probability of zeroing out residual codes r_{t,l} during training")
     parser.add_argument("--dry_run", action="store_true")
+    parser.add_argument("--paper_tasks", action="store_true",
+                        help="Use only the 9 evaluation tasks from the paper (Table 2)")
     return parser.parse_args()
 
 
@@ -214,8 +216,16 @@ def train_taskmap(args):
 
     # ── Load data ──
     print("\nLoading training data...")
+    if args.paper_tasks:
+        from data.config import PAPER_EVAL_TASKS
+        task_filter = set(PAPER_EVAL_TASKS)
+        print(f"  Using paper task set: {PAPER_EVAL_TASKS}")
+    else:
+        task_filter = None
     datasets = {}
     for task_id, meta in KNOWN_TASKS.items():
+        if task_filter and task_id not in task_filter:
+            continue
         ds = download_task(task_id, meta)
         if ds is not None:
             datasets[task_id] = ds

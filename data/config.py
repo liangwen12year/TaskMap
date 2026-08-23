@@ -300,6 +300,18 @@ COLD_START_TASKS = {
     },
 }
 
+# Paper task sets (pinned for reproducibility)
+PAPER_EVAL_TASKS = [
+    "sst2", "agnews", "boolq", "squad", "xsum",
+    "wmt14_ende", "wmt16_enro", "gsm8k", "svamp",
+]
+
+PAPER_FIGURE4_TASKS = [
+    "sst2", "agnews", "boolq", "squad", "xsum", "samsum",
+    "wmt14_ende", "wmt16_enro", "gsm8k", "svamp",
+    "apps_intro",
+]
+
 MAX_EXAMPLES_PER_TASK = 40_000
 OVERSAMPLING_CAP = 2
 FAMILY_TO_TASKS = {}

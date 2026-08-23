@@ -3,7 +3,7 @@ import torch, json, numpy as np, sys
 sys.path.insert(0, '.')
 from models.backbone import load_backbone
 from models.taskmap_model import TaskMapModel, TaskMapConfig
-from data.config import KNOWN_TASKS
+from data.config import KNOWN_TASKS, PAPER_FIGURE4_TASKS
 from train import set_seed
 from sklearn.decomposition import PCA
 from scipy.spatial.distance import cdist
@@ -13,7 +13,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 ckpt = torch.load('outputs/taskmap_no_topology/final/taskmap_state.pt', map_location='cpu')
 cfg = ckpt['config']
-task_ids = list(KNOWN_TASKS.keys())
+task_ids = [t for t in PAPER_FIGURE4_TASKS if t in KNOWN_TASKS]
 
 tm_config = TaskMapConfig.from_backbone(cfg.get('backbone', 'Qwen/Qwen2.5-1.5B'),
     block_size=cfg.get('block_size', 128), active_fraction=cfg.get('active_fraction', 0.75),
