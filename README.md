@@ -72,7 +72,7 @@ TaskMap/
 ├── train_hyperlora_sni.py      # Full-Factor Hypernetwork on SNI cold-start
 ├── train_lora_sni41.py         # Shared LoRA on the 41 SNI training tasks
 ├── train_ablations.py          # Coefficient / mapper / layer ablations
-├── eval.py                     # Log-likelihood classification + generation metrics
+├── eval.py                     # First-token log-probability classification + generation metrics
 ├── eval_coldstart_baselines.py
 ├── eval_frozen_sni_holdout.py
 ├── extract_coefficients.py     # PCA / nearest-neighbor coefficient analysis
