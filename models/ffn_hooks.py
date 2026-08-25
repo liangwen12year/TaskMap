@@ -1,16 +1,14 @@
 """
-FFN hooks for TaskMap (Section 3.5, Equations 6-8).
+FFN hooks for TaskMap.
 
-Injects task-conditioned block selection and low-rank residuals into
-the backbone's MLP layers via PyTorch forward hooks. This is the key
-integration point: the hook replaces the standard dense FFN with the
-TaskMap sparse FFN that only activates selected blocks.
+The frozen dense backbone FFN always executes. The hook computes the
+task-specific change induced by low-rank residuals on the selected FFN
+blocks and adds that delta to the dense FFN output:
 
-TaskFFN_{t,l}(h) = sum_{g in S_{t,l}} [
-    phi(h @ [W^g_{:,I_g} + dW^g]) * (h @ [W^u_{:,I_g} + dW^u])
-] @ [W^d_{I_g,:} + dW^d]
+    output = dense_FFN(h) + selected_block_residual_delta(h)
 
-where dW = A @ diag(c) @ B are the low-rank residuals.
+Selection therefore controls where TaskMap residuals are applied; it does
+not skip the corresponding dense backbone computation.
 """
 
 import torch
@@ -20,10 +18,10 @@ import torch.nn.functional as F
 
 class TaskMapFFNHook:
     """
-    Hooks into a single MLP layer to apply task-conditioned sparse FFN.
+    Hooks into one MLP layer and adds task-conditioned residual updates.
 
-    When active, replaces the MLP forward with block-sparse computation
-    using the route and coefficients from the TaskMap model.
+    The base MLP output remains dense. Only the TaskMap residual delta is
+    constructed from the selected blocks.
     """
 
     def __init__(self, layer_idx: int, block_size: int):

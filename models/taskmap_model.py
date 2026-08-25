@@ -1,21 +1,15 @@
 """
-Full TaskMap model wrapper (Section 3, Equations 6-8).
+Full TaskMap model wrapper.
 
 Assembles:
-1. Frozen LLM backbone
-2. Task code module (description prior + residuals)
-3. Mapper bank (frozen, modulated)
-4. Top-k router
-5. Block residual bases
+1. Task code module (description prior + learned residual codes)
+2. Mapper bank for route logits and block-specific coefficients
+3. Top-k router
+4. Shared fixed block-residual bases
 
-The TaskFFN for selected blocks (Eq. 6-8):
-  TaskFFN_{t,l}(h) = sum_{g in S_{t,l}} [
-    phi(h @ [W^g_{l,:,I_g} + delta_W^g_{t,l,g}])
-    * (h @ [W^u_{l,:,I_g} + delta_W^u_{t,l,g}])
-  ] @ [W^d_{l,I_g,:} + delta_W^d_{t,l,g}]
-
-Inactive blocks are skipped entirely (not computed then masked).
-Dense-mask mode computes all blocks then masks for correctness verification.
+The frozen dense backbone is executed normally by the training/evaluation
+wrapper. Top-k selection determines which FFN blocks receive TaskMap residual
+updates; it does not skip the dense backbone computation for inactive blocks.
 """
 
 import torch

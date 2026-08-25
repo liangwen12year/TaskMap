@@ -6,7 +6,7 @@ Code for the anonymous submission:
 
 TaskMap is a parameter-efficient adaptation method for heterogeneous language-model tasks. It represents task-specific feed-forward-network (FFN) updates using compact coefficient vectors in shared fixed orthogonal bases. A task-conditioned mapper generates block-specific coefficients, while the frozen backbone remains unchanged. An optional router can select a subset of blocks to receive task-specific residual updates.
 
-Our ablations show that the main benefit comes from the task-conditioned coefficient values rather than the routing decisions themselves: destroying or sharing the coefficients substantially degrades performance, whereas applying residual updates to all blocks or randomizing the routing does not.
+Our ablations identify block-specific coefficient generation as the clearest performance-sensitive component: sharing coefficients hurts, whereas applying residual updates to all blocks or using fixed random block selection does not. The random-coefficient experiment is an untrained evaluation-only control, so it is not interpreted as an isolated causal test of coefficient values.
 
 A key property of the representation is that, for a fixed layer, block, and projection,
 
@@ -33,7 +33,7 @@ Experiments use **Qwen2.5-1.5B** across classification, question answering, summ
 ## Main Findings
 
 - **Representation:** shared fixed orthogonal bases provide a common low-dimensional coordinate system for task adaptations.
-- **Mechanism:** task-conditioned, block-specific coefficient values are the main source of TaskMap's gains; learned routing and sparsity are not necessary for the observed accuracy improvements.
+- **Mechanism:** block-specific coefficient generation is the clearest performance-sensitive component; learned routing and sparsity are not necessary for the observed accuracy improvements.
 - **Generalization:** task descriptions support zero-shot coefficient generation for unseen tasks, but robustness to description wording remains a primary limitation.
 
 ## Repository Structure
@@ -57,7 +57,7 @@ TaskMap/
 │   └── sampler.py              # Task-homogeneous microbatch sampling
 ├── configs/
 │   ├── taskmap_no_topology.yaml
-│   ├── taskmap_reference.yaml
+│   ├── taskmap_reference.yaml  # legacy/auxiliary; not used for reported primary runs
 │   └── baseline_lora.yaml
 ├── analysis/
 │   ├── route_analysis.py
@@ -177,7 +177,7 @@ Per-task LoRA is implemented in:
 train_per_task_lora.py
 ```
 
-### 3. Cold-Start TaskMap — Paper Table 3
+### 3. Cold-Start TaskMap — Paper Table 4
 
 TaskMap is trained on 41 Super-NaturalInstructions tasks and evaluated without task-specific training on 20 held-out tasks. The reported TaskMap cold-start runs use 12,000 training steps.
 
@@ -198,7 +198,7 @@ Repeat with seeds `137` and `2024`.
 
 At cold-start, the learned per-task residual code is unavailable, so TaskMap generates the adaptation from the task description alone.
 
-### 4. Cold-Start Baselines — Paper Tables 3–4
+### 4. Cold-Start Baselines — Paper Tables 4–5
 
 Shared LoRA on the same 41 SNI training tasks:
 
@@ -225,7 +225,7 @@ eval_frozen_sni_holdout.py
 eval_coldstart_baselines.py
 ```
 
-### 5. Ablations — Paper Table 5
+### 5. Ablations — Paper Table 6
 
 Examples:
 
@@ -272,20 +272,22 @@ python train_taskmap.py \
 
 ### What Matters in TaskMap?
 
-Ablations show that TaskMap's performance is primarily driven by
-task-conditioned block-specific coefficient values rather than sparse routing.
+Block-specific coefficient generation is the clearest performance-sensitive
+component, whereas learned routing and sparsity are not.
 
 | Variant | Change from TaskMap |
 |---|---:|
-| Random coefficients | -15.8 |
+| Random-coefficient control | -15.8 |
 | Shared coefficient per layer | -4.8 |
-| Without balance loss | +0.0 |
 | All blocks (`rho = 1.0`) | +0.4 |
 | Random routing | +2.2 |
 
-These results indicate that coefficient specialization is the key mechanism:
-destroying or sharing coefficients substantially hurts performance, whereas
-removing sparsity or changing the routing policy does not.
+The random-coefficient row is an evaluation-only control with fixed i.i.d.
+coefficients and top-k routes produced by the initialized mapper; it receives
+no training. It therefore should not be interpreted as a clean isolated causal
+test of coefficient values. In contrast, sharing coefficients hurts, while
+removing sparsity or replacing learned selection with fixed random selection
+does not reduce quality.
 
 ### 6. Coefficient-Space Analysis — Paper Figure 4
 
@@ -326,21 +328,26 @@ The exact coefficient-space isometry applies within each fixed layer/block/proje
 | VeRA r=256 | 0.6M | 42.5 |
 | **TaskMap** | **35.7M** | **46.3 ± 2.2** |
 | Full-Factor Hypernetwork | 2.9M | 47.7 |
-| Direct Optimization | 490K total | 49.3 ± 0.9 |
+| Direct Optimization | 441K total (49K/task × 9 tasks) | 49.3 ± 0.9 |
 
 The macro score averages heterogeneous task metrics on a common 0–100 scale and is used as a compact summary; task-level values should be interpreted within metric type.
 
-### Cold-Start — Paper Tables 3–4
+### Cold-Start — Paper Tables 4–5
 
 | Method | Macro | W / T / L vs. Frozen | Median Δ | Worst Δ |
 |---|---:|---:|---:|---:|
 | Frozen | 14.7 | — | — | — |
-| Shared LoRA | **24.0 ± 0.1** | 14 / 1 / 5 | +3.8 | -26.7 |
-| Full-Factor Hypernetwork | 21.5 ± 0.9 | 11 / 6 / 3 | +3.9 | **-4.2** |
-| **TaskMap** | **20.3 ± 1.4** | **11 / 6 / 3** | **+4.8** | -7.9 |
+| Shared LoRA | **24.0 ± 0.2** | 14 / 1 / 5 | +3.7 | -26.7 |
+| Full-Factor Hypernetwork | 21.5 ± 0.9 | 11 / 6 / 3 | **+3.9** | **-4.2** |
+| **TaskMap** | **20.3 ± 1.4** | **11 / 6 / 3** | +3.1 | -7.9 |
 | Nearest reuse | 18.6 ± 2.3 | 8 / 5 / 7 | +0.0 | -18.6 |
 
-Shared LoRA attains the highest mean. Task-conditioned generation gives a more conservative transfer profile: TaskMap and the Full-Factor Hypernetwork each have only three negative-transfer tasks, versus five for Shared LoRA, and TaskMap has the largest median improvement.
+Shared LoRA attains the highest mean. TaskMap and the Full-Factor Hypernetwork
+have a more conservative transfer tail: each incurs negative transfer on only
+3 of the 20 held-out tasks, compared with 5 for Shared LoRA, and their
+worst-case degradations are substantially smaller. The Full-Factor
+Hypernetwork has the largest median per-task improvement (+3.9), followed by
+Shared LoRA (+3.7) and TaskMap (+3.1).
 
 ## Evaluation Protocol
 

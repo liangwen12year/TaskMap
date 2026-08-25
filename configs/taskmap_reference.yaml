@@ -1,5 +1,6 @@
-# TaskMap reference configuration (Table 2)
-# Paper Section 4.6: primary hyperparameters
+# Legacy/auxiliary TaskMap configuration.
+# NOT used for the reported primary paper runs.
+# For paper reproduction use configs/taskmap_no_topology.yaml and README.md.
 
 backbone: "Qwen/Qwen2.5-1.5B"
 dtype: "bfloat16"

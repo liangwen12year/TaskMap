@@ -1,12 +1,13 @@
 """
-Random coefficients + learned routing ablation (Professor Ge Experiment 2).
+Evaluation-only random-coefficient control.
 
-Uses the standard TaskMap learned routes but replaces mapper-generated
-coefficients with fixed random coefficients. Tests whether the coefficients
-or the routing carry the adaptation information.
+Creates a freshly initialized TaskMap model, uses the initialized mapper to
+produce top-k block selections, and replaces mapper coefficients with fixed
+i.i.d. N(0, 0.01^2) coefficients. No training is performed.
 
-If performance collapses, coefficients are the mechanism.
-If performance holds, routing alone is sufficient.
+Because both the mapper/router state and coefficient values are untrained,
+this control should not be interpreted as an isolated causal intervention on
+coefficients alone.
 
 Usage:
   python train_random_coefficients.py --backbone Qwen/Qwen2.5-1.5B --max_steps 6000
@@ -114,14 +115,14 @@ def train_random_coefficients(args):
     print(f"  Generated random coefficients for {len(task_ids)} tasks × {tm_config.num_layers} layers")
 
     def activate_with_random_coefficients(task_id, device):
-        """Use LEARNED routes but RANDOM coefficients."""
+        """Use initialized-mapper top-k selections with fixed random coefficients."""
         taskmap.clear_route_cache()
-        learned_routes = taskmap.compute_route(task_id, device)
+        initialized_routes = taskmap.compute_route(task_id, device)
 
         for layer_idx, hook in enumerate(hook_manager.hooks):
             if layer_idx >= tm_config.num_layers:
                 break
-            route = learned_routes[layer_idx]
+            route = initialized_routes[layer_idx]
             rc = random_coefficients[task_id][layer_idx]
             hook.set_route({
                 'mask': route['mask'],
@@ -134,7 +135,7 @@ def train_random_coefficients(args):
     # No training needed — random coefficients are fixed.
     # This is an eval-only ablation to show that random coefficients collapse performance.
     print(f"\n  No training — evaluating with fixed random coefficients...")
-    print(f"  Routes: LEARNED (from initialized mapper), Coefficients: FIXED RANDOM")
+    print(f"  Routes: INITIALIZED-MAPPER TOP-K, Coefficients: FIXED RANDOM")
 
     # Evaluate
     print("\n=== Random-Coefficients Evaluation ===")

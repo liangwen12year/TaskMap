@@ -1,14 +1,13 @@
 """
-TaskMap loss functions (Section 3.6, Equations 9-15).
+Auxiliary TaskMap route diagnostics and optional mapping-space regularizers.
 
-Total loss:
-  L = L_task + lambda_bud * L_budget + lambda_topo * L_topology
-    + lambda_bal * L_balance + lambda_stab * L_stability
-    + lambda_sm * L_smooth + lambda_align * L_alignment
+In the reported primary path, route masks stored in the cross-task route
+cache are detached from the task-loss computation graph. Budget, topology,
+and balance quantities computed from that cache are therefore diagnostic
+bookkeeping rather than optimizing regularizers in the primary runs.
 
-Reference hyperparameters (Table 2):
-  lambda_bud=0.05, lambda_topo=0.01, lambda_bal=0.01
-  lambda_stab=1e-3, lambda_sm=1e-3, lambda_align=1e-4
+Stability/alignment quantities are also diagnostic unless the explicitly
+optional active_mapping_loss variant is enabled.
 """
 
 import torch
@@ -22,7 +21,9 @@ def budget_loss(soft_gates_per_layer: list, target_fraction: float):
 
     L = (1/L) * sum_l ( (1/G) * sum_g m_bar_{t,l,g} - rho )^2
 
-    Only applied during Gumbel warmup when gates are soft.
+    Computed from cached route masks during warmup. In the reported
+    primary path those cached masks are detached, so this term contributes
+    no gradient to the routing choice.
 
     Args:
         soft_gates_per_layer: list of L tensors, each (G,) soft gate values
@@ -93,11 +94,12 @@ def balance_loss(route_masks: dict, num_blocks: int):
     """
     L_balance (Eq. 12): prevent all tasks from selecting the same blocks.
 
-    L = (1/L) * sum_l KL(p_bar_l || Uniform(G))
+    L = (1/L) * sum_l KL(Uniform(G) || p_hat_l)
 
-    where p_bar_{l,g} = (1/|T|) * sum_t m_{t,l,g}
+    where p_hat_l is normalized average cached route usage across tasks.
 
-    Applied only after initial warmup.
+    Computed after warmup. In the reported primary path the cached masks
+    are detached, so this quantity is diagnostic with respect to routing.
 
     Args:
         route_masks: {task_id: list of L (G,) mask tensors}
